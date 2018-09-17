@@ -1,21 +1,15 @@
-#' Index of interestingness: sd 
+#' Index of interestingness: mean 
 #'
-#' Compute the standard deviation for all individuals in the data
+#' Compute the mean for all individuals in the data
 #' @param d vector of values for individuals, needs to match the id vector
 #' @param id vector of ids to define which values belong to which individual
 #' @export
 #' @examples 
 #' library(tidyverse)
-#' df <- tibble(d=c(1,2,3,1,5,10,12), id=c(rep("A", 3), rep("B", 4)))
-#' l_sd(df$d, df$id)
+#' data(wages)
+#' m <- l_mean(wages)
 #'
-l_sd <- function(d, id) {
-  n <- length(unique(id))
-  ids <- unique(id)
-  sd <- NULL
-  for (i in 1:n){
-    x <- d[id == ids[i]]
-    sd <- c(sd, sd(x, na.rm=T))
-  }
-  return(sd)
+l_mean <- function(df) {
+  m <- df %>% split(.$id) %>% map(~mean(.$lnw, na.rm=TRUE)) %>% unlist(., use.names=FALSE)
+  return(m)
 }
