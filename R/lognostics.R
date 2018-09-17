@@ -7,9 +7,11 @@
 #' @examples 
 #' library(tidyverse)
 #' data(wages)
-#' m <- l_mean(wages)
+#' m <- l_mean(wages, "id", "lnw")
 #'
-l_mean <- function(df) {
-  m <- df %>% split(.$id) %>% map(~mean(.$lnw, na.rm=TRUE)) %>% unlist(., use.names=FALSE)
+l_mean <- function(df, id, var) {
+  sub <- df[,c(id, var)]
+  l <- split(sub, sub[[id]])
+  m <- map_dbl(l, ~mean(.x[[var]], na.rm=TRUE))  
   return(m)
 }
