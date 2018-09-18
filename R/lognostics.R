@@ -160,8 +160,11 @@ l_d1 <- function(df, id, var) {
 #'
 l_slope <- function(df, id, formula) {
   l <- split(df, df[[id]])
-  sl <- map(l, ~lm(eval(formula), data=.x)) %>%
-    map_dbl(~tidy, .)
+  sl <- map(l, ~eval(substitute(lm(formula, data=.)))) %>%
+    map_dfr(~ as.data.frame(t(as.matrix(coef(.))))) %>%
+    mutate(id = names(l)) %>%
+    rename_all(~c("intercept", "slope", "id")) %>%
+    select(id, intercept, slope)
   return(sl)
 }
 
