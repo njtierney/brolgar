@@ -153,13 +153,14 @@ l_d1 <- function(df, id, var) {
 #' @examples 
 #' library(tidyverse)
 #' data(wages)
-#' m <- l_length(wages, "id", "lnw")
+#' ns <- l_length(wages, "id", "lnw")
 #'
 l_length <- function(df, id, var) {
   sub <- df[,c(id, var)]
   l <- split(sub, sub[[id]])
-  m <- map_dbl(l, ~length(.x[[var]]))  
-  return(m)
+  n <- map_dbl(l, ~length(.x[[var]])) 
+  lg <- tibble(id=unique(sub[[id]]), n)
+  return(lg)
 }
 
 #' Index of interestingness: slope 
@@ -179,7 +180,7 @@ l_slope <- function(df, id, formula) {
   l <- split(df, df[[id]])
   sl <- map(l, ~eval(substitute(lm(formula, data=.)))) %>%
     map_dfr(~ as.data.frame(t(as.matrix(coef(.))))) %>%
-    mutate(id = names(l)) %>%
+    mutate(id = as.integer(names(l))) %>%
     rename_all(~c("intercept", "slope", "id")) %>%
     select(id, intercept, slope)
   return(sl)
