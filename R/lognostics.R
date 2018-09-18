@@ -34,26 +34,6 @@ l_sd <- function(df, id, var) {
   return(m)
 }
 
-#' Index of interestingness: slope 
-#'
-#' Compute the maximum value for all individuals in the data
-#' @param d vector of values for individuals, needs to match the id vector
-#' @param id vector of ids to define which values belong to which individual
-#' @param var vector of values to compute statistic on
-#' @param time variable for model
-#' @export
-#' @examples 
-#' library(tidyverse)
-#' data(wages)
-#' m <- l_slope(wages, "id", "lnw~exper")
-#'
-l_slope <- function(df, id, formula) {
-  l <- split(df, df[[id]])
-  sl <- map(l, ~lm(eval(formula), data=.x)) %>%
-    map_dbl(~tidy, .)
-  return(sl)
-}
-
 #' Index of interestingness: max 
 #'
 #' Compute the maximum value for all individuals in the data
@@ -107,3 +87,24 @@ l_median <- function(df, id, var) {
   m <- map_dbl(l, ~median(.x[[var]], na.rm=TRUE))  
   return(m)
 }
+
+#' Index of interestingness: slope 
+#'
+#' Compute the maximum value for all individuals in the data
+#' @param d vector of values for individuals, needs to match the id vector
+#' @param id vector of ids to define which values belong to which individual
+#' @param var vector of values to compute statistic on
+#' @param time variable for model
+#' @export
+#' @examples 
+#' library(tidyverse)
+#' data(wages)
+#' m <- l_slope(wages, "id", "lnw~exper")
+#'
+l_slope <- function(df, id, formula) {
+  l <- split(df, df[[id]])
+  sl <- map(l, ~lm(eval(formula), data=.x)) %>%
+    map_dbl(~tidy, .)
+  return(sl)
+}
+
