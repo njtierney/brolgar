@@ -106,6 +106,24 @@ l_q1 <- function(df, id, var) {
   return(m)
 }
 
+#' Index of interestingness: third quartile 
+#'
+#' Compute the third quartile value for all individuals in the data
+#' @param d vector of values for individuals, needs to match the id vector
+#' @param id vector of ids to define which values belong to which individual
+#' @export
+#' @examples 
+#' library(tidyverse)
+#' data(wages)
+#' m <- l_q3(wages, "id", "lnw")
+#'
+l_q3 <- function(df, id, var) {
+  sub <- df[,c(id, var)]
+  l <- split(sub, sub[[id]])
+  m <- map_dbl(l, ~quantile(.x[[var]], 0.75, type=7, na.rm=TRUE))  
+  return(m)
+}
+
 #' Index of interestingness: slope 
 #'
 #' Compute the maximum value for all individuals in the data
