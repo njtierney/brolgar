@@ -42,7 +42,6 @@ l_sd <- function(df, id, var) {
 #' @export
 #' @examples 
 #' library(tidyverse)
-#' library(base)
 #' data(wages)
 #' m <- l_max(wages, "id", "lnw")
 #'
