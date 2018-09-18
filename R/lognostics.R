@@ -33,3 +33,20 @@ l_sd <- function(df, id, var) {
   m <- map_dbl(l, ~sd(.x[[var]], na.rm=TRUE))  
   return(m)
 }
+#' Index of interestingness: median 
+#'
+#' Compute the minimum value for all individuals in the data
+#' @param d vector of values for individuals, needs to match the id vector
+#' @param id vector of ids to define which values belong to which individual
+#' @export
+#' @examples 
+#' library(tidyverse)
+#' data(wages)
+#' m <- l_median(wages, "id", "lnw")
+#'
+l_min <- function(df, id, var) {
+  sub <- df[,c(id, var)]
+  l <- split(sub, sub[[id]])
+  m <- map_dbl(l, ~median(.x[[var]], na.rm=TRUE))  
+  return(m)
+}
