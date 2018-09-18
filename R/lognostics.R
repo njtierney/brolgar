@@ -127,7 +127,7 @@ l_q3 <- function(df, id, var) {
 #' Index of interestingness: first order difference 
 #' Need to revisit for missing values
 #'
-#' Compute the first order difference of consecutive values for all individuals in the data
+#' Compute the maximum of the first order difference of consecutive values for all individuals in the data
 #' @param d vector of values for individuals, needs to match the id vector
 #' @param id vector of ids to define which values belong to which individual
 #' @export
@@ -139,7 +139,7 @@ l_q3 <- function(df, id, var) {
 l_d1 <- function(df, id, var) {
   sub <- df[,c(id, var)]
   l <- split(sub, sub[[id]])
-  m <- map_dbl(l, ~diff(.x[[var]], lag=1))  
+  m <- map_dbl(l, ~max(diff(.x[[var]], lag=1)))  
   return(m)
 }
 
