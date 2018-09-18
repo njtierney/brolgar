@@ -144,6 +144,23 @@ l_d1 <- function(df, id, var) {
 }
 
 
+#' Index of interestingness: n subjects
+#'
+#' Compute the number of observations for each individuals in the data
+#' @param d vector of values for individuals, needs to match the id vector
+#' @param id vector of ids to define which values belong to which individual
+#' @export
+#' @examples 
+#' library(tidyverse)
+#' data(wages)
+#' m <- l_length(wages, "id", "lnw")
+#'
+l_length <- function(df, id, var) {
+  sub <- df[,c(id, var)]
+  l <- split(sub, sub[[id]])
+  m <- map_dbl(l, ~length(.x[[var]]))  
+  return(m)
+}
 
 #' Index of interestingness: slope 
 #'
