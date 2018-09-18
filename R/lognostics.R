@@ -103,8 +103,13 @@ l_median <- function(df, id, var) {
 #'
 l_slope <- function(df, id, formula) {
   l <- split(df, df[[id]])
-  sl <- map(l, ~lm(eval(formula), data=.x)) %>%
-    map_dbl(~tidy, .)
+  sl <- map(l, ~eval(substitute(lm(formula, data=.)))) %>%
+    unnest(map(broom::tidy)) %>%
+    #flatten()
+    #unlist(recursive=FALSE, use.names = FALSE) %>%
+    select(id, term, estimate) %>%
+    spread(term, estimate) %>%
+    rename(intercept = `(Intercept)`) 
   return(sl)
 }
 
