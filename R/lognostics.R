@@ -13,7 +13,8 @@ l_mean <- function(df, id, var) {
   sub <- df[,c(id, var)]
   l <- split(sub, sub[[id]])
   m <- map_dbl(l, ~mean(.x[[var]], na.rm=TRUE))  
-  return(m)
+  ng <- tibble(id=unique(sub[[id]]), m)
+  return(ng)
 }
 
 #' Index of interestingness: sd 
@@ -31,7 +32,8 @@ l_sd <- function(df, id, var) {
   sub <- df[,c(id, var)]
   l <- split(sub, sub[[id]])
   m <- map_dbl(l, ~sd(.x[[var]], na.rm=TRUE))  
-  return(m)
+  ng <- tibble(id=unique(sub[[id]]), m)
+  return(ng)
 }
 
 #' Index of interestingness: max 
@@ -49,7 +51,8 @@ l_max <- function(df, id, var) {
   sub <- df[,c(id, var)]
   l <- split(sub, sub[[id]])
   m <- map_dbl(l, ~max(.x[[var]], na.rm=TRUE))  
-  return(m)
+  ng <- tibble(id=unique(sub[[id]]), m)
+  return(ng)
 }
 
 #' Index of interestingness: min 
@@ -67,7 +70,8 @@ l_min <- function(df, id, var) {
   sub <- df[,c(id, var)]
   l <- split(sub, sub[[id]])
   m <- map_dbl(l, ~min(.x[[var]], na.rm=TRUE))  
-  return(m)
+  ng <- tibble(id=unique(sub[[id]]), m)
+  return(ng)
 }
 
 #' Index of interestingness: median 
@@ -85,7 +89,8 @@ l_median <- function(df, id, var) {
   sub <- df[,c(id, var)]
   l <- split(sub, sub[[id]])
   m <- map_dbl(l, ~median(.x[[var]], na.rm=TRUE))  
-  return(m)
+  ng <- tibble(id=unique(sub[[id]]), m)
+  return(ng)
 }
 
 #' Index of interestingness: first quartile 
@@ -103,7 +108,8 @@ l_q1 <- function(df, id, var) {
   sub <- df[,c(id, var)]
   l <- split(sub, sub[[id]])
   m <- map_dbl(l, ~quantile(.x[[var]], 0.25, type=7, na.rm=TRUE))  
-  return(m)
+  ng <- tibble(id=unique(sub[[id]]), m)
+  return(ng)
 }
 
 #' Index of interestingness: third quartile 
@@ -121,7 +127,8 @@ l_q3 <- function(df, id, var) {
   sub <- df[,c(id, var)]
   l <- split(sub, sub[[id]])
   m <- map_dbl(l, ~quantile(.x[[var]], 0.75, type=7, na.rm=TRUE))  
-  return(m)
+  ng <- tibble(id=unique(sub[[id]]), m)
+  return(ng)
 }
 
 #' Index of interestingness: first order difference 
@@ -140,7 +147,8 @@ l_d1 <- function(df, id, var) {
   sub <- df[,c(id, var)]
   l <- split(sub, sub[[id]])
   m <- map_dbl(l, ~max(diff(.x[[var]], lag=1)))  
-  return(m)
+  ng <- tibble(id=unique(sub[[id]]), m)
+  return(ng)
 }
 
 
