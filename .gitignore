@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 wages.R
+inst/doc
