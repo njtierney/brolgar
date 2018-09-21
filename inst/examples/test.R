@@ -37,7 +37,7 @@ wages_lg %>% filter(n>5) %>%
 ggplot(wages_lg, aes(x=exper, y=lnw, group=id)) + geom_line() +
   gghighlight(slope > 2, use_direct_label=FALSE)
 
-ggplot(m, aes(x=slope)) + geom_histogram()
+ggplot(sl, aes(x=slope)) + geom_histogram()
 
 # Stats on stats
 wages_enough <- wages %>% 
