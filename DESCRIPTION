@@ -32,6 +32,7 @@ Suggests:
     rmarkdown,
     spelling,
     gghighlight,
-    testthat
+    testthat,
+    covr
 VignetteBuilder: knitr
 Language: en-US
