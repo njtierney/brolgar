@@ -21,7 +21,8 @@ Imports:
     purrr,
     magrittr,
     dplyr,
-    tibble
+    tibble,
+    rlang
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -30,6 +31,7 @@ Suggests:
     knitr,
     rmarkdown,
     spelling,
-    gghighlight
+    gghighlight,
+    testthat
 VignetteBuilder: knitr
 Language: en-US
