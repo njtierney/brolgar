@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The package **brolgar** contains some tools for analyzing longitudinal data which are not currently standard practice. Longitidinal data has subjects who are measured on several characteristics repeatedly through time but not always at the same time points or the same number of times. In our example we show how you can extract imformative individual patterns of the data by concentrating on different statistics. A story can be woven that may be relevant rather than speaking in generalities.
+The package **brolgar** contains some tools for analyzing longitudinal data which are not currently standard practice. Longitudinal data has subjects who are measured on several characteristics repeatedly through time but not always at the same time points or the same number of times. In our example we show how you can extract informative individual patterns of the data by concentrating on different statistics. A story can be woven that may be relevant rather than speaking in generalities.
 
 The **wages** data set analysed in Singer & Willett (2003) will be used to demonstrate some of the capabilities of this package.  
 
@@ -29,7 +29,7 @@ The **wages** data set analysed in Singer & Willett (2003) will be used to demon
 
 ## A tibble of the wages data
 
-```{r}
+```{r load-and-print}
 library(tidyverse)
 library(brolgar)
 data(wages)
@@ -40,42 +40,15 @@ wages %>% print(10)
 
 ## Example 1
 
-```{r}
+```{r use-gghighlight}
 library(gghighlight)
 sl <- l_slope(wages, "id", "lnw~exper")
 ns <- l_length(wages, "id", "lnw")
-wages_lg <- wages %>% 
-  left_join(sl, by="id") %>%
-  left_join(ns, by="id")
-wages_lg %>% filter(n>5) %>% 
-  ggplot(aes(x=exper, y=lnw, group=id)) + geom_line() +
-  gghighlight(slope < (-0.5), use_direct_label=FALSE)
+wages_lg <- wages %>%
+  left_join(sl, by = "id") %>%
+  left_join(ns, by = "id")
+wages_lg %>% filter(n > 5) %>%
+  ggplot(aes(x = exper, y = lnw, group = id)) + geom_line() +
+  gghighlight(slope < (-0.5), use_direct_label = FALSE)
 ```
 
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
-```
-
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
