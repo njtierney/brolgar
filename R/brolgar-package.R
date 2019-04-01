@@ -4,7 +4,7 @@
 #'
 #' @seealso
 #'
-#' @name visdat
+#' @name brolgar
 #' @docType package
 NULL
 
