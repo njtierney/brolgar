@@ -22,7 +22,8 @@ Imports:
     magrittr,
     dplyr,
     tibble,
-    rlang
+    rlang,
+    glue
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
