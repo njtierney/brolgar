@@ -4,10 +4,10 @@
 \alias{l_mean}
 \title{Index of interestingness: mean}
 \usage{
-l_mean(df, id, var)
+l_mean(data, id, var)
 }
 \arguments{
-\item{df}{data.frame to explore}
+\item{data}{data.frame to explore}
 
 \item{id}{vector of ids to define which values belong to which individual}
 
@@ -17,8 +17,7 @@ l_mean(df, id, var)
 Compute the mean for all individuals in the data
 }
 \examples{
-library(tidyverse)
 data(wages)
-m <- l_mean(wages, "id", "lnw")
+l_mean(wages, "id", "lnw")
 
 }

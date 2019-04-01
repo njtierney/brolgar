@@ -4,7 +4,7 @@
 \alias{lognostic}
 \title{Calculating lognostics}
 \arguments{
-\item{df}{data.frame to explore}
+\item{data}{data.frame to explore}
 
 \item{var}{vector of values for individuals, needs to match the id vector}
 

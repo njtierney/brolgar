@@ -4,10 +4,10 @@
 \alias{l_max}
 \title{Index of interestingness: max}
 \usage{
-l_max(df, id, var)
+l_max(data, id, var)
 }
 \arguments{
-\item{df}{data.frame to explore}
+\item{data}{data.frame to explore}
 
 \item{id}{vector of ids to define which values belong to which individual}
 
@@ -17,8 +17,7 @@ l_max(df, id, var)
 Compute the maximum value for all individuals in the data
 }
 \examples{
-library(tidyverse)
 data(wages)
-m <- l_max(wages, "id", "lnw")
+l_max(wages, "id", "lnw")
 
 }

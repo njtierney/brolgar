@@ -4,10 +4,10 @@
 \alias{l_min}
 \title{Index of interestingness: min}
 \usage{
-l_min(df, id, var)
+l_min(data, id, var)
 }
 \arguments{
-\item{df}{data.frame to explore}
+\item{data}{data.frame to explore}
 
 \item{id}{vector of ids to define which values belong to which individual}
 
@@ -17,8 +17,7 @@ l_min(df, id, var)
 Compute the minimum value for all individuals in the data
 }
 \examples{
-library(tidyverse)
 data(wages)
-m <- l_min(wages, "id", "lnw")
+l_min(wages, "id", "lnw")
 
 }

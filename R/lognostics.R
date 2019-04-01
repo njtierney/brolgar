@@ -15,9 +15,8 @@ NULL
 #' @inheritParams lognostic
 #' @export
 #' @examples
-#' library(tidyverse)
 #' data(wages)
-#' m <- l_mean(wages, "id", "lnw")
+#' l_mean(wages, "id", "lnw")
 #'
 l_mean <- function(data, id, var) {
   
@@ -39,9 +38,8 @@ l_mean <- function(data, id, var) {
 #' @inheritParams lognostic
 #' @export
 #' @examples
-#' library(tidyverse)
 #' data(wages)
-#' s <- l_sd(wages, "id", "lnw")
+#' l_sd(wages, "id", "lnw")
 #'
 l_sd <- function(data, id, var) {
 
@@ -64,9 +62,8 @@ l_sd <- function(data, id, var) {
 #' @inheritParams lognostic
 #' @export
 #' @examples
-#' library(tidyverse)
 #' data(wages)
-#' m <- l_max(wages, "id", "lnw")
+#' l_max(wages, "id", "lnw")
 #'
 l_max <- function(data, id, var) {
   
@@ -89,9 +86,8 @@ l_max <- function(data, id, var) {
 #' @inheritParams lognostic
 #' @export
 #' @examples
-#' library(tidyverse)
 #' data(wages)
-#' m <- l_min(wages, "id", "lnw")
+#' l_min(wages, "id", "lnw")
 #'
 l_min <- function(data, id, var) {
   
@@ -109,15 +105,13 @@ l_min <- function(data, id, var) {
 #' Index of interestingness: median
 #'
 #' Compute the median value for all individuals in the data
-
 #' @inheritParams lognostic
 #' @export
 #' @examples
-#' library(tidyverse)
 #' data(wages)
-#' m <- l_median(wages, "id", "lnw")
+#' l_median(wages, id, lnw)
 #'
-l_median <- function(df, id, var) {
+l_median <- function(data, id, var) {
   
   q_id <- rlang::enquo(id)
   q_var <- rlang::enquo(var)
@@ -137,29 +131,23 @@ l_median <- function(df, id, var) {
 #' @inheritParams lognostic
 #' @export
 #' @examples
-#' library(tidyverse)
 #' data(wages)
-#' m <- l_q1(wages, "id", "lnw")
+#' l_q1(wages, id, lnw)
 #'
-l_q1 <- function(df, id, var) {
+l_q1 <- function(data, id, var) {
   
   q_id <- rlang::enquo(id)
   q_var <- rlang::enquo(var)
   
-  
   lognosticise(data = data,
                id = !!q_id,
                var = !!q_var,
-               statistic =  quantile,
-               l_name = l_quantile,
+               statistic = quantile,
+               l_name = l_q1,
                probs = c(0.25),
                type = 7,
                na.rm = TRUE)
-  # sub <- df[, c(id, var)]
-  # l <- split(sub, sub[[id]])
-  # m <- purrr::map_dbl(l, ~ quantile(.x[[var]], 0.25, type = 7, na.rm = TRUE))
-  # ng <- tibble::tibble(id = unique(sub[[id]]), m)
-  # return(ng)
+  
 }
 
 #' Index of interestingness: third quartile
@@ -169,16 +157,22 @@ l_q1 <- function(df, id, var) {
 #' @inheritParams lognostic
 #' @export
 #' @examples
-#' library(tidyverse)
 #' data(wages)
-#' m <- l_q3(wages, "id", "lnw")
+#' l_q3(wages, id, lnw)
 #'
-l_q3 <- function(df, id, var) {
-  sub <- df[, c(id, var)]
-  l <- split(sub, sub[[id]])
-  m <- purrr::map_dbl(l, ~ quantile(.x[[var]], 0.75, type = 7, na.rm = TRUE))
-  ng <- tibble::tibble(id = unique(sub[[id]]), m)
-  return(ng)
+l_q3 <- function(data, id, var) {
+  
+  q_id <- rlang::enquo(id)
+  q_var <- rlang::enquo(var)
+  
+  lognosticise(data = data,
+               id = !!q_id,
+               var = !!q_var,
+               statistic = quantile,
+               l_name = l_q3,
+               probs = c(0.75),
+               type = 7,
+               na.rm = TRUE)
 }
 
 #' Index of interestingness: first order difference
@@ -187,39 +181,53 @@ l_q3 <- function(df, id, var) {
 #' Compute the maximum of the first order difference of consecutive values for all individuals in the data
 
 #' @inheritParams lognostic
+#' @param lag the lag to use, default to 1
 #' @export
 #' @examples
-#' library(tidyverse)
 #' data(wages)
-#' m <- l_d1(wages, "id", "lnw")
+#' l_diff(wages, id, lnw)
 #'
-l_d1 <- function(df, id, var) {
+l_diff <- function(data, id, var, lag = 1) {
   
-  sub <- df[, c(id, var)]
-  l <- split(sub, sub[[id]])
-  m <- purrr::map_dbl(l, ~ max_if(diff(.x[[var]], lag = 1)))
-  ng <- tibble::tibble(id = unique(sub[[id]]), m)
-  return(ng)
+  q_id <- rlang::enquo(id)
+  q_var <- rlang::enquo(var)
+  
+  safe_diff <- function(x, ...) max_if(diff(x, ...))
+  
+  l_name <- rlang::sym(glue::glue("l_diff_{lag}"))
+  
+  lognosticise(data = data,
+               id = !!q_id,
+               var = !!q_var,
+               statistic = safe_diff,
+               l_name = !!l_name,
+               lag = lag,
+               na.rm = TRUE)
+  
 }
 
 
 #' Index of interestingness: n subjects
 #'
 #' Compute the number of observations for each individuals in the data
-
+#' 
 #' @inheritParams lognostic
 #' @export
 #' @examples
-#' library(tidyverse)
 #' data(wages)
-#' ns <- l_length(wages, "id", "lnw")
+#' l_n_obs(wages, id, lnw)
 #'
-l_length <- function(df, id, var) {
-  sub <- df[, c(id, var)]
-  l <- split(sub, sub[[id]])
-  n <- purrr::map_dbl(l, ~ length(.x[[var]]))
-  lg <- tibble::tibble(id = unique(sub[[id]]), n)
-  return(lg)
+l_n_obs <- function(data, id, var) {
+  
+  q_id <- rlang::enquo(id)
+  q_var <- rlang::enquo(var)
+  
+  lognosticise(data = data,
+               id = !!q_id,
+               var = !!q_var,
+               statistic = length,
+               l_name = l_n_obs)
+  
 }
 
 #' Index of interestingness: slope
@@ -232,9 +240,8 @@ l_length <- function(df, id, var) {
 # @param time variable for model
 #' @export
 #' @examples
-#' library(tidyverse)
 #' data(wages)
-#' m <- l_slope(wages, "id", "lnw~exper")
+#' l_slope(wages, "id", "lnw~exper")
 #'
 l_slope <- function(df, id, formula) {
   l <- split(df, df[[id]])
