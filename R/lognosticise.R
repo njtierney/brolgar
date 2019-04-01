@@ -1,4 +1,4 @@
-#' Create a lognostic
+#' Calculate a lognostic
 #'
 #' @param data data.frame
 #' @param id id variable that uniquely identifies an individual
@@ -32,19 +32,3 @@ lognosticise <- function(data, id, var, statistic, l_name, ...) {
     dplyr::rename(!!sym_l_name := !!quo_var)
     
 }
-
-# # proof that this is the same
-# 
-# l_tidy <- wages %>%
-#   group_by(id) %>%
-#   summarise_at(.vars = "lnw",
-#                .funs = mean,
-#                na.rm = TRUE) %>%
-#   rename(m = lnw)
-# 
-# l_previous <- l_mean(wages, "id", "lnw")
-# 
-# all.equal(l_tidy, l_previous)
-# names(l_tidy)
-# names(l_previous)
-# 

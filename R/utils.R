@@ -6,7 +6,7 @@
 #' @param x numeric
 #' @param ... additional arguments for min/max
 #'
-#' @return
+#' @return either NA or the maximum or minimum value
 #' @examples
 #' max_if(numeric(0))
 #' @name safe_minima
