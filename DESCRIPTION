@@ -1,17 +1,35 @@
 Package: brolgar
 Title: BRowse Over Longitudinal data Graphically and Analytically in R
 Version: 0.0.0.9000
-Authors@R: c(person("Tania", "Prvan", email = "tania.prvan@mq.edu.au", role = c("aut", "cre")), 
-    person("Di", "Cook", email = "dicook@monash.edu", role = "aut"))
-Description: What the package does (one paragraph).
-Depends: R (>= 3.5.1)
+Authors@R: c(person("Tania", 
+                    "Prvan", 
+                    email = "tania.prvan@mq.edu.au", 
+                    role = c("aut", "cre")), 
+             person("Di", 
+                    "Cook", 
+                    email = "dicook@monash.edu", 
+                    role = "aut"),
+            person("Nicholas",
+                   "Tierney",
+                   email = "nicholas.tierney@gmail.com",
+                   role = "aut"))
+Description: Provides a framework of tools to summarise, visualise, and explore 
+  longitudinal data.
+Depends: R (>= 3.5.0)
 Imports:
     tidyverse,
-    purrr
-License: MIT License
+    purrr,
+    magrittr,
+    dplyr,
+    tibble
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
-Suggests: knitr,
-    rmarkdown
+RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    spelling,
+    gghighlight
 VignetteBuilder: knitr
+Language: en-US
