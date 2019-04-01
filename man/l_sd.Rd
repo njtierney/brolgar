@@ -7,9 +7,11 @@
 l_sd(df, id, var)
 }
 \arguments{
+\item{df}{data.frame to explore}
+
 \item{id}{vector of ids to define which values belong to which individual}
 
-\item{d}{vector of values for individuals, needs to match the id vector}
+\item{var}{vector of values for individuals, needs to match the id vector}
 }
 \description{
 Compute the standard deviation for all individuals in the data
