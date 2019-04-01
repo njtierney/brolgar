@@ -79,7 +79,7 @@ l_max <- function(df, id, var) {
 l_min <- function(df, id, var) {
   sub <- df[, c(id, var)]
   l <- split(sub, sub[[id]])
-  m <- purrr::map_dbl(l, ~ min(.x[[var]], na.rm = TRUE))
+  m <- purrr::map_dbl(l, ~ min_if(.x[[var]], na.rm = TRUE))
   ng <- tibble::tibble(id = unique(sub[[id]]), m)
   return(ng)
 }
@@ -154,9 +154,10 @@ l_q3 <- function(df, id, var) {
 #' m <- l_d1(wages, "id", "lnw")
 #'
 l_d1 <- function(df, id, var) {
+  
   sub <- df[, c(id, var)]
   l <- split(sub, sub[[id]])
-  m <- purrr::map_dbl(l, ~ max(diff(.x[[var]], lag = 1)))
+  m <- purrr::map_dbl(l, ~ max_if(diff(.x[[var]], lag = 1)))
   ng <- tibble::tibble(id = unique(sub[[id]]), m)
   return(ng)
 }
@@ -203,6 +204,7 @@ l_slope <- function(df, id, formula) {
     ))))) %>%
     dplyr::mutate(id = as.integer(names(l))) %>%
     dplyr::rename_all( ~ c("intercept", "slope", "id")) %>%
-    dplyr::select(id, intercept, slope)
+    dplyr::select(id, intercept, slope) %>%
+    tibble::as_tibble()
   return(sl)
 }
