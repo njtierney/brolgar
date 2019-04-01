@@ -2,7 +2,7 @@
 #' 
 #' Lognostics are Cognitive Diagnostics for longitudinal data
 #' 
-#' @param df data.frame to explore
+#' @param data data.frame to explore
 #' @param var vector of values for individuals, needs to match the id vector
 #' @param id vector of ids to define which values belong to which individual
 #' @name lognostic
@@ -19,12 +19,17 @@ NULL
 #' data(wages)
 #' m <- l_mean(wages, "id", "lnw")
 #'
-l_mean <- function(df, id, var) {
-  sub <- df[, c(id, var)]
-  l <- split(sub, sub[[id]])
-  m <- purrr::map_dbl(l, ~ mean(.x[[var]], na.rm = TRUE))
-  ng <- tibble::tibble(id = unique(sub[[id]]), m)
-  return(ng)
+l_mean <- function(data, id, var) {
+  
+  q_id <- rlang::enquo(id)
+  q_var <- rlang::enquo(var)
+  
+  lognosticise(data = data,
+               id = !!q_id,
+               var = !!q_var,
+               statistic =  mean,
+               l_name = l_mean,
+               na.rm = TRUE)
 }
 
 #' Index of interestingness: sd
@@ -38,12 +43,18 @@ l_mean <- function(df, id, var) {
 #' data(wages)
 #' s <- l_sd(wages, "id", "lnw")
 #'
-l_sd <- function(df, id, var) {
-  sub <- df[, c(id, var)]
-  l <- split(sub, sub[[id]])
-  m <- purrr::map_dbl(l, ~ sd(.x[[var]], na.rm = TRUE))
-  ng <- tibble::tibble(id = unique(sub[[id]]), m)
-  return(ng)
+l_sd <- function(data, id, var) {
+
+  q_id <- rlang::enquo(id)
+  q_var <- rlang::enquo(var)
+  
+  lognosticise(data = data,
+               id = !!q_id,
+               var = !!q_var,
+               statistic =  sd,
+               l_name = l_sd,
+               na.rm = TRUE)
+  
 }
 
 #' Index of interestingness: max
@@ -57,12 +68,18 @@ l_sd <- function(df, id, var) {
 #' data(wages)
 #' m <- l_max(wages, "id", "lnw")
 #'
-l_max <- function(df, id, var) {
-  sub <- df[, c(id, var)]
-  l <- split(sub, sub[[id]])
-  m <- purrr::map_dbl(l, ~ max(.x[[var]], na.rm = TRUE))
-  ng <- tibble::tibble(id = unique(sub[[id]]), m)
-  return(ng)
+l_max <- function(data, id, var) {
+  
+  q_id <- rlang::enquo(id)
+  q_var <- rlang::enquo(var)
+  
+  lognosticise(data = data,
+               id = !!q_id,
+               var = !!q_var,
+               statistic =  max,
+               l_name = l_max,
+               na.rm = TRUE)
+  
 }
 
 #' Index of interestingness: min
@@ -76,12 +93,17 @@ l_max <- function(df, id, var) {
 #' data(wages)
 #' m <- l_min(wages, "id", "lnw")
 #'
-l_min <- function(df, id, var) {
-  sub <- df[, c(id, var)]
-  l <- split(sub, sub[[id]])
-  m <- purrr::map_dbl(l, ~ min_if(.x[[var]], na.rm = TRUE))
-  ng <- tibble::tibble(id = unique(sub[[id]]), m)
-  return(ng)
+l_min <- function(data, id, var) {
+  
+  q_id <- rlang::enquo(id)
+  q_var <- rlang::enquo(var)
+  
+  lognosticise(data = data,
+               id = !!q_id,
+               var = !!q_var,
+               statistic =  min,
+               l_name = l_min,
+               na.rm = TRUE)
 }
 
 #' Index of interestingness: median
@@ -96,11 +118,16 @@ l_min <- function(df, id, var) {
 #' m <- l_median(wages, "id", "lnw")
 #'
 l_median <- function(df, id, var) {
-  sub <- df[, c(id, var)]
-  l <- split(sub, sub[[id]])
-  m <- purrr::map_dbl(l, ~ median(.x[[var]], na.rm = TRUE))
-  ng <- tibble::tibble(id = unique(sub[[id]]), m)
-  return(ng)
+  
+  q_id <- rlang::enquo(id)
+  q_var <- rlang::enquo(var)
+  
+  lognosticise(data = data,
+               id = !!q_id,
+               var = !!q_var,
+               statistic = median,
+               l_name = l_median,
+               na.rm = TRUE)
 }
 
 #' Index of interestingness: first quartile
@@ -115,11 +142,24 @@ l_median <- function(df, id, var) {
 #' m <- l_q1(wages, "id", "lnw")
 #'
 l_q1 <- function(df, id, var) {
-  sub <- df[, c(id, var)]
-  l <- split(sub, sub[[id]])
-  m <- purrr::map_dbl(l, ~ quantile(.x[[var]], 0.25, type = 7, na.rm = TRUE))
-  ng <- tibble::tibble(id = unique(sub[[id]]), m)
-  return(ng)
+  
+  q_id <- rlang::enquo(id)
+  q_var <- rlang::enquo(var)
+  
+  
+  lognosticise(data = data,
+               id = !!q_id,
+               var = !!q_var,
+               statistic =  quantile,
+               l_name = l_quantile,
+               probs = c(0.25),
+               type = 7,
+               na.rm = TRUE)
+  # sub <- df[, c(id, var)]
+  # l <- split(sub, sub[[id]])
+  # m <- purrr::map_dbl(l, ~ quantile(.x[[var]], 0.25, type = 7, na.rm = TRUE))
+  # ng <- tibble::tibble(id = unique(sub[[id]]), m)
+  # return(ng)
 }
 
 #' Index of interestingness: third quartile
