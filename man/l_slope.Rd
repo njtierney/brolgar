@@ -7,8 +7,6 @@
 l_slope(df, id, formula)
 }
 \arguments{
-\item{df}{data.frame to explore}
-
 \item{id}{vector of ids to define which values belong to which individual}
 
 \item{formula}{character, a formula representing the slope of interest}
@@ -17,8 +15,7 @@ l_slope(df, id, formula)
 Compute the maximum value for all individuals in the data
 }
 \examples{
-library(tidyverse)
 data(wages)
-m <- l_slope(wages, "id", "lnw~exper")
+l_slope(wages, "id", "lnw~exper")
 
 }

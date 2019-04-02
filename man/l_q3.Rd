@@ -4,10 +4,10 @@
 \alias{l_q3}
 \title{Index of interestingness: third quartile}
 \usage{
-l_q3(df, id, var)
+l_q3(data, id, var)
 }
 \arguments{
-\item{df}{data.frame to explore}
+\item{data}{data.frame to explore}
 
 \item{id}{vector of ids to define which values belong to which individual}
 
@@ -17,8 +17,7 @@ l_q3(df, id, var)
 Compute the third quartile value for all individuals in the data
 }
 \examples{
-library(tidyverse)
 data(wages)
-m <- l_q3(wages, "id", "lnw")
+l_q3(wages, id, lnw)
 
 }

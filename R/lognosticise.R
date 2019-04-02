@@ -27,8 +27,8 @@ lognosticise <- function(data, id, var, statistic, l_name, ...) {
   data %>%
     dplyr::group_by(!!quo_id) %>%
     dplyr::summarise_at(.vars = dplyr::vars(!!quo_var),
-                 .funs = statistic,
-                 ...) %>%
+                        .funs = statistic,
+                        ...) %>%
     dplyr::rename(!!sym_l_name := !!quo_var)
     
 }

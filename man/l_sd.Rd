@@ -4,10 +4,10 @@
 \alias{l_sd}
 \title{Index of interestingness: sd}
 \usage{
-l_sd(df, id, var)
+l_sd(data, id, var)
 }
 \arguments{
-\item{df}{data.frame to explore}
+\item{data}{data.frame to explore}
 
 \item{id}{vector of ids to define which values belong to which individual}
 
@@ -17,8 +17,7 @@ l_sd(df, id, var)
 Compute the standard deviation for all individuals in the data
 }
 \examples{
-library(tidyverse)
 data(wages)
-s <- l_sd(wages, "id", "lnw")
+l_sd(wages, "id", "lnw")
 
 }
