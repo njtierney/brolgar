@@ -254,7 +254,7 @@ l_slope <- function(data, id, formula) {
                   estimate) %>%
     tidyr::spread(key = term,
                   value = estimate) %>%
-    dplyr::rename_all(~c("id", "intercept", "slope"))
+    dplyr::rename_all(~c("id", "l_intercept", "l_slope"))
 
   # 
   # l_slope_old <- function(df, id, formula){
