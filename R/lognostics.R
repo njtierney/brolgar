@@ -236,22 +236,38 @@ l_n_obs <- function(data, id, var) {
 
 #' @inheritParams lognostic
 #' @param formula character, a formula representing the slope of interest
-# @param var vector of values to compute statistic on
-# @param time variable for model
 #' @export
 #' @examples
 #' data(wages)
-#' l_slope(wages, "id", "lnw~exper")
+#' l_slope(wages, id, lnw~exper)
 #'
-l_slope <- function(df, id, formula) {
-  l <- split(df, df[[id]])
-  sl <- purrr::map(l, ~ eval(substitute(lm(formula, data = .)))) %>%
-    purrr::map_dfr( ~ as.data.frame(t(as.matrix(coef(
-      .
-    ))))) %>%
-    dplyr::mutate(id = as.integer(names(l))) %>%
-    dplyr::rename_all( ~ c("intercept", "slope", "id")) %>%
-    dplyr::select(id, intercept, slope) %>%
-    tibble::as_tibble()
-  return(sl)
+l_slope <- function(data, id, formula) {
+
+  quo_id <- rlang::enquo(id)
+  quo_formula <- rlang::enquo(formula)
+  
+  data %>%
+    dplyr::group_by(!!quo_id) %>%
+    dplyr::group_map(~broom::tidy(lm(quo_formula, data = .x))) %>%
+    dplyr::select(id,
+                  term,
+                  estimate) %>%
+    tidyr::spread(key = term,
+                  value = estimate) %>%
+    dplyr::rename_all(~c("id", "intercept", "slope"))
+
+  # 
+  # l_slope_old <- function(df, id, formula){
+  #   l <- split(df, df[[id]])
+  #   sl <- purrr::map(l, ~ eval(substitute(lm(formula, data = .)))) %>%
+  #     purrr::map_dfr( ~ as.data.frame(t(as.matrix(coef(
+  #       .
+  #     ))))) %>%
+  #     dplyr::mutate(id = as.integer(names(l))) %>%
+  #     dplyr::rename_all( ~ c("intercept", "slope", "id")) %>%
+  #     dplyr::select(id, intercept, slope) %>%
+  #     tibble::as_tibble()
+  #   return(sl)
+  # }
+  
 }

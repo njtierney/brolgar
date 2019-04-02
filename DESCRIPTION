@@ -1,6 +1,6 @@
 Package: brolgar
 Title: BRowse Over Longitudinal data Graphically and Analytically in R
-Version: 0.0.0.9000
+Version: 0.0.0.9200
 Authors@R: c(person("Tania", 
                     "Prvan", 
                     email = "tania.prvan@mq.edu.au", 
