@@ -42,13 +42,21 @@ wages %>% print(10)
 
 ```{r use-gghighlight}
 library(gghighlight)
-sl <- l_slope(wages, "id", "lnw~exper")
-ns <- l_length(wages, "id", "lnw")
+
+sl <- l_slope(wages, id, lnw~exper)
+ns <- l_n_obs(wages, id, lnw)
+
 wages_lg <- wages %>%
   left_join(sl, by = "id") %>%
   left_join(ns, by = "id")
-wages_lg %>% filter(n > 5) %>%
-  ggplot(aes(x = exper, y = lnw, group = id)) + geom_line() +
-  gghighlight(slope < (-0.5), use_direct_label = FALSE)
+
+wages_lg %>% 
+  filter(l_n_obs > 5) %>%
+  ggplot(aes(x = exper, 
+             y = lnw, 
+             group = id)) + 
+  geom_line() +
+  gghighlight(l_slope < (-0.5),
+              use_direct_label = FALSE)
 ```
 

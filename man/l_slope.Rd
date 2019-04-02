@@ -4,9 +4,11 @@
 \alias{l_slope}
 \title{Index of interestingness: slope}
 \usage{
-l_slope(df, id, formula)
+l_slope(data, id, formula)
 }
 \arguments{
+\item{data}{data.frame to explore}
+
 \item{id}{vector of ids to define which values belong to which individual}
 
 \item{formula}{character, a formula representing the slope of interest}
@@ -16,6 +18,6 @@ Compute the maximum value for all individuals in the data
 }
 \examples{
 data(wages)
-l_slope(wages, "id", "lnw~exper")
+l_slope(wages, id, lnw~exper)
 
 }

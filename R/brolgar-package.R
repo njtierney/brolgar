@@ -2,12 +2,17 @@
 #'
 #' brolgar is a package ...
 #'
-#' @seealso
-#'
 #' @name brolgar
 #' @docType package
 NULL
 
+#' @importFrom rlang .data quo quos enquo enquos quo_name sym ensym syms
+
 if(getRversion() >= "2.15.1")  utils::globalVariables(c("."))
 globalVariables(c("intercept",
-                  "slope"))
+                  "slope",
+                  "median",
+                  "quantile",
+                  "sd",
+                  "term",
+                  "estimate"))

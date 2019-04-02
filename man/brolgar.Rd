@@ -8,6 +8,3 @@
 \description{
 brolgar is a package ...
 }
-\seealso{
-
-}

@@ -8,7 +8,9 @@
 #'
 #' @return either NA or the maximum or minimum value
 #' @examples
+#' \dontrun{
 #' max_if(numeric(0))
+#' }
 #' @name safe_minima
 max_if <- function(x, ...){
   ifelse(test = length(x) == 0,
