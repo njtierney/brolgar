@@ -6,7 +6,7 @@
 #' @docType package
 NULL
 
-#' @importFrom rlang .data quo quos enquo enquos quo_name sym ensym syms
+#' @importFrom rlang .data quo quos enquo enquos quo_name sym ensym syms :=
 
 if(getRversion() >= "2.15.1")  utils::globalVariables(c("."))
 globalVariables(c("intercept",
