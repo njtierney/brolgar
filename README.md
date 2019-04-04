@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# brolgar
+# brolgar (BRowse over Longitudinal data Graphically and Analytically in R)
 
 <!-- badges: start -->
 
@@ -11,26 +11,47 @@ status](https://travis-ci.org/tprvan/brolgar.svg?branch=master)](https://travis-
 status](https://ci.appveyor.com/api/projects/status/github/tprvan/brolgar?branch=master&svg=true)](https://ci.appveyor.com/project/tprvan/brolgar)
 [![Codecov test
 coverage](https://codecov.io/gh/tprvan/brolgar/branch/master/graph/badge.svg)](https://codecov.io/gh/tprvan/brolgar?branch=master)
+[![Travis build
+status](https://travis-ci.org/njtierney/brolgar.svg?branch=master)](https://travis-ci.org/njtierney/brolgar)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/njtierney/brolgar?branch=master&svg=true)](https://ci.appveyor.com/project/njtierney/brolgar)
+[![Codecov test
+coverage](https://codecov.io/gh/njtierney/brolgar/branch/master/graph/badge.svg)](https://codecov.io/gh/njtierney/brolgar?branch=master)
 <!-- badges: end -->
 
 Exploring longitudinal data can be challenging. For example, when there
 are many individuals it is difficult to look at all of them, as you
 often get a “plate of spaghetti” plot, with many lines plotted on top of
-each other. This is hard to interpret.
+each other.
+
+``` r
+library(brolgar)
+library(ggplot2)
+ggplot(wages, 
+       aes(x = exper, 
+             y = lnw, 
+             group = id)) + 
+  geom_line()
+```
+
+<img src="man/figures/README-show-spaghetti-1.png" width="100%" />
+
+These are hard to interpret.
 
 You might then want to explore those individuals with higher amounts of
 variation, or those with lower variation. But calculating this for
-individuals draws you away from your analysis, and instead wrangling
-with a different problem: summarising key information about each
-individual and incorporating that back into the data. This is annoying,
-and distracts from your analysis, inviting errors.
+individuals draws you away from your analysis, and instead you are now
+wrangling with a different problem: summarising key information about
+each individual and incorporating that back into the data.
+
+This is annoying, and distracts from your analysis, inviting errors.
 
 **brolgar** (BRowse over Longitudinal data Graphically and Analytically
-in R) provides tools for providing statistical summaries for each
-individual. These are referred to as a `longnostics`, a portmanteau of
-`longitudinal` and `cognostic`. These `longnostics` make it
-straightforward to extract subjects with certain properties to gain some
-insight into the data.
+in R) (forked from <https://github.com/tprvan/brolgar>) provides tools
+for providing statistical summaries for each individual. These are
+referred to as a **longnostics**, a portmanteau of **long**itudinal and
+**cognostic**. These **longnostics** make it straightforward to extract
+subjects with certain properties to gain some insight into the data.
 
 ## Installation
 
@@ -250,3 +271,9 @@ wages_lg %>%
 ```
 
 <img src="man/figures/README-use-gg-highlight-1.png" width="100%" />
+
+# A Note on the API
+
+This version of brolgar has been forked from
+[tprvan/brolgar](https://github.com/tprvan/brolgar), and is undergoing
+breaking changes to the API.

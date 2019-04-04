@@ -1,8 +1,8 @@
-#' Calculate a lognostic
+#' Calculate a longnostic
 #'
 #' @param data data.frame
 #' @param id id variable that uniquely identifies an individual
-#' @param var variable to calculate the lognostic on 
+#' @param var variable to calculate the longnostic on 
 #' @param statistic the summary statistic to calculate
 #' @param l_name name to give the new column
 #' @param ... parameters to pass to statistic
@@ -11,14 +11,14 @@
 #' @export
 #'
 #' @examples
-#' lognosticise(wages,
+#' longostic(wages,
 #'              id = id,
 #'              var = lnw,
 #'              mean,
 #'              l_name = m,
 #'              na.rm = TRUE)
 
-lognosticise <- function(data, id, var, statistic, l_name, ...) {
+longnostic <- function(data, id, var, statistic, l_name, ...) {
   
   quo_id <- rlang::enquo(id)
   quo_var <- rlang::enquo(var)

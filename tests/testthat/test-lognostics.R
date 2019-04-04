@@ -1,4 +1,4 @@
-context("test-lognostics")
+context("test-longostic")
 
 df_l_diff_1 <- l_diff(wages, id, lnw, lag = 1)
 df_l_diff_2 <- l_diff(wages, id, lnw, lag = 2)
@@ -12,7 +12,7 @@ df_l_q3 <- l_q3(wages, id, lnw)
 df_l_sd <- l_sd(wages, id, lnw)
 df_l_slope <- l_slope(wages, id, lnw~exper)
 
-test_that("lognostics returns the right dimensions", {
+test_that("longnostics returns the right dimensions", {
   expect_equal(dim(df_l_diff_1), c(888, 2))
   expect_equal(dim(df_l_diff_2), c(888, 2))
   expect_equal(dim(df_l_n_obs), c(888, 2))

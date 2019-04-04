@@ -1,13 +1,13 @@
-#' Add lognostic to data
+#' Add longnostic to data
 #' 
-#' Adds a lognostic to the original dataframe
+#' Adds a longnostic to the original dataframe
 #'
 #' @param data dataframe
 #' @param id id that uniquely identifies individual
 #' @param var variable to calculate summary of
 #'
-#' @return dataframe with lognostic
-#' @name add-lognostic
+#' @return dataframe with longnostic
+#' @name add-longnostic
 #' @export
 #'
 #' @examples

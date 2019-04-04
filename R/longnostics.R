@@ -1,18 +1,18 @@
-#' Calculating lognostics
+#' Calculating longnostics
 #' 
-#' Lognostics are Cognitive Diagnostics for longitudinal data
+#' Longnostics are Cognitive Diagnostics for longitudinal data
 #' 
 #' @param data data.frame to explore
 #' @param var vector of values for individuals, needs to match the id vector
 #' @param id vector of ids to define which values belong to which individual
-#' @name lognostic
+#' @name longnostic
 NULL
 
 #' Index of interestingness: mean
 #'
 #' Compute the mean for all individuals in the data
 #'
-#' @inheritParams lognostic
+#' @inheritParams longnostic
 #' @export
 #' @examples
 #' data(wages)
@@ -23,7 +23,7 @@ l_mean <- function(data, id, var) {
   q_id <- rlang::enquo(id)
   q_var <- rlang::enquo(var)
   
-  lognosticise(data = data,
+  longnostic(data = data,
                id = !!q_id,
                var = !!q_var,
                statistic =  mean,
@@ -35,7 +35,7 @@ l_mean <- function(data, id, var) {
 #'
 #' Compute the standard deviation for all individuals in the data
 #'
-#' @inheritParams lognostic
+#' @inheritParams longnostic
 #' @export
 #' @examples
 #' data(wages)
@@ -46,7 +46,7 @@ l_sd <- function(data, id, var) {
   q_id <- rlang::enquo(id)
   q_var <- rlang::enquo(var)
   
-  lognosticise(data = data,
+  longnostic(data = data,
                id = !!q_id,
                var = !!q_var,
                statistic =  sd,
@@ -59,7 +59,7 @@ l_sd <- function(data, id, var) {
 #'
 #' Compute the maximum value for all individuals in the data
 #'
-#' @inheritParams lognostic
+#' @inheritParams longnostic
 #' @export
 #' @examples
 #' data(wages)
@@ -70,7 +70,7 @@ l_max <- function(data, id, var) {
   q_id <- rlang::enquo(id)
   q_var <- rlang::enquo(var)
   
-  lognosticise(data = data,
+  longnostic(data = data,
                id = !!q_id,
                var = !!q_var,
                statistic =  max,
@@ -83,7 +83,7 @@ l_max <- function(data, id, var) {
 #'
 #' Compute the minimum value for all individuals in the data
 
-#' @inheritParams lognostic
+#' @inheritParams longnostic
 #' @export
 #' @examples
 #' data(wages)
@@ -94,7 +94,7 @@ l_min <- function(data, id, var) {
   q_id <- rlang::enquo(id)
   q_var <- rlang::enquo(var)
   
-  lognosticise(data = data,
+  longnostic(data = data,
                id = !!q_id,
                var = !!q_var,
                statistic =  min,
@@ -105,7 +105,7 @@ l_min <- function(data, id, var) {
 #' Index of interestingness: median
 #'
 #' Compute the median value for all individuals in the data
-#' @inheritParams lognostic
+#' @inheritParams longnostic
 #' @export
 #' @examples
 #' data(wages)
@@ -116,7 +116,7 @@ l_median <- function(data, id, var) {
   q_id <- rlang::enquo(id)
   q_var <- rlang::enquo(var)
   
-  lognosticise(data = data,
+  longnostic(data = data,
                id = !!q_id,
                var = !!q_var,
                statistic = median,
@@ -128,7 +128,7 @@ l_median <- function(data, id, var) {
 #'
 #' Compute the first quartile value for all individuals in the data
 
-#' @inheritParams lognostic
+#' @inheritParams longnostic
 #' @export
 #' @examples
 #' data(wages)
@@ -139,7 +139,7 @@ l_q1 <- function(data, id, var) {
   q_id <- rlang::enquo(id)
   q_var <- rlang::enquo(var)
   
-  lognosticise(data = data,
+  longnostic(data = data,
                id = !!q_id,
                var = !!q_var,
                statistic = quantile,
@@ -154,7 +154,7 @@ l_q1 <- function(data, id, var) {
 #'
 #' Compute the third quartile value for all individuals in the data
 
-#' @inheritParams lognostic
+#' @inheritParams longnostic
 #' @export
 #' @examples
 #' data(wages)
@@ -165,7 +165,7 @@ l_q3 <- function(data, id, var) {
   q_id <- rlang::enquo(id)
   q_var <- rlang::enquo(var)
   
-  lognosticise(data = data,
+  longnostic(data = data,
                id = !!q_id,
                var = !!q_var,
                statistic = quantile,
@@ -180,7 +180,7 @@ l_q3 <- function(data, id, var) {
 #'
 #' Compute the maximum of the first order difference of consecutive values for all individuals in the data
 
-#' @inheritParams lognostic
+#' @inheritParams longnostic
 #' @param lag the lag to use, default to 1
 #' @export
 #' @examples
@@ -196,7 +196,7 @@ l_diff <- function(data, id, var, lag = 1) {
   
   l_name <- rlang::sym(glue::glue("l_diff_{lag}"))
   
-  lognosticise(data = data,
+  longnostic(data = data,
                id = !!q_id,
                var = !!q_var,
                statistic = safe_diff,
@@ -211,7 +211,7 @@ l_diff <- function(data, id, var, lag = 1) {
 #'
 #' Compute the number of observations for each individuals in the data
 #' 
-#' @inheritParams lognostic
+#' @inheritParams longnostic
 #' @export
 #' @examples
 #' data(wages)
@@ -222,7 +222,7 @@ l_n_obs <- function(data, id, var) {
   q_id <- rlang::enquo(id)
   q_var <- rlang::enquo(var)
   
-  lognosticise(data = data,
+  longnostic(data = data,
                id = !!q_id,
                var = !!q_var,
                statistic = length,
@@ -234,7 +234,7 @@ l_n_obs <- function(data, id, var) {
 #'
 #' Compute the maximum value for all individuals in the data
 
-#' @inheritParams lognostic
+#' @inheritParams longnostic
 #' @param formula character, a formula representing the slope of interest
 #' @export
 #' @examples
