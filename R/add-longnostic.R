@@ -1,19 +1,14 @@
-#' Add longnostic to data
+#' Add a longnostic to a dataframe
 #' 
-#' Adds a longnostic to the original dataframe
-#'
-#' @param data dataframe
-#' @param id id that uniquely identifies individual
-#' @param var variable to calculate summary of
-#'
-#' @return dataframe with longnostic
-#' @name add-longnostic
-#' @export
-#'
+#' Match a longnostic to the id of a dataframe. This saves you creating a
+#'   longnostic and then joining it back to a dataframe
+#' @inheritParams longnostic
+#' @name add_longnostic
 #' @examples
 #' add_l_max(data = wages,
 #'           id = id,
 #'           var = lnw)
+#' @export
 add_l_max <- function(data,
                       id,
                       var){
@@ -21,11 +16,41 @@ add_l_max <- function(data,
   quo_id <- rlang::enquo(id)
   quo_var <- rlang::enquo(var)
   
-  str_id <- rlang::as_label(rlang::enquo(id))
+  str_id <- rlang::as_label(quo_id)
 
-l_max(data,
-      !!quo_id,
-      !!quo_var) %>%
+l_max(data = data,
+      id = !!quo_id,
+      var = !!quo_var) %>%
+  dplyr::left_join(data,
+                   by = str_id)
+
+}
+
+#' @rdname add_longnostic
+#' @inheritParams l_diff
+#' @examples
+#' add_l_diff(data = wages,
+#'           id = id,
+#'           var = lnw)
+#' add_l_diff(data = wages,
+#'           id = id,
+#'           var = lnw,
+#'           lag = 2)
+#' @export
+add_l_diff <- function(data,
+                       id,
+                       var,
+                       lag = 1){
+  
+  quo_id <- rlang::enquo(id)
+  quo_var <- rlang::enquo(var)
+  
+  str_id <- rlang::as_label(quo_id)
+
+l_diff(data = data,
+      id = !!quo_id,
+      var = !!quo_var,
+      lag = lag) %>%
   dplyr::left_join(data,
                    by = str_id)
 

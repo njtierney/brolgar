@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-#' longostic(wages,
+#' longnostic(wages,
 #'              id = id,
 #'              var = lnw,
 #'              mean,

@@ -19,7 +19,7 @@ min_if(x, ...)
 either NA or the maximum or minimum value
 }
 \description{
-This is a helper function that returns NA if length(x) == 0 (e.g., is 
+This is a helper function that returns NA if length(x) == 0 (e.g., is
 numeric(0)), otherwise calculates the maximum/minimum
 }
 \examples{

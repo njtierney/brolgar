@@ -1,23 +1,48 @@
-#' Calculating longnostics
+#' Calculating longnostics - statistics of interest for each individual
 #' 
-#' Longnostics are Cognitive Diagnostics for longitudinal data
+#' Calculate statistical summaries for each individual, referred to as a
+#'   **longnostics**, a portmanteau of **long**itudinal and **cognostic** - a 
+#'   term coined by Tukey which is itself a portmanteau of "cognitive" and 
+#'   "diagnostic". These **longnostics** all start with `l_`, and calculate
+#'   a statistic for each individual in the data, who can be identified with
+#'   some `id`, with the statistic being calculated for a specific variable.
+#'   The current **longnostics** implemented are:
+#'   
+#'  * `l_n_obs()` Number of observations
+#'  * `l_min()` Minimum
+#'  * `l_max()` Maximum
+#'  * `l_mean()` Mean
+#'  * `l_diff()` Lagged difference (by default, the first order difference)
+#'  * `l_q1()` First quartile
+#'  * `l_median()` Median value
+#'  * `l_q3()` Third quartile
+#'  * `l_sd()` Standard deviation
+#'  * `l_slope()` Slope and intercept (given some linear model formula)
 #' 
 #' @param data data.frame to explore
 #' @param var vector of values for individuals, needs to match the id vector
 #' @param id vector of ids to define which values belong to which individual
-#' @name longnostic
+#' @param lag the lag to use, default to 1 (used with `l_diff`)
+#' @param formula character, a formula representing the slope of interest (used in `l_slope`)
+#' @return dataframe with column id and l_`statistic`. For example, `l_mean` returns the columns id specified, and `l_mean`.
+#' @name l_longnostic
+#' @seealso The add_l_`statistic` set of functions which add a column for each id to the dataframe.
+#' @examples
+#' l_mean(wages, id, lnw)
+#' l_sd(wages, id, lnw)
+#' l_max(wages, id, lnw)
+#' l_min(wages, id, lnw)
+#' l_median(wages, id, lnw)
+#' l_q1(wages, id, lnw)
+#' l_diff(wages, id, lnw)
+#' l_diff(wages, id, lnw, lag = 2)
+#' l_q3(wages, id, lnw)
+#' l_n_obs(wages, id, lnw)
+#' l_slope(wages, id, lnw~exper)
 NULL
 
-#' Index of interestingness: mean
-#'
-#' Compute the mean for all individuals in the data
-#'
-#' @inheritParams longnostic
+#' @rdname l_longnostic
 #' @export
-#' @examples
-#' data(wages)
-#' l_mean(wages, "id", "lnw")
-#'
 l_mean <- function(data, id, var) {
   
   q_id <- rlang::enquo(id)
@@ -31,16 +56,8 @@ l_mean <- function(data, id, var) {
                na.rm = TRUE)
 }
 
-#' Index of interestingness: sd
-#'
-#' Compute the standard deviation for all individuals in the data
-#'
-#' @inheritParams longnostic
+#' @rdname l_longnostic
 #' @export
-#' @examples
-#' data(wages)
-#' l_sd(wages, "id", "lnw")
-#'
 l_sd <- function(data, id, var) {
 
   q_id <- rlang::enquo(id)
@@ -55,16 +72,8 @@ l_sd <- function(data, id, var) {
   
 }
 
-#' Index of interestingness: max
-#'
-#' Compute the maximum value for all individuals in the data
-#'
-#' @inheritParams longnostic
+#' @rdname l_longnostic
 #' @export
-#' @examples
-#' data(wages)
-#' l_max(wages, "id", "lnw")
-#'
 l_max <- function(data, id, var) {
   
   q_id <- rlang::enquo(id)
@@ -79,16 +88,8 @@ l_max <- function(data, id, var) {
   
 }
 
-#' Index of interestingness: min
-#'
-#' Compute the minimum value for all individuals in the data
-
-#' @inheritParams longnostic
+#' @rdname l_longnostic
 #' @export
-#' @examples
-#' data(wages)
-#' l_min(wages, "id", "lnw")
-#'
 l_min <- function(data, id, var) {
   
   q_id <- rlang::enquo(id)
@@ -102,15 +103,8 @@ l_min <- function(data, id, var) {
                na.rm = TRUE)
 }
 
-#' Index of interestingness: median
-#'
-#' Compute the median value for all individuals in the data
-#' @inheritParams longnostic
+#' @rdname l_longnostic
 #' @export
-#' @examples
-#' data(wages)
-#' l_median(wages, id, lnw)
-#'
 l_median <- function(data, id, var) {
   
   q_id <- rlang::enquo(id)
@@ -124,16 +118,8 @@ l_median <- function(data, id, var) {
                na.rm = TRUE)
 }
 
-#' Index of interestingness: first quartile
-#'
-#' Compute the first quartile value for all individuals in the data
-
-#' @inheritParams longnostic
+#' @rdname l_longnostic
 #' @export
-#' @examples
-#' data(wages)
-#' l_q1(wages, id, lnw)
-#'
 l_q1 <- function(data, id, var) {
   
   q_id <- rlang::enquo(id)
@@ -150,16 +136,8 @@ l_q1 <- function(data, id, var) {
   
 }
 
-#' Index of interestingness: third quartile
-#'
-#' Compute the third quartile value for all individuals in the data
-
-#' @inheritParams longnostic
+#' @rdname l_longnostic
 #' @export
-#' @examples
-#' data(wages)
-#' l_q3(wages, id, lnw)
-#'
 l_q3 <- function(data, id, var) {
   
   q_id <- rlang::enquo(id)
@@ -175,18 +153,8 @@ l_q3 <- function(data, id, var) {
                na.rm = TRUE)
 }
 
-#' Index of interestingness: first order difference
-#' Need to revisit for missing values
-#'
-#' Compute the maximum of the first order difference of consecutive values for all individuals in the data
-
-#' @inheritParams longnostic
-#' @param lag the lag to use, default to 1
+#' @rdname l_longnostic
 #' @export
-#' @examples
-#' data(wages)
-#' l_diff(wages, id, lnw)
-#'
 l_diff <- function(data, id, var, lag = 1) {
   
   q_id <- rlang::enquo(id)
@@ -203,20 +171,10 @@ l_diff <- function(data, id, var, lag = 1) {
                l_name = !!l_name,
                lag = lag,
                na.rm = TRUE)
-  
 }
 
-
-#' Index of interestingness: n subjects
-#'
-#' Compute the number of observations for each individuals in the data
-#' 
-#' @inheritParams longnostic
+#' @rdname l_longnostic
 #' @export
-#' @examples
-#' data(wages)
-#' l_n_obs(wages, id, lnw)
-#'
 l_n_obs <- function(data, id, var) {
   
   q_id <- rlang::enquo(id)
@@ -230,17 +188,8 @@ l_n_obs <- function(data, id, var) {
   
 }
 
-#' Index of interestingness: slope
-#'
-#' Compute the maximum value for all individuals in the data
-
-#' @inheritParams longnostic
-#' @param formula character, a formula representing the slope of interest
+#' @rdname l_longnostic
 #' @export
-#' @examples
-#' data(wages)
-#' l_slope(wages, id, lnw~exper)
-#'
 l_slope <- function(data, id, formula) {
 
   quo_id <- rlang::enquo(id)

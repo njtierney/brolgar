@@ -39,3 +39,4 @@ Suggests:
     covr
 VignetteBuilder: knitr
 Language: en-US
+Roxygen: list(markdown = TRUE)
