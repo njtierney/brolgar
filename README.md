@@ -6,12 +6,6 @@
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.org/tprvan/brolgar.svg?branch=master)](https://travis-ci.org/tprvan/brolgar)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/tprvan/brolgar?branch=master&svg=true)](https://ci.appveyor.com/project/tprvan/brolgar)
-[![Codecov test
-coverage](https://codecov.io/gh/tprvan/brolgar/branch/master/graph/badge.svg)](https://codecov.io/gh/tprvan/brolgar?branch=master)
-[![Travis build
 status](https://travis-ci.org/njtierney/brolgar.svg?branch=master)](https://travis-ci.org/njtierney/brolgar)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/njtierney/brolgar?branch=master&svg=true)](https://ci.appveyor.com/project/njtierney/brolgar)
