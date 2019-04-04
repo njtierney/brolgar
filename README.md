@@ -3,9 +3,9 @@
 
 # brolgar (BRowse over Longitudinal data Graphically and Analytically in R)
 
-<!-- badges: start -->
-
-[![Travis build
+Note: This version of brolgar has been forked from
+[tprvan/brolgar](https://github.com/tprvan/brolgar), and is undergoing
+breaking changes to the API. <!-- badges: start --> [![Travis build
 status](https://travis-ci.org/njtierney/brolgar.svg?branch=master)](https://travis-ci.org/njtierney/brolgar)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/njtierney/brolgar?branch=master&svg=true)](https://ci.appveyor.com/project/njtierney/brolgar)
