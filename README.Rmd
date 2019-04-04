@@ -4,7 +4,7 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -20,15 +20,122 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/tprvan/brolgar/branch/master/graph/badge.svg)](https://codecov.io/gh/tprvan/brolgar?branch=master)
 <!-- badges: end -->
 
-BRowse over Longitudinal data Graphically and Analytically in R
+Exploring longitudinal data can be challenging. For example, when there are many individuals it is difficult to look at all of them, as you often get a "plate of spaghetti" plot, with many lines plotted on top of each other. This is hard to interpret. 
+
+You might then want to explore those individuals with higher amounts of variation, or those with lower variation. But calculating this for individuals draws you away from your analysis, and instead wrangling with a different problem: summarising key information about each individual and incorporating that back into the data. This is annoying, and distracts from your analysis, inviting errors.
+
+**brolgar** (BRowse over Longitudinal data Graphically and Analytically in R) 
+provides tools for providing statistical summaries for each individual. These are referred to as a `longnostics`, a portmanteau of `longitudinal` and `cognostic`. These `longnostics` make it straightforward to extract subjects with certain properties to gain some insight into the data. 
 
 ## Installation
 
-And the development version from [GitHub](https://github.com/) with:
+Install from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("tprvan/brolgar")
 ```
-## Example
+
+## What is longitudinal data?
+
+Longitudinal data has subjects who are measured on several characteristics repeatedly through time but not always at the same time points or the same number of times. 
+
+## Example usage
+
+Let's extract informative individual patterns by concentrating on different statistics. A story can be woven that may be relevant rather than speaking in generalities.
+
+The **wages** data set analysed in Singer & Willett (2003) will be used to demonstrate some of the capabilities of this package.  
+
+```{r load-and-print}
+library(brolgar)
+library(tibble)
+data(wages)
+wages
+```
+
+### Available `longnostics`
+
+The `longnostics` in `brolgar` all start with `l_`, and *for all individuals in the data* calculate a statistic for each individual (specified with an `id`), for some specified variable:
+
+* `l_n_obs()` Number of observations
+* `l_min()` Minimum
+* `l_max()` Maximum
+* `l_mean()` Mean
+* `l_diff()` Lagged difference (by default, the first order difference)
+* `l_q1()` First quartile
+* `l_median()` Median value
+* `l_q3()` Third quartile
+* `l_sd()` Standard deviation
+* `l_slope()` Slope and intercept (given some linear model formula)
+
+For example, we can calculate the number of observations with `l_n_obs()`:
+
+```{r example-n-obs}
+wages_nobs <- l_n_obs(data = wages,
+        id = id,
+        var = lnw)
+
+wages_nobs
+```
+
+Which could be further summarised to get a sense of the range of the data:
+
+```{r summarise-n-obs}
+library(dplyr)
+library(ggplot2)
+ggplot(wages_nobs,
+       aes(x = l_n_obs)) + 
+  geom_bar()
+
+summary(wages_nobs$l_n_obs)
+```
+
+## Identifying an individual of interest
+
+We might be interested in showing the experience and lnw (?), and so look at a plot like the following:
+
+```{r demo-why-brolgar}
+ggplot(wages, 
+       aes(x = exper, 
+             y = lnw, 
+             group = id)) + 
+  geom_line()
+```
+
+This is a plate of spaghetti! It is hard to understand!
+
+We can use `brolgar` to get the number of observations and slope information for each individual to identify those that are decreasing over time.
+
+```{r use-gghighlight}
+sl <- l_slope(wages, id, lnw~exper)
+ns <- l_n_obs(wages, id, lnw)
+
+sl
+ns
+```
+
+We can then join these summaries back to the data:
+
+```{r show-wages-lg}
+wages_lg <- wages %>%
+  left_join(sl, by = "id") %>%
+  left_join(ns, by = "id")
+
+wages_lg
+```
+
+We can then highlight those individuals with more than 5 obserations, and highlight those with a negative slope using `gghighlight`:
+
+```{r use-gg-highlight}
+library(gghighlight)
+
+wages_lg %>% 
+  filter(l_n_obs > 5) %>%
+  ggplot(aes(x = exper, 
+             y = lnw, 
+             group = id)) + 
+  geom_line() +
+  gghighlight(l_slope < (-0.5),
+              use_direct_label = FALSE)
+```
 
