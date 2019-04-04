@@ -3,24 +3,21 @@
 \name{safe_minima}
 \alias{safe_minima}
 \alias{max_if}
-\alias{min_if}
-\title{Calculate maximum/minimum and return NA if input is empty}
+\title{Calculate maximum and return NA if input is empty}
 \usage{
 max_if(x, ...)
-
-min_if(x, ...)
 }
 \arguments{
 \item{x}{numeric}
 
-\item{...}{additional arguments for min/max}
+\item{...}{additional arguments for max}
 }
 \value{
-either NA or the maximum or minimum value
+either NA or the maximum value
 }
 \description{
 This is a helper function that returns NA if length(x) == 0 (e.g., is
-numeric(0)), otherwise calculates the maximum/minimum
+numeric(0)), otherwise calculates the maximum
 }
 \examples{
 \dontrun{

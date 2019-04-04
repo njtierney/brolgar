@@ -25,6 +25,6 @@ l_summarise <- function(data,
   
   data %>%
     dplyr::group_by(id) %>%
-    dplyr::summarise_at(.vars = dplyr::vars(lnw),
+    dplyr::summarise_at(.vars = !!quo_var,
                         .funs = l_funs)
 }
