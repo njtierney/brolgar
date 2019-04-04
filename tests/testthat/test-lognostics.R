@@ -26,7 +26,7 @@ test_that("longnostics returns the right dimensions", {
   expect_equal(dim(df_l_slope), c(888, 3))
 })
 
-test_that("l_mean returns the right names", {
+test_that("longnostic returns the right names", {
   expect_equal(names(df_l_diff_1), c("id", "l_diff_1"))
   expect_equal(names(df_l_diff_2), c("id", "l_diff_2"))
   expect_equal(names(df_l_n_obs), c("id", "l_n_obs"))
@@ -40,7 +40,7 @@ test_that("l_mean returns the right names", {
   expect_equal(names(df_l_slope), c("id", "l_intercept", "l_slope"))
 })
 
-test_that("l_mean returns a tbl_df", {
+test_that("longnostic returns a tbl_df", {
   expect_is(df_l_diff_1, class = c("tbl"))
   expect_is(df_l_diff_2, class = c("tbl"))
   expect_is(df_l_n_obs, class = c("tbl"))
@@ -54,7 +54,7 @@ test_that("l_mean returns a tbl_df", {
   expect_is(df_l_slope, class = c("tbl"))
 })
 
-test_that("l_mean returns correct classes", {
+test_that("longnostic returns correct classes", {
   expect_equal(purrr::map_chr(df_l_diff_1, class), 
                c(id = "integer", l_diff_1 = "numeric"))
   expect_equal(purrr::map_chr(df_l_diff_2, class),
