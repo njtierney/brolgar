@@ -191,7 +191,7 @@ l_n_obs <- function(data, id, var) {
 #' @rdname l_longnostic
 #' @export
 l_slope <- function(data, id, formula) {
-
+  
   quo_id <- rlang::enquo(id)
   quo_formula <- rlang::enquo(formula)
   
@@ -220,3 +220,36 @@ l_slope <- function(data, id, formula) {
   # }
   
 }
+
+#' @rdname l_longnostic
+#' @export
+future_l_slope <- function(data, id, formula) {
+  
+  # future::plan(multiprocess)
+  
+  quo_id <- rlang::enquo(id)
+  quo_formula <- rlang::enquo(formula)
+  
+  data %>%
+    dplyr::group_by(!!quo_id) %>%
+    tidyr::nest() %>%
+    dplyr::mutate(tidy_lm = furrr::future_map(
+      .f = function(data) broom::tidy(lm(!!quo_formula, data = data)),
+      .x = data)) %>%
+    dplyr::select(!!quo_id,
+                  tidy_lm) %>%
+    tidyr::unnest() %>%
+    dplyr::select(!!quo_id,
+                  term,
+                  estimate) %>%
+    tidyr::spread(key = term,
+                  value = estimate) %>%
+    dplyr::rename_all(~c("id", "l_intercept", "l_slope"))
+}
+
+# bm1 <-
+#   microbenchmark::microbenchmark(future = future_l_slope(wages, id, lnw~exper),
+#                                  current = l_slope(wages, id, lnw~exper))
+# 
+# summary(bm1)
+# boxplot(bm1)
