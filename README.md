@@ -246,7 +246,7 @@ wages_lg
 #> #   l_slope <dbl>, l_n_obs <int>
 ```
 
-We can then highlight those individuals with more than 5 obserations,
+We can then highlight those individuals with more than 5 observations,
 and highlight those with a negative slope using `gghighlight`:
 
 ``` r

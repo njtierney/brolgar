@@ -137,7 +137,7 @@ wages_lg <- wages %>%
 wages_lg
 ```
 
-We can then highlight those individuals with more than 5 obserations, and highlight those with a negative slope using `gghighlight`:
+We can then highlight those individuals with more than 5 observations, and highlight those with a negative slope using `gghighlight`:
 
 ```{r use-gg-highlight}
 library(gghighlight)

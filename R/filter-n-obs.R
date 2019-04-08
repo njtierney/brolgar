@@ -1,13 +1,16 @@
-#' Filter by the number of observations for an individual
+#' Filter by the number of observations for an id.
 #' 
-#' It can be useful to filter by
+#' When exploring longitudinal data it can be useful to 
+#'   filter by the number of observations to help with certain exploratory
+#'   data analysis.
 #'
 #' @param data data.frame to explore
-#' @param var vector of values for individuals, needs to match the id vector
 #' @param id vector of ids to define which values belong to which individual
-#' @param filter an expression you want to filter by, where numbser of obserations is referred in as `l_n_obs`. For example (`l_n_obs > 10`) would filter those observations with greater than 10 observations.
+#' @param filter an expression you want to filter by, where number of 
+#'   observations is referred in as `l_n_obs`. For example (`l_n_obs > 10`)
+#'   would filter those observations with greater than 10 observations.
 #'
-#' @return dataframe filtered by the number of observations
+#' @return dataframe filtered by the number of observations, with an additional column `l_n_obs` containing the number of observations for each `id`.
 #' @export
 #'
 #' @examples
