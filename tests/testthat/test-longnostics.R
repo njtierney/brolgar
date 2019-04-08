@@ -1,4 +1,4 @@
-context("test-longostic")
+context("test-longnostic")
 
 df_l_diff_1 <- l_diff(wages, id, lnw, lag = 1)
 df_l_diff_2 <- l_diff(wages, id, lnw, lag = 2)
