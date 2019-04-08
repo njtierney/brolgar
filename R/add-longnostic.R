@@ -107,17 +107,13 @@ l_min(data = data,
 #' @rdname add_longnostic
 #' @export
 add_l_n_obs <- function(data,
-                        id,
-                        var){
+                        id){
   
   quo_id <- rlang::enquo(id)
-  quo_var <- rlang::enquo(var)
-  
   str_id <- rlang::as_label(quo_id)
 
 l_n_obs(data = data,
-      id = !!quo_id,
-      var = !!quo_var) %>%
+        id = !!quo_id) %>%
   dplyr::left_join(data,
                    by = str_id)
 

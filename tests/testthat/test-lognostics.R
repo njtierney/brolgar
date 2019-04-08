@@ -2,7 +2,7 @@ context("test-longostic")
 
 df_l_diff_1 <- l_diff(wages, id, lnw, lag = 1)
 df_l_diff_2 <- l_diff(wages, id, lnw, lag = 2)
-df_l_n_obs <- l_n_obs(wages, id, lnw)
+df_l_n_obs <- l_n_obs(wages, id)
 df_l_max <- l_max(wages, id, lnw)
 df_l_mean <- l_mean(wages, id, lnw)
 df_l_median <- l_median(wages, id, lnw)

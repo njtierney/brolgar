@@ -44,7 +44,7 @@ wages %>% print(10)
 library(gghighlight)
 
 sl <- l_slope(wages, id, lnw~exper)
-ns <- l_n_obs(wages, id, lnw)
+ns <- l_n_obs(wages, id)
 
 wages_lg <- wages %>%
   left_join(sl, by = "id") %>%

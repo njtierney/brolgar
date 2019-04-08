@@ -24,7 +24,7 @@ add_l_median(data, id, var)
 
 add_l_min(data, id, var)
 
-add_l_n_obs(data, id, var)
+add_l_n_obs(data, id)
 
 add_l_q1(data, id, var)
 

@@ -1,5 +1,6 @@
-# brolgar 0.0.0.9400
+# brolgar 0.0.0.9500
 
+* Remove unecessary referal to variable in `l_n_obs()`, since it only needs information on the `id`. Also gets a nice 5x speedup with simpler code
 * calculate all longnostics (#4)
 * use the word `longnostic` instead of `lognostic` (#9)
 * `l_slope` now returns `l_intercept` and `l_slope` instead of `intercept` and `slope`.
