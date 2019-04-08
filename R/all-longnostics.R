@@ -52,8 +52,7 @@ l_data_min <- l_min(data,
                     var = !!quo_var)
 
 l_data_n_obs <- l_n_obs(data, 
-                        id = !!quo_id,  
-                        var = !!quo_var)
+                        id = !!quo_id)
 
 l_data_q1 <- l_q1(data, 
                   id = !!quo_id,  

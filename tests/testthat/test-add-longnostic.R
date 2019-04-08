@@ -2,7 +2,7 @@ context("test-add-longostic")
 
 df_add_l_diff_1 <- add_l_diff(wages, id, lnw, lag = 1)
 df_add_l_diff_2 <- add_l_diff(wages, id, lnw, lag = 2)
-df_add_l_n_obs <- add_l_n_obs(wages, id, lnw)
+df_add_l_n_obs <- add_l_n_obs(wages, id)
 df_add_l_max <- add_l_max(wages, id, lnw)
 df_add_l_mean <- add_l_mean(wages, id, lnw)
 df_add_l_median <- add_l_median(wages, id, lnw)

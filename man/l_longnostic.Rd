@@ -30,7 +30,7 @@ l_q3(data, id, var)
 
 l_diff(data, id, var, lag = 1)
 
-l_n_obs(data, id, var)
+l_n_obs(data, id)
 
 l_slope(data, id, formula)
 }
@@ -79,7 +79,7 @@ l_q1(wages, id, lnw)
 l_diff(wages, id, lnw)
 l_diff(wages, id, lnw, lag = 2)
 l_q3(wages, id, lnw)
-l_n_obs(wages, id, lnw)
+l_n_obs(wages, id)
 l_slope(wages, id, lnw~exper)
 }
 \seealso{

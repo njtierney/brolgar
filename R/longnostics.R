@@ -37,7 +37,7 @@
 #' l_diff(wages, id, lnw)
 #' l_diff(wages, id, lnw, lag = 2)
 #' l_q3(wages, id, lnw)
-#' l_n_obs(wages, id, lnw)
+#' l_n_obs(wages, id)
 #' l_slope(wages, id, lnw~exper)
 NULL
 
@@ -175,16 +175,13 @@ l_diff <- function(data, id, var, lag = 1) {
 
 #' @rdname l_longnostic
 #' @export
-l_n_obs <- function(data, id, var) {
+l_n_obs <- function(data, id) {
   
-  q_id <- rlang::enquo(id)
-  q_var <- rlang::enquo(var)
+  quo_id <- rlang::enquo(id)
   
-  longnostic(data = data,
-               id = !!q_id,
-               var = !!q_var,
-               statistic = length,
-               l_name = l_n_obs)
+  data %>%
+    dplyr::group_by(!!quo_id) %>%
+    dplyr::summarise(l_n_obs = dplyr::n())
   
 }
 

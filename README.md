@@ -115,9 +115,7 @@ For example, we can calculate the number of observations with
 `l_n_obs()`:
 
 ``` r
-wages_nobs <- l_n_obs(data = wages,
-        id = id,
-        var = lnw)
+wages_nobs <- l_n_obs(data = wages, id = id)
 
 wages_nobs
 #> # A tibble: 888 x 2
@@ -187,7 +185,7 @@ over time.
 
 ``` r
 sl <- l_slope(wages, id, lnw~exper)
-ns <- l_n_obs(wages, id, lnw)
+ns <- l_n_obs(wages, id)
 
 sl
 #> # A tibble: 888 x 3
@@ -248,7 +246,7 @@ wages_lg
 #> #   l_slope <dbl>, l_n_obs <int>
 ```
 
-We can then highlight those individuals with more than 5 obserations,
+We can then highlight those individuals with more than 5 observations,
 and highlight those with a negative slope using `gghighlight`:
 
 ``` r
@@ -265,6 +263,69 @@ wages_lg %>%
 ```
 
 <img src="man/figures/README-use-gg-highlight-1.png" width="100%" />
+
+## Filtering by the number of observations
+
+You can filter by the number of observations using `filter_n_obs()`
+
+``` r
+wages %>%
+  filter_n_obs(id = id,
+               l_n_obs > 3)
+#> # A tibble: 6,145 x 16
+#>       id l_n_obs   lnw exper   ged postexp black hispanic   hgc hgc.9
+#>    <int>   <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int> <int>
+#>  1    31       8  1.49 0.015     1   0.015     0        1     8    -1
+#>  2    31       8  1.43 0.715     1   0.715     0        1     8    -1
+#>  3    31       8  1.47 1.73      1   1.73      0        1     8    -1
+#>  4    31       8  1.75 2.77      1   2.77      0        1     8    -1
+#>  5    31       8  1.93 3.93      1   3.93      0        1     8    -1
+#>  6    31       8  1.71 4.95      1   4.95      0        1     8    -1
+#>  7    31       8  2.09 5.96      1   5.96      0        1     8    -1
+#>  8    31       8  2.13 6.98      1   6.98      0        1     8    -1
+#>  9    36      10  1.98 0.315     1   0.315     0        0     9     0
+#> 10    36      10  1.80 0.983     1   0.983     0        0     9     0
+#> # … with 6,135 more rows, and 6 more variables: uerate <dbl>, ue.7 <dbl>,
+#> #   ue.centert1 <dbl>, ue.mean <dbl>, ue.person.cen <dbl>, ue1 <dbl>
+
+wages %>%
+  filter_n_obs(id = id,
+               l_n_obs == 1)
+#> # A tibble: 38 x 16
+#>       id l_n_obs   lnw exper   ged postexp black hispanic   hgc hgc.9
+#>    <int>   <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int> <int>
+#>  1   266       1  1.81 0.322     1   0.182     0        0     9     0
+#>  2   304       1  1.84 0.580     0   0         0        1     8    -1
+#>  3   911       1  2.51 1.67      1   1.67      1        0    11     2
+#>  4  1032       1  1.65 0.808     0   0         1        0     8    -1
+#>  5  1219       1  1.57 1.5       0   0         1        0     9     0
+#>  6  1282       1  2.22 0.292     1   0.292     0        0    11     2
+#>  7  1542       1  1.81 0.173     0   0         0        0    10     1
+#>  8  1679       1  1.94 0.365     1   0         0        0    10     1
+#>  9  2065       1  2.60 1.5       0   0         0        0    11     2
+#> 10  2261       1  2.25 0.005     0   0         0        0     6    -3
+#> # … with 28 more rows, and 6 more variables: uerate <dbl>, ue.7 <dbl>,
+#> #   ue.centert1 <dbl>, ue.mean <dbl>, ue.person.cen <dbl>, ue1 <dbl>
+
+wages %>%
+  filter_n_obs(id = id,
+               l_n_obs >= 13)
+#> # A tibble: 78 x 16
+#>       id l_n_obs   lnw exper   ged postexp black hispanic   hgc hgc.9
+#>    <int>   <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int> <int>
+#>  1  1204      13  1.81 0.455     0       0     0        0     8    -1
+#>  2  1204      13  1.99 1.28      0       0     0        0     8    -1
+#>  3  1204      13  2.08 2.24      0       0     0        0     8    -1
+#>  4  1204      13  2.30 3.22      0       0     0        0     8    -1
+#>  5  1204      13  2.20 4.20      0       0     0        0     8    -1
+#>  6  1204      13  2.33 5.18      0       0     0        0     8    -1
+#>  7  1204      13  2.44 6.20      0       0     0        0     8    -1
+#>  8  1204      13  2.58 7.28      0       0     0        0     8    -1
+#>  9  1204      13  2.22 8.43      0       0     0        0     8    -1
+#> 10  1204      13  2.80 9.64      0       0     0        0     8    -1
+#> # … with 68 more rows, and 6 more variables: uerate <dbl>, ue.7 <dbl>,
+#> #   ue.centert1 <dbl>, ue.mean <dbl>, ue.person.cen <dbl>, ue1 <dbl>
+```
 
 ## Calculating all longnostics
 
