@@ -86,9 +86,7 @@ The `longnostics` in `brolgar` all start with `l_`, and *for all individuals in 
 For example, we can calculate the number of observations with `l_n_obs()`:
 
 ```{r example-n-obs}
-wages_nobs <- l_n_obs(data = wages,
-        id = id,
-        var = lnw)
+wages_nobs <- l_n_obs(data = wages, id = id)
 
 wages_nobs
 ```
@@ -123,7 +121,7 @@ We can use `brolgar` to get the number of observations and slope information for
 
 ```{r use-gghighlight}
 sl <- l_slope(wages, id, lnw~exper)
-ns <- l_n_obs(wages, id, lnw)
+ns <- l_n_obs(wages, id)
 
 sl
 ns
@@ -153,6 +151,26 @@ wages_lg %>%
   gghighlight(l_slope < (-0.5),
               use_direct_label = FALSE)
 ```
+
+## Filtering by the number of observations
+
+You can filter by the number of observations using `filter_n_obs()`
+
+```{r filter-n-obs}
+wages %>%
+  filter_n_obs(id = id,
+               l_n_obs > 3)
+
+wages %>%
+  filter_n_obs(id = id,
+               l_n_obs == 1)
+
+wages %>%
+  filter_n_obs(id = id,
+               l_n_obs >= 13)
+
+```
+
 
 ## Calculating all longnostics
 
