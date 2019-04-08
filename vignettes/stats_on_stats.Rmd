@@ -1,0 +1,59 @@
+---
+title: "Stats on Stats: Workflows with Longnostics"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Stats on Stats: Workflows with Longnostics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r establish-chunk-opts, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(brolgar)
+```
+
+To better understand longitudinal data we can think about some of the exploratory data analysis happening over three datasets:
+
+1. The full data, which contain profiles of the longitudinal observations
+2. The longnostics, which contain the longitudinal cognostics for each id
+3. The statistics on the longnostics. These are "stats on stats" of longitudinal data.
+
+Let's expand on this.
+
+## The full data
+
+We have the full set of data, which we can look at in "full spaghetti" form like so:
+
+```{r full-spaghetti}
+library(ggplot2)
+ggplot(wages,
+       aes(x = exper,
+           y = uerate,
+           group = id)) + 
+  geom_line()
+```
+
+Let's consider just a small piece of this data, randomly choosing a few individuals.
+
+```{r select-rand-id}
+library(dplyr)
+library(tidyr)
+wages %>%
+  group_by(id) %>%
+  nest() %>%
+  sample_n(size = 10) %>% 
+  unnest()
+
+```
+
+
+```{r}
+
+```
+

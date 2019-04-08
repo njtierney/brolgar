@@ -1,5 +1,7 @@
 # brolgar 0.0.0.9600
 
+* Add `sample_n_obs()` and `sample_frac_obs()` (#19) to select a random group 
+  of ids.
 * Add `filter_n_obs()` to filter the data by the number of observations #15
 * Remove unnecessary use of `var`, in `l_n_obs()`, since it only needs
   information on the `id`. Also gets a nice 5x speedup with simpler code

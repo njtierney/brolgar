@@ -30,7 +30,7 @@ The **wages** data set analysed in Singer & Willett (2003) will be used to demon
 ## A tibble of the wages data
 
 ```{r load-and-print}
-library(tidyverse)
+library(dplyr)
 library(brolgar)
 data(wages)
 wages %>% print(10)
@@ -41,6 +41,7 @@ wages %>% print(10)
 ## Example 1
 
 ```{r use-gghighlight}
+library(ggplot2)
 library(gghighlight)
 
 sl <- l_slope(wages, id, lnw~exper)
