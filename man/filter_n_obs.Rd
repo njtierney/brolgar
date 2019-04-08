@@ -4,30 +4,25 @@
 \alias{filter_n_obs}
 \title{Filter by the number of observations for an individual}
 \usage{
-filter_n_obs(data, id, var, filter)
+filter_n_obs(data, id, filter)
 }
 \arguments{
 \item{data}{data.frame to explore}
 
 \item{id}{vector of ids to define which values belong to which individual}
 
-\item{var}{vector of values for individuals, needs to match the id vector}
+\item{filter}{an expression you want to filter by, where numbser of obserations is referred in as \code{l_n_obs}. For example (\code{l_n_obs > 10}) would filter those observations with greater than 10 observations.}
 
-\item{filter}{an expression you want to filter by. For example (\code{l_n_obs > 10}) would filter those observations with greater than 10 observations.}
+\item{var}{vector of values for individuals, needs to match the id vector}
 }
 \value{
 dataframe filtered by the number of observations
 }
 \description{
-Filter by the number of observations for an individual
+It can be useful to filter by
 }
 \examples{
-filter_n_obs(wages,
-             id = id,
-             filter = l_n_obs > 10)
-
-filter_n_obs(wages,
-             id = id,
-             filter = l_n_obs == 2)
+wages \%>\% filter_n_obs(id = id, filter = l_n_obs > 10)
+wages \%>\% filter_n_obs(id = id, filter = l_n_obs == 2)
 
 }
