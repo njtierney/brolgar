@@ -1,6 +1,16 @@
+# Since Nick took over
 library(tidyverse)
-library(gghighlight)
 library(brolgar)
+
+lwage <- longnostic_all(wages, id = id, var = lnw, formula = lnw~exper)
+lwage <- lwage %>% filter(l_n_obs > 2)
+
+library(tourr)
+quartz()
+animate_xy(lwage[,-1], axes="bottomleft")
+
+# Old code
+library(gghighlight)
 
 data(wages)
 sl <- l_slope(wages, "id", "lnw~exper")
