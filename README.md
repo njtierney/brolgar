@@ -52,8 +52,8 @@ subjects with certain properties to gain some insight into the data.
 Install from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("tprvan/brolgar")
+# install.packages("remotes")
+remotes::install_github("njtierney/brolgar")
 ```
 
 ## What is longitudinal data?
@@ -265,6 +265,32 @@ wages_lg %>%
 ```
 
 <img src="man/figures/README-use-gg-highlight-1.png" width="100%" />
+
+## Calculating all longnostics
+
+You can calculate all longnostics (except for intercept + slope) with
+the `longnostic_all()` function:
+
+``` r
+
+longnostic_all(data = wages,
+               id = id,
+               var = lnw)
+#> # A tibble: 888 x 10
+#>       id l_diff_1 l_max l_mean l_median l_min l_n_obs  l_q1  l_q3  l_sd
+#>    <int>    <dbl> <dbl>  <dbl>    <dbl> <dbl>   <int> <dbl> <dbl> <dbl>
+#>  1    31    0.377  2.13   1.75     1.73 1.43        8  1.49  1.97 0.277
+#>  2    36    1.11   2.93   2.33     2.32 1.80       10  2.05  2.54 0.387
+#>  3    53    1.70   3.24   1.89     1.71 1.54        8  1.59  1.88 0.562
+#>  4   122    1.68   2.92   2.17     2.19 0.763      10  2.12  2.42 0.574
+#>  5   134    0.368  2.93   2.48     2.36 2.00       12  2.29  2.77 0.321
+#>  6   145    0.289  2.04   1.76     1.77 1.48        9  1.60  1.88 0.185
+#>  7   155    0.627  2.64   2.17     2.22 1.54       11  1.93  2.40 0.362
+#>  8   173    0.319  2.34   1.93     2.00 1.56        6  1.76  2.02 0.274
+#>  9   206    0.269  2.48   2.27     2.30 2.03        3  2.16  2.39 0.228
+#> 10   207    0.399  2.66   2.11     2.15 1.58       11  1.90  2.24 0.327
+#> # … with 878 more rows
+```
 
 # A Note on the API
 

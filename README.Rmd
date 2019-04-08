@@ -47,8 +47,8 @@ provides tools for providing statistical summaries for each individual. These ar
 Install from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("tprvan/brolgar")
+# install.packages("remotes")
+remotes::install_github("njtierney/brolgar")
 ```
 
 ## What is longitudinal data?
@@ -152,6 +152,18 @@ wages_lg %>%
   geom_line() +
   gghighlight(l_slope < (-0.5),
               use_direct_label = FALSE)
+```
+
+## Calculating all longnostics
+
+You can calculate all longnostics (except for intercept + slope) with the `longnostic_all()` function:
+
+```{r show-all-longnostics}
+
+longnostic_all(data = wages,
+               id = id,
+               var = lnw)
+
 ```
 
 

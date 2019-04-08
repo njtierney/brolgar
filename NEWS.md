@@ -1,5 +1,6 @@
-# brolgar 0.0.0.9300
+# brolgar 0.0.0.9400
 
+* calculate all longnostics (#4)
 * use the word `longnostic` instead of `lognostic` (#9)
 * `l_slope` now returns `l_intercept` and `l_slope` instead of `intercept` and `slope`.
 * `l_slope` now takes bare variable names
