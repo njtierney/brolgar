@@ -268,15 +268,15 @@ wages_lg %>%
 
 ## Calculating all longnostics
 
-You can calculate all longnostics (except for intercept + slope) with
-the `longnostic_all()` function:
+You can calculate all longnostics using `longnostic_all()`:
 
 ``` r
 
 longnostic_all(data = wages,
                id = id,
-               var = lnw)
-#> # A tibble: 888 x 10
+               var = lnw,
+               formula = lnw~exper)
+#> # A tibble: 888 x 12
 #>       id l_diff_1 l_max l_mean l_median l_min l_n_obs  l_q1  l_q3  l_sd
 #>    <int>    <dbl> <dbl>  <dbl>    <dbl> <dbl>   <int> <dbl> <dbl> <dbl>
 #>  1    31    0.377  2.13   1.75     1.73 1.43        8  1.49  1.97 0.277
@@ -289,7 +289,8 @@ longnostic_all(data = wages,
 #>  8   173    0.319  2.34   1.93     2.00 1.56        6  1.76  2.02 0.274
 #>  9   206    0.269  2.48   2.27     2.30 2.03        3  2.16  2.39 0.228
 #> 10   207    0.399  2.66   2.11     2.15 1.58       11  1.90  2.24 0.327
-#> # … with 878 more rows
+#> # … with 878 more rows, and 2 more variables: l_intercept <dbl>,
+#> #   l_slope <dbl>
 ```
 
 # A Note on the API

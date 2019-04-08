@@ -156,13 +156,14 @@ wages_lg %>%
 
 ## Calculating all longnostics
 
-You can calculate all longnostics (except for intercept + slope) with the `longnostic_all()` function:
+You can calculate all longnostics using `longnostic_all()`:
 
 ```{r show-all-longnostics}
 
 longnostic_all(data = wages,
                id = id,
-               var = lnw)
+               var = lnw,
+               formula = lnw~exper)
 
 ```
 
