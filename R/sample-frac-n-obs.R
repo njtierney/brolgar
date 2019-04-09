@@ -1,7 +1,7 @@
 #' Sample a fraction of ids to explore
 #'
-#' @param data data.frame
-#' @param id id of interest
+#' @param data data.frame to explore
+#' @param id vector of ids to define which values belong to which individual
 #' @param size The number or fraction of observations, depending on the 
 #'   function used. In `sample_n_obs`, it is a number > 0, and in 
 #'   `sample_frac_obs` it is a fraction, between 0 and 1.

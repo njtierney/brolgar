@@ -1,8 +1,8 @@
 #' Add k groups to help explore ids
 #'
-#' @param data data.frame
-#' @param id id
-#' @param k number of random groups
+#' @param data data.frame to explore
+#' @param id vector of ids to define which values belong to which individual
+#' @param k number of random groups to create
 #'
 #' @return data.frame with additional column, `.rand_id` containing `k` groups
 #' @export

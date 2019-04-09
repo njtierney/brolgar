@@ -1,5 +1,7 @@
-# brolgar 0.0.0.9600
+# brolgar 0.0.0.9700
 
+* Create `add_k_groups()` (#20) to randomly split the data into groups to 
+  explore the data.
 * Add `sample_n_obs()` and `sample_frac_obs()` (#19) to select a random group 
   of ids.
 * Add `filter_n_obs()` to filter the data by the number of observations #15

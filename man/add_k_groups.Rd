@@ -7,11 +7,11 @@
 add_k_groups(data, id, k)
 }
 \arguments{
-\item{data}{data.frame}
+\item{data}{data.frame to explore}
 
-\item{id}{id}
+\item{id}{vector of ids to define which values belong to which individual}
 
-\item{k}{number of random groups}
+\item{k}{number of random groups to create}
 }
 \value{
 data.frame with additional column, \code{.rand_id} containing \code{k} groups
@@ -20,16 +20,12 @@ data.frame with additional column, \code{.rand_id} containing \code{k} groups
 Add k groups to help explore ids
 }
 \examples{
-library(tidyr)
 library(ggplot2)
 library(brolgar)
 
 wages \%>\%
   sample_frac_obs(id = id, size = 0.1) \%>\%
-  group_by(id) \%>\%
-  nest() \%>\%
-  mutate(.rand_id = sample(1:10, nrow(.), replace = TRUE)) \%>\%
-  unnest() \%>\%
+  add_k_groups(id = id, k = 10) \%>\%
  ggplot(aes(x = lnw,
             y = exper,
             group = id)) + 

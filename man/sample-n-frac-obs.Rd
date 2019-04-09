@@ -11,9 +11,9 @@ sample_n_obs(data, id, size)
 sample_frac_obs(data, id, size)
 }
 \arguments{
-\item{data}{data.frame}
+\item{data}{data.frame to explore}
 
-\item{id}{id of interest}
+\item{id}{vector of ids to define which values belong to which individual}
 
 \item{size}{The number or fraction of observations, depending on the
 function used. In \code{sample_n_obs}, it is a number > 0, and in
