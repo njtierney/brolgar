@@ -75,9 +75,7 @@ And now we want to identify those individuals who are at, or closest to the quar
 l_max_quants <- quantile(x = l_max_wages$l_max,
                          probs = c(0.25, 0.5, 0.75),
                          type = 7)
-                         
-l_max_quants
-
+                        
 l_max_quant_wages <- l_max_wages %>%
   mutate(quants = case_when(
     l_max == l_max_quants[1] ~ "q25",
@@ -86,7 +84,6 @@ l_max_quant_wages <- l_max_wages %>%
   )) %>%
   filter(!is.na(quants))
 
-l_max_quant_wages
 ```
 
 And now we can join that data back and look at it:
@@ -102,3 +99,40 @@ wages %>%
 ```
 
 We notice that we don't see the q75 - this is because we need to add some tolerance around the quantiles so that we can pick up on those values _nearby_
+
+```{r}
+library(tidyverse)
+library(brolgar)
+
+l_max_wages <- l_max(wages, id, lnw)
+
+l_max_quants <- quantile(x = l_max_wages[["l_max"]],
+                         probs = c(0.25, 0.5, 0.75),
+                         type = 7)
+
+part_near <- purrr::partial(dplyr::near,
+                            y = l_max_wages[["l_max"]],
+                            tol = 0.05)
+
+summarise_l_max_wages <- l_max_wages %>%
+  summarise(id = list(id), 
+            qs = list(as.list(quantile(x = l_max,
+                                       probs = c(0.25, 0.5, 0.75),
+                                       type = 7)))
+  )
+
+summarise_l_max_wages %>%
+  dplyr::mutate(is_near = list(purrr::map_dfr(purrr::flatten(qs), 
+                                              part_near))) %>% 
+  select(id, is_near) %>%
+  unnest() %>%
+  gather(key = "near_q",
+         value = "value",
+         2:4,
+         -id) %>%
+  mutate(quant_is_near = case_when(
+    value ~ glue::glue("q_{readr::parse_number(near_q)}")
+  )) %>%
+  filter(!is.na(quant_is_near))
+```
+
