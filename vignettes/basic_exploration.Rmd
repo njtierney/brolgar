@@ -1,0 +1,51 @@
+---
+title: "Starting Steps"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Starting Steps}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(brolgar)
+```
+
+When we first get a longitudinal dataset, you need to understand some of its structure. This vignette demonstrates part of the process of understanding your new longitudinal data.
+
+# How many observations are there?
+
+We can find the number of observations with `l_n_obs()`.
+
+```{r show-nobs}
+l_n_obs(wages, id)
+```
+
+A plot of this can help understand the distribution of observations
+
+```{r plot-nobs}
+library(ggplot2)
+l_n_obs(wages, id) %>%
+  ggplot(aes(x = l_n_obs)) + 
+  geom_bar()
+```
+
+An equivalent table of the number of observations can be obtained usined `dplyr`'s `count()`.
+
+```{r count-nobs}
+l_n_obs(wages, id) %>%
+  count(l_n_obs) %>%
+  mutate(prop = n/sum(n)) %>%
+  arrange(-prop)
+```
+
+# How many missings for each person
+
+
