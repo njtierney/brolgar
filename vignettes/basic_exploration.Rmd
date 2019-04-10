@@ -39,7 +39,7 @@ l_n_obs(wages, id) %>%
   geom_bar()
 ```
 
-An equivalent table of the number of observations can be obtained usined `dplyr`'s `count()`.
+An equivalent table of the number of observations can be obtained using `dplyr`'s `count()`.
 
 ```{r count-nobs}
 library(dplyr)
