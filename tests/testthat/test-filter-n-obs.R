@@ -19,30 +19,17 @@ test_that("correct number of observations are returned", {
 })
 
 test_that("correct number of columns are returned", {
-  expect_equal(ncol(wages_gt_10), 16)
-  expect_equal(ncol(wages_et_2), 16)
-  expect_equal(ncol(wages_gte_10), 16)
-  expect_equal(ncol(wages_lte_2), 16)
+  expect_equal(ncol(wages_gt_10), ncol(wages) + 1)
+  expect_equal(ncol(wages_et_2), ncol(wages) + 1)
+  expect_equal(ncol(wages_gte_10), ncol(wages) + 1)
+  expect_equal(ncol(wages_lte_2), ncol(wages) + 1)
 })
 
 test_that("l_n_obs is added to the dataframe",{
   expect_equal(names(wages_gt_10),
-               c("id",
+               c(names(wages)[1],
                  "l_n_obs",
-                 "lnw",
-                 "exper",
-                 "ged",
-                 "postexp",
-                 "black",
-                 "hispanic",
-                 "hgc",
-                 "hgc.9",
-                 "uerate",
-                 "ue.7",
-                 "ue.centert1",
-                 "ue.mean",
-                 "ue.person.cen",
-                 "ue1"))
+                 names(wages)[2:ncol(wages)]))
 })
 
 test_that("is a tibble", {

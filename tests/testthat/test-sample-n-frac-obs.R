@@ -9,8 +9,8 @@ l_sample_frac_obs <- sample_frac_obs(data = wages,
                                      size = 0.11)
 
 test_that("correct number of columns returned",{
-  expect_equal(ncol(l_sample_n_obs), 15)
-  expect_equal(ncol(l_sample_frac_obs), 15)
+  expect_equal(ncol(l_sample_n_obs), ncol(wages))
+  expect_equal(ncol(l_sample_frac_obs), ncol(wages))
 })
 
 test_that("correct number of ids returned",{
