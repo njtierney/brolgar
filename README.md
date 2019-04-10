@@ -189,19 +189,18 @@ ns <- l_n_obs(wages, id)
 
 sl
 #> # A tibble: 888 x 3
-#> # Groups:   id [888]
-#>       id l_intercept l_slope
-#>    <int>       <dbl>   <dbl>
-#>  1    31        1.41  0.101 
-#>  2    36        2.04  0.0588
-#>  3    53        2.29 -0.358 
-#>  4   122        1.93  0.0374
-#>  5   134        2.03  0.0831
-#>  6   145        1.59  0.0469
-#>  7   155        1.66  0.0867
-#>  8   173        1.61  0.100 
-#>  9   206        1.73  0.180 
-#> 10   207        1.62  0.0884
+#>       id l_intercept l_slope_exper
+#>    <int>       <dbl>         <dbl>
+#>  1    31        1.41        0.101 
+#>  2    36        2.04        0.0588
+#>  3    53        2.29       -0.358 
+#>  4   122        1.93        0.0374
+#>  5   134        2.03        0.0831
+#>  6   145        1.59        0.0469
+#>  7   155        1.66        0.0867
+#>  8   173        1.61        0.100 
+#>  9   206        1.73        0.180 
+#> 10   207        1.62        0.0884
 #> # … with 878 more rows
 ns
 #> # A tibble: 888 x 2
@@ -243,7 +242,7 @@ wages_lg
 #> 10    36  1.80 0.983     1   0.983     0        0     9     0   7.4   0.4 
 #> # … with 6,392 more rows, and 7 more variables: ue.centert1 <dbl>,
 #> #   ue.mean <dbl>, ue.person.cen <dbl>, ue1 <dbl>, l_intercept <dbl>,
-#> #   l_slope <dbl>, l_n_obs <int>
+#> #   l_slope_exper <dbl>, l_n_obs <int>
 ```
 
 We can then highlight those individuals with more than 5 observations,
@@ -258,7 +257,7 @@ wages_lg %>%
              y = lnw, 
              group = id)) + 
   geom_line() +
-  gghighlight(l_slope < (-0.5),
+  gghighlight(l_slope_exper < (-0.5),
               use_direct_label = FALSE)
 ```
 
@@ -351,7 +350,7 @@ longnostic_all(data = wages,
 #>  9   206    0.269  2.48   2.27     2.30 2.03        3  2.16  2.39 0.228
 #> 10   207    0.399  2.66   2.11     2.15 1.58       11  1.90  2.24 0.327
 #> # … with 878 more rows, and 2 more variables: l_intercept <dbl>,
-#> #   l_slope <dbl>
+#> #   l_slope_exper <dbl>
 ```
 
 # A Note on the API

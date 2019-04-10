@@ -11,6 +11,7 @@ df_l_q1 <- l_q1(wages, id, lnw)
 df_l_q3 <- l_q3(wages, id, lnw)
 df_l_sd <- l_sd(wages, id, lnw)
 df_l_slope <- l_slope(wages, id, lnw~exper)
+df_l_slope_multi <- l_slope(wages, id, lnw ~ exper + ged)
 
 test_that("longnostics returns the right dimensions", {
   expect_equal(dim(df_l_diff_1), c(888, 2))
@@ -24,6 +25,7 @@ test_that("longnostics returns the right dimensions", {
   expect_equal(dim(df_l_q3), c(888, 2))
   expect_equal(dim(df_l_sd), c(888, 2))
   expect_equal(dim(df_l_slope), c(888, 3))
+  expect_equal(dim(df_l_slope_multi), c(888, 4))
 })
 
 test_that("longnostic returns the right names", {
@@ -37,7 +39,9 @@ test_that("longnostic returns the right names", {
   expect_equal(names(df_l_q1), c("id", "l_q1"))
   expect_equal(names(df_l_q3), c("id", "l_q3"))
   expect_equal(names(df_l_sd), c("id", "l_sd"))
-  expect_equal(names(df_l_slope), c("id", "l_intercept", "l_slope"))
+  expect_equal(names(df_l_slope), c("id", "l_intercept", "l_slope_exper"))
+  expect_equal(names(df_l_slope_multi), 
+               c("id", "l_intercept", "l_slope_exper", "l_slope_ged"))
 })
 
 test_that("longnostic returns a tbl_df", {
@@ -52,6 +56,7 @@ test_that("longnostic returns a tbl_df", {
   expect_is(df_l_q3, class = c("tbl"))
   expect_is(df_l_sd, class = c("tbl"))
   expect_is(df_l_slope, class = c("tbl"))
+  expect_is(df_l_slope_multi, class = c("tbl"))
 })
 
 test_that("longnostic returns correct classes", {
@@ -76,5 +81,8 @@ test_that("longnostic returns correct classes", {
   expect_equal(purrr::map_chr(df_l_sd, class),
                c(id = "integer", l_sd = "numeric"))
   expect_equal(purrr::map_chr(df_l_slope, class),
-               c(id = "integer", l_intercept = "numeric", l_slope = "numeric"))
+               c(id = "integer", l_intercept = "numeric", l_slope_exper = "numeric"))
+  expect_equal(purrr::map_chr(df_l_slope_multi, class),
+               c(id = "integer", l_intercept = "numeric", 
+                 l_slope_exper = "numeric", l_slope_ged = "numeric"))
 })
