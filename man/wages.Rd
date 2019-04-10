@@ -4,7 +4,7 @@
 \name{wages}
 \alias{wages}
 \title{Wages data from National Longitudinal Survey of Youth (NLSY)}
-\format{A data frame with 5000 rows and 11 variables:
+\format{A data frame with 6402 rows and 8 variables:
 \describe{
 \item{id}{1–888, for each subject.}
 \item{lnw}{natural log of wages, adjusted for inflation, to 1990 dollars.}
@@ -16,14 +16,8 @@ each subject can differ.}
 \item{black}{categorical indicator of race = black.}
 \item{hispanic}{categorical indicator of race = hispanic.}
 \item{hgc}{highest grade completed}
-\item{hgc.9}{hgv centered around 9}
 \item{uerate}{unemployment rates in the local geographic region at each
 measurement time}
-\item{ue.7}{}
-\item{ue.centert1}{}
-\item{ue.mean}{}
-\item{ue.person.cen}{}
-\item{ue1}{}
 }}
 \description{
 This data contains measurements on hourly wages by years in
