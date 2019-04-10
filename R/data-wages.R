@@ -1,0 +1,36 @@
+#' Wages data from National Longitudinal Survey of Youth (NLSY)
+#' 
+#' This data contains measurements on hourly wages by years in
+#' the workforce, with education and race as covariates. The population
+#' measured was male high-school dropouts, aged between 14 and 17 years
+#' when first measured.
+#' It comes from J. D. Singer and J. B. Willett. 
+#' Applied Longitudinal Data Analysis. 
+#' Oxford University Press, Oxford, UK, 2003.
+#' http://gseacademic.harvard.edu/alda/
+#' 
+#' @format A data frame with 5000 rows and 11 variables:
+#' \describe{
+#'   \item{id}{1–888, for each subject.}
+#'   \item{lnw}{natural log of wages, adjusted for inflation, to 1990 dollars.}
+#'   \item{exper}{length of time in the workforce (in years). This is treated
+#'     as the time variable, with t0 for each subject starting on their first
+#'     day at work. The number of time points and values of time points for
+#'    each subject can differ.}
+#'   \item{ged}{when/if a graduate equivalency diploma is obtained.}
+#'   \item{black}{categorical indicator of race = black.}
+#'   \item{hispanic}{categorical indicator of race = hispanic.}
+#'   \item{hgc}{highest grade completed}
+#'   \item{hgc.9}{hgv centered around 9}
+#'   \item{uerate}{unemployment rates in the local geographic region at each
+#'     measurement time}
+#'   \item{ue.7}{}
+#'   \item{ue.centert1}{}
+#'   \item{ue.mean}{}
+#'   \item{ue.person.cen}{}
+#'   \item{ue1}{}
+#' }
+#' 
+#' @docType data
+#' @name wages
+NULL
