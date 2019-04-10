@@ -1,8 +1,8 @@
 library(dplyr)
 library(brolgar)
-# use_data_raw()
-wages <- wages %>%
-  select(-hgc.9,
+
+wages <- old_wages %>%
+  dplyr::select(-hgc.9,
          -ue.7,
          -ue.centert1,
          -ue.mean,

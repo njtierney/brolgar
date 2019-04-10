@@ -1,4 +1,4 @@
-# brolgar 0.0.0.9700
+# brolgar 0.0.0.9800
 
 * Create `add_k_groups()` (#20) to randomly split the data into groups to 
   explore the data.

@@ -13,6 +13,7 @@ as the time variable, with t0 for each subject starting on their first
 day at work. The number of time points and values of time points for
 each subject can differ.}
 \item{ged}{when/if a graduate equivalency diploma is obtained.}
+\item{postexp}{change in experience since getting a ged (if they get one)}
 \item{black}{categorical indicator of race = black.}
 \item{hispanic}{categorical indicator of race = hispanic.}
 \item{hgc}{highest grade completed}
