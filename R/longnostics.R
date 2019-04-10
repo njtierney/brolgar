@@ -191,29 +191,16 @@ l_slope <- function(data, id, formula) {
 
   quo_id <- rlang::enquo(id)
   quo_formula <- rlang::enquo(formula)
+  f_rhs_vars <- all.vars(rlang::f_rhs(as.formula(rlang::as_label(quo_formula))))
+  coef_tbl_vars <- c(rlang::as_label(quo_id), "l_intercept", 
+                     paste0("l_slope_", f_rhs_vars))
   
   data %>%
     dplyr::group_by(!!quo_id) %>%
-    dplyr::group_map(~broom::tidy(lm(quo_formula, data = .x))) %>%
-    dplyr::select(id,
-                  term,
-                  estimate) %>%
-    tidyr::spread(key = term,
-                  value = estimate) %>%
-    dplyr::rename_all(~c("id", "l_intercept", "l_slope"))
+    dplyr::summarise(
+      coef_tbl = list(as.data.frame(t(coef(lm(!!quo_formula)))))
+    ) %>%
+    tidyr::unnest() %>%
+    rlang::set_names(coef_tbl_vars)
 
-  # 
-  # l_slope_old <- function(df, id, formula){
-  #   l <- split(df, df[[id]])
-  #   sl <- purrr::map(l, ~ eval(substitute(lm(formula, data = .)))) %>%
-  #     purrr::map_dfr( ~ as.data.frame(t(as.matrix(coef(
-  #       .
-  #     ))))) %>%
-  #     dplyr::mutate(id = as.integer(names(l))) %>%
-  #     dplyr::rename_all( ~ c("intercept", "slope", "id")) %>%
-  #     dplyr::select(id, intercept, slope) %>%
-  #     tibble::as_tibble()
-  #   return(sl)
-  # }
-  
 }
