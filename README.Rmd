@@ -148,7 +148,7 @@ wages_lg %>%
              y = lnw, 
              group = id)) + 
   geom_line() +
-  gghighlight(l_slope < (-0.5),
+  gghighlight(l_slope_exper < (-0.5),
               use_direct_label = FALSE)
 ```
 
