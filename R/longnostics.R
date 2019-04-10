@@ -188,19 +188,25 @@ l_n_obs <- function(data, id) {
 #' @rdname l_longnostic
 #' @export
 l_slope <- function(data, id, formula) {
-
+  
   quo_id <- rlang::enquo(id)
   quo_formula <- rlang::enquo(formula)
-  f_rhs_vars <- all.vars(rlang::f_rhs(as.formula(rlang::as_label(quo_formula))))
+  f_rhs_vars <- all.vars(
+    rlang::f_rhs(
+      stats::as.formula(
+        rlang::as_label(quo_formula)
+      )
+    )
+  )
   coef_tbl_vars <- c(rlang::as_label(quo_id), "l_intercept", 
                      paste0("l_slope_", f_rhs_vars))
   
   data %>%
     dplyr::group_by(!!quo_id) %>%
     dplyr::summarise(
-      coef_tbl = list(as.data.frame(t(coef(lm(!!quo_formula)))))
+      coef_tbl = list(as.data.frame(t(stats::coef(stats::lm(!!quo_formula)))))
     ) %>%
     tidyr::unnest() %>%
     rlang::set_names(coef_tbl_vars)
-
+  
 }
