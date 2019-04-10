@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r knitr-set-chunk, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -19,6 +19,8 @@ library(brolgar)
 ```
 
 When we first get a longitudinal dataset, you need to understand some of its structure. This vignette demonstrates part of the process of understanding your new longitudinal data.
+
+# Basic summaries of the data
 
 # How many observations are there?
 
@@ -40,6 +42,7 @@ l_n_obs(wages, id) %>%
 An equivalent table of the number of observations can be obtained usined `dplyr`'s `count()`.
 
 ```{r count-nobs}
+library(dplyr)
 l_n_obs(wages, id) %>%
   count(l_n_obs) %>%
   mutate(prop = n/sum(n)) %>%
@@ -48,4 +51,81 @@ l_n_obs(wages, id) %>%
 
 # How many missings for each person
 
+...
+
+# Look at as much of the raw data as possible
+
+Following a recommendation from Diggle et al.'s book, we want to look at as much of the raw data as possible.
+
+We know that looking at the `lnw` and `expert` yields a plate of spaghetti:
+
+```{r show-spag}
+library(ggplot2)
+ggplot(wages, 
+       aes(x = lnw,
+           y = exper,
+           group = id)) + 
+  geom_line()
+```
+
+We might instead want to filter down to those with >3 observations, and then look at a random set of individuals.
+
+We can filter down to those with >3 observations using `filter_n_obs()`:
+
+```{r filter-n-obs}
+wages %>%
+  filter_n_obs(id = id, l_n_obs > 3) %>%
+  ggplot(aes(x = lnw,
+             y = exper,
+             group = id)) + 
+  geom_line()
+```
+
+But that's still a lot of spaghetti.
+
+We could then sample a set of say 100 observations, using `sample_n_obs()`:
+
+```{r sample-n-obs}
+wages %>%
+  filter_n_obs(id = id, l_n_obs > 3) %>%
+  sample_n_obs(id = id, size = 100) %>%
+  ggplot(aes(x = lnw,
+             y = exper,
+             group = id)) + 
+  geom_line()
+```
+
+That's not bad, but we can split this up into a few random groups with `add_k_groups`:
+
+```{r show-add-k-groups}
+wages %>%
+  filter_n_obs(id = id, l_n_obs > 3) %>%
+  sample_n_obs(id = id, size = 100) %>%
+  add_k_groups(id = id, k = 10) %>%
+  ggplot(aes(x = lnw,
+             y = exper,
+             group = id)) + 
+  geom_line() + 
+  facet_wrap(~.rand_id)
+```
+
+# Highlight patterns of interest
+
+We can break the data into groups based on the slope of `exper~lnw`
+
+```{r show-add-slope}
+wages %>%
+  filter_n_obs(id = id, l_n_obs > 10) %>%
+  # sample_n_obs(id = id, size = 100) %>%
+  add_l_slope(id = id, formula = exper~lnw) %>%
+  mutate(slope_group = if_else(condition = l_slope > 0,
+                               true = "positive slope",
+                               false = "negative slope")) %>%
+  ggplot(aes(x = lnw,
+             y = exper,
+             group = id)) + 
+  geom_line() + 
+  facet_wrap(~slope_group, nrow = 2)
+  
+```
 
