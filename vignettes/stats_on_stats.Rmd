@@ -100,9 +100,12 @@ wages %>%
 
 We notice that we don't see the q75 - this is because we need to add some tolerance around the quantiles so that we can pick up on those values _nearby_
 
-```{r}
-library(tidyverse)
+```{r stats-on-stats}
+library(purrr)
+library(dplyr)
+library(tidyr)
 library(brolgar)
+library(glue)
 
 l_max_wages <- l_max(wages, id, lnw)
 
@@ -110,9 +113,9 @@ l_max_quants <- quantile(x = l_max_wages[["l_max"]],
                          probs = c(0.25, 0.5, 0.75),
                          type = 7)
 
-part_near <- purrr::partial(dplyr::near,
-                            y = l_max_wages[["l_max"]],
-                            tol = 0.05)
+part_near <- partial(near,
+                     y = l_max_wages[["l_max"]],
+                     tol = 0.05)
 
 summarise_l_max_wages <- l_max_wages %>%
   summarise(id = list(id), 
@@ -122,8 +125,7 @@ summarise_l_max_wages <- l_max_wages %>%
   )
 
 summarise_l_max_wages %>%
-  dplyr::mutate(is_near = list(purrr::map_dfr(purrr::flatten(qs), 
-                                              part_near))) %>% 
+  mutate(is_near = list(map_dfr(flatten(qs), part_near))) %>% 
   select(id, is_near) %>%
   unnest() %>%
   gather(key = "near_q",
