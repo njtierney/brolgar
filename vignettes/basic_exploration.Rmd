@@ -118,7 +118,7 @@ wages %>%
   filter_n_obs(id = id, l_n_obs > 10) %>%
   # sample_n_obs(id = id, size = 100) %>%
   add_l_slope(id = id, formula = exper~lnw) %>%
-  mutate(slope_group = if_else(condition = l_slope > 0,
+  mutate(slope_group = if_else(condition = l_slope_lnw > 0,
                                true = "positive slope",
                                false = "negative slope")) %>%
   ggplot(aes(x = lnw,
