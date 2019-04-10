@@ -11,6 +11,7 @@ df_add_l_q1 <- add_l_q1(wages, id, lnw)
 df_add_l_q3 <- add_l_q3(wages, id, lnw)
 df_add_l_sd <- add_l_sd(wages, id, lnw)
 df_add_l_slope <- add_l_slope(wages, id, lnw~exper)
+df_add_l_slope_multi <- add_l_slope(wages, id, lnw ~ exper + ged)
 
 updated_dim <- c(nrow(wages), ncol(wages) + 1)
 
@@ -26,6 +27,7 @@ test_that("longnostics returns the right dimensions", {
   expect_equal(dim(df_add_l_q3), updated_dim)
   expect_equal(dim(df_add_l_sd), updated_dim)
   expect_equal(dim(df_add_l_slope), c(nrow(wages), ncol(wages) + 2))
+  expect_equal(dim(df_add_l_slope_multi), c(nrow(wages), ncol(wages) + 3))
 })
 
 add_new_wage_names <- function(x){
@@ -45,7 +47,8 @@ test_that("longnostic returns the right names", {
   expect_equal(names(df_add_l_q1), add_new_wage_names("l_q1"))
   expect_equal(names(df_add_l_q3), add_new_wage_names("l_q3"))
   expect_equal(names(df_add_l_sd), add_new_wage_names("l_sd"))
-  expect_equal(names(df_add_l_slope), add_new_wage_names(c("l_intercept", "l_slope")))
+  expect_equal(names(df_add_l_slope), add_new_wage_names(c("l_intercept", "l_slope_exper")))
+  expect_equal(names(df_add_l_slope_multi), add_new_wage_names(c("l_intercept", "l_slope_exper", "l_slope_ged")))
 })
 
 test_that("longnostic returns a tbl_df", {
@@ -60,6 +63,7 @@ test_that("longnostic returns a tbl_df", {
   expect_is(df_add_l_q3, class = c("tbl"))
   expect_is(df_add_l_sd, class = c("tbl"))
   expect_is(df_add_l_slope, class = c("tbl"))
+  expect_is(df_add_l_slope_multi, class = c("tbl"))
 })
 
 classes <- function(x) purrr::map_chr(x, class)
@@ -76,5 +80,8 @@ test_that("longnostic returns correct classes", {
   expect_equal(classes(df_add_l_q3)[["l_q3"]], "numeric")
   expect_equal(classes(df_add_l_sd)[["l_sd"]], "numeric")
   expect_equal(classes(df_add_l_slope)[["l_intercept"]], "numeric")
-  expect_equal(classes(df_add_l_slope)[["l_slope"]], "numeric")
+  expect_equal(classes(df_add_l_slope)[["l_slope_exper"]], "numeric")
+  expect_equal(classes(df_add_l_slope_multi)[["l_intercept"]], "numeric")
+  expect_equal(classes(df_add_l_slope_multi)[["l_slope_exper"]], "numeric")
+  expect_equal(classes(df_add_l_slope_multi)[["l_slope_ged"]], "numeric")
 })

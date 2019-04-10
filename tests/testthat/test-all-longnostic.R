@@ -26,7 +26,7 @@ test_that("correct names for all longnostics", {
                  "l_q3",
                  "l_sd",
                  "l_intercept",
-                 "l_slope"))
+                 "l_slope_exper"))
 })
 
 test_that("longnostic_all returns a tibble", {
@@ -48,5 +48,5 @@ test_that("longnostic_all returns correct classes", {
                  l_q3 = "numeric",
                  l_sd = "numeric",
                  l_intercept = "numeric",
-                 l_slope = "numeric"))
+                 l_slope_exper = "numeric"))
 })
