@@ -36,7 +36,8 @@ Suggests:
     gghighlight,
     testthat,
     covr,
-    ggplot2
+    ggplot2,
+    readr
 VignetteBuilder: knitr
 Language: en-US
 Roxygen: list(markdown = TRUE)
