@@ -1,18 +1,25 @@
 Package: brolgar
 Title: BRowse Over Longitudinal data Graphically and Analytically in R
 Version: 0.0.0.9800
-Authors@R: c(person("Tania", 
-                    "Prvan", 
-                    email = "tania.prvan@mq.edu.au", 
-                    role = c("aut", "cre")), 
-             person("Di", 
-                    "Cook", 
-                    email = "dicook@monash.edu", 
-                    role = "aut"),
-            person("Nicholas",
-                   "Tierney",
-                   email = "nicholas.tierney@gmail.com",
-                   role = "aut"))
+Authors@R: c(
+  person("Tania", 
+         "Prvan", 
+         email = "tania.prvan@mq.edu.au", 
+         role = c("aut", "cre")), 
+  person("Di", 
+         "Cook",
+         role = "aut",
+         email = "dicook@monash.edu", 
+         comment = c(ORCID = "https://orcid.org/0000-0002-3813-7155")),
+  person("Nicholas", 
+         "Tierney", 
+         role = c("aut"),
+         email = "nicholas.tierney@gmail.com", 
+         comment = c(ORCID = "https://orcid.org/0000-0003-1460-8722")),
+ person("Stuart", 
+        "Lee",
+        role = c("ctb"))
+        )
 Description: Provides a framework of tools to summarise, visualise, and explore 
   longitudinal data.
 Depends: R (>= 3.5.0)
