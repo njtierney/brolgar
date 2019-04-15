@@ -169,6 +169,7 @@ wages %>%
   filter_n_obs(id = id,
                l_n_obs >= 13)
 
+
 ```
 
 

@@ -76,21 +76,20 @@ library(brolgar)
 library(tibble)
 data(wages)
 wages
-#> # A tibble: 6,402 x 15
-#>       id   lnw exper   ged postexp black hispanic   hgc hgc.9 uerate  ue.7
-#>    <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int> <int>  <dbl> <dbl>
-#>  1    31  1.49 0.015     1   0.015     0        1     8    -1   3.21 -3.78
-#>  2    31  1.43 0.715     1   0.715     0        1     8    -1   3.21 -3.78
-#>  3    31  1.47 1.73      1   1.73      0        1     8    -1   3.21 -3.78
-#>  4    31  1.75 2.77      1   2.77      0        1     8    -1   3.3  -3.70
-#>  5    31  1.93 3.93      1   3.93      0        1     8    -1   2.89 -4.11
-#>  6    31  1.71 4.95      1   4.95      0        1     8    -1   2.49 -4.50
-#>  7    31  2.09 5.96      1   5.96      0        1     8    -1   2.6  -4.40
-#>  8    31  2.13 6.98      1   6.98      0        1     8    -1   4.8  -2.20
-#>  9    36  1.98 0.315     1   0.315     0        0     9     0   4.89 -2.10
-#> 10    36  1.80 0.983     1   0.983     0        0     9     0   7.4   0.4 
-#> # … with 6,392 more rows, and 4 more variables: ue.centert1 <dbl>,
-#> #   ue.mean <dbl>, ue.person.cen <dbl>, ue1 <dbl>
+#> # A tibble: 6,402 x 9
+#>       id   lnw exper   ged postexp black hispanic   hgc uerate
+#>    <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int>  <dbl>
+#>  1    31  1.49 0.015     1   0.015     0        1     8   3.21
+#>  2    31  1.43 0.715     1   0.715     0        1     8   3.21
+#>  3    31  1.47 1.73      1   1.73      0        1     8   3.21
+#>  4    31  1.75 2.77      1   2.77      0        1     8   3.3 
+#>  5    31  1.93 3.93      1   3.93      0        1     8   2.89
+#>  6    31  1.71 4.95      1   4.95      0        1     8   2.49
+#>  7    31  2.09 5.96      1   5.96      0        1     8   2.6 
+#>  8    31  2.13 6.98      1   6.98      0        1     8   4.8 
+#>  9    36  1.98 0.315     1   0.315     0        0     9   4.89
+#> 10    36  1.80 0.983     1   0.983     0        0     9   7.4 
+#> # … with 6,392 more rows
 ```
 
 ### Available `longnostics`
@@ -227,22 +226,21 @@ wages_lg <- wages %>%
   left_join(ns, by = "id")
 
 wages_lg
-#> # A tibble: 6,402 x 18
-#>       id   lnw exper   ged postexp black hispanic   hgc hgc.9 uerate  ue.7
-#>    <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int> <int>  <dbl> <dbl>
-#>  1    31  1.49 0.015     1   0.015     0        1     8    -1   3.21 -3.78
-#>  2    31  1.43 0.715     1   0.715     0        1     8    -1   3.21 -3.78
-#>  3    31  1.47 1.73      1   1.73      0        1     8    -1   3.21 -3.78
-#>  4    31  1.75 2.77      1   2.77      0        1     8    -1   3.3  -3.70
-#>  5    31  1.93 3.93      1   3.93      0        1     8    -1   2.89 -4.11
-#>  6    31  1.71 4.95      1   4.95      0        1     8    -1   2.49 -4.50
-#>  7    31  2.09 5.96      1   5.96      0        1     8    -1   2.6  -4.40
-#>  8    31  2.13 6.98      1   6.98      0        1     8    -1   4.8  -2.20
-#>  9    36  1.98 0.315     1   0.315     0        0     9     0   4.89 -2.10
-#> 10    36  1.80 0.983     1   0.983     0        0     9     0   7.4   0.4 
-#> # … with 6,392 more rows, and 7 more variables: ue.centert1 <dbl>,
-#> #   ue.mean <dbl>, ue.person.cen <dbl>, ue1 <dbl>, l_intercept <dbl>,
-#> #   l_slope_exper <dbl>, l_n_obs <int>
+#> # A tibble: 6,402 x 12
+#>       id   lnw exper   ged postexp black hispanic   hgc uerate l_intercept
+#>    <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int>  <dbl>       <dbl>
+#>  1    31  1.49 0.015     1   0.015     0        1     8   3.21        1.41
+#>  2    31  1.43 0.715     1   0.715     0        1     8   3.21        1.41
+#>  3    31  1.47 1.73      1   1.73      0        1     8   3.21        1.41
+#>  4    31  1.75 2.77      1   2.77      0        1     8   3.3         1.41
+#>  5    31  1.93 3.93      1   3.93      0        1     8   2.89        1.41
+#>  6    31  1.71 4.95      1   4.95      0        1     8   2.49        1.41
+#>  7    31  2.09 5.96      1   5.96      0        1     8   2.6         1.41
+#>  8    31  2.13 6.98      1   6.98      0        1     8   4.8         1.41
+#>  9    36  1.98 0.315     1   0.315     0        0     9   4.89        2.04
+#> 10    36  1.80 0.983     1   0.983     0        0     9   7.4         2.04
+#> # … with 6,392 more rows, and 2 more variables: l_slope_exper <dbl>,
+#> #   l_n_obs <int>
 ```
 
 We can then highlight those individuals with more than 5 observations,
@@ -271,59 +269,56 @@ You can filter by the number of observations using `filter_n_obs()`
 wages %>%
   filter_n_obs(id = id,
                l_n_obs > 3)
-#> # A tibble: 6,145 x 16
-#>       id l_n_obs   lnw exper   ged postexp black hispanic   hgc hgc.9
-#>    <int>   <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int> <int>
-#>  1    31       8  1.49 0.015     1   0.015     0        1     8    -1
-#>  2    31       8  1.43 0.715     1   0.715     0        1     8    -1
-#>  3    31       8  1.47 1.73      1   1.73      0        1     8    -1
-#>  4    31       8  1.75 2.77      1   2.77      0        1     8    -1
-#>  5    31       8  1.93 3.93      1   3.93      0        1     8    -1
-#>  6    31       8  1.71 4.95      1   4.95      0        1     8    -1
-#>  7    31       8  2.09 5.96      1   5.96      0        1     8    -1
-#>  8    31       8  2.13 6.98      1   6.98      0        1     8    -1
-#>  9    36      10  1.98 0.315     1   0.315     0        0     9     0
-#> 10    36      10  1.80 0.983     1   0.983     0        0     9     0
-#> # … with 6,135 more rows, and 6 more variables: uerate <dbl>, ue.7 <dbl>,
-#> #   ue.centert1 <dbl>, ue.mean <dbl>, ue.person.cen <dbl>, ue1 <dbl>
+#> # A tibble: 6,145 x 10
+#>       id l_n_obs   lnw exper   ged postexp black hispanic   hgc uerate
+#>    <int>   <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int>  <dbl>
+#>  1    31       8  1.49 0.015     1   0.015     0        1     8   3.21
+#>  2    31       8  1.43 0.715     1   0.715     0        1     8   3.21
+#>  3    31       8  1.47 1.73      1   1.73      0        1     8   3.21
+#>  4    31       8  1.75 2.77      1   2.77      0        1     8   3.3 
+#>  5    31       8  1.93 3.93      1   3.93      0        1     8   2.89
+#>  6    31       8  1.71 4.95      1   4.95      0        1     8   2.49
+#>  7    31       8  2.09 5.96      1   5.96      0        1     8   2.6 
+#>  8    31       8  2.13 6.98      1   6.98      0        1     8   4.8 
+#>  9    36      10  1.98 0.315     1   0.315     0        0     9   4.89
+#> 10    36      10  1.80 0.983     1   0.983     0        0     9   7.4 
+#> # … with 6,135 more rows
 
 wages %>%
   filter_n_obs(id = id,
                l_n_obs == 1)
-#> # A tibble: 38 x 16
-#>       id l_n_obs   lnw exper   ged postexp black hispanic   hgc hgc.9
-#>    <int>   <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int> <int>
-#>  1   266       1  1.81 0.322     1   0.182     0        0     9     0
-#>  2   304       1  1.84 0.580     0   0         0        1     8    -1
-#>  3   911       1  2.51 1.67      1   1.67      1        0    11     2
-#>  4  1032       1  1.65 0.808     0   0         1        0     8    -1
-#>  5  1219       1  1.57 1.5       0   0         1        0     9     0
-#>  6  1282       1  2.22 0.292     1   0.292     0        0    11     2
-#>  7  1542       1  1.81 0.173     0   0         0        0    10     1
-#>  8  1679       1  1.94 0.365     1   0         0        0    10     1
-#>  9  2065       1  2.60 1.5       0   0         0        0    11     2
-#> 10  2261       1  2.25 0.005     0   0         0        0     6    -3
-#> # … with 28 more rows, and 6 more variables: uerate <dbl>, ue.7 <dbl>,
-#> #   ue.centert1 <dbl>, ue.mean <dbl>, ue.person.cen <dbl>, ue1 <dbl>
+#> # A tibble: 38 x 10
+#>       id l_n_obs   lnw exper   ged postexp black hispanic   hgc uerate
+#>    <int>   <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int>  <dbl>
+#>  1   266       1  1.81 0.322     1   0.182     0        0     9   8.8 
+#>  2   304       1  1.84 0.580     0   0         0        1     8   3.39
+#>  3   911       1  2.51 1.67      1   1.67      1        0    11   9.9 
+#>  4  1032       1  1.65 0.808     0   0         1        0     8   9.3 
+#>  5  1219       1  1.57 1.5       0   0         1        0     9   8.4 
+#>  6  1282       1  2.22 0.292     1   0.292     0        0    11   5.89
+#>  7  1542       1  1.81 0.173     0   0         0        0    10   4.39
+#>  8  1679       1  1.94 0.365     1   0         0        0    10   5.7 
+#>  9  2065       1  2.60 1.5       0   0         0        0    11   9.7 
+#> 10  2261       1  2.25 0.005     0   0         0        0     6   6.9 
+#> # … with 28 more rows
 
 wages %>%
   filter_n_obs(id = id,
                l_n_obs >= 13)
-#> # A tibble: 78 x 16
-#>       id l_n_obs   lnw exper   ged postexp black hispanic   hgc hgc.9
-#>    <int>   <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int> <int>
-#>  1  1204      13  1.81 0.455     0       0     0        0     8    -1
-#>  2  1204      13  1.99 1.28      0       0     0        0     8    -1
-#>  3  1204      13  2.08 2.24      0       0     0        0     8    -1
-#>  4  1204      13  2.30 3.22      0       0     0        0     8    -1
-#>  5  1204      13  2.20 4.20      0       0     0        0     8    -1
-#>  6  1204      13  2.33 5.18      0       0     0        0     8    -1
-#>  7  1204      13  2.44 6.20      0       0     0        0     8    -1
-#>  8  1204      13  2.58 7.28      0       0     0        0     8    -1
-#>  9  1204      13  2.22 8.43      0       0     0        0     8    -1
-#> 10  1204      13  2.80 9.64      0       0     0        0     8    -1
-#> # … with 68 more rows, and 6 more variables: uerate <dbl>, ue.7 <dbl>,
-#> #   ue.centert1 <dbl>, ue.mean <dbl>, ue.person.cen <dbl>, ue1 <dbl>
+#> # A tibble: 78 x 10
+#>       id l_n_obs   lnw exper   ged postexp black hispanic   hgc uerate
+#>    <int>   <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int>  <dbl>
+#>  1  1204      13  1.81 0.455     0       0     0        0     8   3.69
+#>  2  1204      13  1.99 1.28      0       0     0        0     8   3.99
+#>  3  1204      13  2.08 2.24      0       0     0        0     8   5.7 
+#>  4  1204      13  2.30 3.22      0       0     0        0     8   6.59
+#>  5  1204      13  2.20 4.20      0       0     0        0     8   7.8 
+#>  6  1204      13  2.33 5.18      0       0     0        0     8   4.8 
+#>  7  1204      13  2.44 6.20      0       0     0        0     8   3.8 
+#>  8  1204      13  2.58 7.28      0       0     0        0     8   3.8 
+#>  9  1204      13  2.22 8.43      0       0     0        0     8   3.8 
+#> 10  1204      13  2.80 9.64      0       0     0        0     8   3.19
+#> # … with 68 more rows
 ```
 
 ## Calculating all longnostics

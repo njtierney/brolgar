@@ -72,6 +72,7 @@ summary(l_max_wages$l_max)
 And now we want to identify those individuals who are at, or closest to the quartiles.
 
 ```{r summary-max-wages}
+library(dplyr)
 l_max_quants <- quantile(x = l_max_wages$l_max,
                          probs = c(0.25, 0.5, 0.75),
                          type = 7)
@@ -102,7 +103,6 @@ We notice that we don't see the q75 - this is because we need to add some tolera
 
 ```{r stats-on-stats}
 library(purrr)
-library(dplyr)
 library(tidyr)
 library(brolgar)
 library(glue)
@@ -124,7 +124,7 @@ summarise_l_max_wages <- l_max_wages %>%
                                        type = 7)))
   )
 
-summarise_l_max_wages %>%
+l_max_wages_near <- summarise_l_max_wages %>%
   mutate(is_near = list(map_dfr(flatten(qs), part_near))) %>% 
   select(id, is_near) %>%
   unnest() %>%
@@ -136,5 +136,19 @@ summarise_l_max_wages %>%
     value ~ glue::glue("q_{readr::parse_number(near_q)}")
   )) %>%
   filter(!is.na(quant_is_near))
+
+l_max_wages_near
 ```
+
+```{r show-same}
+wages %>%
+  inner_join(l_max_wages_near, by = "id") %>%
+  ggplot(aes(x = exper,
+             y = lnw,
+             group = id,
+             colour = near_q)) + 
+  geom_line() + 
+  facet_wrap(~near_q)
+```
+
 
