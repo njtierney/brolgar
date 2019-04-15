@@ -7,7 +7,6 @@
 #' @param nearest_within select stats within this this amount (default is 
 #'   `.Machine$double.eps^0.5`)
 #' @return dataframe with columns `id` and `nearest_quant`
-#' @name stat-near-quant
 #' @export
 #'
 #' @examples
@@ -83,7 +82,7 @@ tibble::enframe(l_max_quants, name = "quant", value = "l_max_quants") %>%
 }
 
 
-#' @rdname stat-near-quant
+#' @inheritParams l_max_near_quant
 #' @export
 #' @examples
 #' add_stat_near_quant(wages,
