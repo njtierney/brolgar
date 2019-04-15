@@ -134,12 +134,10 @@ filter_stat_near_quant <- function(data,
                    by = str_id)
 }
 
-debugonce(longnostic)
-#
-filter_stat_near_quant(wages,
-                       id,
-                       lnw,
-                       stat = min,
-                       l_name = l_min,
-                       na.rm = TRUE,
-                       tolerance = 0.01)
+# filter_stat_near_quant(wages,
+#                        id,
+#                        lnw,
+#                        stat = min,
+#                        l_name = l_min,
+#                        na.rm = TRUE,
+#                        tolerance = 0.01)

@@ -16,6 +16,16 @@
 #' @examples
 #' wages %>% filter_n_obs(id = id, filter = l_n_obs > 10)
 #' wages %>% filter_n_obs(id = id, filter = l_n_obs == 2)
+#' \dontrun{
+#' # alternative approach
+#' data %>% 
+#'   group_by(id) %>%
+#'   filter(n_obs() > 1)
+#'   
+#' data %>%
+#'   group_by(id) %>%
+#'   sample_n_obs(n_obs = 10)
+#' }
 #' 
 filter_n_obs <- function(data, id, filter){
   
@@ -25,5 +35,5 @@ filter_n_obs <- function(data, id, filter){
   data %>%
     add_l_n_obs(id = !!quo_id) %>%
     dplyr::filter(!!quo_filter)
-  
+
 }
