@@ -2,33 +2,34 @@
 % Please edit documentation in R/near_quantile.R
 \name{near_quantile}
 \alias{near_quantile}
-\title{Which values are nearest to a (single) quantile}
+\title{Which values are nearest to any given quantiles}
 \usage{
 near_quantile(x, probs, tol)
 }
 \arguments{
 \item{x}{vector}
 
-\item{probs}{single quantile to calculate}
+\item{probs}{quantiles to calculate}
 
-\item{tol}{the tolerance in terms of x that you will accept near to the
+\item{tol}{tolerance in terms of x that you will accept near to the
 quantile}
 }
 \value{
-logical vector of TRUE/FALSE
+logical vector of TRUE/FALSE if number is close to a quantile
 }
 \description{
-Which values are nearest to a (single) quantile
+Which values are nearest to any given quantiles
 }
 \examples{
 x <- runif(20)
 near_quantile(x, 0.5, 0.05)
+near_quantile(x, c(0.25, 0.5, 0.75), 0.05)
 
 library(dplyr)
 l_min(wages,id, lnw) \%>\% 
   mutate(min_near_median = near_quantile(l_min, 0.5, 0.01)) \%>\%
   filter(min_near_median)
 l_min(wages,id, lnw) \%>\% 
-  mutate(min_near_median = near_quantile(l_min, 0.5, 0.01)) \%>\%
+  mutate(min_near_q3 = near_quantile(l_min, c(0.25, 0.5, 0.75), 0.01)) \%>\%
   filter(min_near_median)
 }
