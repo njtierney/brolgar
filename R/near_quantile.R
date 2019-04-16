@@ -17,7 +17,7 @@
 #'   filter(min_near_median)
 #' l_min(wages,id, lnw) %>% 
 #'   mutate(min_near_q3 = near_quantile(l_min, c(0.25, 0.5, 0.75), 0.01)) %>%
-#'   filter(min_near_median)
+#'   filter(min_near_q3)
 #' @export
 
 near_quantile <- function(x, probs, tol){

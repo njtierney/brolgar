@@ -31,8 +31,8 @@ dplyr::between(dplyr::percent_rank(x),
 #' Return x percent to y percent of values
 #'
 #' @param x numeric vector
-#' @param from the lowerbound of percentage
-#' @param to the upperbound of percentage
+#' @param from the lower bound of percentage
+#' @param to the upper bound of percentage
 #'
 #' @return logical vector
 #' @export

@@ -9,9 +9,9 @@ near_between(x, from, to)
 \arguments{
 \item{x}{numeric vector}
 
-\item{from}{the lowerbound of percentage}
+\item{from}{the lower bound of percentage}
 
-\item{to}{the upperbound of percentage}
+\item{to}{the upper bound of percentage}
 }
 \value{
 logical vector
