@@ -1,5 +1,12 @@
-# brolgar 0.0.0.9800
+# brolgar 0.0.0.9900
 
+* created `near_` family of functions to find values near to a quantile or percentile. So far there are `near_quantile()`, `near_middle()`, and `near_between()` (#11). 
+    * `near_quantile()` Specify some quantile and then find those values around
+      it (within some specified tolerance).
+    * `near_middle()` Specify some middle percentile value and find values 
+      within given percentiles.
+    * `near_between()` Extract percentile values from a given percentile to 
+      another percentile.
 * Create `add_k_groups()` (#20) to randomly split the data into groups to 
   explore the data.
 * Add `sample_n_obs()` and `sample_frac_obs()` (#19) to select a random group 

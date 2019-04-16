@@ -17,3 +17,20 @@ max_if <- function(x, ...){
          yes = NA,
          no = max(x, ...))
 }
+
+pct <- function(x){
+  glue::glue("q_{scales::percent(x, accuracy = 1, suffix = '')}")
+}
+
+qtl <- function(x, probs){
+  
+  prob_names <- pct(probs)
+  
+  quantile(x = x,
+           probs = probs,
+           type = 7,
+           names = FALSE) %>%
+    purrr::set_names(prob_names)
+}
+
+# qtl(x = x, probs = qtl_val)
