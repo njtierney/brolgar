@@ -19,12 +19,19 @@ library(brolgar)
 library(ggplot2)
 ```
 
-# selected sample of individuals
+`brolgar` explores two ways to explore the data, first exploring the raw data, then exploring the data using longnostics
+
+# Exploring raw data
+
+When you first receive your data, you want to look at as much raw data as possible. This section discusses a few techniques to make it more palatable to explore your raw data without getting too much overplotting.
+
+
+## Select a sample of individuals
 
 Sample n random individuals to explore
 (Note: Possibly not representative)
 
-For example, we can sample 20 random individuals, and then plot them.
+For example, we can sample 20 random individuals, and then plot them. (perhaps change `sample_n_obs` into `sample_id`.)
 
 ```{r selected-sample}
 
@@ -59,11 +66,12 @@ wages %>%
   geom_line()
 ```
 
-# Sampled facets
+## Create random partitions
+
 Assign individuals to a random group 1...K.
 Facet by K
 
-About 20 lines per plot is a good number, but we might want to split this into about 6 different groups, so we can look at many at once. So now we can look at those with at least 5 observations, then sample 120 individuals, and break them into 6 groups with `add_k_groups`. 
+About 20 lines per plot is a good number, but we might want to split this into about 6 different groups, so we can look at many at once. So now we can look at those with at least 5 observations, then sample 120 individuals, and break them into 6 groups with `add_k_groups`.
 
 ```{r filter-sample-group}
 
@@ -86,7 +94,7 @@ This allows for you to look at a larger set of the data.
 
 However, it does not point you to those individuals who are "interesting", in the sense of those being outliers, or representative of the middle of the group.
 
-# Highlight individuals (gghighlight)
+## Highlight individuals (gghighlight)
 
 We can find those individuals who have a negative slope using `add_l_slope`.
 This adds columns `l_intercept` and `l_slope_exper`. Using the `gghighlight` library, we can identify those with an overall negative slope.
@@ -113,4 +121,40 @@ gg_wages_slope +
 
 ```
 
-# Combining highlighting with animation
+## Combining highlighting with animation
+
+* create a factor by cutting `l_slope` into bins
+* animate over `l_slope_bins`, add information about the number of observations in each animation.
+
+# Exploring data using longnostics
+
+## Scaling data
+
+Diggle et al recommend scaling and centering data to identify features:
+
+```{r scale-lnw}
+library(dplyr)
+wages %>%
+  group_by(id) %>%
+  mutate(lnw_scale = scale(lnw)) %>%
+  ungroup() %>%
+  ggplot(aes(x = exper,
+             y = lnw_scale,
+             group = id)) + 
+  geom_line()
+
+```
+
+
+
+## all longnostics
+
+```{r all-longnostic}
+l_wages_all <- longnostic_all(wages,
+                              id = id,
+                              var = lnw,
+                              formula = lnw ~ exper)
+
+l_wages_all
+  
+```
