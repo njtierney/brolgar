@@ -1,0 +1,116 @@
+---
+title: "Visualisation Gallery"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{visualisation-gallery}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(brolgar)
+library(ggplot2)
+```
+
+# selected sample of individuals
+
+Sample n random individuals to explore
+(Note: Possibly not representative)
+
+For example, we can sample 20 random individuals, and then plot them.
+
+```{r selected-sample}
+
+wages %>%
+  sample_n_obs(id = id,
+               size = 20)
+
+wages %>%
+  sample_n_obs(id = id,
+               size = 20) %>%
+  ggplot(aes(x = exper,
+             y = lnw,
+             group = id)) + 
+  geom_line()
+
+
+```
+
+## Filter only those with certain number of observations
+
+We can combine this with `sample_n_obs` to filter those with at least 5 observations using `filter_n_obs`. This provides us with 20 people with at least 5 observations.
+
+```{r filter-sample}
+wages %>%
+  filter_n_obs(id = id,
+               l_n_obs >= 5) %>%
+  sample_n_obs(id = id,
+               size = 20) %>%
+  ggplot(aes(x = exper,
+             y = lnw,
+             group = id)) + 
+  geom_line()
+```
+
+# Sampled facets
+Assign individuals to a random group 1...K.
+Facet by K
+
+About 20 lines per plot is a good number, but we might want to split this into about 6 different groups, so we can look at many at once. So now we can look at those with at least 5 observations, then sample 120 individuals, and break them into 6 groups with `add_k_groups`. 
+
+```{r filter-sample-group}
+
+wages %>%
+  filter_n_obs(id = id,
+               l_n_obs >= 5) %>%
+  sample_n_obs(id = id,
+               size = 120) %>%
+  add_k_groups(id = id,
+               k = 6) %>%
+  ggplot(aes(x = exper,
+             y = lnw,
+             group = id)) + 
+  geom_line() + 
+  facet_wrap(~.rand_id)
+
+```
+
+This allows for you to look at a larger set of the data.
+
+However, it does not point you to those individuals who are "interesting", in the sense of those being outliers, or representative of the middle of the group.
+
+# Highlight individuals (gghighlight)
+
+We can find those individuals who have a negative slope using `add_l_slope`.
+This adds columns `l_intercept` and `l_slope_exper`. Using the `gghighlight` library, we can identify those with an overall negative slope.
+
+```{r wages-slope}
+
+wages_slope <- wages %>%
+  add_l_slope(id = id,
+              formula = lnw ~ exper)
+
+library(gghighlight)
+
+gg_wages_slope <- ggplot(wages_slope,
+       aes(x = exper,
+           y = lnw,
+           group = id)) + 
+  geom_line() 
+
+gg_wages_slope + 
+  gghighlight(l_slope_exper < 0)
+
+gg_wages_slope + 
+  gghighlight(l_slope_exper < -0.5)
+
+```
+
+# Combining highlighting with animation
