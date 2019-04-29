@@ -144,4 +144,23 @@ wages %>%
   facet_wrap(~near_q)
 ```
 
+```{r wages-longnostic-all}
+
+l_wages_all <- longnostic_all(wages,
+                              id = id,
+                              var = lnw,
+                              formula = lnw ~ exper)
+
+l_wages_all %>%
+  filter(!is.na(l_slope_exper)) %>%
+  select(id, l_slope_exper) %>%
+  mutate(q50 = quantile(0.5, type = 7)) %>%
+  mutate(near_q50 = near_quantile(x = l_slope_exper,
+                                  probs = c(0.5),
+                                  tol = 0.001)) %>%
+  mutate(dist_q50 = abs(l_slope_exper - quantile(l_slope_exper, 
+                                                 probs = 0.5, 
+                                                 type = 7))) %>%
+  arrange(dist_q50)
+```
 
