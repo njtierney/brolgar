@@ -164,3 +164,127 @@ l_wages_all %>%
   arrange(dist_q50)
 ```
 
+Let's look at slope.
+
+```{r}
+library(dplyr)
+wages_slope <- l_slope(wages, id, lnw ~ exper)
+
+b_min <- function(x, ... ) min(x, na.rm = TRUE)
+b_max <- function(x, ... ) max(x, na.rm = TRUE)
+b_median <- function(x, ... ) median(x, na.rm = TRUE)
+b_q1 <- function(x, ... ) quantile(x, type = 7, probs = 0.25, na.rm = TRUE)
+b_q3 <- function(x, ... ) quantile(x, type = 7, probs = 0.75, na.rm = TRUE)
+
+library(tidyr)
+```
+
+To get the data into the right format, there are a few steps.
+
+First, we need to get the data into a format where we have all the statistics that we are interested in, along with the id, and the statistic of interest.
+
+Like this
+
+```{r}
+wages_slope_all_stats <- wages_slope %>%
+  mutate_all(.funs = list(min = b_min,
+                          max = b_max,
+                          median = b_median,
+                          q1 = b_q1,
+                          q3 = b_q3)) %>%
+  select(id,
+         starts_with("l_slope"))
+
+wages_slope_all_stats
+```
+
+We then need to convert this into long format
+
+```{r}
+wages_slope_all_stats_long <- 
+wages_slope_all_stats %>%
+gather(key = "stat",
+         value = "stat_value",
+         -id,
+         -l_slope_exper)
+
+wages_slope_all_stats_long
+```
+
+We can then calculate the difference between each stat and the slope, `l_slope_exper`:
+```{r}
+stats_diff <- 
+wages_slope_all_stats_long %>%
+  mutate(stat_diff = abs(l_slope_exper - stat_value))
+
+stats_diff
+```
+
+With stats diff, we can then group by the `stat`, and find return those rows with the smallest difference between the statistic and the value:
+
+```{r}
+top_stats_diff <- 
+stats_diff %>%
+  group_by(stat) %>%
+  top_n(-1,
+        wt = stat_diff)
+
+top_stats_diff
+```
+
+```{r}
+top_stats_diff %>%
+  left_join(wages, by = "id") %>%
+  ggplot(aes(x = exper,
+             y = lnw,
+             group = id,
+             colour = stat)) + 
+  geom_line()
+```
+
+
+We can then join that back onto the data to show with gghighlight
+
+```{r}
+top_stats_diff %>%
+  select(id, l_slope_exper, stat) %>%
+  right_join(wages, by = "id")
+```
+
+These tranformation steps have been compacted into a summary called, `summarise_fivenum()`:
+
+```{r}
+summarise_fivenum <- function(data,
+                              id,
+                              var){
+
+  q_id <- rlang::enquo(id)
+  q_var <- rlang::enquo(var)
+  
+  
+data %>%
+  mutate_all(.funs = list(min = b_min,
+                          max = b_max,
+                          median = b_median,
+                          q1 = b_q1,
+                          q3 = b_q3)) %>%
+  select(!!q_id,
+         starts_with(rlang::as_label(q_var))) %>%
+  gather(key = "stat",
+         value = "stat_value",
+         -!!q_id,
+         -!!q_var) %>%
+  mutate(stat_diff = abs(!!q_var - stat_value)) %>%
+  group_by(stat) %>%
+  top_n(-1,
+        wt = stat_diff)
+}
+
+```
+
+```{r}
+summarise_fivenum(wages_slope,
+                  id = id,
+                  var = l_slope_exper)
+```
+
