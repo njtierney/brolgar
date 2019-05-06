@@ -71,32 +71,10 @@ summary(l_max_wages$l_max)
 
 And now we want to identify those individuals who are at, or closest to the quartiles.
 
-```{r summary-max-wages}
-l_max_wages_near_quantile <- l_max_wages %>%
-  filter(near_quantile(l_max,
-                       probs = c(0.25,
-                                 0.5,
-                                 0.75),
-                       tol = 0.01))
-
-```
-
-And now we can join that data back and look at it:
-
-```{r join-them-back}
-wages %>%
-  inner_join(l_max_wages_near_quantile, by = "id") %>%
-  ggplot(aes(x = exper,
-             y = lnw,
-             group = id)) + 
-  geom_line()
-```
-
-We notice that we don't see the q75 - this is because we need to add some tolerance around the quantiles so that we can pick up on those values _nearby_
-
 ```{r stats-on-stats}
 library(purrr)
 library(tidyr)
+library(dplyr)
 library(brolgar)
 library(glue)
 
@@ -154,7 +132,7 @@ l_wages_all <- longnostic_all(wages,
 l_wages_all %>%
   filter(!is.na(l_slope_exper)) %>%
   select(id, l_slope_exper) %>%
-  mutate(q50 = quantile(0.5, type = 7)) %>%
+  mutate(q50 = quantile(l_slope_exper, 0.5, type = 7)) %>%
   mutate(near_q50 = near_quantile(x = l_slope_exper,
                                   probs = c(0.5),
                                   tol = 0.001)) %>%
@@ -283,8 +261,18 @@ data %>%
 ```
 
 ```{r}
-summarise_fivenum(wages_slope,
-                  id = id,
-                  var = l_slope_exper)
+library(ggplot2)
+wages %>%
+  filter_n_obs(id,
+               l_n_obs > 3) %>%
+  l_slope(id = id,
+          formula = lnw ~ exper) %>%
+summarise_fivenum(id = id,
+                  var = l_slope_exper) %>%
+  left_join(wages, by = "id") %>%
+  ggplot(aes(x = exper,
+             y = lnw,
+             group = id,
+             colour = stat)) + 
+  geom_line()
 ```
-
