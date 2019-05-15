@@ -1,0 +1,118 @@
+---
+title: "l-summarise-fivenum"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{l-summarise-fivenum}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(brolgar)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+```
+
+This vignette unpacks how to find interesting individuals.
+
+Let's look at slope.
+
+```{r l-slope}
+wages_slope <- l_slope(wages, id, lnw ~ exper)
+```
+
+To get the data into the right format, there are a few steps.
+
+First, we need to get the data into a format where we have all the statistics that we are interested in, along with the id, and the statistic of interest.
+
+Like this
+
+```{r mutate-all-wages}
+wages_slope_all_stats <- wages_slope %>%
+  mutate_all(.funs = list(min = b_min,
+                          max = b_max,
+                          median = b_median,
+                          q1 = b_q25,
+                          q3 = b_q75)) %>%
+  select(id,
+         starts_with("l_slope"))
+
+wages_slope_all_stats
+```
+
+We then need to convert this into long format
+
+```{r gather-wages}
+wages_slope_all_stats_long <- 
+wages_slope_all_stats %>%
+gather(key = "stat",
+         value = "stat_value",
+         -id,
+         -l_slope_exper)
+
+wages_slope_all_stats_long
+```
+
+We can then calculate the difference between each stat and the slope, `l_slope_exper`:
+```{r stats-diff}
+stats_diff <- 
+wages_slope_all_stats_long %>%
+  mutate(stat_diff = abs(l_slope_exper - stat_value))
+
+stats_diff
+```
+
+With stats diff, we can then group by the `stat`, and find return those rows with the smallest difference between the statistic and the value:
+
+```{r choose-top-diff}
+top_stats_diff <- 
+stats_diff %>%
+  group_by(stat) %>%
+  top_n(-1,
+        wt = stat_diff)
+
+top_stats_diff
+```
+
+```{r join-top-stats-diff}
+top_stats_diff %>%
+  left_join(wages, by = "id") %>%
+  ggplot(aes(x = exper,
+             y = lnw,
+             group = id,
+             colour = stat)) + 
+  geom_line()
+```
+
+
+We can then join that back onto the data to show with gghighlight
+
+```{r right-join-stats}
+top_stats_diff %>%
+  select(id, l_slope_exper, stat) %>%
+  right_join(wages, by = "id")
+```
+
+These tranformation steps have been compacted into a summary called, `summarise_fivenum()`:
+
+```{r use-summarise-fivenum}
+wages %>%
+  filter_n_obs(id,
+               l_n_obs > 3) %>%
+  l_slope(id = id,
+          formula = lnw ~ exper) %>%
+l_summarise_fivenum(id = id,
+                  var = l_slope_exper) %>%
+  left_join(wages, by = "id") %>%
+  ggplot(aes(x = exper,
+             y = lnw,
+             group = id,
+             colour = stat)) + 
+  geom_line()
+```
