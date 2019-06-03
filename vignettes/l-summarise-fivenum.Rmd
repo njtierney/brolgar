@@ -25,6 +25,8 @@ Let's look at slope.
 
 ```{r l-slope}
 wages_slope <- l_slope(wages, id, lnw ~ exper)
+
+
 ```
 
 To get the data into the right format, there are a few steps.
@@ -108,7 +110,7 @@ wages %>%
   l_slope(id = id,
           formula = lnw ~ exper) %>%
 l_summarise_fivenum(id = id,
-                  var = l_slope_exper) %>%
+                    var = l_slope_exper) %>%
   left_join(wages, by = "id") %>%
   ggplot(aes(x = exper,
              y = lnw,
