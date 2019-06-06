@@ -5,16 +5,24 @@
 #' 
 #' It contains the variables:
 #' 
-#'  * code: country code
-#'  * country: the country
-#'  * year: Year
-#'  * height_cm: average height in centimeters for males
+#'  * code: Country Code.
+#'  * country: The Country.
+#'  * year: Year.
+#'  * height_cm: Average male height in centimeters.
 #' 
-#' For more information, see Joerg Baten and Matthias Blum, "Why are
-#'   you tall while others are short? Agricultural production and
-#'   other proximate determinants of global heights", European
-#'   Review of Economic History 18 (2014), 144–165. Data available
-#'   from http://hdl.handle.net/10622/IAEKLA, accessed via the Clio
-#'   Infra website.
+#' For more information, see the article: "Why are you tall while others are 
+#'   short? Agricultural production and other proximate determinants of global
+#'   heights",  Joerg Baten and Matthias Blum, European Review of Economic 
+#'   History 18 (2014), 144–165. Data available from 
+#'   <http://hdl.handle.net/10622/IAEKLA>, accessed via the Clio Infra website.
 #' 
+#' @examples
+#' \dontrun{
+#' library(ggplot2)
+#' ggplot(world_heights, 
+#'        aes(x = year, 
+#'            y = height_cm, 
+#'            group = country)) + 
+#'     geom_line()
+#' }
 "world_heights"

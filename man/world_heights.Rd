@@ -15,17 +15,26 @@ smaller number of countries from 1500-1800.
 \details{
 It contains the variables:
 \itemize{
-\item code: country code
-\item country: the country
-\item year: Year
-\item height_cm: average height in centimeters for males
+\item code: Country Code.
+\item country: The Country.
+\item year: Year.
+\item height_cm: Average male height in centimeters.
 }
 
-For more information, see Joerg Baten and Matthias Blum, "Why are
-you tall while others are short? Agricultural production and
-other proximate determinants of global heights", European
-Review of Economic History 18 (2014), 144–165. Data available
-from http://hdl.handle.net/10622/IAEKLA, accessed via the Clio
-Infra website.
+For more information, see the article: "Why are you tall while others are
+short? Agricultural production and other proximate determinants of global
+heights",  Joerg Baten and Matthias Blum, European Review of Economic
+History 18 (2014), 144–165. Data available from
+\url{http://hdl.handle.net/10622/IAEKLA}, accessed via the Clio Infra website.
+}
+\examples{
+\dontrun{
+library(ggplot2)
+ggplot(world_heights, 
+       aes(x = year, 
+           y = height_cm, 
+           group = country)) + 
+    geom_line()
+}
 }
 \keyword{datasets}

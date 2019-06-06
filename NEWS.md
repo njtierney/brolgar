@@ -1,5 +1,7 @@
-# brolgar 0.0.0.9900
+# brolgar 0.0.0.9990
 
+* Added the `world_heights` dataset, which contains average male height in 
+  centimetres for many countries. #28
 * created `near_` family of functions to find values near to a quantile or percentile. So far there are `near_quantile()`, `near_middle()`, and `near_between()` (#11). 
     * `near_quantile()` Specify some quantile and then find those values around
       it (within some specified tolerance).
