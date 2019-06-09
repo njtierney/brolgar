@@ -1,33 +1,43 @@
 library(tsibble)
+library(brolgar)
 wages_ts <- as_tsibble(x = wages,
                        key = id, # the thing that identifies each distinct series
                        index = exper, # the time part
-                       regular = FALSE) # important for the 
+                       regular = FALSE) # important for longitudinal data
 
 wages_ts
 
-wages_lm <- lm(lnw ~ exper, wages_ts)
+heights <- as_tsibble(x = world_heights,
+                      key = country,
+                      index = year,
+                      regular = FALSE)
 
-?wages
+l_fivenum <- list(min = b_min,
+                  max = b_max,
+                  median = b_median,
+                  q1 = b_q25,
+                  q3 = b_q75)
+
+heights %>% 
+  features(.var = height_cm, features = l_fivenum)
+
+wages_lm <- lm(lnw ~ exper, wages_ts)
 
 wages %>%
   l_slope(id = id,
           formula = lnw ~ exper)
 
-###
-
 library(feasts)
 library(tsibbledata)
 
 slope <- function(x, ...){
-  # `names<-`(coef(lm(x ~ seq_along(x))), c("int", "slope"))
   setNames(coef(lm(x ~ seq_along(x))), c("int", "slope"))
 }
 
 library(dplyr)
 aus_retail %>% 
-  features(Turnover, stl_features) %>% 
-  filter(seasonal_strength.year %in% range(seasonal_strength.year)) %>% 
+  features(Turnover, features_stl) %>% 
+  filter(seasonal_strength_year %in% range(seasonal_strength_year)) %>% 
   semi_join(aus_retail, ., by = c("State", "Industry")) %>% 
   autoplot(Turnover)
 
