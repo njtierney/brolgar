@@ -1,5 +1,34 @@
 library(tsibble)
 library(brolgar)
+
+world_heights %>%
+  filter(nearest_qt(height_cm))
+
+# we need a way to add a label of the quantiles so we can plot them on top of 
+# the data.
+
+
+
+heights <- as_tsibble(x = world_heights,
+                      key = country,
+                      index = year,
+                      regular = FALSE)
+
+heights_qs <- heights %>%
+  filter(nearest_qt(height_cm)) %>%
+  semi_join(heights, ., by = "country") 
+
+autoplot(heights_qs, .vars = height_cm)
+
+library(ggplot2)
+library(gghighlight)
+ggplot(heights,
+       aes(x = year,
+           y = height_cm,
+           group = country)) + 
+  geom_line() +
+  gghighlight()
+
 wages_ts <- as_tsibble(x = wages,
                        key = id, # the thing that identifies each distinct series
                        index = exper, # the time part
@@ -19,7 +48,9 @@ l_fivenum <- list(min = b_min,
                   q3 = b_q75)
 
 heights %>% 
-  features(.var = height_cm, features = l_fivenum)
+  add_l_slope(id)
+  summarise_at(vars(height_cm),
+               l_fivenum)
 
 wages_lm <- lm(lnw ~ exper, wages_ts)
 
