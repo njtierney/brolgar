@@ -14,6 +14,11 @@ heights <- as_tsibble(x = world_heights,
                       index = year,
                       regular = FALSE)
 
+library(feasts)
+
+heights %>%
+  features(features = count)
+
 heights_qs <- heights %>%
   filter(nearest_qt(height_cm)) %>%
   semi_join(heights, ., by = "country") 
