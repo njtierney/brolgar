@@ -30,7 +30,8 @@ Imports:
     tibble,
     rlang,
     glue,
-    tidyr
+    tidyr,
+    tsibble
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -40,7 +41,7 @@ Suggests:
     rmarkdown,
     spelling,
     gghighlight,
-    testthat,
+    testthat (>= 2.1.0),
     covr,
     ggplot2,
     readr

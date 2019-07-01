@@ -24,10 +24,19 @@ When we first get a longitudinal dataset, you need to understand some of its str
 
 # How many observations are there?
 
-We can find the number of observations with `l_n_obs()`.
+We can find the number of observations with `n_obs()`.
 
 ```{r show-nobs}
-l_n_obs(wages, id)
+# This method should require you to specify the id
+# n_obs(wages, id)
+
+library(tsibble)
+ts_wages <- as_tsibble(wages,
+                       key = id,
+                       index = exper,
+                       regular = FALSE)
+
+n_obs
 ```
 
 A plot of this can help understand the distribution of observations

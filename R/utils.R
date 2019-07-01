@@ -34,3 +34,11 @@ qtl <- function(x, probs){
 }
 
 # qtl(x = x, probs = qtl_val)
+
+test_if_tsibble <- function(x){
+  # test for tsibble
+  if (!inherits(x, "tbl_ts")) {
+    stop("Input must inherit from tsibble", call. = FALSE)
+  }
+  
+}
