@@ -16,7 +16,7 @@ n_obs <- function(.data, ...){
 #' @export
 #' @inheritParams n_obs
 n_obs.tbl_ts <- function(data, ...){
-  tsibble::n_key(data)
+  tsibble::n_keys(data)
 }
 
 #' @rdname n_obs
@@ -69,9 +69,9 @@ add_l_n_obs.tbl_ts <- function(.data, ...){
   
   str_key <- purrr::map_chr(tsibble::key(.data), rlang::as_label)
 
-  l_n_obs(.data = .data) %>%
-    dplyr::left_join(.data,
-                     by = str_key)
+  dplyr::right_join(x = .data,
+                    y = l_n_obs(.data = .data),
+                    by = str_key)
   
 }
 

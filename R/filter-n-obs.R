@@ -25,8 +25,8 @@ filter_n_obs <- function(data, ...){
 filter_n_obs.tbl_ts <- function(.data, filter, ...){
   
   quo_filter <- rlang::enquos(filter)
-  
-  add_l_n_obs(.data) %>%
+
+  add_l_n_obs(.data) %>% 
     dplyr::filter(!!!quo_filter)
   
 }
@@ -35,10 +35,10 @@ filter_n_obs.tbl_ts <- function(.data, filter, ...){
 filter_n_obs.data.frame <- function(data, key, filter, ...){
   
   quo_key <- rlang::enquo(key)
-  quo_filter <- rlang::enquo(filter)
+  quo_filter <- rlang::enquos(filter)
 
   data %>%
     add_l_n_obs(key = !!quo_key) %>%
-    dplyr::filter(!!quo_filter)
+    dplyr::filter(!!Qquo_filter)
   
 }
