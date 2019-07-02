@@ -66,18 +66,11 @@ l_n_obs(ts_wages) %>%
   geom_bar()
 ```
 
-# What sort of time period is between measurements of people
 
-
-
-# What sort of time period is between each measurement?
-
-
-
-# Can we look at a random sample of many people?
 
 
 # Look at as much of the raw data as possible
+# Can we look at a random sample of many people?
 
 With your longitudinal data, you want to look at as much of the raw data as possible.
 
@@ -117,8 +110,8 @@ But that's still a lot of spaghetti.
 We could then sample a set of say 100 observations, using `sample_n_key()`:
 
 ```{r sample-n-obs}
-wages %>%
-  filter_n_obs(n_obs > 3) %>%
+ts_wages %>%
+  filter_n_obs(n_obs > 3) %>% 
   sample_n_key(size = 100) %>%
   ggplot(aes(x = lnw,
              y = exper,
@@ -126,28 +119,38 @@ wages %>%
   geom_line()
 ```
 
-That's not bad, but we can split this up into a few random groups with `add_k_groups`:
+That's not bad, but we can split this up into a few random groups with `stratify_key`, and then plot those groups:
 
 ```{r show-add-k-groups}
-wages %>%
-  filter_n_obs(id = id, l_n_obs > 3) %>%
-  sample_n_obs(id = id, size = 100) %>%
-  add_k_groups(id = id, k = 10) %>%
+ts_wages %>%
+  filter_n_obs(n_obs > 3) %>%
+  sample_n_key(size = 100) %>%
+  stratify_key(n_strata = 12) %>%
   ggplot(aes(x = lnw,
              y = exper,
              group = id)) + 
   geom_line() + 
-  facet_wrap(~.rand_id)
+  facet_wrap(~.strata)
 ```
+
+# How many missings for each person
+
+# What is the proportion of measurements of (thing) across all obserations
+
+Or rather - what is the proportion / tabulation of values across a given measurement? Can we bin these up and explore them?
+
+# What sort of time period is between measurements?
+
+# What sort of time period is between each measurement?
+
 
 # Highlight patterns of interest
 
 We can break the data into groups based on the slope of `exper~lnw`
 
 ```{r show-add-slope}
-wages %>%
-  filter_n_obs(id = id, l_n_obs > 10) %>%
-  # sample_n_obs(id = id, size = 100) %>%
+ts_wages %>%
+  filter_n_obs(n_obs > 10) %>%
   add_l_slope(id = id, formula = exper~lnw) %>%
   mutate(slope_group = if_else(condition = l_slope_lnw > 0,
                                true = "positive slope",
@@ -160,8 +163,4 @@ wages %>%
   
 ```
 
-
-# How many missings for each person
-
-# What is the proportion of measurements of (thing) across all obserations
 
