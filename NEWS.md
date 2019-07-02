@@ -1,3 +1,7 @@
+# brolgar 0.0.1.9000
+
+* Made brolgar integrate with `tsibble`.
+
 # brolgar 0.0.0.9990
 
 * Added the `world_heights` dataset, which contains average male height in 
