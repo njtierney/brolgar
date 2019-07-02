@@ -175,18 +175,6 @@ l_diff <- function(data, id, var, lag = 1) {
 
 #' @rdname l_longnostic
 #' @export
-l_n_obs <- function(data, id) {
-  
-  quo_id <- rlang::enquo(id)
-  
-  data %>%
-    dplyr::group_by(!!quo_id) %>%
-    dplyr::summarise(l_n_obs = dplyr::n())
-  
-}
-
-#' @rdname l_longnostic
-#' @export
 l_slope <- function(data, id, formula) {
   
   quo_id <- rlang::enquo(id)

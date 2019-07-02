@@ -10,7 +10,6 @@
 \alias{l_q1}
 \alias{l_q3}
 \alias{l_diff}
-\alias{l_n_obs}
 \alias{l_slope}
 \title{Calculating longnostics - statistics of interest for each individual}
 \usage{
@@ -29,8 +28,6 @@ l_q1(data, id, var)
 l_q3(data, id, var)
 
 l_diff(data, id, var, lag = 1)
-
-l_n_obs(data, id)
 
 l_slope(data, id, formula)
 }

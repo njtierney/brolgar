@@ -20,70 +20,92 @@ library(brolgar)
 
 When we first get a longitudinal dataset, you need to understand some of its structure. This vignette demonstrates part of the process of understanding your new longitudinal data.
 
-# Basic summaries of the data
+# Setting up your data
 
-# How many observations are there?
-
-We can find the number of observations with `n_obs()`.
+Before we start, we need to discuss the data structures of brolgar.
 
 ```{r show-nobs}
-# This method should require you to specify the id
-# n_obs(wages, id)
-
 library(tsibble)
 ts_wages <- as_tsibble(wages,
                        key = id,
                        index = exper,
                        regular = FALSE)
 
-n_obs
+ts_wages
 ```
+
+# Basic summaries of the data
+
+# How many observations are there?
+
+How many people / ids are there?
+How many obserations per person?
+
+the number of observations can mean different things
+As we have specified the `key` already - the number of observations, we can use `n_obs()`:
+
+```{r n-obs}
+n_obs(ts_wages)
+```
+
+Note that this is a single number, in this case, we have `r n_obs(ts_wages)` observations.
+
+```{r}
+l_n_obs(ts_wages)
+```
+
+
+If we want the number of observations in each key (id), then we can use `l_n_obs`. This is a special function from `brolgar`, indicated by `l_`. Every `l_` function will return us a dataframe.
 
 A plot of this can help understand the distribution of observations
 
 ```{r plot-nobs}
 library(ggplot2)
-l_n_obs(wages, id) %>%
-  ggplot(aes(x = l_n_obs)) + 
+l_n_obs(ts_wages) %>%
+  ggplot(aes(x = n_obs)) + 
   geom_bar()
 ```
 
-An equivalent table of the number of observations can be obtained using `dplyr`'s `count()`.
+# What sort of time period is between measurements of people
 
-```{r count-nobs}
-library(dplyr)
-l_n_obs(wages, id) %>%
-  count(l_n_obs) %>%
-  mutate(prop = n/sum(n)) %>%
-  arrange(-prop)
-```
 
-# How many missings for each person
 
-...
+# What sort of time period is between each measurement?
+
+
+
+# Can we look at a random sample of many people?
+
 
 # Look at as much of the raw data as possible
 
-Following a recommendation from Diggle et al.'s book, we want to look at as much of the raw data as possible.
+With your longitudinal data, you want to look at as much of the raw data as possible.
 
 We know that looking at the `lnw` and `expert` yields a plate of spaghetti:
 
 ```{r show-spag}
 library(ggplot2)
-ggplot(wages, 
-       aes(x = lnw,
-           y = exper,
+ggplot(ts_wages, 
+       aes(x = exper,
+           y = lnw,
            group = id)) + 
   geom_line()
 ```
 
 We might instead want to filter down to those with >3 observations, and then look at a random set of individuals.
 
-We can filter down to those with >3 observations using `filter_n_obs()`:
+```{r}
+library(tsibble)
+library(dplyr)
+
+
+```
+
+We can filter down to those with >10 observations using `filter_n_obs()`:
 
 ```{r filter-n-obs}
-wages %>%
-  filter_n_obs(id = id, l_n_obs > 3) %>%
+ts_wages %>%
+  filter_n_obs(n_obs > 10) %>%
   ggplot(aes(x = lnw,
              y = exper,
              group = id)) + 
@@ -92,12 +114,12 @@ wages %>%
 
 But that's still a lot of spaghetti.
 
-We could then sample a set of say 100 observations, using `sample_n_obs()`:
+We could then sample a set of say 100 observations, using `sample_n_key()`:
 
 ```{r sample-n-obs}
 wages %>%
-  filter_n_obs(id = id, l_n_obs > 3) %>%
-  sample_n_obs(id = id, size = 100) %>%
+  filter_n_obs(n_obs > 3) %>%
+  sample_n_key(size = 100) %>%
   ggplot(aes(x = lnw,
              y = exper,
              group = id)) + 
@@ -137,4 +159,9 @@ wages %>%
   facet_wrap(~slope_group, nrow = 2)
   
 ```
+
+
+# How many missings for each person
+
+# What is the proportion of measurements of (thing) across all obserations
 

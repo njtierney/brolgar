@@ -14,16 +14,31 @@
 #' @export
 #'
 #' @examples
-#' wages %>% filter_n_obs(id = id, filter = l_n_obs > 10)
-#' wages %>% filter_n_obs(id = id, filter = l_n_obs == 2)
+#' wages %>% filter_n_obs(id = id, filter = n_obs > 10)
+#' wages %>% filter_n_obs(id = id, filter = n_obs == 2)
 #' 
-filter_n_obs <- function(data, id, filter){
+filter_n_obs <- function(data, ...){
+  UseMethod("filter_n_obs")
+}
+
+#' @export
+filter_n_obs.tbl_ts <- function(.data, filter, ...){
   
-  quo_id <- rlang::enquo(id)
+  quo_filter <- rlang::enquos(filter)
+  
+  add_l_n_obs(.data) %>%
+    dplyr::filter(!!!quo_filter)
+  
+}
+
+#' @export
+filter_n_obs.data.frame <- function(data, key, filter, ...){
+  
+  quo_key <- rlang::enquo(key)
   quo_filter <- rlang::enquo(filter)
 
   data %>%
-    add_l_n_obs(id = !!quo_id) %>%
+    add_l_n_obs(key = !!quo_key) %>%
     dplyr::filter(!!quo_filter)
   
 }

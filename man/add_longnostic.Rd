@@ -7,7 +7,6 @@
 \alias{add_l_mean}
 \alias{add_l_median}
 \alias{add_l_min}
-\alias{add_l_n_obs}
 \alias{add_l_q1}
 \alias{add_l_q3}
 \alias{add_l_sd}
@@ -23,8 +22,6 @@ add_l_mean(data, id, var)
 add_l_median(data, id, var)
 
 add_l_min(data, id, var)
-
-add_l_n_obs(data, id)
 
 add_l_q1(data, id, var)
 

@@ -28,7 +28,7 @@ Imports:
     magrittr,
     dplyr,
     tibble,
-    rlang,
+    rlang (>= 0.4.0),
     glue,
     tidyr,
     tsibble
