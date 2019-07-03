@@ -82,9 +82,9 @@ add_l_n_obs.data.frame <- function(.data, key, ...){
   quo_key <- rlang::enquo(key)
   str_key <- rlang::as_label(quo_key)
   
-  l_n_obs(.data = data,
+  l_n_obs(.data = .data,
           key = !!quo_key) %>%
-    dplyr::left_join(data,
+    dplyr::left_join(.data,
                      by = str_key)
   
 }

@@ -37,8 +37,7 @@ filter_n_obs.data.frame <- function(data, key, filter, ...){
   quo_key <- rlang::enquo(key)
   quo_filter <- rlang::enquos(filter)
 
-  data %>%
-    add_l_n_obs(key = !!quo_key) %>%
-    dplyr::filter(!!Qquo_filter)
+  add_l_n_obs(data, key = !!quo_key) %>%
+    dplyr::filter(!!!quo_filter)
   
 }

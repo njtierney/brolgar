@@ -160,22 +160,3 @@ l_sd(data = data,
                    by = str_id)
 
 }
-
-#' @rdname add_longnostic
-#' @export
-add_l_slope <- function(data,
-                        id,
-                        formula){
-  
-  quo_id <- rlang::enquo(id)
-  quo_formula <- rlang::enquo(formula)
-  
-  str_id <- rlang::as_label(quo_id)
-  
-l_slope(data = data,
-      id = !!quo_id,
-      formula = !!quo_formula) %>%
-  dplyr::left_join(data,
-                   by = str_id)
-
-}

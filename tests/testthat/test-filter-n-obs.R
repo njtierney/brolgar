@@ -1,14 +1,14 @@
 context("test-filter-n-obs")
 
-wages_gt_10 <- wages %>% filter_n_obs(id = id, filter = l_n_obs > 10)
+wages_gt_10 <- filter_n_obs(wages, key = id, filter = n_obs > 10)
 
-wages_et_2 <- wages %>% filter_n_obs(id = id, filter = l_n_obs == 2)
+wages_et_2 <- wages %>% filter_n_obs(key = id, filter = n_obs == 2)
 
 wages_gte_10 <-
-  wages %>% filter_n_obs(id = id, filter = l_n_obs >= 10)
+  wages %>% filter_n_obs(key = id, filter = n_obs >= 10)
 
 wages_lte_2 <-
-  wages %>% filter_n_obs(id = id, filter = l_n_obs <= 2)
+  wages %>% filter_n_obs(key = id, filter = n_obs <= 2)
 
 
 test_that("correct number of observations are returned", {
@@ -28,7 +28,7 @@ test_that("correct number of columns are returned", {
 test_that("l_n_obs is added to the dataframe",{
   expect_equal(names(wages_gt_10),
                c(names(wages)[1],
-                 "l_n_obs",
+                 "n_obs",
                  names(wages)[2:ncol(wages)]))
 })
 
