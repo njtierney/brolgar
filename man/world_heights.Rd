@@ -4,7 +4,7 @@
 \name{world_heights}
 \alias{world_heights}
 \title{World Height Data}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 1499 rows and 4 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 1499 rows and 3 columns.}
 \usage{
 world_heights
 }
@@ -15,7 +15,6 @@ smaller number of countries from 1500-1800.
 \details{
 It contains the variables:
 \itemize{
-\item code: Country Code.
 \item country: The Country.
 \item year: Year.
 \item height_cm: Average male height in centimeters.
