@@ -22,17 +22,10 @@ When we first get a longitudinal dataset, you need to understand some of its str
 
 # Setting up your data
 
+For `brolgar` to work best, you need to 
+
 Before we start, we need to discuss the data structures of brolgar.
 
-```{r show-nobs}
-library(tsibble)
-ts_wages <- as_tsibble(wages,
-                       key = id,
-                       index = exper,
-                       regular = FALSE)
-
-ts_wages
-```
 
 # Basic summaries of the data
 

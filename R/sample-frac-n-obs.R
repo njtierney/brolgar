@@ -12,7 +12,7 @@
 #' @export
 #' @examples
 #' library(ggplot2)
-#' sample_n_key(ts_wages,
+#' sample_n_key(wages_ts,
 #'              size = 10) %>%
 #'   ggplot(aes(x = exper,
 #'              y = uerate,
@@ -52,7 +52,7 @@ sample_n_key.data.frame <- function(.data, key, size, ...){
 #' @name sample-n-frac-key
 #' @examples
 #' library(ggplot2)
-#' sample_frac_key(ts_wages,
+#' sample_frac_key(wages_ts,
 #'                 0.1) %>%
 #'   ggplot(aes(x = exper,
 #'              y = uerate,

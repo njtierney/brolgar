@@ -23,7 +23,7 @@ Add k groups to help explore ids
 library(ggplot2)
 library(brolgar)
 
-ts_wages \%>\%
+wages_ts \%>\%
   sample_frac_key(size = 0.1) \%>\%
   stratify_key(10) \%>\%
  ggplot(aes(x = lnw,
