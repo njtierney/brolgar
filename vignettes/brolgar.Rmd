@@ -43,21 +43,19 @@ wages %>% print(10)
 ```{r use-gghighlight}
 library(ggplot2)
 library(gghighlight)
+sl <- l_slope(wages_ts, lnw~exper)
 
-sl <- l_slope(wages, id, lnw~exper)
-ns <- l_n_obs(wages, id)
-
-wages_lg <- wages %>%
-  left_join(sl, by = "id") %>%
-  left_join(ns, by = "id")
-
-wages_lg %>% 
-  filter(l_n_obs > 5) %>%
+wages_ts %>%
+  left_join(sl, 
+            by = "id") %>%
+  filter_n_obs(n_obs > 5) %>%
+  mutate(slope_sign = if_else(l_slope_exper < 0,
+                              "negative",
+                              "positive")) %>%
   ggplot(aes(x = exper, 
              y = lnw, 
              group = id)) + 
-  geom_line() +
-  gghighlight(l_slope_exper < (-0.5),
-              use_direct_label = FALSE)
+  geom_line() + 
+  facet_wrap(~slope_sign)
 ```
 
