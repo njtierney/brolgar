@@ -42,3 +42,17 @@ test_if_tsibble <- function(x){
   }
   
 }
+
+extract_coef <- function(x){
+  as.data.frame(t(stats::coef(x)))
+}
+
+extract_formula_vars <- function(x){
+  all.vars(
+    rlang::f_rhs(
+      stats::as.formula(
+        rlang::as_label(x)
+      )
+    )
+  )  
+}
