@@ -22,48 +22,48 @@ When we first get a longitudinal dataset, you need to understand some of its str
 
 # Setting up your data
 
-For `brolgar` to work best, you need to 
+For `brolgar` to work best, you should convert your data into a time series `tsibble` using the `tsibble` package. You can do so by doing:
 
-Before we start, we need to discuss the data structures of brolgar.
+```{r}
 
+```
+
+To read more, see the vignette: [longitudinal-data-structures]()
 
 # Basic summaries of the data
 
-# How many observations are there?
+When you first get a dataset, you need to 
 
-How many people / ids are there?
-How many obserations per person?
+## How many observations are there?
 
-the number of observations can mean different things
-As we have specified the `key` already - the number of observations, we can use `n_obs()`:
+The number of observations can mean different things
+We can kind the number of keys using `n_obs()`:
 
 ```{r n-obs}
-n_obs(ts_wages)
+library(tsibble)
+n_obs(wages_ts)
 ```
 
-Note that this is a single number, in this case, we have `r n_obs(ts_wages)` observations.
+Note that this is a single number, in this case, we have `r n_obs(wages_ts)` observations.
 
-```{r}
-l_n_obs(ts_wages)
+However, we might want to know how many observations we have for each individual. If we want the number of observations in each key (id), then we can use `l_n_obs`. This is a special function from `brolgar`, indicated by `l_`. Every `l_` function will return us a dataframe.
+
+```{r l-n-obs}
+l_n_obs(wages_ts)
 ```
-
-
-If we want the number of observations in each key (id), then we can use `l_n_obs`. This is a special function from `brolgar`, indicated by `l_`. Every `l_` function will return us a dataframe.
 
 A plot of this can help understand the distribution of observations
 
 ```{r plot-nobs}
 library(ggplot2)
-l_n_obs(ts_wages) %>%
+l_n_obs(wages_ts) %>%
   ggplot(aes(x = n_obs)) + 
   geom_bar()
 ```
 
-
-
-
 # Look at as much of the raw data as possible
-# Can we look at a random sample of many people?
+
+## Can we look at a random sample of many people?
 
 With your longitudinal data, you want to look at as much of the raw data as possible.
 
@@ -71,26 +71,27 @@ We know that looking at the `lnw` and `expert` yields a plate of spaghetti:
 
 ```{r show-spag}
 library(ggplot2)
-ggplot(ts_wages, 
+ggplot(wages_ts, 
        aes(x = exper,
            y = lnw,
            group = id)) + 
   geom_line()
 ```
 
-We might instead want to filter down to those with >3 observations, and then look at a random set of individuals.
+We might instead want to filter down to those with >10 observations, and then look at a random set of individuals, using the `filter_n_obs()` function.
 
 ```{r}
 library(tsibble)
 library(dplyr)
 
-
+wages_ts %>% 
+  filter_n_obs(n_obs > 10)
 ```
 
-We can filter down to those with >10 observations using `filter_n_obs()`:
 
 ```{r filter-n-obs}
-ts_wages %>%
+
+wages_ts %>%
   filter_n_obs(n_obs > 10) %>%
   ggplot(aes(x = lnw,
              y = exper,
@@ -103,9 +104,9 @@ But that's still a lot of spaghetti.
 We could then sample a set of say 100 observations, using `sample_n_key()`:
 
 ```{r sample-n-obs}
-ts_wages %>%
-  filter_n_obs(n_obs > 3) %>% 
+wages_ts %>%
   sample_n_key(size = 100) %>%
+  filter_n_obs(n_obs > 10) %>%
   ggplot(aes(x = lnw,
              y = exper,
              group = id)) + 
@@ -133,6 +134,13 @@ ts_wages %>%
 Or rather - what is the proportion / tabulation of values across a given measurement? Can we bin these up and explore them?
 
 # What sort of time period is between measurements?
+
+```{r}
+wages_ts %>%
+  group_by_key() %>%
+  summarise(mean_time = mean(exper))
+```
+
 
 # What sort of time period is between each measurement?
 

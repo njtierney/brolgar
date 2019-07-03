@@ -1,8 +1,8 @@
 ---
-title: "data-structures-for-longitudinal-data"
+title: "longitudinal-data-structures"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{data-structures-for-longitudinal-data}
+  %\VignetteIndexEntry{longitudinal-data-structures}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
