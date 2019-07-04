@@ -64,7 +64,7 @@ l_slope.data.frame <- function(.data, key, formula) {
 
 #' @rdname add_longnostic
 #' @export
-add_l_slope <- function(data,
+add_l_slope <- function(.data,
                         id,
                         formula){
   
@@ -73,10 +73,10 @@ add_l_slope <- function(data,
   
   str_id <- rlang::as_label(quo_id)
   
-  l_slope(data = data,
+  l_slope(.data = .data,
           id = !!quo_id,
           formula = !!quo_formula) %>%
-    dplyr::left_join(data,
+    dplyr::left_join(.data,
                      by = str_id)
   
 }

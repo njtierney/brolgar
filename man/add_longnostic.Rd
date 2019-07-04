@@ -29,7 +29,7 @@ add_l_q3(data, id, var)
 
 add_l_sd(data, id, var)
 
-add_l_slope(data, id, formula)
+add_l_slope(.data, id, formula)
 }
 \arguments{
 \item{data}{data.frame to explore}
