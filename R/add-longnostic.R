@@ -106,21 +106,6 @@ l_min(data = data,
 
 #' @rdname add_longnostic
 #' @export
-add_l_n_obs <- function(data,
-                        id){
-  
-  quo_id <- rlang::enquo(id)
-  str_id <- rlang::as_label(quo_id)
-
-l_n_obs(data = data,
-        id = !!quo_id) %>%
-  dplyr::left_join(data,
-                   by = str_id)
-
-}
-
-#' @rdname add_longnostic
-#' @export
 add_l_q1 <- function(data,
                      id,
                      var){
@@ -171,25 +156,6 @@ add_l_sd <- function(data,
 l_sd(data = data,
       id = !!quo_id,
       var = !!quo_var) %>%
-  dplyr::left_join(data,
-                   by = str_id)
-
-}
-
-#' @rdname add_longnostic
-#' @export
-add_l_slope <- function(data,
-                        id,
-                        formula){
-  
-  quo_id <- rlang::enquo(id)
-  quo_formula <- rlang::enquo(formula)
-  
-  str_id <- rlang::as_label(quo_id)
-  
-l_slope(data = data,
-      id = !!quo_id,
-      formula = !!quo_formula) %>%
   dplyr::left_join(data,
                    by = str_id)
 

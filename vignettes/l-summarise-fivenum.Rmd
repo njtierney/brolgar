@@ -24,9 +24,7 @@ This vignette unpacks how to find interesting individuals.
 Let's look at slope.
 
 ```{r l-slope}
-wages_slope <- l_slope(wages, id, lnw ~ exper)
-
-
+wages_slope <- l_slope(wages_ts, lnw ~ exper)
 ```
 
 To get the data into the right format, there are a few steps.
@@ -104,11 +102,9 @@ top_stats_diff %>%
 These tranformation steps have been compacted into a summary called, `summarise_fivenum()`:
 
 ```{r use-summarise-fivenum}
-wages %>%
-  filter_n_obs(id,
-               l_n_obs > 3) %>%
-  l_slope(id = id,
-          formula = lnw ~ exper) %>%
+wages_ts %>%
+  filter_n_obs(n_obs > 3) %>%
+  l_slope(formula = lnw ~ exper) %>%
 l_summarise_fivenum(id = id,
                     var = l_slope_exper) %>%
   left_join(wages, by = "id") %>%

@@ -1,8 +1,9 @@
 world_heights <- readxl::read_excel(here::here("data-raw",
                                                   "Height_Compact.xlsx"),
                                        sheet = 2) %>%
-  dplyr::rename(code = ccode,
-         country = country.name,
-         height_cm = value)
+  dplyr::rename(country = country.name,
+                height_cm = value) %>%
+  dplyr::select(-ccode) %>%
+  dplyr::arrange(country)
 
-usethis::use_data(world_heights)
+usethis::use_data(world_heights, overwrite = TRUE)

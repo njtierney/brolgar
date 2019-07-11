@@ -7,20 +7,28 @@
 \alias{b_median}
 \alias{b_q25}
 \alias{b_q75}
+\alias{b_range}
+\alias{b_range_diff}
 \title{Brolgar summaries (b_summaries)}
 \usage{
-b_min(x, ...)
+b_min(x, na.rm = TRUE, ...)
 
-b_max(x, ...)
+b_max(x, na.rm = TRUE, ...)
 
-b_median(x, ...)
+b_median(x, na.rm = TRUE, ...)
 
-b_q25(x, ...)
+b_q25(x, na.rm = TRUE, ...)
 
-b_q75(x, ...)
+b_q75(x, na.rm = TRUE, ...)
+
+b_range(x, na.rm = TRUE, ...)
+
+b_range_diff(x, na.rm = TRUE, ...)
 }
 \arguments{
 \item{x}{a vector}
+
+\item{na.rm}{whether to remove NA values. Default is TRUE}
 
 \item{...}{other arguments to pass}
 }

@@ -1,21 +1,21 @@
 Package: brolgar
 Title: BRowse Over Longitudinal data Graphically and Analytically in R
-Version: 0.0.0.9990
+Version: 0.0.1.9002
 Authors@R: c(
-  person("Tania", 
-         "Prvan", 
-         email = "tania.prvan@mq.edu.au", 
-         role = c("aut", "cre")), 
+  person("Nicholas", 
+         "Tierney", 
+         role = c("aut", "cre"),
+         email = "nicholas.tierney@gmail.com", 
+         comment = c(ORCID = "https://orcid.org/0000-0003-1460-8722")),
   person("Di", 
          "Cook",
          role = "aut",
          email = "dicook@monash.edu", 
          comment = c(ORCID = "https://orcid.org/0000-0002-3813-7155")),
-  person("Nicholas", 
-         "Tierney", 
-         role = c("aut"),
-         email = "nicholas.tierney@gmail.com", 
-         comment = c(ORCID = "https://orcid.org/0000-0003-1460-8722")),
+  person("Tania", 
+         "Prvan", 
+         email = "tania.prvan@mq.edu.au", 
+         role = c("aut")), 
  person("Stuart", 
         "Lee",
         role = c("ctb"))
@@ -28,9 +28,10 @@ Imports:
     magrittr,
     dplyr,
     tibble,
-    rlang,
+    rlang (>= 0.4.0),
     glue,
-    tidyr
+    tidyr,
+    tsibble
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -40,7 +41,7 @@ Suggests:
     rmarkdown,
     spelling,
     gghighlight,
-    testthat,
+    testthat (>= 2.1.0),
     covr,
     ggplot2,
     readr

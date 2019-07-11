@@ -4,7 +4,7 @@
 \alias{filter_n_obs}
 \title{Filter by the number of observations for an id.}
 \usage{
-filter_n_obs(data, id, filter)
+filter_n_obs(data, ...)
 }
 \arguments{
 \item{data}{data.frame to explore}
@@ -24,7 +24,7 @@ filter by the number of observations to help with certain exploratory
 data analysis.
 }
 \examples{
-wages \%>\% filter_n_obs(id = id, filter = l_n_obs > 10)
-wages \%>\% filter_n_obs(id = id, filter = l_n_obs == 2)
+wages \%>\% filter_n_obs(id = id, filter = n_obs > 10)
+wages \%>\% filter_n_obs(id = id, filter = n_obs == 2)
 
 }

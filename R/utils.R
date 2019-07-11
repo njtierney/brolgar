@@ -34,3 +34,25 @@ qtl <- function(x, probs){
 }
 
 # qtl(x = x, probs = qtl_val)
+
+test_if_tsibble <- function(x){
+  # test for tsibble
+  if (!inherits(x, "tbl_ts")) {
+    stop("Input must inherit from tsibble", call. = FALSE)
+  }
+  
+}
+
+extract_coef <- function(x){
+  as.data.frame(t(stats::coef(x)))
+}
+
+extract_formula_vars <- function(x){
+  all.vars(
+    rlang::f_rhs(
+      stats::as.formula(
+        rlang::as_label(x)
+      )
+    )
+  )  
+}

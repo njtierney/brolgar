@@ -1,0 +1,88 @@
+---
+title: "longitudinal-data-structures"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{longitudinal-data-structures}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(brolgar)
+library(dplyr)
+```
+
+All data has structure. There are ways that we can specify some permanent structure to the data, which gives some useful features later on, for free. This vignette discusses how to structure your longitudinal data as a time series, and what that means.
+
+This idea, that longitudinal data is a time series, is **Big Ideas #1** behind the `brolgar` package:
+
+> There is a permanent structure to your longitudinal data that we need to document and account for. This can be achieved by consider longitudinal data as a type of _time series_ data.
+
+Now, there are many different ways to think about _what your data looks like_. Longitudinal data is often typically called "panel data", for example. I used to always think that "time series" was defined as something that was by definition "regular" - with equal spacings between observations. This is actually not the case - you can have both "regular", and "irregular" time series. Don't believe me? Well, take it up with Professors Rob Hyndman and George Athanasopolous, who say:
+
+> Anything that is observed sequentially over time is a time series. (https://otexts.com/fpp2/data-methods.html)
+
+OK, so what's the big deal with this, why care? Well, it turns out that if we define our data as a time series object, we can get access to a whole suite of really nice tools to handle time series data. 
+
+We can now convert our longitudinal data into a really nice format called a `tsibble`, which stands for "**t**ime **s**eries tibble", built on top of the `tibble`.
+
+How do we convert our longitudinal data to time series? We need to consider the following:
+
+* What identifies the time component of the data? This is the **index**
+* What is the unique identifier of an individual/series? This is the **key**
+
+Together, the **index** and **key** uniquely identify an observation.
+
+What do we mean by this? Let's look at the first section of the wages data:
+
+```{r slice-wages}
+slice(wages, 1:10)
+```
+
+We have the `id` column, which identifies an individual.
+
+We also have the `exper` column, which identifies the `exper`ience an individual has.
+
+So:
+
+* key: `id`
+* index: `exper`
+
+We can specify these things using the `as_tsibble` function from `tsibble`, also stating, `regular = FALSE`, since we have an `irregular` time series.
+
+```{r create-tsibble}
+library(tsibble)
+wages_ts <- as_tsibble(x = wages,
+                       key = id,
+                       index = exper,
+                       regular = FALSE)
+```
+
+What does it look like?
+
+```{r print-wages}
+wages_ts
+```
+
+In particular, the following information is printed at the top:
+
+```
+# A tsibble: 6,402 x 9 [!]
+# Key:       id [888]
+...
+```
+
+This says, we have `r nrow(wages_ts)` rows, with `r ncol(wages_ts)` columns. The `!` means that there is no regular spacing between series, and then our "key" is `id`, of which there `r n_keys(wages_ts)`.
+
+The `wages_ts` dataset is actually already made available inside the `brolgar` package, so you won't need to do this.
+
+# So what?
+
+So why did we do this? Because this idea is very core to the rest of the package, and I wanted to have a place that demonstrated _how_ to do this. The other vignettes in the package will show _why_ that is useful.

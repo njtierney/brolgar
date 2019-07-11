@@ -25,13 +25,15 @@ l_summarise_fivenum <- function(data,
   q_var <- rlang::enquo(var)
   
   data %>%
-    dplyr::mutate_all(.funs = list(min = b_min,
-                                   max = b_max,
-                                   median = b_median,
-                                   q1 = b_q25,
-                                   q3 = b_q75)) %>%
+    dplyr::mutate_at(
+      .vars = dplyr::vars({{var}}),
+      .funs = list(l_slope_min = b_min,
+                   l_slope_max = b_max,
+                   l_slope_median = b_median,
+                   l_slope_q1 = b_q25,
+                   l_slope_q3 = b_q75)) %>%
     dplyr::select(!!q_id,
-                  dplyr::starts_with(rlang::as_label(q_var))) %>%
+                  dplyr::starts_with("l_slope")) %>%
     tidyr::gather(key = "stat",
                   value = "stat_value",
            -!!q_id,

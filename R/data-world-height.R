@@ -5,7 +5,6 @@
 #' 
 #' It contains the variables:
 #' 
-#'  * code: Country Code.
 #'  * country: The Country.
 #'  * year: Year.
 #'  * height_cm: Average male height in centimeters.

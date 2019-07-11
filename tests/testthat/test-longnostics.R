@@ -31,7 +31,7 @@ test_that("longnostics returns the right dimensions", {
 test_that("longnostic returns the right names", {
   expect_equal(names(df_l_diff_1), c("id", "l_diff_1"))
   expect_equal(names(df_l_diff_2), c("id", "l_diff_2"))
-  expect_equal(names(df_l_n_obs), c("id", "l_n_obs"))
+  expect_equal(names(df_l_n_obs), c("id", "n_obs"))
   expect_equal(names(df_l_max), c("id", "l_max"))
   expect_equal(names(df_l_mean), c("id", "l_mean"))
   expect_equal(names(df_l_median), c("id", "l_median"))
@@ -65,7 +65,7 @@ test_that("longnostic returns correct classes", {
   expect_equal(purrr::map_chr(df_l_diff_2, class),
                c(id = "integer", l_diff_2 = "numeric"))
   expect_equal(purrr::map_chr(df_l_n_obs, class),
-               c(id = "integer", l_n_obs = "integer"))
+               c(id = "integer", n_obs = "integer"))
   expect_equal(purrr::map_chr(df_l_max, class),
                c(id = "integer", l_max = "numeric"))
   expect_equal(purrr::map_chr(df_l_mean, class),
