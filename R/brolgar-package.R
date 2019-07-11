@@ -1,6 +1,7 @@
 #' brolgar
 #'
-#' brolgar is a package ...
+#' `brolgar` stands for: **BR**owse over **L**ongitudinal data **G**raphically
+#'   and **A**nalytically in **R**.
 #'
 #' @name brolgar
 #' @docType package

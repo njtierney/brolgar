@@ -1,26 +1,31 @@
-#' Filter by the number of observations for an id.
+#' Filter by the number of observations for a `key`.
 #' 
-#' When exploring longitudinal data it can be useful to 
-#'   filter by the number of observations to help with certain exploratory
-#'   data analysis.
+#' When exploring longitudinal data it can be useful to filter by the number of
+#'   observations in a compact way. `filter_n_obs` allows for the user to 
+#'   filter by the number of observations for each `key`.
 #'
-#' @param data data.frame to explore
-#' @param id vector of ids to define which values belong to which individual
-#' @param filter an expression you want to filter by, where number of 
-#'   observations is referred in as `l_n_obs`. For example (`l_n_obs > 10`)
-#'   would filter those observations with greater than 10 observations.
+#' @param .data data.frame
+#' @param filter A description of how you want to filter the number of 
+#'   observations for each `key`, in terms of `n_obs`. See examples for more
+#'   detail.
 #'
-#' @return dataframe filtered by the number of observations, with an additional column `l_n_obs` containing the number of observations for each `id`.
+#' @return data.frame filtered by the number of observations, with an 
+#'   additional column `n_obs`, which contains the number of observations for
+#'   each `key`.
 #' @export
+#' @name filter_n_obs
 #'
 #' @examples
-#' wages %>% filter_n_obs(id = id, filter = n_obs > 10)
-#' wages %>% filter_n_obs(id = id, filter = n_obs == 2)
+#' wages_ts %>% filter_n_obs(n_obs > 10)
+#' wages_ts %>% filter_n_obs(n_obs == 2)
 #' 
-filter_n_obs <- function(data, ...){
+filter_n_obs <- function(.data, filter, ...){
+  test_if_tsibble(.data)
+  test_if_null(.data)
   UseMethod("filter_n_obs")
 }
 
+#' @rdname filter_n_obs
 #' @export
 filter_n_obs.tbl_ts <- function(.data, filter, ...){
   

@@ -3,6 +3,8 @@
 * Gave more verbose names to the `wages_ts` data.
 * renamed `sample_n_obs()` to `sample_n_keys()` and `sample_frac_keys()`
 * renamed `add_k_groups()` to `stratify_keys()`
+* removed many of the `l_<summary>` functions in favour of the `features` approach.
+* rename `l_summarise_fivenum` to `l_summarise`, and have an option to pass a list of functions.
 
 # brolgar 0.0.1.9000
 

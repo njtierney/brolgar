@@ -2,29 +2,32 @@
 % Please edit documentation in R/filter-n-obs.R
 \name{filter_n_obs}
 \alias{filter_n_obs}
-\title{Filter by the number of observations for an id.}
+\alias{filter_n_obs.tbl_ts}
+\title{Filter by the number of observations for a \code{key}.}
 \usage{
-filter_n_obs(data, ...)
+filter_n_obs(.data, filter, ...)
+
+\method{filter_n_obs}{tbl_ts}(.data, filter, ...)
 }
 \arguments{
-\item{data}{data.frame to explore}
+\item{.data}{data.frame}
 
-\item{id}{vector of ids to define which values belong to which individual}
-
-\item{filter}{an expression you want to filter by, where number of
-observations is referred in as \code{l_n_obs}. For example (\code{l_n_obs > 10})
-would filter those observations with greater than 10 observations.}
+\item{filter}{A description of how you want to filter the number of
+observations for each \code{key}, in terms of \code{n_obs}. See examples for more
+detail.}
 }
 \value{
-dataframe filtered by the number of observations, with an additional column \code{l_n_obs} containing the number of observations for each \code{id}.
+data.frame filtered by the number of observations, with an
+additional column \code{n_obs}, which contains the number of observations for
+each \code{key}.
 }
 \description{
-When exploring longitudinal data it can be useful to
-filter by the number of observations to help with certain exploratory
-data analysis.
+When exploring longitudinal data it can be useful to filter by the number of
+observations in a compact way. \code{filter_n_obs} allows for the user to
+filter by the number of observations for each \code{key}.
 }
 \examples{
-wages \%>\% filter_n_obs(id = id, filter = n_obs > 10)
-wages \%>\% filter_n_obs(id = id, filter = n_obs == 2)
+wages_ts \%>\% filter_n_obs(n_obs > 10)
+wages_ts \%>\% filter_n_obs(n_obs == 2)
 
 }

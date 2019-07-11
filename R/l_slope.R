@@ -36,7 +36,8 @@ l_slope.tbl_ts <- function(.data, formula, ...){
     dplyr::summarise(
       coef_tbl = list(
         as.data.frame(
-          t(stats::coef(stats::lm(!!quo_formula)))
+          # t(stats::coef(stats::lm(!!quo_formula)))
+          t(stats::coef(stats::lm({{formula}})))
           )
         )
     ) %>%
@@ -52,11 +53,10 @@ l_slope.tbl_ts <- function(.data, formula, ...){
 add_l_slope <- function(.data,
                         formula){
   
+  test_if_tsibble(.data)
+  test_if_null(formula)
   test_if_null(.data)
-  test_if_tsibble(formula)
-  test_if_tsibble(formula)
-  
-    quo_formula <- rlang::enquo(formula)
+  quo_formula <- rlang::enquo(formula)
   
   str_key <- purrr::map_chr(tsibble::key(.data), rlang::as_label)
   

@@ -5,13 +5,8 @@
 \title{Feature: Five number summary}
 \usage{
 feat_five_num(x, ...)
-
-feat_five_num(x, ...)
 }
 \description{
-This feature returns the five number summary: minimum, q25, median, q75,
-and maximum.
-
 This feature returns the five number summary: minimum, q25, median, q75,
 and maximum.
 }

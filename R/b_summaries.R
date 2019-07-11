@@ -89,3 +89,12 @@ b_iqr <- function(x, na.rm = TRUE, ... ) IQR(x, na.rm = na.rm, type = 8, ...)
 
 #  * `l_n_obs()` Number of observations
 #  * `l_slope()` Slope and intercept (given some linear model formula)
+
+#' @export
+l_five_num <- list(
+    min = b_min,
+    q25 = b_q25,
+    med = b_median,
+    q_75 = b_q75,
+    max = b_max
+  )
