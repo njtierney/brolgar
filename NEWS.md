@@ -1,3 +1,7 @@
+# brolgar 0.0.2.9001
+
+* Gave more verbose names to the `wages_ts` data.
+
 # brolgar 0.0.1.9000
 
 * Made brolgar integrate with `tsibble`.
