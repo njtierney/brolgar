@@ -7,7 +7,7 @@ wages_ts <- as_tsibble(x = wages,
                        index = exper,
                        regular = FALSE) %>%
   rename(ln_wages = lnw,
-         experience = exper,
+         xp = exper,
          high_grade = hgc,
          unemploy_rate = uerate)
 

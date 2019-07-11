@@ -9,9 +9,9 @@
 \item{id}{1–888, for each subject. This forms the \code{key} of the data}
 \item{ln_wages}{natural log of wages, adjusted for inflation,
 to 1990 dollars.}
-\item{experience}{length of time in the workforce (in years). This is
-treated as the time variable, with t0 for each subject starting on
-their first day at work. The number of time points and values of time
+\item{xp}{Experience - the length of time in the workforce (in years).
+This is treated as the time variable, with t0 for each subject starting
+on their first day at work. The number of time points and values of time
 points for each subject can differ. This forms the \code{index} of the data}
 \item{ged}{when/if a graduate equivalency diploma is obtained.}
 \item{postexp}{change in experience since getting a ged (if they get one)}
