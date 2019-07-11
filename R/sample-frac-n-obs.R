@@ -4,26 +4,26 @@
 #' @param ... extra arguments
 #' @param key vector of keys to define which values belong to which individual
 #' @param size The number or fraction of observations, depending on the 
-#'   function used. In `sample_n_key`, it is a number > 0, and in 
-#'   `sample_frac_key` it is a fraction, between 0 and 1.
+#'   function used. In `sample_n_keys`, it is a number > 0, and in 
+#'   `sample_frac_keys` it is a fraction, between 0 and 1.
 #'
 #' @return data.frame with fewer observations of key
-#' @name sample-n-frac-key
+#' @name sample-n-frac-keys
 #' @export
 #' @examples
 #' library(ggplot2)
-#' sample_n_key(wages_ts,
+#' sample_n_keys(wages_ts,
 #'              size = 10) %>%
 #'   ggplot(aes(x = exper,
 #'              y = uerate,
 #'              group = id)) + 
 #'   geom_line()
-sample_n_key <- function(.data, size, ...){
-  UseMethod("sample_n_key")
+sample_n_keys <- function(.data, size, ...){
+  UseMethod("sample_n_keys")
 }
 
 #' @export
-sample_n_key.tbl_ts <- function(.data, size, ...){
+sample_n_keys.tbl_ts <- function(.data, size, ...){
   
   key_chr <- tsibble::key_vars(.data)
 
@@ -37,35 +37,23 @@ sample_n_key.tbl_ts <- function(.data, size, ...){
   
 }
   
-#' @export
-sample_n_key.data.frame <- function(.data, key, size, ...){
-  
-  .data %>%
-    dplyr::group_by({{key}}) %>%
-    tidyr::nest() %>%
-    dplyr::sample_n(size = size) %>%
-    tidyr::unnest()
-  
-}
-
-
-#' @name sample-n-frac-key
+#' @name sample-n-frac-keys
 #' @examples
 #' library(ggplot2)
-#' sample_frac_key(wages_ts,
+#' sample_frac_keys(wages_ts,
 #'                 0.1) %>%
 #'   ggplot(aes(x = exper,
 #'              y = uerate,
 #'              group = id)) + 
 #'   geom_line()
 #' @export
-sample_frac_key <- function(.data, size, ...){
-  UseMethod("sample_frac_key")
+sample_frac_keys <- function(.data, size, ...){
+  UseMethod("sample_frac_keys")
 }
 
-#' @inheritParams sample-n-frac-key
+#' @inheritParams sample-n-frac-keys
 #' @export
-sample_frac_key.tbl_ts <- function(.data, size, ...){
+sample_frac_keys.tbl_ts <- function(.data, size, ...){
   
   key_chr <- tsibble::key_vars(.data)
   
@@ -78,21 +66,5 @@ sample_frac_key.tbl_ts <- function(.data, size, ...){
   the_matches <- .data[[key_chr]] %in% sample_unique_keys
   
   dplyr::slice(.data, which(the_matches))
-  
-}
-  
-#' @inheritParams sample-n-frac-key
-#' @param key vector of the unique identifier
-#' @name sample-n-frac-key
-#' @export
-sample_frac_key.data.frame <- function(.data, key, size, ...){
-  
-  q_key <- rlang::enquo(key)
-  
-  .data %>%
-    dplyr::group_by(!!q_key) %>%
-    tidyr::nest() %>%
-    dplyr::sample_frac(size = size) %>%
-    tidyr::unnest()
   
 }

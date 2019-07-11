@@ -1,6 +1,8 @@
 # brolgar 0.0.2.9001
 
 * Gave more verbose names to the `wages_ts` data.
+* renamed `sample_n_obs()` to `sample_n_keys()` and `sample_frac_keys()`
+* renamed `add_k_groups()` to `stratify_keys()`
 
 # brolgar 0.0.1.9000
 
