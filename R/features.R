@@ -65,3 +65,25 @@ feat_spread <- function(x, ...){
     iqr = b_iqr(x, ...)
   )
 }
+
+#' Feature: All from brolgar
+#' 
+#' This feature returns measurements of spread: variance, standard deviation, 
+#'   median absolute distance, and interquartile range
+#' @export
+feat_brolgar <- function(x, ...){
+  c(
+    b_min = b_min(x, ...),
+    b_max = b_max(x, ...),
+    b_median = b_median(x, ...),
+    b_mean = b_mean(x, ...),
+    b_q25 = b_q25(x, ...),
+    b_q75 = b_q75(x, ...),
+    b_range = b_range(x, ...),
+    b_range_diff = b_range_diff(x, ...),
+    b_sd = b_sd(x, ...),
+    b_var = b_var(x, ...),
+    b_mad = b_mad(x, ...),
+    b_iqr = b_iqr(x, ...)
+  )
+}
