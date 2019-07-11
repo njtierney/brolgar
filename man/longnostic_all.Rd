@@ -24,14 +24,7 @@ a dataframe with longnostics
 This function calculates all longnostics:
 \itemize{
 \item \code{\link[=l_diff]{l_diff()}}
-\item \code{\link[=l_max]{l_max()}}
-\item \code{\link[=l_mean]{l_mean()}}
-\item \code{\link[=l_median]{l_median()}}
-\item \code{\link[=l_min]{l_min()}}
 \item \code{\link[=l_n_obs]{l_n_obs()}}
-\item \code{\link[=l_q1]{l_q1()}}
-\item \code{\link[=l_q3]{l_q3()}}
-\item \code{\link[=l_sd]{l_sd()}}
 \item \code{\link[=l_slope]{l_slope()}}
 }
 }

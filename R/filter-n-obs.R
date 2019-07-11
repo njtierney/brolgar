@@ -30,14 +30,3 @@ filter_n_obs.tbl_ts <- function(.data, filter, ...){
     dplyr::filter(!!!quo_filter)
   
 }
-
-#' @export
-filter_n_obs.data.frame <- function(data, key, filter, ...){
-  
-  quo_key <- rlang::enquo(key)
-  quo_filter <- rlang::enquos(filter)
-
-  add_l_n_obs(data, key = !!quo_key) %>%
-    dplyr::filter(!!!quo_filter)
-  
-}

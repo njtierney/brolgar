@@ -2,19 +2,14 @@
 % Please edit documentation in R/n_obs.R
 \name{n_obs}
 \alias{n_obs}
-\alias{n_obs.data.frame}
 \title{Find number of observations of individuals (keys) in a dataset}
 \usage{
 n_obs(.data, ...)
-
-\method{n_obs}{data.frame}(data, key = NULL, ...)
 }
 \arguments{
 \item{.data}{data.frame}
 
 \item{...}{extra arguments}
-
-\item{key}{}
 }
 \value{
 number of observations - the number of individuals

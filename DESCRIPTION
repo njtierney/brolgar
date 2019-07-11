@@ -31,7 +31,8 @@ Imports:
     rlang (>= 0.4.0),
     glue,
     tidyr,
-    tsibble
+    tsibble,
+    fablelite
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

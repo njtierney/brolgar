@@ -19,18 +19,6 @@ n_obs.tbl_ts <- function(data, ...){
   tsibble::n_keys(data)
 }
 
-#' @rdname n_obs
-#' @param key 
-#' @export
-#' @inheritParams n_obs
-n_obs.data.frame <- function(data, key = NULL, ...){
-  
-  data %>%
-    dplyr::group_by({{ key }}) %>%
-    dplyr::n_groups()
-  
-}
-
 #' @export
 #' @inheritParams n_obs
 l_n_obs <- function(.data, ...) {
@@ -43,18 +31,6 @@ l_n_obs.tbl_ts <- function(.data, ...){
   tsibble::key_data(.data) %>% 
     dplyr::mutate(n_obs = lengths(.rows)) %>%
     dplyr::select(-.rows)
-}
-
-#' @export
-#' @inheritParams n_obs
-l_n_obs.data.frame <- function(.data, key, ...){  
-  
-  quo_key <- rlang::enquo(key)
-  
-  .data %>%
-    dplyr::group_by(!!quo_key) %>%
-    dplyr::summarise(n_obs = dplyr::n())
-  
 }
 
 #' @inheritParams n_obs
@@ -74,18 +50,3 @@ add_l_n_obs.tbl_ts <- function(.data, ...){
                     by = str_key)
   
 }
-
-#' @inheritParams n_obs
-#' @export
-add_l_n_obs.data.frame <- function(.data, key, ...){
-  
-  quo_key <- rlang::enquo(key)
-  str_key <- rlang::as_label(quo_key)
-  
-  l_n_obs(.data = .data,
-          key = !!quo_key) %>%
-    dplyr::left_join(.data,
-                     by = str_key)
-  
-}
-
