@@ -2,9 +2,10 @@
 % Please edit documentation in R/n_obs.R
 \name{n_obs}
 \alias{n_obs}
-\title{Find number of observations of individuals (keys) in a dataset}
+\alias{l_n_obs}
+\title{Find number of observations for each key in a dataset}
 \usage{
-n_obs(.data, ...)
+l_n_obs(.data, ...)
 }
 \arguments{
 \item{.data}{data.frame}
@@ -16,5 +17,5 @@ number of observations - the number of individuals
 }
 \description{
 Here, we are not counting the number of rows in the dataset, but rather
-we are counting the number of individual, or keys, in the data
+we are counting the number of individual, or keys, in the data.
 }

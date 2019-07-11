@@ -1,7 +1,7 @@
-#' Find number of observations of individuals (keys) in a dataset
+#' Find number of observations for each key in a dataset
 #' 
 #' Here, we are not counting the number of rows in the dataset, but rather
-#'   we are counting the number of individual, or keys, in the data
+#'   we are counting the number of individual, or keys, in the data.
 #'
 #' @param .data data.frame
 #' @param ... extra arguments
@@ -9,19 +9,11 @@
 #' @return number of observations - the number of individuals
 #' @export
 #' @name n_obs
-n_obs <- function(.data, ...){
-  UseMethod("n_obs")
-}
-
-#' @export
-#' @inheritParams n_obs
-n_obs.tbl_ts <- function(data, ...){
-  tsibble::n_keys(data)
-}
-
 #' @export
 #' @inheritParams n_obs
 l_n_obs <- function(.data, ...) {
+  test_if_null(.data)
+  test_if_tsibble(.data)
   UseMethod("l_n_obs")
 }
 
@@ -36,6 +28,8 @@ l_n_obs.tbl_ts <- function(.data, ...){
 #' @inheritParams n_obs
 #' @export
 add_l_n_obs <- function(.data, ...){
+  test_if_null(.data)
+  test_if_tsibble(.data)
   UseMethod("add_l_n_obs")
 }
 
