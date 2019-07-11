@@ -50,6 +50,8 @@ sample_n_keys.tbl_ts <- function(.data, size, ...){
 #'   geom_line()
 #' @export
 sample_frac_keys <- function(.data, size, ...){
+  test_if_tsibble(.data)
+  test_if_null(.data)
   UseMethod("sample_frac_keys")
 }
 
