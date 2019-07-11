@@ -19,6 +19,8 @@
 #'              group = id)) + 
 #'   geom_line()
 sample_n_keys <- function(.data, size, ...){
+  test_if_tsibble(.data)
+  test_if_null(.data)
   UseMethod("sample_n_keys")
 }
 

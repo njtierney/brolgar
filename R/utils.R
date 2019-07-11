@@ -43,6 +43,28 @@ test_if_tsibble <- function(x){
   
 }
 
+#' Test if the input is NULL
+#'
+#' @param x object
+#'
+#' @return an error if input (x) is NULL
+#'
+#' @examples
+#' \dontrun{
+#' # success
+#' test_if_null(airquality)
+#' #fail
+#' my_test <- NULL
+#' test_if_null(my_test)
+#' }
+test_if_null <- function(x){
+  
+  # test for null
+  if (is.null(x)) {
+    stop("Input must not be NULL", call. = FALSE)
+  }
+}
+
 extract_coef <- function(x){
   as.data.frame(t(stats::coef(x)))
 }

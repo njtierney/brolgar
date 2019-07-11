@@ -20,6 +20,8 @@
 #'  geom_line() + 
 #'  facet_wrap(~.strata)
 stratify_keys <- function(.data, n_strata, ...){
+  test_if_tsibble(.data)
+  test_if_null(.data)
   UseMethod("stratify_keys")
   
 }
