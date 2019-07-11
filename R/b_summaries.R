@@ -1,9 +1,22 @@
 #' Brolgar summaries (b_summaries)
 #' 
 #' Customised summaries of vectors with appropriate defaults for longitudinal
-#'   data. This includes minimum, maximum, median, q25 and q75. The functions
-#'   are prefixed with `b_` to assist with autocomplete. The defaults are to use
-#'   `type = 8` for quantiles, and `na.rm = TRUE`.
+#'   data. The functions are prefixed with `b_` to assist with autocomplete.
+#'   The defaults are to use `type = 8` for quantiles, and `na.rm = TRUE` for
+#'   all. They include:
+#'     * b_min: The minimum
+#'     * b_max: The maximum
+#'     * b_median: The median
+#'     * b_mean: The mean
+#'     * b_q25: The 25th quantile
+#'     * b_q75: The 75th quantile
+#'     * b_range: The range
+#'     * b_range_diff: difference in range (max - min)
+#'     * b_sd: The standard deviation
+#'     * b_var: The variance
+#'     * b_mad: The mean absolute deviation
+#'     * b_iqr: The Inter-quartile range
+#' 
 #' 
 #' @param x a vector
 #' @param na.rm whether to remove NA values. Default is TRUE
@@ -19,6 +32,10 @@ b_max <- function(x, na.rm = TRUE, ... ) max(x, na.rm = na.rm, ...)
 #' @name b_summaries
 #' @export
 b_median <- function(x, na.rm = TRUE, ... ) median(x, na.rm = na.rm, ...)
+
+#' @name b_summaries
+#' @export
+b_mean <- function(x, na.rm = TRUE, ... ) mean(x, na.rm = na.rm, ...)
 
 #' @name b_summaries
 #' @export
@@ -51,3 +68,22 @@ b_range_diff <- function(x, na.rm = TRUE, ... ) {
                na.rm = na.rm,
                ...))
 }
+
+#' @name b_summaries
+#' @export
+b_sd <- function(x, na.rm = TRUE, ... ) sd(x, na.rm = na.rm, ...)
+
+#' @name b_summaries
+#' @export
+b_var <- function(x, na.rm = TRUE, ... ) var(x, na.rm = na.rm, ...)
+
+#' @name b_summaries
+#' @export
+b_mad <- function(x, na.rm = TRUE, ... ) mad(x, na.rm = na.rm, ...)
+
+#' @name b_summaries
+#' @export
+b_iqr <- function(x, na.rm = TRUE, ... ) IQR(x, na.rm = na.rm, type = 8, ...)
+
+#  * `l_n_obs()` Number of observations
+#  * `l_slope()` Slope and intercept (given some linear model formula)

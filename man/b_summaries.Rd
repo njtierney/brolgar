@@ -5,10 +5,15 @@
 \alias{b_summaries}
 \alias{b_max}
 \alias{b_median}
+\alias{b_mean}
 \alias{b_q25}
 \alias{b_q75}
 \alias{b_range}
 \alias{b_range_diff}
+\alias{b_sd}
+\alias{b_var}
+\alias{b_mad}
+\alias{b_iqr}
 \title{Brolgar summaries (b_summaries)}
 \usage{
 b_min(x, na.rm = TRUE, ...)
@@ -17,6 +22,8 @@ b_max(x, na.rm = TRUE, ...)
 
 b_median(x, na.rm = TRUE, ...)
 
+b_mean(x, na.rm = TRUE, ...)
+
 b_q25(x, na.rm = TRUE, ...)
 
 b_q75(x, na.rm = TRUE, ...)
@@ -24,6 +31,14 @@ b_q75(x, na.rm = TRUE, ...)
 b_range(x, na.rm = TRUE, ...)
 
 b_range_diff(x, na.rm = TRUE, ...)
+
+b_sd(x, na.rm = TRUE, ...)
+
+b_var(x, na.rm = TRUE, ...)
+
+b_mad(x, na.rm = TRUE, ...)
+
+b_iqr(x, na.rm = TRUE, ...)
 }
 \arguments{
 \item{x}{a vector}
@@ -34,7 +49,19 @@ b_range_diff(x, na.rm = TRUE, ...)
 }
 \description{
 Customised summaries of vectors with appropriate defaults for longitudinal
-data. This includes minimum, maximum, median, q25 and q75. The functions
-are prefixed with \code{b_} to assist with autocomplete. The defaults are to use
-\code{type = 8} for quantiles, and \code{na.rm = TRUE}.
+data. The functions are prefixed with \code{b_} to assist with autocomplete.
+The defaults are to use \code{type = 8} for quantiles, and \code{na.rm = TRUE} for
+all. They include:
+* b_min: The minimum
+* b_max: The maximum
+* b_median: The median
+* b_mean: The mean
+* b_q25: The 25th quantile
+* b_q75: The 75th quantile
+* b_range: The range
+* b_range_diff: difference in range (max - min)
+* b_sd: The standard deviation
+* b_var: The variance
+* b_mad: The mean absolute deviation
+* b_iqr: The Inter-quartile range
 }
