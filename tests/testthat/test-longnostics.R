@@ -2,14 +2,14 @@ context("test-longnostic")
 
 df_l_diff_1 <- l_diff(wages, id, lnw, lag = 1)
 df_l_diff_2 <- l_diff(wages, id, lnw, lag = 2)
-df_l_n_obs <- l_n_obs(wages, id)
-df_l_max <- l_max(wages, id, lnw)
-df_l_mean <- l_mean(wages, id, lnw)
-df_l_median <- l_median(wages, id, lnw)
-df_l_min <- l_min(wages, id, lnw)
-df_l_q1 <- l_q1(wages, id, lnw)
-df_l_q3 <- l_q3(wages, id, lnw)
-df_l_sd <- l_sd(wages, id, lnw)
+df_l_n_obs <- l_n_obs(wages_ts)
+df_l_max <- features(wages_ts, ln_wages, c(max = b_max))
+df_l_mean <- features(wages_ts, ln_wages, c(mean = b_mean))
+df_l_median <- features(wages_ts, ln_wages, c(median = b_median))
+df_l_min <- features(wages_ts, ln_wages, c(min = b_min))
+df_l_q1 <- features(wages_ts, ln_wages, c(q25 = b_q25))
+df_l_q3 <- features(wages_ts, ln_wages, c(q75 = b_q75))
+df_l_sd <- features(wages_ts, ln_wages, c(sd = b_sd))
 df_l_slope <- l_slope(wages, id, lnw~exper)
 df_l_slope_multi <- l_slope(wages, id, lnw ~ exper + ged)
 
@@ -32,13 +32,13 @@ test_that("longnostic returns the right names", {
   expect_equal(names(df_l_diff_1), c("id", "l_diff_1"))
   expect_equal(names(df_l_diff_2), c("id", "l_diff_2"))
   expect_equal(names(df_l_n_obs), c("id", "n_obs"))
-  expect_equal(names(df_l_max), c("id", "l_max"))
-  expect_equal(names(df_l_mean), c("id", "l_mean"))
-  expect_equal(names(df_l_median), c("id", "l_median"))
-  expect_equal(names(df_l_min), c("id", "l_min"))
-  expect_equal(names(df_l_q1), c("id", "l_q1"))
-  expect_equal(names(df_l_q3), c("id", "l_q3"))
-  expect_equal(names(df_l_sd), c("id", "l_sd"))
+  expect_equal(names(df_l_max), c("id", "max"))
+  expect_equal(names(df_l_mean), c("id", "mean"))
+  expect_equal(names(df_l_median), c("id", "median"))
+  expect_equal(names(df_l_min), c("id", "min"))
+  expect_equal(names(df_l_q1), c("id", "q25"))
+  expect_equal(names(df_l_q3), c("id", "q75"))
+  expect_equal(names(df_l_sd), c("id", "sd"))
   expect_equal(names(df_l_slope), c("id", "l_intercept", "l_slope_exper"))
   expect_equal(names(df_l_slope_multi), 
                c("id", "l_intercept", "l_slope_exper", "l_slope_ged"))
@@ -59,30 +59,32 @@ test_that("longnostic returns a tbl_df", {
   expect_is(df_l_slope_multi, class = c("tbl"))
 })
 
+classes <- function(x) purrr::map_chr(x, class)
+
 test_that("longnostic returns correct classes", {
-  expect_equal(purrr::map_chr(df_l_diff_1, class), 
+  expect_equal(classes(df_l_diff_1), 
                c(id = "integer", l_diff_1 = "numeric"))
-  expect_equal(purrr::map_chr(df_l_diff_2, class),
+  expect_equal(classes(df_l_diff_2),
                c(id = "integer", l_diff_2 = "numeric"))
-  expect_equal(purrr::map_chr(df_l_n_obs, class),
+  expect_equal(classes(df_l_n_obs),
                c(id = "integer", n_obs = "integer"))
-  expect_equal(purrr::map_chr(df_l_max, class),
-               c(id = "integer", l_max = "numeric"))
-  expect_equal(purrr::map_chr(df_l_mean, class),
-               c(id = "integer", l_mean = "numeric"))
-  expect_equal(purrr::map_chr(df_l_median, class),
-               c(id = "integer", l_median = "numeric"))
-  expect_equal(purrr::map_chr(df_l_min, class),
-               c(id = "integer", l_min = "numeric"))
-  expect_equal(purrr::map_chr(df_l_q1, class),
-               c(id = "integer", l_q1 = "numeric"))
-  expect_equal(purrr::map_chr(df_l_q3, class),
-               c(id = "integer", l_q3 = "numeric"))
-  expect_equal(purrr::map_chr(df_l_sd, class),
-               c(id = "integer", l_sd = "numeric"))
-  expect_equal(purrr::map_chr(df_l_slope, class),
+  expect_equal(classes(df_l_max),
+               c(id = "integer", max = "numeric"))
+  expect_equal(classes(df_l_mean),
+               c(id = "integer", mean = "numeric"))
+  expect_equal(classes(df_l_median),
+               c(id = "integer", median = "numeric"))
+  expect_equal(classes(df_l_min),
+               c(id = "integer", min = "numeric"))
+  expect_equal(classes(df_l_q1),
+               c(id = "integer", q25 = "numeric"))
+  expect_equal(classes(df_l_q3),
+               c(id = "integer", q75 = "numeric"))
+  expect_equal(classes(df_l_sd),
+               c(id = "integer", sd = "numeric"))
+  expect_equal(classes(df_l_slope),
                c(id = "integer", l_intercept = "numeric", l_slope_exper = "numeric"))
-  expect_equal(purrr::map_chr(df_l_slope_multi, class),
+  expect_equal(classes(df_l_slope_multi),
                c(id = "integer", l_intercept = "numeric", 
                  l_slope_exper = "numeric", l_slope_ged = "numeric"))
 })

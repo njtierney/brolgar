@@ -50,8 +50,8 @@ b_iqr(x, na.rm = TRUE, ...)
 \description{
 Customised summaries of vectors with appropriate defaults for longitudinal
 data. The functions are prefixed with \code{b_} to assist with autocomplete.
-The defaults are to use \code{type = 8} for quantiles, and \code{na.rm = TRUE} for
-all. They include:
+The defaults are to use \code{na.rm = TRUE} for all, and for calculations
+involving quantiles, \code{type = 8} and \code{names = FALSE}. Summaries include:
 * b_min: The minimum
 * b_max: The maximum
 * b_median: The median

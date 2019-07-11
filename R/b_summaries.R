@@ -2,8 +2,8 @@
 #' 
 #' Customised summaries of vectors with appropriate defaults for longitudinal
 #'   data. The functions are prefixed with `b_` to assist with autocomplete.
-#'   The defaults are to use `type = 8` for quantiles, and `na.rm = TRUE` for
-#'   all. They include:
+#'   The defaults are to use `na.rm = TRUE` for all, and for calculations 
+#'   involving quantiles, `type = 8` and `names = FALSE`. Summaries include:
 #'     * b_min: The minimum
 #'     * b_max: The maximum
 #'     * b_median: The median
@@ -44,6 +44,7 @@ b_q25 <- function(x, na.rm = TRUE, ... ){
            type = 8,
            probs = 0.25,
            na.rm = na.rm,
+           names = FALSE,
            ...)
 }
 
@@ -54,6 +55,7 @@ b_q75 <- function(x, na.rm = TRUE, ... ){
            type = 8,
            probs = 0.75,
            na.rm = na.rm,
+           names = FALSE,
            ...)
 }
 

@@ -11,10 +11,6 @@ NULL
 if(getRversion() >= "2.15.1")  utils::globalVariables(c("."))
 globalVariables(c("intercept",
                   "slope",
-                  "median",
-                  "quantile",
-                  "sd",
-                  "term",
                   "estimate",
                   "stat", 
                   "stat_diff", 
