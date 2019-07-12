@@ -30,6 +30,7 @@
 #' 
 #' @docType data
 #' @name wages_ts
+#' @keywords datasets
 #' @examples 
 #' \dontrun{
 #' # This data is created as follows:
@@ -43,4 +44,5 @@
 #'                 high_grade = hgc,
 #'                 unemploy_rate = uerate)
 #' }
-NULL
+"wages_ts"
+

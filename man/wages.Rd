@@ -20,6 +20,9 @@ each subject can differ.}
 \item{uerate}{unemployment rates in the local geographic region at each
 measurement time}
 }}
+\usage{
+wages
+}
 \description{
 This data contains measurements on hourly wages by years in
 the workforce, with education and race as covariates. The population
@@ -30,3 +33,4 @@ Applied Longitudinal Data Analysis.
 Oxford University Press, Oxford, UK, 2003.
 http://gseacademic.harvard.edu/alda/
 }
+\keyword{datasets}

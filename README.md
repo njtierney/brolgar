@@ -23,9 +23,9 @@ each other.
 ``` r
 library(brolgar)
 library(ggplot2)
-ggplot(wages, 
-       aes(x = exper, 
-             y = lnw, 
+ggplot(wages_ts, 
+       aes(x = xp, 
+             y = ln_wages, 
              group = id)) + 
   geom_line()
 ```
@@ -64,21 +64,104 @@ Longitudinal data has subjects who are measured on several
 characteristics repeatedly through time but not always at the same time
 points or the same number of times.
 
-## Example usage
+## Longitudinal data is time series data.
 
-Let’s extract informative individual patterns by concentrating on
-different statistics. A story can be woven that may be relevant rather
-than speaking in generalities.
+One of the **Big Ideas** in `brolgar` is that longitudinal data is a
+time series.
 
-The **wages** data set analysed in Singer & Willett (2003) will be used
-to demonstrate some of the capabilities of this package.
+There is a permanent structure to longitudinal data that should be
+accounted for. This can be achieved by consider longitudinal data as a
+type of *time series* data.
+
+Now, there are many different ways to think about *what your data looks
+like*. Longitudinal data is often typically called “panel data”, for
+example. I used to always think that “time series” was defined as
+something that was by definition “regular” - with equal spacings between
+observations. This is actually not the case - you can have both
+“regular”, and “irregular” time series. Don’t believe me? Well, take
+it up with Professors Rob Hyndman and George Athanasopolous, who say:
+
+> Anything that is observed sequentially over time is a time series.
+> (<https://otexts.com/fpp2/data-methods.html>)
+
+If we define longitudinal data as a time series, we gain access to a
+suite of nice tools that simplify and accelerate how we work with time
+series data.
+
+We can convert longitudinal data into a “**t**ime **s**eries tibble”, a
+`tsibble`, which is built on top of the `tibble` package.
+
+To convert longitudinal data to time series we need to consider:
+
+  - What identifies the time component of the data? This is the
+    **index**
+  - What is the unique identifier of an individual/series? This is the
+    **key**
+
+Together, the **index** and **key** uniquely identify an observation.
+
+What do we mean by this? Let’s look at the first section of the wages,
+**wages** data analysed in Singer & Willett (2003):
 
 ``` r
-library(brolgar)
-library(tibble)
-data(wages)
-wages
-#> # A tibble: 6,402 x 9
+library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+slice(wages, 1:10)
+#> # A tibble: 10 x 9
+#>       id   lnw exper   ged postexp black hispanic   hgc uerate
+#>    <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int>  <dbl>
+#>  1    31  1.49 0.015     1   0.015     0        1     8   3.21
+#>  2    31  1.43 0.715     1   0.715     0        1     8   3.21
+#>  3    31  1.47 1.73      1   1.73      0        1     8   3.21
+#>  4    31  1.75 2.77      1   2.77      0        1     8   3.3 
+#>  5    31  1.93 3.93      1   3.93      0        1     8   2.89
+#>  6    31  1.71 4.95      1   4.95      0        1     8   2.49
+#>  7    31  2.09 5.96      1   5.96      0        1     8   2.6 
+#>  8    31  2.13 6.98      1   6.98      0        1     8   4.8 
+#>  9    36  1.98 0.315     1   0.315     0        0     9   4.89
+#> 10    36  1.80 0.983     1   0.983     0        0     9   7.4
+```
+
+We have the `id` column, which identifies an individual.
+
+We also have the `exper` column, which identifies the `exper`ience an
+individual has.
+
+So:
+
+  - key: `id`
+  - index: `exper`
+
+We can specify these things using the `as_tsibble` function from
+`tsibble`, also stating, `regular = FALSE`, since we have an `irregular`
+time series.
+
+``` r
+library(tsibble)
+#> 
+#> Attaching package: 'tsibble'
+#> The following object is masked from 'package:dplyr':
+#> 
+#>     id
+wages_ts <- as_tsibble(x = wages,
+                       key = id,
+                       index = exper,
+                       regular = FALSE)
+```
+
+This gives us:
+
+``` r
+wages_ts
+#> # A tsibble: 6,402 x 9 [!]
+#> # Key:       id [888]
 #>       id   lnw exper   ged postexp black hispanic   hgc uerate
 #>    <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int>  <dbl>
 #>  1    31  1.49 0.015     1   0.015     0        1     8   3.21
@@ -94,44 +177,75 @@ wages
 #> # … with 6,392 more rows
 ```
 
-### Available `longnostics`
+Note the following information printed at the top:
 
-The `longnostics` in `brolgar` all start with `l_`, and *for all
-individuals in the data* calculate a statistic for each individual
-(specified with an `id`), for some specified variable:
+    # A tsibble: 6,402 x 9 [!]
+    # Key:       id [888]
+    ...
+
+This says, we have 6402 rows, with 9 columns. The `!` means that there
+is no regular spacing between series, and then our “key” is `id`, of
+which there 888.
+
+The `wages_ts` dataset is actually already made available inside the
+`brolgar` package, so you won’t need to do this.
+
+## Example usage
+
+Let’s extract informative individual patterns by concentrating on
+different statistics. A story can be woven that may be relevant rather
+than speaking in generalities.
+
+``` r
+library(brolgar)
+wages_ts
+#> # A tsibble: 6,402 x 9 [!]
+#> # Key:       id [888]
+#>       id   lnw exper   ged postexp black hispanic   hgc uerate
+#>    <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int>  <dbl>
+#>  1    31  1.49 0.015     1   0.015     0        1     8   3.21
+#>  2    31  1.43 0.715     1   0.715     0        1     8   3.21
+#>  3    31  1.47 1.73      1   1.73      0        1     8   3.21
+#>  4    31  1.75 2.77      1   2.77      0        1     8   3.3 
+#>  5    31  1.93 3.93      1   3.93      0        1     8   2.89
+#>  6    31  1.71 4.95      1   4.95      0        1     8   2.49
+#>  7    31  2.09 5.96      1   5.96      0        1     8   2.6 
+#>  8    31  2.13 6.98      1   6.98      0        1     8   4.8 
+#>  9    36  1.98 0.315     1   0.315     0        0     9   4.89
+#> 10    36  1.80 0.983     1   0.983     0        0     9   7.4 
+#> # … with 6,392 more rows
+```
+
+### Calculating `features` of longitudinal data
+
+Now that the data is converted to a `tsibble`, we can leverage the power
+of the `features` family of functions from `feasts` and `fablelite`.
+
+…
+
+### Quick helper functions
 
   - `l_n_obs()` Number of observations
-  - `l_min()` Minimum
-  - `l_max()` Maximum
-  - `l_mean()` Mean
-  - `l_diff()` Lagged difference (by default, the first order
-    difference)
-  - `l_q1()` First quartile
-  - `l_median()` Median value
-  - `l_q3()` Third quartile
-  - `l_sd()` Standard deviation
   - `l_slope()` Slope and intercept (given some linear model formula)
 
 For example, we can calculate the number of observations with
 `l_n_obs()`:
 
 ``` r
-wages_nobs <- l_n_obs(data = wages, id = id)
-
-wages_nobs
+l_n_obs(wages_ts)
 #> # A tibble: 888 x 2
-#>       id l_n_obs
-#>    <int>   <int>
-#>  1    31       8
-#>  2    36      10
-#>  3    53       8
-#>  4   122      10
-#>  5   134      12
-#>  6   145       9
-#>  7   155      11
-#>  8   173       6
-#>  9   206       3
-#> 10   207      11
+#>       id n_obs
+#>    <int> <int>
+#>  1    31     8
+#>  2    36    10
+#>  3    53     8
+#>  4   122    10
+#>  5   134    12
+#>  6   145     9
+#>  7   155    11
+#>  8   173     6
+#>  9   206     3
+#> 10   207    11
 #> # … with 878 more rows
 ```
 
@@ -139,18 +253,9 @@ Which could be further summarised to get a sense of the range of the
 data:
 
 ``` r
-library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 library(ggplot2)
-ggplot(wages_nobs,
-       aes(x = l_n_obs)) + 
+l_n_obs(wages_ts) %>%
+ggplot(aes(x = n_obs)) + 
   geom_bar()
 ```
 
@@ -158,25 +263,31 @@ ggplot(wages_nobs,
 
 ``` r
 
-summary(wages_nobs$l_n_obs)
-#>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#>   1.000   5.000   8.000   7.209   9.000  13.000
+l_n_obs(wages_ts) %>% summary()
+#>        id            n_obs       
+#>  Min.   :   31   Min.   : 1.000  
+#>  1st Qu.: 3332   1st Qu.: 5.000  
+#>  Median : 6666   Median : 8.000  
+#>  Mean   : 6343   Mean   : 7.209  
+#>  3rd Qu.: 9194   3rd Qu.: 9.000  
+#>  Max.   :12543   Max.   :13.000
 ```
 
 ## Identifying an individual of interest
 
-We might be interested in showing the experience and lnw (?), and so
-look at a plot like the following:
+We might be interested in showing the xp and ln\_wages, and so look at a
+plot like the following:
 
 ``` r
-ggplot(wages, 
-       aes(x = exper, 
-             y = lnw, 
-             group = id)) + 
+data(wages_ts)
+ggplot(wages_ts, 
+       aes(x = xp, 
+           y = ln_wages, 
+           group = id)) + 
   geom_line()
 ```
 
-<img src="man/figures/README-demo-why-brolgar-1.png" width="100%" />
+<img src="man/figures/README-demo-brolgar-1.png" width="100%" />
 
 This is a plate of spaghetti\! It is hard to understand\!
 
@@ -185,64 +296,65 @@ information for each individual to identify those that are decreasing
 over time.
 
 ``` r
-sl <- l_slope(wages, id, lnw~exper)
-ns <- l_n_obs(wages, id)
+sl <- l_slope(wages_ts,ln_wages ~ xp)
+ns <- l_n_obs(wages_ts)
 
 sl
 #> # A tibble: 888 x 3
-#>       id l_intercept l_slope_exper
-#>    <int>       <dbl>         <dbl>
-#>  1    31        1.41        0.101 
-#>  2    36        2.04        0.0588
-#>  3    53        2.29       -0.358 
-#>  4   122        1.93        0.0374
-#>  5   134        2.03        0.0831
-#>  6   145        1.59        0.0469
-#>  7   155        1.66        0.0867
-#>  8   173        1.61        0.100 
-#>  9   206        1.73        0.180 
-#> 10   207        1.62        0.0884
+#>       id l_intercept l_slope_xp
+#>    <int>       <dbl>      <dbl>
+#>  1    31        1.41     0.101 
+#>  2    36        2.04     0.0588
+#>  3    53        2.29    -0.358 
+#>  4   122        1.93     0.0374
+#>  5   134        2.03     0.0831
+#>  6   145        1.59     0.0469
+#>  7   155        1.66     0.0867
+#>  8   173        1.61     0.100 
+#>  9   206        1.73     0.180 
+#> 10   207        1.62     0.0884
 #> # … with 878 more rows
 ns
 #> # A tibble: 888 x 2
-#>       id l_n_obs
-#>    <int>   <int>
-#>  1    31       8
-#>  2    36      10
-#>  3    53       8
-#>  4   122      10
-#>  5   134      12
-#>  6   145       9
-#>  7   155      11
-#>  8   173       6
-#>  9   206       3
-#> 10   207      11
+#>       id n_obs
+#>    <int> <int>
+#>  1    31     8
+#>  2    36    10
+#>  3    53     8
+#>  4   122    10
+#>  5   134    12
+#>  6   145     9
+#>  7   155    11
+#>  8   173     6
+#>  9   206     3
+#> 10   207    11
 #> # … with 878 more rows
 ```
 
 We can then join these summaries back to the data:
 
 ``` r
-wages_lg <- wages %>%
+wages_lg <- wages_ts %>%
   left_join(sl, by = "id") %>%
   left_join(ns, by = "id")
 
 wages_lg
-#> # A tibble: 6,402 x 12
-#>       id   lnw exper   ged postexp black hispanic   hgc uerate l_intercept
-#>    <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int>  <dbl>       <dbl>
-#>  1    31  1.49 0.015     1   0.015     0        1     8   3.21        1.41
-#>  2    31  1.43 0.715     1   0.715     0        1     8   3.21        1.41
-#>  3    31  1.47 1.73      1   1.73      0        1     8   3.21        1.41
-#>  4    31  1.75 2.77      1   2.77      0        1     8   3.3         1.41
-#>  5    31  1.93 3.93      1   3.93      0        1     8   2.89        1.41
-#>  6    31  1.71 4.95      1   4.95      0        1     8   2.49        1.41
-#>  7    31  2.09 5.96      1   5.96      0        1     8   2.6         1.41
-#>  8    31  2.13 6.98      1   6.98      0        1     8   4.8         1.41
-#>  9    36  1.98 0.315     1   0.315     0        0     9   4.89        2.04
-#> 10    36  1.80 0.983     1   0.983     0        0     9   7.4         2.04
-#> # … with 6,392 more rows, and 2 more variables: l_slope_exper <dbl>,
-#> #   l_n_obs <int>
+#> # A tsibble: 6,402 x 12 [!]
+#> # Key:       id [888]
+#>       id ln_wages    xp   ged postexp black hispanic high_grade
+#>    <int>    <dbl> <dbl> <int>   <dbl> <int>    <int>      <int>
+#>  1    31     1.49 0.015     1   0.015     0        1          8
+#>  2    31     1.43 0.715     1   0.715     0        1          8
+#>  3    31     1.47 1.73      1   1.73      0        1          8
+#>  4    31     1.75 2.77      1   2.77      0        1          8
+#>  5    31     1.93 3.93      1   3.93      0        1          8
+#>  6    31     1.71 4.95      1   4.95      0        1          8
+#>  7    31     2.09 5.96      1   5.96      0        1          8
+#>  8    31     2.13 6.98      1   6.98      0        1          8
+#>  9    36     1.98 0.315     1   0.315     0        0          9
+#> 10    36     1.80 0.983     1   0.983     0        0          9
+#> # … with 6,392 more rows, and 4 more variables: unemploy_rate <dbl>,
+#> #   l_intercept <dbl>, l_slope_xp <dbl>, n_obs <int>
 ```
 
 We can then highlight those individuals with more than 5 observations,
@@ -252,13 +364,18 @@ and highlight those with a negative slope using `gghighlight`:
 library(gghighlight)
 
 wages_lg %>% 
-  filter(l_n_obs > 5) %>%
-  ggplot(aes(x = exper, 
-             y = lnw, 
+  filter(n_obs > 5) %>%
+  ggplot(aes(x = xp, 
+             y = ln_wages, 
              group = id)) + 
   geom_line() +
-  gghighlight(l_slope_exper < (-0.5),
+  gghighlight(l_slope_xp < (-0.5),
               use_direct_label = FALSE)
+#> Warning: Unspecified temporal ordering may yield unexpected results.
+#> Suggest to sort by `id`, `xp` first.
+
+#> Warning: Unspecified temporal ordering may yield unexpected results.
+#> Suggest to sort by `id`, `xp` first.
 ```
 
 <img src="man/figures/README-use-gg-highlight-1.png" width="100%" />
@@ -268,90 +385,88 @@ wages_lg %>%
 You can filter by the number of observations using `filter_n_obs()`
 
 ``` r
-wages %>%
-  filter_n_obs(id = id,
-               l_n_obs > 3)
-#> # A tibble: 6,145 x 10
-#>       id l_n_obs   lnw exper   ged postexp black hispanic   hgc uerate
-#>    <int>   <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int>  <dbl>
-#>  1    31       8  1.49 0.015     1   0.015     0        1     8   3.21
-#>  2    31       8  1.43 0.715     1   0.715     0        1     8   3.21
-#>  3    31       8  1.47 1.73      1   1.73      0        1     8   3.21
-#>  4    31       8  1.75 2.77      1   2.77      0        1     8   3.3 
-#>  5    31       8  1.93 3.93      1   3.93      0        1     8   2.89
-#>  6    31       8  1.71 4.95      1   4.95      0        1     8   2.49
-#>  7    31       8  2.09 5.96      1   5.96      0        1     8   2.6 
-#>  8    31       8  2.13 6.98      1   6.98      0        1     8   4.8 
-#>  9    36      10  1.98 0.315     1   0.315     0        0     9   4.89
-#> 10    36      10  1.80 0.983     1   0.983     0        0     9   7.4 
-#> # … with 6,135 more rows
 
-wages %>%
-  filter_n_obs(id = id,
-               l_n_obs == 1)
-#> # A tibble: 38 x 10
-#>       id l_n_obs   lnw exper   ged postexp black hispanic   hgc uerate
-#>    <int>   <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int>  <dbl>
-#>  1   266       1  1.81 0.322     1   0.182     0        0     9   8.8 
-#>  2   304       1  1.84 0.580     0   0         0        1     8   3.39
-#>  3   911       1  2.51 1.67      1   1.67      1        0    11   9.9 
-#>  4  1032       1  1.65 0.808     0   0         1        0     8   9.3 
-#>  5  1219       1  1.57 1.5       0   0         1        0     9   8.4 
-#>  6  1282       1  2.22 0.292     1   0.292     0        0    11   5.89
-#>  7  1542       1  1.81 0.173     0   0         0        0    10   4.39
-#>  8  1679       1  1.94 0.365     1   0         0        0    10   5.7 
-#>  9  2065       1  2.60 1.5       0   0         0        0    11   9.7 
-#> 10  2261       1  2.25 0.005     0   0         0        0     6   6.9 
-#> # … with 28 more rows
+wages_ts %>% filter_n_obs(n_obs > 3)
+#> # A tsibble: 6,145 x 10 [!]
+#> # Key:       id [764]
+#>       id ln_wages    xp   ged postexp black hispanic high_grade
+#>    <int>    <dbl> <dbl> <int>   <dbl> <int>    <int>      <int>
+#>  1    31     1.49 0.015     1   0.015     0        1          8
+#>  2    31     1.43 0.715     1   0.715     0        1          8
+#>  3    31     1.47 1.73      1   1.73      0        1          8
+#>  4    31     1.75 2.77      1   2.77      0        1          8
+#>  5    31     1.93 3.93      1   3.93      0        1          8
+#>  6    31     1.71 4.95      1   4.95      0        1          8
+#>  7    31     2.09 5.96      1   5.96      0        1          8
+#>  8    31     2.13 6.98      1   6.98      0        1          8
+#>  9    36     1.98 0.315     1   0.315     0        0          9
+#> 10    36     1.80 0.983     1   0.983     0        0          9
+#> # … with 6,135 more rows, and 2 more variables: unemploy_rate <dbl>,
+#> #   n_obs <int>
 
-wages %>%
-  filter_n_obs(id = id,
-               l_n_obs >= 13)
-#> # A tibble: 78 x 10
-#>       id l_n_obs   lnw exper   ged postexp black hispanic   hgc uerate
-#>    <int>   <int> <dbl> <dbl> <int>   <dbl> <int>    <int> <int>  <dbl>
-#>  1  1204      13  1.81 0.455     0       0     0        0     8   3.69
-#>  2  1204      13  1.99 1.28      0       0     0        0     8   3.99
-#>  3  1204      13  2.08 2.24      0       0     0        0     8   5.7 
-#>  4  1204      13  2.30 3.22      0       0     0        0     8   6.59
-#>  5  1204      13  2.20 4.20      0       0     0        0     8   7.8 
-#>  6  1204      13  2.33 5.18      0       0     0        0     8   4.8 
-#>  7  1204      13  2.44 6.20      0       0     0        0     8   3.8 
-#>  8  1204      13  2.58 7.28      0       0     0        0     8   3.8 
-#>  9  1204      13  2.22 8.43      0       0     0        0     8   3.8 
-#> 10  1204      13  2.80 9.64      0       0     0        0     8   3.19
-#> # … with 68 more rows
+wages_ts %>% filter_n_obs(n_obs == 1)
+#> # A tsibble: 38 x 10 [!]
+#> # Key:       id [38]
+#>       id ln_wages    xp   ged postexp black hispanic high_grade
+#>    <int>    <dbl> <dbl> <int>   <dbl> <int>    <int>      <int>
+#>  1   266     1.81 0.322     1   0.182     0        0          9
+#>  2   304     1.84 0.580     0   0         0        1          8
+#>  3   911     2.51 1.67      1   1.67      1        0         11
+#>  4  1032     1.65 0.808     0   0         1        0          8
+#>  5  1219     1.57 1.5       0   0         1        0          9
+#>  6  1282     2.22 0.292     1   0.292     0        0         11
+#>  7  1542     1.81 0.173     0   0         0        0         10
+#>  8  1679     1.94 0.365     1   0         0        0         10
+#>  9  2065     2.60 1.5       0   0         0        0         11
+#> 10  2261     2.25 0.005     0   0         0        0          6
+#> # … with 28 more rows, and 2 more variables: unemploy_rate <dbl>,
+#> #   n_obs <int>
 ```
 
-## Calculating all longnostics
+## Calculating all features
 
-You can calculate all longnostics using `longnostic_all()`:
+You can calculate all longnostics passing getting all features from
+brolgar using `feat_brolgar`
 
 ``` r
+library(fablelite)
 
-longnostic_all(data = wages,
-               id = id,
-               var = lnw,
-               formula = lnw~exper)
-#> # A tibble: 888 x 12
-#>       id l_diff_1 l_max l_mean l_median l_min l_n_obs  l_q1  l_q3  l_sd
-#>    <int>    <dbl> <dbl>  <dbl>    <dbl> <dbl>   <int> <dbl> <dbl> <dbl>
-#>  1    31    0.377  2.13   1.75     1.73 1.43        8  1.49  1.97 0.277
-#>  2    36    1.11   2.93   2.33     2.32 1.80       10  2.05  2.54 0.387
-#>  3    53    1.70   3.24   1.89     1.71 1.54        8  1.59  1.88 0.562
-#>  4   122    1.68   2.92   2.17     2.19 0.763      10  2.12  2.42 0.574
-#>  5   134    0.368  2.93   2.48     2.36 2.00       12  2.29  2.77 0.321
-#>  6   145    0.289  2.04   1.76     1.77 1.48        9  1.60  1.88 0.185
-#>  7   155    0.627  2.64   2.17     2.22 1.54       11  1.93  2.40 0.362
-#>  8   173    0.319  2.34   1.93     2.00 1.56        6  1.76  2.02 0.274
-#>  9   206    0.269  2.48   2.27     2.30 2.03        3  2.16  2.39 0.228
-#> 10   207    0.399  2.66   2.11     2.15 1.58       11  1.90  2.24 0.327
-#> # … with 878 more rows, and 2 more variables: l_intercept <dbl>,
-#> #   l_slope_exper <dbl>
+wages_ts %>%
+  features(xp, feat_brolgar)
+#> # A tibble: 888 x 14
+#>       id b_min b_max b_median b_mean b_q25 b_q75 b_range1 b_range2
+#>    <int> <dbl> <dbl>    <dbl>  <dbl> <dbl> <dbl>    <dbl>    <dbl>
+#>  1    31 0.015  6.98     3.35   3.38 1.14   5.54    0.015     6.98
+#>  2    36 0.315  9.60     4.77   4.90 1.95   7.98    0.315     9.60
+#>  3    53 0.781  1.78     1.05   1.11 0.949  1.15    0.781     1.78
+#>  4   122 2.04  11.1      6.27   6.42 3.57   9.20    2.04     11.1 
+#>  5   134 0.192 10.8      5.14   5.43 2.36   8.70    0.192    10.8 
+#>  6   145 0.235  7.1      3.70   3.70 1.49   5.99    0.235     7.1 
+#>  7   155 0.985 10.4      5.72   5.84 3.11   8.78    0.985    10.4 
+#>  8   173 0.188  6.40     3.32   3.23 0.749  5.46    0.188     6.40
+#>  9   206 1.87   4.31     2.81   3.00 2.03   4.06    1.87      4.31
+#> 10   207 0.525 10.3      5.46   5.55 2.82   8.46    0.525    10.3 
+#> # … with 878 more rows, and 5 more variables: b_range_diff <dbl>,
+#> #   b_sd <dbl>, b_var <dbl>, b_mad <dbl>, b_iqr <dbl>
 ```
 
 # A Note on the API
 
-This version of brolgar has been forked from
-[tprvan/brolgar](https://github.com/tprvan/brolgar), and is undergoing
+This version of brolgar was been forked from
+[tprvan/brolgar](https://github.com/tprvan/brolgar), and has undergone
 breaking changes to the API.
+
+# Further functions in brolgar
+
+There are various summary statistics in `brolgar`, which all start with
+`b_`.
+
+  - `b_min()` Minimum
+  - `b_max()` Maximum
+  - `b_mean()` Mean
+  - `b_diff()` Lagged difference (by default, the first order
+    difference)
+  - `b_q25()` 25th quartile
+  - `b_median()` Median value
+  - `b_q75()` 75th quartile
+  - `b_sd()` Standard deviation

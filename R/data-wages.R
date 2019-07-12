@@ -28,4 +28,4 @@
 #' 
 #' @docType data
 #' @name wages
-NULL
+"wages"

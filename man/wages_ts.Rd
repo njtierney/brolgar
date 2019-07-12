@@ -21,6 +21,9 @@ points for each subject can differ. This forms the \code{index} of the data}
 \item{unemploy_rate}{unemployment rates in the local geographic region
 at each measurement time}
 }}
+\usage{
+wages_ts
+}
 \description{
 This data contains measurements on hourly wages by years in
 the workforce, with education and race as covariates. The population
@@ -46,3 +49,4 @@ wages_ts <- as_tsibble(x = wages,
                 unemploy_rate = uerate)
 }
 }
+\keyword{datasets}
