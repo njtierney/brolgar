@@ -46,17 +46,17 @@ n_obs(wages_ts)
 
 Note that this is a single number, in this case, we have `r n_obs(wages_ts)` observations.
 
-However, we might want to know how many observations we have for each individual. If we want the number of observations in each key (id), then we can use `l_n_obs`. This is a special function from `brolgar`, indicated by `l_`. Every `l_` function will return us a dataframe.
+However, we might want to know how many observations we have for each individual. If we want the number of observations in each key (id), then we can use `n_key_obs`. This is a special function from `brolgar`, indicated by `l_`. Every `l_` function will return us a dataframe.
 
 ```{r l-n-obs}
-l_n_obs(wages_ts)
+n_key_obs(wages_ts)
 ```
 
 A plot of this can help understand the distribution of observations
 
 ```{r plot-nobs}
 library(ggplot2)
-l_n_obs(wages_ts) %>%
+n_key_obs(wages_ts) %>%
   ggplot(aes(x = n_obs)) + 
   geom_bar()
 ```

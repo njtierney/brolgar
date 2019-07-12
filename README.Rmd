@@ -14,9 +14,10 @@ knitr::opts_chunk$set(
 library(brolgar)
 data(wages_ts)
 ```
-# brolgar (BRowse over Longitudinal data Graphically and Analytically in R) 
+# brolgar
 
-Note: This version of brolgar has been forked from [tprvan/brolgar](https://github.com/tprvan/brolgar), and is undergoing breaking changes to the API.
+**br**owse **o**ver **l**ongitudinal **d**ata **g**raphically and **a**nalytically in **R**
+
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.org/njtierney/brolgar.svg?branch=master)](https://travis-ci.org/njtierney/brolgar)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/njtierney/brolgar?branch=master&svg=true)](https://ci.appveyor.com/project/njtierney/brolgar)
@@ -42,8 +43,7 @@ You might then want to explore those individuals with higher amounts of variatio
 
 This is annoying, and distracts from your analysis, inviting errors.
 
-**brolgar** (BRowse over Longitudinal data Graphically and Analytically in R) (forked from https://github.com/tprvan/brolgar)
-provides tools for providing statistical summaries for each individual. These are referred to as a **longnostics**, a portmanteau of **long**itudinal and **cognostic**. These **longnostics** make it straightforward to extract subjects with certain properties to gain some insight into the data. 
+**brolgar** provides tools to calculate statistical summaries for each individual, and methods to assist you in identifying individuals of interest. 
 
 ## Installation
 
@@ -140,24 +140,25 @@ Now that the data is converted to a `tsibble`, we can leverage the power of the 
 
 ### Quick helper functions
 
-* `l_n_obs()` Number of observations
-* `l_slope()` Slope and intercept (given some linear model formula)
 
-For example, we can calculate the number of observations with `l_n_obs()`:
+  - `n_key_obs()` Number of observations for each key
+  - `key_slope()` Intercept and slope estimate for each key, given some linear model formula.
+
+For example, we can calculate the number of observations with `n_key_obs()`:
 
 ```{r example-n-obs}
-l_n_obs(wages_ts)
+n_key_obs(wages_ts)
 ```
 
 Which could be further summarised to get a sense of the range of the data:
 
 ```{r summarise-n-obs}
 library(ggplot2)
-l_n_obs(wages_ts) %>%
+n_key_obs(wages_ts) %>%
 ggplot(aes(x = n_obs)) + 
   geom_bar()
 
-l_n_obs(wages_ts) %>% summary()
+n_key_obs(wages_ts) %>% summary()
 ```
 
 ## Identifying an individual of interest
@@ -179,7 +180,7 @@ We can use `brolgar` to get the number of observations and slope information for
 
 ```{r use-gghighlight}
 sl <- l_slope(wages_ts,ln_wages ~ xp)
-ns <- l_n_obs(wages_ts)
+ns <- n_key_obs(wages_ts)
 
 sl
 ns
@@ -251,3 +252,6 @@ There are various summary statistics in `brolgar`, which all start with `b_`.
 * `b_sd()` Standard deviation
 
 
+Note: This version of brolgar has been forked from [tprvan/brolgar](https://github.com/tprvan/brolgar), and is undergoing breaking changes to the API.
+
+These are referred to as a **longnostics**, a portmanteau of **long**itudinal and **cognostic**. These **longnostics** make it straightforward to extract subjects with certain properties to gain some insight into the data. 

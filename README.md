@@ -1,11 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# brolgar (BRowse over Longitudinal data Graphically and Analytically in R)
+# brolgar
 
-Note: This version of brolgar has been forked from
-[tprvan/brolgar](https://github.com/tprvan/brolgar), and is undergoing
-breaking changes to the API. <!-- badges: start --> [![Travis build
+**br**owse **o**ver **l**ongitudinal **d**ata **g**raphically and
+**a**nalytically in **R**
+
+<!-- badges: start -->
+
+[![Travis build
 status](https://travis-ci.org/njtierney/brolgar.svg?branch=master)](https://travis-ci.org/njtierney/brolgar)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/njtierney/brolgar?branch=master&svg=true)](https://ci.appveyor.com/project/njtierney/brolgar)
@@ -42,12 +45,9 @@ each individual and incorporating that back into the data.
 
 This is annoying, and distracts from your analysis, inviting errors.
 
-**brolgar** (BRowse over Longitudinal data Graphically and Analytically
-in R) (forked from <https://github.com/tprvan/brolgar>) provides tools
-for providing statistical summaries for each individual. These are
-referred to as a **longnostics**, a portmanteau of **long**itudinal and
-**cognostic**. These **longnostics** make it straightforward to extract
-subjects with certain properties to gain some insight into the data.
+**brolgar** provides tools to calculate statistical summaries for each
+individual, and methods to assist you in identifying individuals of
+interest.
 
 ## Installation
 
@@ -225,14 +225,15 @@ of the `features` family of functions from `feasts` and `fablelite`.
 
 ### Quick helper functions
 
-  - `l_n_obs()` Number of observations
-  - `l_slope()` Slope and intercept (given some linear model formula)
+  - `n_key_obs()` Number of observations for each key
+  - `key_slope()` Intercept and slope estimate for each key, given some
+    linear model formula.
 
 For example, we can calculate the number of observations with
-`l_n_obs()`:
+`n_key_obs()`:
 
 ``` r
-l_n_obs(wages_ts)
+n_key_obs(wages_ts)
 #> # A tibble: 888 x 2
 #>       id n_obs
 #>    <int> <int>
@@ -254,7 +255,7 @@ data:
 
 ``` r
 library(ggplot2)
-l_n_obs(wages_ts) %>%
+n_key_obs(wages_ts) %>%
 ggplot(aes(x = n_obs)) + 
   geom_bar()
 ```
@@ -263,7 +264,7 @@ ggplot(aes(x = n_obs)) +
 
 ``` r
 
-l_n_obs(wages_ts) %>% summary()
+n_key_obs(wages_ts) %>% summary()
 #>        id            n_obs       
 #>  Min.   :   31   Min.   : 1.000  
 #>  1st Qu.: 3332   1st Qu.: 5.000  
@@ -297,7 +298,7 @@ over time.
 
 ``` r
 sl <- l_slope(wages_ts,ln_wages ~ xp)
-ns <- l_n_obs(wages_ts)
+ns <- n_key_obs(wages_ts)
 
 sl
 #> # A tibble: 888 x 3
@@ -470,3 +471,12 @@ There are various summary statistics in `brolgar`, which all start with
   - `b_median()` Median value
   - `b_q75()` 75th quartile
   - `b_sd()` Standard deviation
+
+Note: This version of brolgar has been forked from
+[tprvan/brolgar](https://github.com/tprvan/brolgar), and is undergoing
+breaking changes to the API.
+
+These are referred to as a **longnostics**, a portmanteau of
+**long**itudinal and **cognostic**. These **longnostics** make it
+straightforward to extract subjects with certain properties to gain some
+insight into the data.

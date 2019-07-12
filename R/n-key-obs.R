@@ -11,15 +11,15 @@
 #' @name n_obs
 #' @export
 #' @inheritParams n_obs
-l_n_obs <- function(.data, ...) {
+n_key_obs <- function(.data, ...) {
   test_if_null(.data)
   test_if_tsibble(.data)
-  UseMethod("l_n_obs")
+  UseMethod("n_key_obs")
 }
 
 #' @export
 #' @inheritParams n_obs
-l_n_obs.tbl_ts <- function(.data, ...){
+n_key_obs.tbl_ts <- function(.data, ...){
   tsibble::key_data(.data) %>% 
     dplyr::mutate(n_obs = lengths(.rows)) %>%
     dplyr::select(-.rows)
@@ -27,20 +27,20 @@ l_n_obs.tbl_ts <- function(.data, ...){
 
 #' @inheritParams n_obs
 #' @export
-add_l_n_obs <- function(.data, ...){
+add_n_key_obs <- function(.data, ...){
   test_if_null(.data)
   test_if_tsibble(.data)
-  UseMethod("add_l_n_obs")
+  UseMethod("add_n_key_obs")
 }
 
 #' @inheritParams n_obs
 #' @export
-add_l_n_obs.tbl_ts <- function(.data, ...){
+add_n_key_obs.tbl_ts <- function(.data, ...){
   
   str_key <- purrr::map_chr(tsibble::key(.data), rlang::as_label)
 
   dplyr::right_join(x = .data,
-                    y = l_n_obs(.data = .data),
+                    y = n_key_obs(.data = .data),
                     by = str_key)
   
 }

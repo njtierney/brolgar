@@ -31,7 +31,7 @@ filter_n_obs.tbl_ts <- function(.data, filter, ...){
   
   quo_filter <- rlang::enquos(filter)
 
-  add_l_n_obs(.data) %>% 
+  add_n_key_obs(.data) %>% 
     dplyr::filter(!!!quo_filter)
   
 }

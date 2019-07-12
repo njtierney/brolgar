@@ -1,7 +1,7 @@
 context("test-longnostic")
 
 df_l_diff_1 <- features(wages_ts, ln_wages, diff)
-df_l_n_obs <- l_n_obs(wages_ts)
+df_n_key_obs <- n_key_obs(wages_ts)
 df_l_max <- features(wages_ts, ln_wages, c(max = b_max))
 df_l_mean <- features(wages_ts, ln_wages, c(mean = b_mean))
 df_l_median <- features(wages_ts, ln_wages, c(median = b_median))
@@ -14,7 +14,7 @@ df_l_slope_multi <- l_slope(wages_ts, ln_wages ~ xp + ged)
 
 test_that("longnostics returns the right dimensions", {
   expect_equal(dim(df_l_diff_1), c(888, 2))
-  expect_equal(dim(df_l_n_obs), c(888, 2))
+  expect_equal(dim(df_n_key_obs), c(888, 2))
   expect_equal(dim(df_l_max), c(888, 2))
   expect_equal(dim(df_l_mean), c(888, 2))
   expect_equal(dim(df_l_median), c(888, 2))
@@ -28,7 +28,7 @@ test_that("longnostics returns the right dimensions", {
 
 test_that("longnostic returns the right names", {
   expect_equal(names(df_l_diff_1), c("id", "V1"))
-  expect_equal(names(df_l_n_obs), c("id", "n_obs"))
+  expect_equal(names(df_n_key_obs), c("id", "n_obs"))
   expect_equal(names(df_l_max), c("id", "max"))
   expect_equal(names(df_l_mean), c("id", "mean"))
   expect_equal(names(df_l_median), c("id", "median"))
@@ -46,7 +46,7 @@ test_that("longnostic returns the right names", {
 
 test_that("longnostic returns a tbl_df", {
   expect_is(df_l_diff_1, class = c("tbl"))
-  expect_is(df_l_n_obs, class = c("tbl"))
+  expect_is(df_n_key_obs, class = c("tbl"))
   expect_is(df_l_max, class = c("tbl"))
   expect_is(df_l_mean, class = c("tbl"))
   expect_is(df_l_median, class = c("tbl"))
@@ -63,7 +63,7 @@ classes <- function(x) purrr::map_chr(x, class)
 test_that("longnostic returns correct classes", {
   expect_equal(classes(df_l_diff_1), 
                c(id = "integer", V1 = "numeric"))
-  expect_equal(classes(df_l_n_obs),
+  expect_equal(classes(df_n_key_obs),
                c(id = "integer", n_obs = "integer"))
   expect_equal(classes(df_l_max),
                c(id = "integer", max = "numeric"))
