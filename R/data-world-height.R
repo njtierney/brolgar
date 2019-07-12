@@ -3,10 +3,11 @@
 #' Average male heights in 165 countries from 1810-1989, with a
 #'   smaller number of countries from 1500-1800. 
 #' 
-#' It contains the variables:
+#' `world_heights` is stored as a time series `tsibble` object. It contains 
+#'   the variables:
 #' 
-#'  * country: The Country.
-#'  * year: Year.
+#'  * country: The Country. This forms the identifying `key`.
+#'  * year: Year. This forms the time `index`.
 #'  * height_cm: Average male height in centimeters.
 #' 
 #' For more information, see the article: "Why are you tall while others are 

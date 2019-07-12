@@ -4,7 +4,7 @@
 \name{world_heights}
 \alias{world_heights}
 \title{World Height Data}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 1499 rows and 3 columns.}
+\format{An object of class \code{tbl_ts} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 1499 rows and 3 columns.}
 \usage{
 world_heights
 }
@@ -13,10 +13,11 @@ Average male heights in 165 countries from 1810-1989, with a
 smaller number of countries from 1500-1800.
 }
 \details{
-It contains the variables:
+\code{world_heights} is stored as a time series \code{tsibble} object. It contains
+the variables:
 \itemize{
-\item country: The Country.
-\item year: Year.
+\item country: The Country. This forms the identifying \code{key}.
+\item year: Year. This forms the time \code{index}.
 \item height_cm: Average male height in centimeters.
 }
 
