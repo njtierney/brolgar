@@ -96,13 +96,13 @@ However, it does not point you to those individuals who are "interesting", in th
 
 ## Highlight individuals (gghighlight)
 
-We can find those individuals who have a negative slope using `add_l_slope`.
-This adds columns `l_intercept` and `l_slope_exper`. Using the `gghighlight` library, we can identify those with an overall negative slope.
+We can find those individuals who have a negative slope using `add_key_slope`.
+This adds columns `l_intercept` and `key_slope_exper`. Using the `gghighlight` library, we can identify those with an overall negative slope.
 
 ```{r wages-slope}
 
 wages_slope <- wages %>%
-  add_l_slope(id = id,
+  add_key_slope(id = id,
               formula = lnw ~ exper)
 
 library(gghighlight)
@@ -123,8 +123,8 @@ gg_wages_slope +
 
 ## Combining highlighting with animation
 
-* create a factor by cutting `l_slope` into bins
-* animate over `l_slope_bins`, add information about the number of observations in each animation.
+* create a factor by cutting `key_slope` into bins
+* animate over `key_slope_bins`, add information about the number of observations in each animation.
 
 # Exploring data using longnostics
 

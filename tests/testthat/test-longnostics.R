@@ -9,8 +9,8 @@ df_l_min <- features(wages_ts, ln_wages, c(min = b_min))
 df_l_q1 <- features(wages_ts, ln_wages, c(q25 = b_q25))
 df_l_q3 <- features(wages_ts, ln_wages, c(q75 = b_q75))
 df_l_sd <- features(wages_ts, ln_wages, c(sd = b_sd))
-df_l_slope <- l_slope(wages_ts, ln_wages ~ xp)
-df_l_slope_multi <- l_slope(wages_ts, ln_wages ~ xp + ged)
+df_l_slope <- key_slope(wages_ts, ln_wages ~ xp)
+df_l_slope_multi <- key_slope(wages_ts, ln_wages ~ xp + ged)
 
 test_that("longnostics returns the right dimensions", {
   expect_equal(dim(df_l_diff_1), c(888, 2))
@@ -37,11 +37,12 @@ test_that("longnostic returns the right names", {
   expect_equal(names(df_l_q3), c("id", "q75"))
   expect_equal(names(df_l_sd), c("id", "sd"))
   expect_equal(names(df_l_slope), c("id", 
-                                    "l_intercept", 
-                                    "l_slope_xp"))
+                                    ".intercept", 
+                                    ".slope_xp"))
   expect_equal(names(df_l_slope_multi), c("id", 
-                                          "l_intercept", 
-                                          "l_slope_xp", "l_slope_ged"))
+                                          ".intercept", 
+                                          ".slope_xp", 
+                                          ".slope_ged"))
 })
 
 test_that("longnostic returns a tbl_df", {
@@ -81,9 +82,9 @@ test_that("longnostic returns correct classes", {
                c(id = "integer", sd = "numeric"))
   expect_equal(classes(df_l_slope),
                c(id = "integer", 
-                 l_intercept = "numeric", 
-                 l_slope_xp = "numeric"))
+                 .intercept = "numeric", 
+                 .slope_xp = "numeric"))
   expect_equal(classes(df_l_slope_multi),
-               c(id = "integer", l_intercept = "numeric", 
-                 l_slope_xp = "numeric", l_slope_ged = "numeric"))
+               c(id = "integer", .intercept = "numeric", 
+                 .slope_xp = "numeric", .slope_ged = "numeric"))
 })
