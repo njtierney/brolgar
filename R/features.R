@@ -72,3 +72,14 @@ feat_brolgar <- function(x, ...){
     b_iqr = b_iqr(x, ...)
   )
 }
+
+#' Feature: Monotonics
+#' 
+#' This feature returns monotonic information - does it always increase,
+#'   decrease, or is it unvarying?
+#' @export
+feat_monotonic <- function(x, ...) {
+  c(increase = increasing(x, ...),
+    decrease = decreasing(x, ...), 
+    unvary = unvarying(x, ...))
+}
