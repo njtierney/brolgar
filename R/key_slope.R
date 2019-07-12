@@ -29,7 +29,6 @@ key_slope.tbl_ts <- function(.data, formula, ...){
   )
   coef_tbl_vars <- c(tsibble::key_vars(.data), ".intercept", 
                      paste0(".slope_", f_rhs_vars))
-
   .data %>%
     tibble::as_tibble() %>%
     dplyr::group_by(!!!tsibble::key(.data)) %>% 
@@ -37,7 +36,7 @@ key_slope.tbl_ts <- function(.data, formula, ...){
       coef_tbl = list(
         as.data.frame(
           # t(stats::coef(stats::lm(!!quo_formula)))
-          t(stats::coef(stats::lm({{formula}})))
+          t(stats::coef(stats::lm({{formula}}, data = .)))
           )
         )
     ) %>%
