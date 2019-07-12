@@ -4,10 +4,10 @@
 \alias{l_summarise}
 \title{Return keys nearest to given summary statistics.}
 \usage{
-l_summarise(data, key, var, funs = l_five_num)
+l_summarise(.data, key, var, funs = l_five_num)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame}
 
 \item{key}{key, which identifies unique observations.}
 

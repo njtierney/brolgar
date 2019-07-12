@@ -1,6 +1,6 @@
 #' Return keys nearest to given summary statistics.
 #'
-#' @param data data.frame
+#' @param .data data.frame
 #' @param key key, which identifies unique observations.
 #' @param var variable to summarise
 #' @param funs named list of functions to summarise by. Default is a given
@@ -33,12 +33,12 @@
 #'   l_summarise(key = id,
 #'               var = l_slope_xp,
 #'               funs = l_ranges)
-l_summarise <- function(data,
+l_summarise <- function(.data,
                         key,
                         var,
                         funs = l_five_num){
   
-  data %>%
+  .data %>%
     dplyr::mutate_at(
       .vars = dplyr::vars({{var}}),
       .funs = funs) %>%
