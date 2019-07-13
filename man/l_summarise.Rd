@@ -24,7 +24,7 @@ Return keys nearest to given summary statistics.
 }
 \examples{
 wages_ts \%>\%
-  l_slope(key = id,
+  key_slope(key = id,
           formula = ln_wages ~ xp) \%>\%
   l_summarise(key = id,
               var = l_slope_xp)
@@ -41,9 +41,9 @@ l_ranges <- list(min = b_min,
                  iqr = b_iqr)
 
 wages_ts \%>\%
-  l_slope(key = id,
-          formula = ln_wages ~ xp) \%>\%
+  key_slope(key = id,
+            formula = ln_wages ~ xp) \%>\%
   l_summarise(key = id,
-              var = l_slope_xp,
+              var = .slope_xp,
               funs = l_ranges)
 }

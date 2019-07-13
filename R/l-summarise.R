@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' wages_ts %>%
-#'   l_slope(key = id,
+#'   key_slope(key = id,
 #'           formula = ln_wages ~ xp) %>%
 #'   l_summarise(key = id,
 #'               var = l_slope_xp)
@@ -28,10 +28,10 @@
 #'                  iqr = b_iqr)
 #'
 #' wages_ts %>%
-#'   l_slope(key = id,
-#'           formula = ln_wages ~ xp) %>%
+#'   key_slope(key = id,
+#'             formula = ln_wages ~ xp) %>%
 #'   l_summarise(key = id,
-#'               var = l_slope_xp,
+#'               var = .slope_xp,
 #'               funs = l_ranges)
 l_summarise <- function(.data,
                         key,
