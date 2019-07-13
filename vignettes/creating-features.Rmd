@@ -1,0 +1,43 @@
+---
+title: "creating-features"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{creating-features}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(brolgar)
+```
+
+
+To create your own features or summaries to pass to `feasts`, you can provide a named list of functions. For example:
+
+```{r create-three}
+library(feasts)
+feat_three <- list(min = min,
+                   med = median,
+                   max = max)
+
+feat_three
+
+```
+
+These are then passed to `features` like so:
+
+```{r demo-feat-three}
+wages_ts %>%
+  features(ln_wages, feat_three)
+
+world_heights %>%
+  features(height_cm, feat_three)
+```
+ 
