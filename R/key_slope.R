@@ -35,8 +35,8 @@ key_slope.tbl_ts <- function(.data, formula, ...){
     dplyr::summarise(
       coef_tbl = list(
         as.data.frame(
-          # t(stats::coef(stats::lm(!!quo_formula)))
-          t(stats::coef(stats::lm({{formula}}, data = .)))
+          t(stats::coef(stats::lm(!!quo_formula)))
+          # t(stats::coef(stats::lm({{formula}}, data = .)))
           )
         )
     ) %>%
