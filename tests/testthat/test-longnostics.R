@@ -88,3 +88,10 @@ test_that("longnostic returns correct classes", {
                c(id = "integer", .intercept = "numeric", 
                  .slope_xp = "numeric", .slope_ged = "numeric"))
 })
+
+
+library(dplyr)
+test_that("add-key-slope returns different slopes and intercepts",{
+  expect_equal(n_distinct(df_l_slope$.intercept), 887)
+  expect_equal(n_distinct(df_l_slope$.slope_xp), 851)
+})

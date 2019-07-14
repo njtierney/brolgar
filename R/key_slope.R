@@ -35,8 +35,10 @@ key_slope.tbl_ts <- function(.data, formula, ...){
     dplyr::summarise(
       coef_tbl = list(
         as.data.frame(
-          t(stats::coef(stats::lm(!!quo_formula)))
-          # t(stats::coef(stats::lm({{formula}}, data = .)))
+          t(stats::coef(stats::lm(
+            stats::as.formula(
+              rlang::as_label(quo_formula)
+              ))))
           )
         )
     ) %>%
@@ -49,8 +51,7 @@ key_slope.tbl_ts <- function(.data, formula, ...){
 
 #' @rdname key_slope
 #' @export
-add_key_slope <- function(.data,
-                        formula){
+add_key_slope <- function(.data, formula){
   
   test_if_tsibble(.data)
   test_if_null(formula)
@@ -60,7 +61,7 @@ add_key_slope <- function(.data,
   str_key <- purrr::map_chr(tsibble::key(.data), rlang::as_label)
   
   key_slope(.data = .data,
-          formula = !!quo_formula) %>%
+            formula = !!quo_formula) %>%
     dplyr::left_join(.data,
                      by = str_key)
   
