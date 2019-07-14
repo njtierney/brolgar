@@ -10,7 +10,8 @@ vignette: >
 ```{r establish-chunk-opts, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = FALSE
 )
 ```
 
@@ -50,7 +51,7 @@ tail(wages)
 Now we can consider the longnostics, just say for example we are only interested in the maximum of `lnw`:
 
 ```{r wages-lnw-max}
-l_max_wages <- l_max(wages, id, lnw)
+max_wages <- wages_ts %>% features(lnw, list(max = max))
 ```
 
 ## The statistics on longnostics
@@ -58,15 +59,15 @@ l_max_wages <- l_max(wages, id, lnw)
 And from here we can explore the longnostics - what is the distribution of the maximum values?
 
 ```{r plot-max}
-ggplot(l_max_wages,
-       aes(x = l_max)) + 
+ggplot(max_wages,
+       aes(x = max)) + 
   geom_density()
 ```
 
 We can get the summary of these:
 
 ```{r summary-max}
-summary(l_max_wages$l_max)
+summary(max_wages$max)
 ```
 
 And now we want to identify those individuals who are at, or closest to the quartiles.
@@ -78,19 +79,17 @@ library(dplyr)
 library(brolgar)
 library(glue)
 
-l_max_wages <- l_max(wages, id, lnw)
-
-l_max_quants <- quantile(x = l_max_wages[["l_max"]],
+max_quants <- quantile(x = max_wages[["max"]],
                          probs = c(0.25, 0.5, 0.75),
                          type = 7)
 
 part_near <- partial(near,
-                     y = l_max_wages[["l_max"]],
+                     y = max_wages[["max"]],
                      tol = 0.05)
 
-summarise_l_max_wages <- l_max_wages %>%
+summarise_l_max_wages <- max_wages %>%
   summarise(id = list(id), 
-            qs = list(as.list(quantile(x = l_max,
+            qs = list(as.list(quantile(x = max,
                                        probs = c(0.25, 0.5, 0.75),
                                        type = 7)))
   )

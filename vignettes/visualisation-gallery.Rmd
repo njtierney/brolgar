@@ -31,19 +31,19 @@ When you first receive your data, you want to look at as much raw data as possib
 Sample n random individuals to explore
 (Note: Possibly not representative)
 
-For example, we can sample 20 random individuals, and then plot them. (perhaps change `sample_n_obs` into `sample_id`.)
+For example, we can sample 20 random individuals, and then plot them. (perhaps change `sample_n_keys` into `sample_id`.)
 
 ```{r selected-sample}
 
-wages %>%
-  sample_n_obs(id = id,
+wages_ts %>%
+  sample_n_keys(id = id,
                size = 20)
 
-wages %>%
-  sample_n_obs(id = id,
+wages_ts %>%
+  sample_n_keys(id = id,
                size = 20) %>%
-  ggplot(aes(x = exper,
-             y = lnw,
+  ggplot(aes(x = xp,
+             y = ln_wages,
              group = id)) + 
   geom_line()
 
@@ -52,16 +52,14 @@ wages %>%
 
 ## Filter only those with certain number of observations
 
-We can combine this with `sample_n_obs` to filter those with at least 5 observations using `filter_n_obs`. This provides us with 20 people with at least 5 observations.
+We can combine this with `sample_n_keys` to filter those with at least 5 observations using `filter_n_obs`. This provides us with 20 people with at least 5 observations.
 
 ```{r filter-sample}
-wages %>%
-  filter_n_obs(id = id,
-               l_n_obs >= 5) %>%
-  sample_n_obs(id = id,
-               size = 20) %>%
-  ggplot(aes(x = exper,
-             y = lnw,
+wages_ts %>%
+  filter_n_obs(n_obs >= 5) %>%
+  sample_n_keys(size = 20) %>%
+  ggplot(aes(x = xp,
+             y = ln_wages,
              group = id)) + 
   geom_line()
 ```
@@ -71,22 +69,19 @@ wages %>%
 Assign individuals to a random group 1...K.
 Facet by K
 
-About 20 lines per plot is a good number, but we might want to split this into about 6 different groups, so we can look at many at once. So now we can look at those with at least 5 observations, then sample 120 individuals, and break them into 6 groups with `add_k_groups`.
+About 20 lines per plot is a good number, but we might want to split this into about 6 different groups, so we can look at many at once. So now we can look at those with at least 5 observations, then sample 120 individuals, and break them into 6 groups with `stratify_keys`.
 
 ```{r filter-sample-group}
 
-wages %>%
-  filter_n_obs(id = id,
-               l_n_obs >= 5) %>%
-  sample_n_obs(id = id,
-               size = 120) %>%
-  add_k_groups(id = id,
-               k = 6) %>%
-  ggplot(aes(x = exper,
-             y = lnw,
+wages_ts %>%
+  filter_n_obs(n_obs >= 5) %>%
+  sample_n_keys(size = 120) %>%
+  stratify_keys(6) %>%
+  ggplot(aes(x = xp,
+             y = ln_wages,
              group = id)) + 
   geom_line() + 
-  facet_wrap(~.rand_id)
+  facet_wrap(~.strata)
 
 ```
 
@@ -97,27 +92,27 @@ However, it does not point you to those individuals who are "interesting", in th
 ## Highlight individuals (gghighlight)
 
 We can find those individuals who have a negative slope using `add_key_slope`.
-This adds columns `l_intercept` and `key_slope_exper`. Using the `gghighlight` library, we can identify those with an overall negative slope.
+This adds columns `l_intercept` and `key_slope_xp`. Using the `gghighlight` library, we can identify those with an overall negative slope.
 
-```{r wages-slope}
-
-wages_slope <- wages %>%
-  add_key_slope(id = id,
-              formula = lnw ~ exper)
+```{r wages-ts-slope}
+library(dplyr)
+wages_slope <- wages_ts %>%
+  key_slope(ln_wages ~ xp) %>%
+  left_join(wages_ts, by = "id")
 
 library(gghighlight)
 
 gg_wages_slope <- ggplot(wages_slope,
-       aes(x = exper,
-           y = lnw,
+       aes(x = xp,
+           y = ln_wages,
            group = id)) + 
   geom_line() 
 
 gg_wages_slope + 
-  gghighlight(l_slope_exper < 0)
+  gghighlight(.slope_xp < 0)
 
 gg_wages_slope + 
-  gghighlight(l_slope_exper < -0.5)
+  gghighlight(.slope_xp < -0.5)
 
 ```
 
@@ -132,13 +127,13 @@ gg_wages_slope +
 
 Diggle et al recommend scaling and centering data to identify features:
 
-```{r scale-lnw}
+```{r scale-ln_wages}
 library(dplyr)
-wages %>%
+wages_ts %>%
   group_by(id) %>%
-  mutate(lnw_scale = scale(lnw)) %>%
+  mutate(lnw_scale = scale(ln_wages)) %>%
   ungroup() %>%
-  ggplot(aes(x = exper,
+  ggplot(aes(x = xp,
              y = lnw_scale,
              group = id)) + 
   geom_line()
@@ -147,14 +142,13 @@ wages %>%
 
 
 
-## all longnostics
+## all features
 
 ```{r all-longnostic}
-l_wages_all <- longnostic_all(wages,
-                              id = id,
-                              var = lnw,
-                              formula = lnw ~ exper)
+wages_all_features <- wages_ts %>%
+  features(ln_wages,
+           feat_brolgar)
 
-l_wages_all
+wages_all_features
   
 ```
