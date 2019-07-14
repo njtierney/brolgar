@@ -57,7 +57,7 @@ So:
 
 We can specify these things using the `as_tsibble` function from `tsibble`, also stating, `regular = FALSE`, since we have an `irregular` time series.
 
-```{r create-tsibble}
+```{r create-tsibble, eval = FALSE}
 library(tsibble)
 wages_ts <- as_tsibble(x = wages,
                        key = id,
