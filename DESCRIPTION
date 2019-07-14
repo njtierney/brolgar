@@ -32,7 +32,8 @@ Imports:
     glue,
     tidyr,
     tsibble,
-    fablelite
+    fablelite (>= 0.0.0.9100),
+    feasts (>= 0.0.0.9001)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -49,3 +50,6 @@ Suggests:
 VignetteBuilder: knitr
 Language: en-US
 Roxygen: list(markdown = TRUE)
+Remotes:  
+    tidyverts/fablelite,
+    tidyverts/feasts

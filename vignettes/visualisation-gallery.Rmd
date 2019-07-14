@@ -33,15 +33,24 @@ Sample n random individuals to explore
 
 For example, we can sample 20 random individuals, and then plot them. (perhaps change `sample_n_keys` into `sample_id`.)
 
+```{r}
+is_xp_in_wages <- "xp" %in% names(wages_ts)
+
+if (!is_xp_in_wages){
+  stop("xp isn't in names of wages_ts?", 
+       glue::glue_collapse(names(wages_ts), sep = ", ", last = ", and "),
+       glue::glue_collapse(class(wages_ts), sep = ", "))
+}
+```
+
+
 ```{r selected-sample}
 
 wages_ts %>%
-  sample_n_keys(id = id,
-               size = 20)
+  sample_n_keys(size = 20)
 
 wages_ts %>%
-  sample_n_keys(id = id,
-               size = 20) %>%
+  sample_n_keys(size = 20) %>%
   ggplot(aes(x = xp,
              y = ln_wages,
              group = id)) + 
