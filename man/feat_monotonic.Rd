@@ -6,6 +6,11 @@
 \usage{
 feat_monotonic(x, ...)
 }
+\arguments{
+\item{x}{A vector to extract features from.}
+
+\item{...}{Further arguments passed to other functions.}
+}
 \description{
 This feature returns monotonic information - does it always increase,
 decrease, or is it unvarying?

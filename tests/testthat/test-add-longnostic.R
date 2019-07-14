@@ -1,5 +1,5 @@
 context("test-add-longnostic")
-
+library(dplyr)
 df_add_l_diff_1 <- features(wages_ts, ln_wages, diff) %>% left_join(wages_ts, by = "id")
 df_add_n_key_obs <- add_n_key_obs(wages_ts)
 df_add_key_slope <- add_key_slope(wages_ts, ln_wages ~ xp)

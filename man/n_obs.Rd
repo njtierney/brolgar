@@ -3,9 +3,18 @@
 \name{n_obs}
 \alias{n_obs}
 \alias{n_key_obs}
+\alias{n_key_obs.tbl_ts}
+\alias{add_n_key_obs}
+\alias{add_n_key_obs.tbl_ts}
 \title{Find number of observations for each key in a dataset}
 \usage{
 n_key_obs(.data, ...)
+
+\method{n_key_obs}{tbl_ts}(.data, ...)
+
+add_n_key_obs(.data, ...)
+
+\method{add_n_key_obs}{tbl_ts}(.data, ...)
 }
 \arguments{
 \item{.data}{data.frame}

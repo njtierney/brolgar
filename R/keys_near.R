@@ -13,12 +13,12 @@
 #' wages_ts %>%
 #'   key_slope(ln_wages ~ xp) %>%
 #'   keys_near(key = id,
-#'               var = .slope_xp)
+#'             var = .slope_xp)
 #'                
 #' # Return observations closest to the five number summary of ln_wages
 #' wages_ts %>%
 #'   keys_near(key = id,
-#'               var = ln_wages)
+#'             var = ln_wages)
 #'                
 #' # Specify your own list of summaries
 #' l_ranges <- list(min = b_min,
@@ -27,8 +27,7 @@
 #'                  iqr = b_iqr)
 #'
 #' wages_ts %>%
-#'   key_slope(key = id,
-#'             formula = ln_wages ~ xp) %>%
+#'   key_slope(formula = ln_wages ~ xp) %>%
 #'   keys_near(key = id,
 #'               var = .slope_xp,
 #'               funs = l_ranges)
@@ -38,6 +37,7 @@ keys_near <- function(.data,
                         funs = l_five_num){
   
   .data %>%
+    tibble::as_tibble() %>%
     dplyr::mutate_at(
       .vars = dplyr::vars({{var}}),
       .funs = funs) %>%

@@ -26,7 +26,7 @@ qtl <- function(x, probs){
   
   prob_names <- pct(probs)
   
-  quantile(x = x,
+  stats::quantile(x = x,
            probs = probs,
            type = 7,
            names = FALSE) %>%

@@ -1,11 +1,10 @@
 #' Sample a number or fraction of keys to explore
 #'
 #' @param .data data.frame to explore
-#' @param ... extra arguments
-#' @param key vector of keys to define which values belong to which individual
 #' @param size The number or fraction of observations, depending on the 
 #'   function used. In `sample_n_keys`, it is a number > 0, and in 
 #'   `sample_frac_keys` it is a fraction, between 0 and 1.
+#' @param ... extra arguments
 #'
 #' @return data.frame with fewer observations of key
 #' @name sample-n-frac-keys
@@ -14,8 +13,8 @@
 #' library(ggplot2)
 #' sample_n_keys(wages_ts,
 #'              size = 10) %>%
-#'   ggplot(aes(x = exper,
-#'              y = uerate,
+#'   ggplot(aes(x = xp,
+#'              y = unemploy_rate,
 #'              group = id)) + 
 #'   geom_line()
 sample_n_keys <- function(.data, size, ...){
@@ -44,8 +43,8 @@ sample_n_keys.tbl_ts <- function(.data, size, ...){
 #' library(ggplot2)
 #' sample_frac_keys(wages_ts,
 #'                 0.1) %>%
-#'   ggplot(aes(x = exper,
-#'              y = uerate,
+#'   ggplot(aes(x = xp,
+#'              y = unemploy_rate,
 #'              group = id)) + 
 #'   geom_line()
 #' @export

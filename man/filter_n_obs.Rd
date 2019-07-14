@@ -15,6 +15,8 @@ filter_n_obs(.data, filter, ...)
 \item{filter}{A description of how you want to filter the number of
 observations for each \code{key}, in terms of \code{n_obs}. See examples for more
 detail.}
+
+\item{...}{additional arguments}
 }
 \value{
 data.frame filtered by the number of observations, with an

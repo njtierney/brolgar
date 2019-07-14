@@ -6,7 +6,11 @@
 \usage{
 feat_brolgar(x, ...)
 }
+\arguments{
+\item{x}{A vector to extract features from.}
+
+\item{...}{Further arguments passed to other functions.}
+}
 \description{
-This feature returns measurements of spread: variance, standard deviation,
-median absolute distance, and interquartile range
+This feature returns all features in brolgar.
 }

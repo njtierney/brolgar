@@ -6,6 +6,12 @@
 \usage{
 feat_three_num(x, ...)
 }
+\arguments{
+\item{x}{A vector to extract features from.}
+
+\item{...}{Further arguments passed to \code{\link[=b_min]{b_min()}}, \code{\link[=b_median]{b_median()}}, and
+\code{\link[=b_max]{b_max()}}}
+}
 \description{
 This feature returns the three number summary - min, median, and maximum
 }

@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(brolgar)
 library(dplyr)
+library(tsibble)
 ```
 
 All data has structure. There are ways that we can specify some permanent structure to the data, which gives some useful features later on, for free. This vignette discusses how to structure your longitudinal data as a time series, and what that means.

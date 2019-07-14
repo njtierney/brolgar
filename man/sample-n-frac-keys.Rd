@@ -18,8 +18,6 @@ function used. In \code{sample_n_keys}, it is a number > 0, and in
 \code{sample_frac_keys} it is a fraction, between 0 and 1.}
 
 \item{...}{extra arguments}
-
-\item{key}{vector of keys to define which values belong to which individual}
 }
 \value{
 data.frame with fewer observations of key
@@ -31,15 +29,15 @@ Sample a number or fraction of keys to explore
 library(ggplot2)
 sample_n_keys(wages_ts,
              size = 10) \%>\%
-  ggplot(aes(x = exper,
-             y = uerate,
+  ggplot(aes(x = xp,
+             y = unemploy_rate,
              group = id)) + 
   geom_line()
 library(ggplot2)
 sample_frac_keys(wages_ts,
                 0.1) \%>\%
-  ggplot(aes(x = exper,
-             y = uerate,
+  ggplot(aes(x = xp,
+             y = unemploy_rate,
              group = id)) + 
   geom_line()
 }

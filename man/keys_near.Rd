@@ -26,12 +26,12 @@ Return keys nearest to a given statistics or summary.
 wages_ts \%>\%
   key_slope(ln_wages ~ xp) \%>\%
   keys_near(key = id,
-              var = .slope_xp)
+            var = .slope_xp)
                
 # Return observations closest to the five number summary of ln_wages
 wages_ts \%>\%
   keys_near(key = id,
-              var = ln_wages)
+            var = ln_wages)
                
 # Specify your own list of summaries
 l_ranges <- list(min = b_min,
@@ -40,8 +40,7 @@ l_ranges <- list(min = b_min,
                  iqr = b_iqr)
 
 wages_ts \%>\%
-  key_slope(key = id,
-            formula = ln_wages ~ xp) \%>\%
+  key_slope(formula = ln_wages ~ xp) \%>\%
   keys_near(key = id,
               var = .slope_xp,
               funs = l_ranges)

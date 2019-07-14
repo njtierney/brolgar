@@ -15,5 +15,7 @@ globalVariables(c("intercept",
                   "estimate",
                   "stat", 
                   "stat_diff", 
-                  "stat_value"
+                  "stat_value",
+                  ".rows",
+                  "quantile"
                   ))

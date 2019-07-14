@@ -8,6 +8,7 @@
 #' @param filter A description of how you want to filter the number of 
 #'   observations for each `key`, in terms of `n_obs`. See examples for more
 #'   detail.
+#' @param ... additional arguments
 #'
 #' @return data.frame filtered by the number of observations, with an 
 #'   additional column `n_obs`, which contains the number of observations for

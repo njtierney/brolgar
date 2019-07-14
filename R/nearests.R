@@ -45,7 +45,7 @@ near_middle <- function(x,
 #'             within = 0.2)
 #' 
 #' library(dplyr)
-#' wages_ts %>% feaures(ln_wages, list(min = min)) %>%
+#' wages_ts %>% features(ln_wages, list(min = min)) %>%
 #'   filter(near_between(min, 0.1, 0.9))
 near_between <- function(x,
                          from,

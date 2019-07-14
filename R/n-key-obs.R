@@ -19,6 +19,7 @@ n_key_obs <- function(.data, ...) {
 
 #' @export
 #' @inheritParams n_obs
+#' @rdname n_obs
 n_key_obs.tbl_ts <- function(.data, ...){
   tsibble::key_data(.data) %>% 
     dplyr::mutate(n_obs = lengths(.rows)) %>%
@@ -26,6 +27,7 @@ n_key_obs.tbl_ts <- function(.data, ...){
 }
 
 #' @inheritParams n_obs
+#' @rdname n_obs
 #' @export
 add_n_key_obs <- function(.data, ...){
   test_if_null(.data)
@@ -34,6 +36,7 @@ add_n_key_obs <- function(.data, ...){
 }
 
 #' @inheritParams n_obs
+#' @rdname n_obs
 #' @export
 add_n_key_obs.tbl_ts <- function(.data, ...){
   

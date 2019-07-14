@@ -6,6 +6,12 @@
 \usage{
 feat_five_num(x, ...)
 }
+\arguments{
+\item{x}{A vector to extract features from.}
+
+\item{...}{Further arguments passed to \code{\link[=b_min]{b_min()}}, \code{\link[=b_median]{b_median()}},
+\code{\link[=b_max]{b_max()}}, \code{\link[=b_q25]{b_q25()}}, \code{\link[=b_q75]{b_q75()}},}
+}
 \description{
 This feature returns the five number summary: minimum, q25, median, q75,
 and maximum.

@@ -14,8 +14,8 @@
 #' wages_ts %>%
 #'   sample_frac_keys(size = 0.1) %>%
 #'   stratify_keys(10) %>%
-#'  ggplot(aes(x = lnw,
-#'             y = exper,
+#'  ggplot(aes(x = ln_wages,
+#'             y = xp,
 #'             group = id)) + 
 #'  geom_line() + 
 #'  facet_wrap(~.strata)
