@@ -332,21 +332,21 @@ function, which adds the column, `.strata`:
 wages_ts %>%
   sample_n_keys(100) %>% 
   stratify_keys(n_strata = 10)
-#> # A tsibble: 723 x 10 [!]
+#> # A tsibble: 724 x 10 [!]
 #> # Key:       id [100]
 #>       id ln_wages    xp   ged postexp black hispanic high_grade
 #>    <int>    <dbl> <dbl> <int>   <dbl> <int>    <int>      <int>
-#>  1   207     1.58 0.525     0       0     0        0          8
-#>  2   207     1.75 1.68      0       0     0        0          8
-#>  3   207     1.93 2.70      0       0     0        0          8
-#>  4   207     1.86 3.46      0       0     0        0          8
-#>  5   207     2.22 4.50      0       0     0        0          8
-#>  6   207     2.05 5.46      0       0     0        0          8
-#>  7   207     2.15 6.69      0       0     0        0          8
-#>  8   207     2.18 7.73      0       0     0        0          8
-#>  9   207     2.58 8.61      0       0     0        0          8
-#> 10   207     2.66 9.44      0       0     0        0          8
-#> # … with 713 more rows, and 2 more variables: unemploy_rate <dbl>,
+#>  1   234     1.57 1.10      1    1.10     0        0          9
+#>  2   234     1.54 2.35      1    2.35     0        0          9
+#>  3   234     1.68 3.36      1    3.36     0        0          9
+#>  4   234     1.87 4.42      1    4.42     0        0          9
+#>  5   234     1.71 5.92      1    5.92     0        0          9
+#>  6   234     1.56 7.42      1    7.42     0        0          9
+#>  7   234     2.00 8.36      1    8.36     0        0          9
+#>  8   329     1.42 0.016     0    0        0        1          8
+#>  9   329     1.31 0.716     0    0        0        1          8
+#> 10   329     1.88 1.76      0    0        0        1          8
+#> # … with 714 more rows, and 2 more variables: unemploy_rate <dbl>,
 #> #   .strata <int>
 ```
 
@@ -383,16 +383,16 @@ sl
 #> # A tibble: 888 x 3
 #>       id .intercept .slope_xp
 #>    <int>      <dbl>     <dbl>
-#>  1    31       1.69    0.0521
-#>  2    36       1.69    0.0521
-#>  3    53       1.69    0.0521
-#>  4   122       1.69    0.0521
-#>  5   134       1.69    0.0521
-#>  6   145       1.69    0.0521
-#>  7   155       1.69    0.0521
-#>  8   173       1.69    0.0521
-#>  9   206       1.69    0.0521
-#> 10   207       1.69    0.0521
+#>  1    31       1.41    0.101 
+#>  2    36       2.04    0.0588
+#>  3    53       2.29   -0.358 
+#>  4   122       1.93    0.0374
+#>  5   134       2.03    0.0831
+#>  6   145       1.59    0.0469
+#>  7   155       1.66    0.0867
+#>  8   173       1.61    0.100 
+#>  9   206       1.73    0.180 
+#> 10   207       1.62    0.0884
 #> # … with 878 more rows
 ns
 #> # A tibble: 888 x 2
@@ -449,13 +449,15 @@ wages_lg %>%
              y = ln_wages, 
              group = id)) + 
   geom_line() +
-  gghighlight(.slope_xp < (-0.5),
+  gghighlight(.slope_xp < 0,
               use_direct_label = FALSE)
+#> Warning: Unspecified temporal ordering may yield unexpected results.
+#> Suggest to sort by `id`, `xp` first.
 ```
 
 <img src="man/figures/README-use-gg-highlight-1.png" width="100%" />
 
-### `l_summarise()`
+### `keys_near()`
 
 ## Finding features in longitudinal data
 

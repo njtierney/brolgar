@@ -1,4 +1,4 @@
-#' Return keys nearest to given summary statistics.
+#' Return keys nearest to a given statistics or summary. 
 #'
 #' @param .data data.frame
 #' @param key key, which identifies unique observations.
@@ -11,14 +11,13 @@
 #'
 #' @examples
 #' wages_ts %>%
-#'   key_slope(key = id,
-#'           formula = ln_wages ~ xp) %>%
-#'   l_summarise(key = id,
-#'               var = l_slope_xp)
+#'   key_slope(ln_wages ~ xp) %>%
+#'   keys_near(key = id,
+#'               var = .slope_xp)
 #'                
 #' # Return observations closest to the five number summary of ln_wages
 #' wages_ts %>%
-#'   l_summarise(key = id,
+#'   keys_near(key = id,
 #'               var = ln_wages)
 #'                
 #' # Specify your own list of summaries
@@ -30,10 +29,10 @@
 #' wages_ts %>%
 #'   key_slope(key = id,
 #'             formula = ln_wages ~ xp) %>%
-#'   l_summarise(key = id,
+#'   keys_near(key = id,
 #'               var = .slope_xp,
 #'               funs = l_ranges)
-l_summarise <- function(.data,
+keys_near <- function(.data,
                         key,
                         var,
                         funs = l_five_num){

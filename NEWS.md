@@ -8,6 +8,7 @@
 * rename `l_n_obs()` to `n_key_obs()`
 * rename `l_slope()` to `key_slope()`
 * added `monotonic` summaries and `feat_monotonic`
+* rename `l_summarise()` to `keys_near()`
 
 # brolgar 0.0.1.9000
 
