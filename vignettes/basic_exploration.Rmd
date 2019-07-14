@@ -37,14 +37,14 @@ When you first get a dataset, you need to
 ## How many observations are there?
 
 The number of observations can mean different things
-We can kind the number of keys using `n_obs()`:
+We can kind the number of keys using `n_keys()`:
 
 ```{r n-obs}
 library(tsibble)
-n_obs(wages_ts)
+n_keys(wages_ts)
 ```
 
-Note that this is a single number, in this case, we have `r n_obs(wages_ts)` observations.
+Note that this is a single number, in this case, we have `r n_keys(wages_ts)` observations.
 
 However, we might want to know how many observations we have for each individual. If we want the number of observations in each key (id), then we can use `n_key_obs`. This is a special function from `brolgar`, indicated by `l_`. Every `l_` function will return us a dataframe.
 
@@ -67,13 +67,13 @@ n_key_obs(wages_ts) %>%
 
 With your longitudinal data, you want to look at as much of the raw data as possible.
 
-We know that looking at the `lnw` and `expert` yields a plate of spaghetti:
+We know that looking at the `ln_wages` and `xpt` yields a plate of spaghetti:
 
 ```{r show-spag}
 library(ggplot2)
 ggplot(wages_ts, 
-       aes(x = exper,
-           y = lnw,
+       aes(x = xp,
+           y = ln_wages,
            group = id)) + 
   geom_line()
 ```
@@ -93,8 +93,8 @@ wages_ts %>%
 
 wages_ts %>%
   filter_n_obs(n_obs > 10) %>%
-  ggplot(aes(x = lnw,
-             y = exper,
+  ggplot(aes(x = ln_wages,
+             y = xp,
              group = id)) + 
   geom_line()
 ```
@@ -105,10 +105,10 @@ We could then sample a set of say 100 observations, using `sample_n_key()`:
 
 ```{r sample-n-obs}
 wages_ts %>%
-  sample_n_key(size = 100) %>%
+  sample_n_keys(size = 100) %>%
   filter_n_obs(n_obs > 10) %>%
-  ggplot(aes(x = lnw,
-             y = exper,
+  ggplot(aes(x = ln_wages,
+             y = xp,
              group = id)) + 
   geom_line()
 ```
@@ -116,12 +116,12 @@ wages_ts %>%
 That's not bad, but we can split this up into a few random groups with `stratify_key`, and then plot those groups:
 
 ```{r show-add-k-groups}
-ts_wages %>%
+wages_ts %>%
   filter_n_obs(n_obs > 3) %>%
-  sample_n_key(size = 100) %>%
-  stratify_key(n_strata = 12) %>%
-  ggplot(aes(x = lnw,
-             y = exper,
+  sample_n_keys(size = 100) %>%
+  stratify_keys(n_strata = 12) %>%
+  ggplot(aes(x = ln_wages,
+             y = xp,
              group = id)) + 
   geom_line() + 
   facet_wrap(~.strata)
@@ -138,7 +138,7 @@ Or rather - what is the proportion / tabulation of values across a given measure
 ```{r}
 wages_ts %>%
   group_by_key() %>%
-  summarise(mean_time = mean(exper))
+  summarise(mean_time = mean(xp))
 ```
 
 
@@ -147,17 +147,17 @@ wages_ts %>%
 
 # Highlight patterns of interest
 
-We can break the data into groups based on the slope of `exper~lnw`
+We can break the data into groups based on the slope of `xp~ln_wages`
 
-```{r show-add-slope}
-ts_wages %>%
+```{r show-add-slope, eval = FALSE}
+wages_ts %>%
   filter_n_obs(n_obs > 10) %>%
-  add_l_slope(id = id, formula = exper~lnw) %>%
-  mutate(slope_group = if_else(condition = l_slope_lnw > 0,
+  add_key_slope(formula = xp~ln_wages) %>%
+  mutate(slope_group = if_else(condition = .slope_ln_wages > 0,
                                true = "positive slope",
                                false = "negative slope")) %>%
-  ggplot(aes(x = lnw,
-             y = exper,
+  ggplot(aes(x = ln_wages,
+             y = xp,
              group = id)) + 
   geom_line() + 
   facet_wrap(~slope_group, nrow = 2)
