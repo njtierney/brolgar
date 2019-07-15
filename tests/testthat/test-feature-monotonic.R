@@ -6,13 +6,14 @@ test_that("feat_monotonic returns the right names", {
                c("id",
                  "increase",
                  "decrease",
-                 "unvary"))
+                 "unvary",
+                 "monotonic"))
 })
 
 
 test_that("feat_monotonic returns the right dimensions", {
   expect_equal(dim(wages_monotonic),
-               c(888, 4))
+               c(888, 5))
 })
 
 library(dplyr)

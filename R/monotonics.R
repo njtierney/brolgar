@@ -33,17 +33,45 @@
 #' unvarying(vec_ran)
 #' unvarying(vec_flat)
 increasing <- function(x, ...){
+  
+  if (length(x) == 1){
+    return(FALSE)
+  }
+  
   all(diff(x, ...) > 0)
 }
 
 #' @rdname monotonic
 #' @export
 decreasing <- function(x, ...){
+  
+  if (length(x) == 1){
+    return(FALSE)
+  }
+  
   all(diff(x, ...) < 0)
 }
 
 #' @rdname monotonic
 #' @export
 unvarying <- function(x, ...){
+  
+  if (length(x) == 1){
+    return(FALSE)
+  }
+  
   all(diff(x, ...) == 0)
 }
+
+#' @rdname monotonic
+#' @export
+monotonic <- function(x, ...){
+  
+  if (length(x) == 1){
+    return(FALSE)
+  }
+  
+  any(increasing(x, ...), 
+      decreasing(x, ...))
+}
+

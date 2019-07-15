@@ -1,4 +1,4 @@
-# brolgar 0.0.2.9001
+# brolgar 0.0.2.9100
 
 * Gave more verbose names to the `wages_ts` data.
 * renamed `sample_n_obs()` to `sample_n_keys()` and `sample_frac_keys()`
@@ -9,6 +9,8 @@
 * rename `l_slope()` to `key_slope()`
 * added `monotonic` summaries and `feat_monotonic`
 * rename `l_summarise()` to `keys_near()`
+* make monotonic functions return FALSE if length == 1. 
+* add `monotonic` function, which returns TRUE if increaseing or decreasing, and false otherwise.
 
 # brolgar 0.0.1.9000
 

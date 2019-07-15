@@ -73,7 +73,8 @@ feat_spread <- function(x, ...){
 feat_monotonic <- function(x, ...) {
   c(increase = increasing(x, ...),
     decrease = decreasing(x, ...), 
-    unvary = unvarying(x, ...))
+    unvary = unvarying(x, ...),
+    monotonic = monotonic(x, ...))
 }
 
 #' Feature: All from brolgar

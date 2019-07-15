@@ -12,6 +12,8 @@ increasing(x, ...)
 decreasing(x, ...)
 
 unvarying(x, ...)
+
+monotonic(x, ...)
 }
 \arguments{
 \item{x}{numeric or integer}
