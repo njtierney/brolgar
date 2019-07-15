@@ -129,7 +129,7 @@ wages_ts %>%
 
 # How many missings for each person
 
-# What is the proportion of measurements of (thing) across all obserations
+# What is the proportion of measurements of (thing) across all observations
 
 Or rather - what is the proportion / tabulation of values across a given measurement? Can we bin these up and explore them?
 

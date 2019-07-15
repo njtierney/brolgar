@@ -190,10 +190,11 @@ n_key_obs(wages_ts)
 #> # … with 878 more rows
 ```
 
-This returns one row per key, with the number of observations per key.
+This returns a dataframe, with one row per key, and the number of
+observations for each key.
 
-This could be further summarised to get a sense of the range of the
-data:
+This could be further summarised to get a sense of the patterns of the
+number of observations:
 
 ``` r
 library(ggplot2)
@@ -293,6 +294,7 @@ wages_ts %>%
 You can take a random sample of `n` keys using `sample_n_keys()`:
 
 ``` r
+set.seed(2019-7-15-1300)
 wages_ts %>%
   sample_n_keys(size = 10) %>%
   ggplot(aes(x = xp,
@@ -307,6 +309,7 @@ You could also combine with this `filter_n_obs` to only show keys with
 many observations:
 
 ``` r
+set.seed(2019-7-15-1259)
 wages_ts %>%
   filter_n_obs(n_obs > 5) %>%
   sample_n_keys(size = 10) %>%
@@ -332,21 +335,21 @@ function, which adds the column, `.strata`:
 wages_ts %>%
   sample_n_keys(100) %>% 
   stratify_keys(n_strata = 10)
-#> # A tsibble: 724 x 10 [!]
+#> # A tsibble: 737 x 10 [!]
 #> # Key:       id [100]
 #>       id ln_wages    xp   ged postexp black hispanic high_grade
 #>    <int>    <dbl> <dbl> <int>   <dbl> <int>    <int>      <int>
-#>  1   234     1.57 1.10      1    1.10     0        0          9
-#>  2   234     1.54 2.35      1    2.35     0        0          9
-#>  3   234     1.68 3.36      1    3.36     0        0          9
-#>  4   234     1.87 4.42      1    4.42     0        0          9
-#>  5   234     1.71 5.92      1    5.92     0        0          9
-#>  6   234     1.56 7.42      1    7.42     0        0          9
-#>  7   234     2.00 8.36      1    8.36     0        0          9
-#>  8   329     1.42 0.016     0    0        0        1          8
-#>  9   329     1.31 0.716     0    0        0        1          8
-#> 10   329     1.88 1.76      0    0        0        1          8
-#> # … with 714 more rows, and 2 more variables: unemploy_rate <dbl>,
+#>  1    53     1.76 0.781     0   0         0        1          7
+#>  2    53     1.54 0.943     0   0         0        1          7
+#>  3    53     3.24 0.957     1   0         0        1          7
+#>  4    53     1.60 1.04      1   0.08      0        1          7
+#>  5    53     1.57 1.06      1   0.1       0        1          7
+#>  6    53     1.88 1.11      1   0.152     0        1          7
+#>  7    53     1.89 1.18      1   0.227     0        1          7
+#>  8    53     1.66 1.78      1   0.82      0        1          7
+#>  9   145     1.56 0.235     0   0         0        0         10
+#> 10   145     1.48 0.828     1   0.473     0        0         10
+#> # … with 727 more rows, and 2 more variables: unemploy_rate <dbl>,
 #> #   .strata <int>
 ```
 
@@ -354,6 +357,7 @@ This then allows the user to create facetted plots showing a lot more of
 the raw data
 
 ``` r
+set.seed(2019-07-15-1258)
 wages_ts %>%
   sample_n_keys(120) %>% 
   stratify_keys(n_strata = 12) %>%
@@ -534,7 +538,7 @@ wages_ts %>%
 #> # … with 878 more rows
 ```
 
-Or finding those whos values only increase or decrease with `monotonic`
+Or finding those whose values only increase or decrease with `monotonic`
 
 ``` r
 wages_ts %>%

@@ -118,9 +118,9 @@ We can calculate the number of observations for each `key`, using `n_key_obs()`:
 n_key_obs(wages_ts)
 ```
 
-This returns one row per key, with the number of observations per key.
+This returns a dataframe, with one row per key, and the number of observations for each key.
 
-This could be further summarised to get a sense of the range of the data:
+This could be further summarised to get a sense of the patterns of the number of observations:
 
 ```{r summarise-n-obs}
 library(ggplot2)
@@ -159,6 +159,7 @@ wages_ts %>%
 You can take a random sample of `n` keys using `sample_n_keys()`:
 
 ```{r plot-sample-n-keys}
+set.seed(2019-7-15-1300)
 wages_ts %>%
   sample_n_keys(size = 10) %>%
   ggplot(aes(x = xp,
@@ -170,6 +171,7 @@ wages_ts %>%
 You could also combine with this `filter_n_obs` to only show keys with many observations:
 
 ```{r plot-filter-sample-n-keys}
+set.seed(2019-7-15-1259)
 wages_ts %>%
   filter_n_obs(n_obs > 5) %>%
   sample_n_keys(size = 10) %>%
@@ -194,6 +196,7 @@ wages_ts %>%
 This then allows the user to create facetted plots showing a lot more of the raw data
 
 ```{r plot-strata}
+set.seed(2019-07-15-1258)
 wages_ts %>%
   sample_n_keys(120) %>% 
   stratify_keys(n_strata = 12) %>%
@@ -274,7 +277,7 @@ wages_ts %>%
   features(ln_wages, feat_five_num)
 ```
 
-Or finding those whos values only increase or decrease with `monotonic`
+Or finding those whose values only increase or decrease with `monotonic`
 
 ```{r features-monotonic}
 wages_ts %>%

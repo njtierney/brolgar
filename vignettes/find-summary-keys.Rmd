@@ -99,7 +99,7 @@ top_stats_diff %>%
   right_join(wages_ts, by = "id")
 ```
 
-These tranformation steps have been compacted into a summary called, `keys_near()`:
+These transformation steps have been compacted into a summary called, `keys_near()`:
 
 ```{r use-summarise-fivenum}
 wages_ts %>%
