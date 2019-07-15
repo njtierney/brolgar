@@ -1,0 +1,21 @@
+wages_monotonic <- wages_ts %>%
+  features(ln_wages, feat_monotonic)
+
+test_that("feat_monotonic returns the right names", {
+  expect_equal(names(wages_monotonic),
+               c("id",
+                 "increase",
+                 "decrease",
+                 "unvary"))
+})
+
+
+test_that("feat_monotonic returns the right dimensions", {
+  expect_equal(dim(wages_monotonic),
+               c(888, 4))
+})
+
+library(dplyr)
+test_that("feat_monotonic returns all ids", {
+  expect_equal(n_distinct(wages_monotonic$id), 888)
+})

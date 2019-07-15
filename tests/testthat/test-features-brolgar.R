@@ -1,0 +1,34 @@
+wages_brolgar <- wages_ts %>%
+  features(ln_wages, feat_brolgar)
+
+test_that("feat_brolgar returns the right names", {
+  expect_equal(names(wages_brolgar),
+               c("id",
+                 "min",
+                 "max",
+                 "median",
+                 "mean",
+                 "q25",
+                 "q75",
+                 "range1",
+                 "range2",
+                 "range_diff",
+                 "sd",
+                 "var",
+                 "mad",
+                 "iqr",
+                 "increase",
+                 "decrease",
+                 "unvary"))
+})
+
+
+test_that("feat_brolgar returns the right dimensions", {
+  expect_equal(dim(wages_brolgar),
+               c(888, 17))
+})
+
+library(dplyr)
+test_that("feat_brolgar returns all ids", {
+  expect_equal(n_distinct(wages_brolgar$id), 888)
+})

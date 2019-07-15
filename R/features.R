@@ -2,8 +2,8 @@
 #' 
 #' This feature returns the three number summary - min, median, and maximum
 #' @param x A vector to extract features from.
-#' @param ... Further arguments passed to [`b_min()`], [`b_median()`], and
-#'   [`b_max()`]
+#' @param ... Further arguments passed to other functions.
+#' @name feat_brolgar
 #' @export
 feat_three_num <- function(x, ...) {
   c(min = b_min(x, ...),
@@ -11,21 +11,20 @@ feat_three_num <- function(x, ...) {
     max = b_max(x, ...))
 }
 
+
 #' Feature: Five number summary
 #' 
 #' This feature returns the five number summary: minimum, q25, median, q75,
 #'   and maximum.
 #' 
-#' @param x A vector to extract features from.
-#' @param ... Further arguments passed to [`b_min()`], [`b_median()`],
-#'    [`b_max()`], [`b_q25()`], [`b_q75()`],
+#' @inheritParams feat_brolgar
 #' @export
 feat_five_num <- function(x, ...) {
   list(
     min = b_min(x, ...),
     q25 = b_q25(x, ...),
     med = b_median(x, ...),
-    q_75 = b_q75(x, ...),
+    q75 = b_q75(x, ...),
     max = b_max(x, ...)
   )
 }
@@ -35,9 +34,7 @@ feat_five_num <- function(x, ...) {
 #' This feature returns the ranges - the minimum, maximum, range difference, 
 #'   and interquartile range.
 #'   
-#' @param x A vector to extract features from.
-#' @param ... Further arguments passed to [`b_min()`], [`b_max()`], 
-#'   [`b_range_diff()`],  and [`b_iqr()`],
+#' @inheritParams feat_brolgar
 #' @export
 feat_ranges <- function(x, ...){
   c(
@@ -53,9 +50,7 @@ feat_ranges <- function(x, ...){
 #' This feature returns measurements of spread: variance, standard deviation,
 #'   median absolute distance, and interquartile range
 #'   
-#' @param x A vector to extract features from.
-#' @param ... Further arguments passed to [`b_var()`], [`b_sd()`], 
-#'   [`b_mad()`],  and [`b_iqr()`].
+#' @inheritParams feat_brolgar
 #'   
 #' @export
 feat_spread <- function(x, ...){
@@ -67,41 +62,12 @@ feat_spread <- function(x, ...){
   )
 }
 
-#' Feature: All from brolgar
-#' 
-#' This feature returns all features in brolgar.
-#' 
-#' @param x A vector to extract features from.
-#' @param ... Further arguments passed to other functions.
-#'   
-#' @export
-feat_brolgar <- function(x, ...){
-  c(
-    b_min = b_min(x, ...),
-    b_max = b_max(x, ...),
-    b_median = b_median(x, ...),
-    b_mean = b_mean(x, ...),
-    b_q25 = b_q25(x, ...),
-    b_q75 = b_q75(x, ...),
-    b_range = b_range(x, ...),
-    b_range_diff = b_range_diff(x, ...),
-    b_sd = b_sd(x, ...),
-    b_var = b_var(x, ...),
-    b_mad = b_mad(x, ...),
-    b_iqr = b_iqr(x, ...),
-    increase = increasing(x, ...),
-    decrease = decreasing(x, ...), 
-    unvary = unvarying(x, ...)
-  )
-}
-
 #' Feature: Monotonics
 #' 
 #' This feature returns monotonic information - does it always increase,
 #'   decrease, or is it unvarying?
 #'   
-#' @param x A vector to extract features from.
-#' @param ... Further arguments passed to other functions.
+#' @inheritParams feat_brolgar
 #'   
 #' @export
 feat_monotonic <- function(x, ...) {
@@ -109,3 +75,30 @@ feat_monotonic <- function(x, ...) {
     decrease = decreasing(x, ...), 
     unvary = unvarying(x, ...))
 }
+
+#' Feature: All from brolgar
+#' 
+#' This feature returns all features in brolgar.
+#' 
+#' @inheritParams feat_brolgar
+#' @export
+feat_brolgar <- function(x, ...){
+  c(
+    min = b_min(x, ...),
+    max = b_max(x, ...),
+    median = b_median(x, ...),
+    mean = b_mean(x, ...),
+    q25 = b_q25(x, ...),
+    q75 = b_q75(x, ...),
+    range = b_range(x, ...),
+    range_diff = b_range_diff(x, ...),
+    sd = b_sd(x, ...),
+    var = b_var(x, ...),
+    mad = b_mad(x, ...),
+    iqr = b_iqr(x, ...),
+    increase = increasing(x, ...),
+    decrease = decreasing(x, ...), 
+    unvary = unvarying(x, ...)
+  )
+}
+
