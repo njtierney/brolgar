@@ -9,8 +9,7 @@ feat_spread(x, ...)
 \arguments{
 \item{x}{A vector to extract features from.}
 
-\item{...}{Further arguments passed to \code{\link[=b_var]{b_var()}}, \code{\link[=b_sd]{b_sd()}},
-\code{\link[=b_mad]{b_mad()}},  and \code{\link[=b_iqr]{b_iqr()}}.}
+\item{...}{Further arguments passed to other functions.}
 }
 \description{
 This feature returns measurements of spread: variance, standard deviation,

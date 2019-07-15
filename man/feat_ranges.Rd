@@ -9,8 +9,7 @@ feat_ranges(x, ...)
 \arguments{
 \item{x}{A vector to extract features from.}
 
-\item{...}{Further arguments passed to \code{\link[=b_min]{b_min()}}, \code{\link[=b_max]{b_max()}},
-\code{\link[=b_range_diff]{b_range_diff()}},  and \code{\link[=b_iqr]{b_iqr()}},}
+\item{...}{Further arguments passed to other functions.}
 }
 \description{
 This feature returns the ranges - the minimum, maximum, range difference,
