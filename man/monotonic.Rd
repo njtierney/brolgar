@@ -49,4 +49,41 @@ unvarying(vec_inc)
 unvarying(vec_dec)
 unvarying(vec_ran)
 unvarying(vec_flat)
+
+library(ggplot2)
+library(gghighlight)
+library(dplyr)
+
+wages_mono <- wages_ts \%>\%
+  features(ln_wages, feat_monotonic) \%>\%
+  left_join(wages_ts, by = "id")
+  
+  ggplot(wages_mono,
+         aes(x = xp,
+             y = ln_wages,
+             group = id)) +
+  geom_line() + 
+  gghighlight(increase)
+
+ ggplot(wages_mono,
+        aes(x = xp,
+            y = ln_wages,
+             group = id)) +
+  geom_line() + 
+  gghighlight(decrease)
+
+wages_mono \%>\%
+filter(monotonic) \%>\%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id)) + 
+  geom_line()
+  
+wages_mono \%>\%
+  filter(increase) \%>\%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id)) + 
+  geom_line()
+  
 }

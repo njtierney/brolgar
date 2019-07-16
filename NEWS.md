@@ -10,7 +10,7 @@
 * added `monotonic` summaries and `feat_monotonic`
 * rename `l_summarise()` to `keys_near()`
 * make monotonic functions return FALSE if length == 1. 
-* add `monotonic` function, which returns TRUE if increaseing or decreasing, and false otherwise.
+* add `monotonic` function, which returns TRUE if increasing or decreasing, and false otherwise.
 
 # brolgar 0.0.1.9000
 

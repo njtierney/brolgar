@@ -47,6 +47,33 @@ near_middle <- function(x,
 #' library(dplyr)
 #' wages_ts %>% features(ln_wages, list(min = min)) %>%
 #'   filter(near_between(min, 0.1, 0.9))
+#'
+#' near_quantile(x = x,
+#'               probs = 0.5, 
+#'               tol = 0.01)
+#' 
+#' near_quantile(x, c(0.25, 0.5, 0.75), 0.05)
+#' 
+#' wages_ts %>%
+#'   features(ln_wages, l_five_num) %>%
+#'   mutate_at(vars(min:max),
+#'             .funs = near_quantile,
+#'             0.5, 
+#'             0.01) %>%
+#'   filter(min)
+#' 
+#' wages_ts %>%
+#'   features(ln_wages, list(min = min)) %>%
+#'   mutate(min_near_q3 = near_quantile(min, c(0.25, 0.5, 0.75), 0.01)) %>%
+#'   filter(min_near_q3)
+#' 
+#' wages_ts %>%
+#'   features(ln_wages, list(min = min)) %>%
+#'   filter(near_between(min, 0.1, 0.9))
+#' 
+#' wages_ts %>%
+#'   features(ln_wages, list(min = min)) %>%
+#'   filter(near_middle(min, 0.5, 0.1))
 near_between <- function(x,
                          from,
                          to){
