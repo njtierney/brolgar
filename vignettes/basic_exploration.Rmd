@@ -22,13 +22,17 @@ When we first get a longitudinal dataset, you need to understand some of its str
 
 # Setting up your data
 
-For `brolgar` to work best, you should convert your data into a time series `tsibble` using the `tsibble` package. You can do so by doing:
+To use `brolgar` with your work, you should convert your longitudinal data into a time series `tsibble` using the `tsibble` package. To do so, you need to identify the unique identifying `key`, and time `index`. For example:
 
-```{r}
-
+```{r wages-ts, eval = FALSE}
+library(tsibble)
+wages_ts <- as_tsibble(wages_ts,
+                       key = id,
+                       index = xp,
+                       regular = FALSE)
 ```
 
-To read more, see the vignette: [longitudinal-data-structures]()
+To learn more about longitudinal data as time series, see the vignette: [longitudinal-data-structures]()
 
 # Basic summaries of the data
 
@@ -46,13 +50,13 @@ n_keys(wages_ts)
 
 Note that this is a single number, in this case, we have `r n_keys(wages_ts)` observations.
 
-However, we might want to know how many observations we have for each individual. If we want the number of observations in each key (id), then we can use `n_key_obs`. This is a special function from `brolgar`, indicated by `l_`. Every `l_` function will return us a dataframe.
+However, we might want to know how many observations we have for each individual. If we want the number of observations in each key (id), then we can use `n_key_obs`.
 
 ```{r l-n-obs}
 n_key_obs(wages_ts)
 ```
 
-A plot of this can help understand the distribution of observations
+A plot of this can help provide better understanding of the distribution of observations
 
 ```{r plot-nobs}
 library(ggplot2)
@@ -99,6 +103,7 @@ wages_ts %>%
   geom_line()
 ```
 
+
 But that's still a lot of spaghetti.
 
 We could then sample a set of say 100 observations, using `sample_n_key()`:
@@ -118,7 +123,7 @@ That's not bad, but we can split this up into a few random groups with `stratify
 ```{r show-add-k-groups}
 wages_ts %>%
   filter_n_obs(n_obs > 3) %>%
-  sample_n_keys(size = 100) %>%
+  sample_n_keys(size = 120) %>%
   stratify_keys(n_strata = 12) %>%
   ggplot(aes(x = ln_wages,
              y = xp,
@@ -127,22 +132,20 @@ wages_ts %>%
   facet_wrap(~.strata)
 ```
 
-# How many missings for each person
-
-# What is the proportion of measurements of (thing) across all observations
-
-Or rather - what is the proportion / tabulation of values across a given measurement? Can we bin these up and explore them?
-
 # What sort of time period is between measurements?
 
 ```{r}
 wages_ts %>%
-  group_by_key() %>%
-  summarise(mean_time = mean(xp))
+  features(xp, feat_ranges)
 ```
 
 
 # What sort of time period is between each measurement?
+
+```{r}
+wages_ts %>%
+  features(xp, lag)
+```
 
 
 # Highlight patterns of interest
@@ -150,13 +153,16 @@ wages_ts %>%
 We can break the data into groups based on the slope of `xp~ln_wages`
 
 ```{r show-add-slope, eval = FALSE}
-wages_ts %>%
+
+wages_slope <- wages_ts %>%
   filter_n_obs(n_obs > 10) %>%
-  add_key_slope(formula = xp~ln_wages) %>%
+  add_key_slope(xp ~ ln_wages) %>%
   mutate(slope_group = if_else(condition = .slope_ln_wages > 0,
                                true = "positive slope",
-                               false = "negative slope")) %>%
-  ggplot(aes(x = ln_wages,
+                               false = "negative slope"))
+
+  ggplot(wages_slope,
+         aes(x = ln_wages,
              y = xp,
              group = id)) + 
   geom_line() + 
@@ -164,4 +170,18 @@ wages_ts %>%
   
 ```
 
+Or we can break the slope up into a few groups:
+
+```{r}
+
+# wages_slope %>%
+#   arrange(.slope_ln_wages) %>%
+#   stratify_keys(n_strata = 10) %>%
+#  ggplot(wages_slope,
+#          aes(x = ln_wages,
+#              y = xp,
+#              group = id)) + 
+#   geom_line() + 
+#   facet_wrap(~.strata)
+```
 
