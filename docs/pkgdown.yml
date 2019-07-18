@@ -1,8 +1,15 @@
-pandoc: 2.7.1
+pandoc: 2.7.2
 pkgdown: 1.3.0
 pkgdown_sha: ~
 articles:
   basic_exploration: basic_exploration.html
   brolgar: brolgar.html
+  creating-features: creating-features.html
+  find-summary-keys: find-summary-keys.html
+  longitudinal-data-structures: longitudinal-data-structures.html
   stats_on_stats: stats_on_stats.html
+  visualisation-gallery: visualisation-gallery.html
+urls:
+  reference: http://brolgar.njtierney.com//reference
+  article: http://brolgar.njtierney.com//articles
 

@@ -6,10 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>An example of using brolgar: BRowse Over Longitudinal data Graphically and Analytically in R • brolgar</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="An example of using brolgar: BRowse Over Longitudinal data Graphically and Analytically in R">
+<script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="An example of using brolgar: BRowse Over Longitudinal data Graphically and Analytically in R">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -30,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9800</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.9100</span>
       </span>
     </div>
 
@@ -59,7 +61,19 @@
       <a href="../articles/basic_exploration.html">Starting Steps</a>
     </li>
     <li>
+      <a href="../articles/creating-features.html">creating-features</a>
+    </li>
+    <li>
+      <a href="../articles/find-summary-keys.html">Finding summary keys</a>
+    </li>
+    <li>
+      <a href="../articles/longitudinal-data-structures.html">longitudinal-data-structures</a>
+    </li>
+    <li>
       <a href="../articles/stats_on_stats.html">Stats on Stats: Workflows with Longnostics</a>
+    </li>
+    <li>
+      <a href="../articles/visualisation-gallery.html">Visualisation Gallery</a>
     </li>
   </ul>
 </li>
@@ -68,7 +82,13 @@
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
+<form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
+      </form>
+      
+    </div>
 <!--/.nav-collapse -->
   </div>
 <!--/.container -->
@@ -80,9 +100,9 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>An example of using brolgar: BRowse Over Longitudinal data Graphically and Analytically in R</h1>
-                        <h4 class="author">Di Cook &amp; Tania Prvan</h4>
+                        <h4 class="author">Di Cook &amp; Tania Prvan &amp; Nick Tierney</h4>
             
-            <h4 class="date">2019-04-15</h4>
+            <h4 class="date">2019-07-18</h4>
       
       
       <div class="hidden name"><code>brolgar.Rmd</code></div>
@@ -125,22 +145,20 @@
 <a href="#example-1" class="anchor"></a>Example 1</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gghighlight)</a>
-<a class="sourceLine" id="cb2-3" title="3"></a>
-<a class="sourceLine" id="cb2-4" title="4">sl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/l_longnostic.html">l_slope</a></span>(wages, id, lnw<span class="op">~</span>exper)</a>
-<a class="sourceLine" id="cb2-5" title="5">ns &lt;-<span class="st"> </span><span class="kw"><a href="../reference/l_longnostic.html">l_n_obs</a></span>(wages, id)</a>
-<a class="sourceLine" id="cb2-6" title="6"></a>
-<a class="sourceLine" id="cb2-7" title="7">wages_lg &lt;-<span class="st"> </span>wages <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(sl, <span class="dt">by =</span> <span class="st">"id"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(ns, <span class="dt">by =</span> <span class="st">"id"</span>)</a>
-<a class="sourceLine" id="cb2-10" title="10"></a>
-<a class="sourceLine" id="cb2-11" title="11">wages_lg <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(l_n_obs <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-13" title="13"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> exper, </a>
-<a class="sourceLine" id="cb2-14" title="14">             <span class="dt">y =</span> lnw, </a>
-<a class="sourceLine" id="cb2-15" title="15">             <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-16" title="16"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_path">geom_line</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb2-17" title="17"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/gghighlight">gghighlight</a></span>(l_slope_exper <span class="op">&lt;</span><span class="st"> </span>(<span class="op">-</span><span class="fl">0.5</span>),</a>
-<a class="sourceLine" id="cb2-18" title="18">              <span class="dt">use_direct_label =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb2-3" title="3">sl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/key_slope.html">key_slope</a></span>(wages_ts, ln_wages<span class="op">~</span>xp)</a>
+<a class="sourceLine" id="cb2-4" title="4"></a>
+<a class="sourceLine" id="cb2-5" title="5">wages_ts <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(sl, </a>
+<a class="sourceLine" id="cb2-7" title="7">            <span class="dt">by =</span> <span class="st">"id"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="st">  </span><span class="kw"><a href="../reference/filter_n_obs.html">filter_n_obs</a></span>(n_obs <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">slope_sign =</span> <span class="kw"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span>(.slope_xp <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb2-10" title="10">                              <span class="st">"negative"</span>,</a>
+<a class="sourceLine" id="cb2-11" title="11">                              <span class="st">"positive"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp, </a>
+<a class="sourceLine" id="cb2-13" title="13">             <span class="dt">y =</span> ln_wages, </a>
+<a class="sourceLine" id="cb2-14" title="14">             <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-15" title="15"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-16" title="16"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>slope_sign)</a></code></pre></div>
 <p><img src="brolgar_files/figure-html/use-gghighlight-1.png" width="700"></p>
 </div>
   </div>
@@ -161,7 +179,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Tania Prvan, Di Cook, Nicholas Tierney.</p>
+  <p>Developed by Nicholas Tierney, Di Cook, Tania Prvan.</p>
 </div>
 
 <div class="pkgdown">
@@ -171,6 +189,20 @@
 </div>
 
   
-
-  </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
+  docsearch({
+    
+    
+    apiKey: '48bc42eefc5234a6463c3b99e53dfda1',
+    indexName: 'brolgar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+</body>
 </html>

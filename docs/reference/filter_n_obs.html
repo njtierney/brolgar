@@ -6,13 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Filter by the number of observations for an id. — filter_n_obs • brolgar</title>
+<title>Filter by the number of observations for a <code>key</code>. — filter_n_obs • brolgar</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -29,12 +29,18 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
-<meta property="og:title" content="Filter by the number of observations for an id. — filter_n_obs" />
 
-<meta property="og:description" content="When exploring longitudinal data it can be useful to
-filter by the number of observations to help with certain exploratory
-data analysis." />
+<meta property="og:title" content="Filter by the number of observations for a <code>key</code>. — filter_n_obs" />
+
+<meta property="og:description" content="When exploring longitudinal data it can be useful to filter by the number of
+observations in a compact way. filter_n_obs allows for the user to
+filter by the number of observations for each key." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -65,7 +71,7 @@ data analysis." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9800</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.9100</span>
       </span>
     </div>
 
@@ -94,7 +100,19 @@ data analysis." />
       <a href="../articles/basic_exploration.html">Starting Steps</a>
     </li>
     <li>
+      <a href="../articles/creating-features.html">creating-features</a>
+    </li>
+    <li>
+      <a href="../articles/find-summary-keys.html">Finding summary keys</a>
+    </li>
+    <li>
+      <a href="../articles/longitudinal-data-structures.html">longitudinal-data-structures</a>
+    </li>
+    <li>
       <a href="../articles/stats_on_stats.html">Stats on Stats: Workflows with Longnostics</a>
+    </li>
+    <li>
+      <a href="../articles/visualisation-gallery.html">Visualisation Gallery</a>
     </li>
   </ul>
 </li>
@@ -107,6 +125,12 @@ data analysis." />
         
       </ul>
       
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -117,73 +141,80 @@ data analysis." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Filter by the number of observations for an id.</h1>
+    <h1>Filter by the number of observations for a <code>key</code>.</h1>
     
     <div class="hidden name"><code>filter_n_obs.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>When exploring longitudinal data it can be useful to
-filter by the number of observations to help with certain exploratory
-data analysis.</p>
+    <p>When exploring longitudinal data it can be useful to filter by the number of
+observations in a compact way. <code>filter_n_obs</code> allows for the user to
+filter by the number of observations for each <code>key</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>filter_n_obs</span>(<span class='no'>data</span>, <span class='no'>id</span>, <span class='no'>filter</span>)</pre>
+    <pre class="usage"><span class='fu'>filter_n_obs</span>(<span class='no'>.data</span>, <span class='no'>filter</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for tbl_ts</span>
+<span class='fu'>filter_n_obs</span>(<span class='no'>.data</span>, <span class='no'>filter</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>data.frame to explore</p></td>
-    </tr>
-    <tr>
-      <th>id</th>
-      <td><p>vector of ids to define which values belong to which individual</p></td>
+      <th>.data</th>
+      <td><p>data.frame</p></td>
     </tr>
     <tr>
       <th>filter</th>
-      <td><p>an expression you want to filter by, where number of
-observations is referred in as <code>l_n_obs</code>. For example (<code>l_n_obs &gt; 10</code>)
-would filter those observations with greater than 10 observations.</p></td>
+      <td><p>A description of how you want to filter the number of
+observations for each <code>key</code>, in terms of <code>n_obs</code>. See examples for more
+detail.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional arguments</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>dataframe filtered by the number of observations, with an additional column <code>l_n_obs</code> containing the number of observations for each <code>id</code>.</p>
+    <p>data.frame filtered by the number of observations, with an
+additional column <code>n_obs</code>, which contains the number of observations for
+each <code>key</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>wages</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_n_obs</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='no'>id</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='no'>l_n_obs</span> <span class='kw'>&gt;</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1,105 x 10</span><span>
-#&gt;       id l_n_obs   lnw exper   ged postexp black hispanic   hgc uerate
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>   134      12  2.00 0.192     0    0        0        0    11   5.8 
-#&gt; </span><span style='color: #555555;'> 2</span><span>   134      12  2.10 0.972     0    0        0        0    11   5.49
-#&gt; </span><span style='color: #555555;'> 3</span><span>   134      12  2.32 1.93      0    0        0        0    11   6.09
-#&gt; </span><span style='color: #555555;'> 4</span><span>   134      12  2.39 2.95      0    0        0        0    11   8.4 
-#&gt; </span><span style='color: #555555;'> 5</span><span>   134      12  2.26 3.92      1    0        0        0    11   8.1 
-#&gt; </span><span style='color: #555555;'> 6</span><span>   134      12  2.33 4.64      1    0.72     0        0    11   6.39
-#&gt; </span><span style='color: #555555;'> 7</span><span>   134      12  2.30 5.64      1    1.72     0        0    11   5.89
-#&gt; </span><span style='color: #555555;'> 8</span><span>   134      12  2.67 6.75      1    2.84     0        0    11   5.09
-#&gt; </span><span style='color: #555555;'> 9</span><span>   134      12  2.81 8.25      1    4.34     0        0    11   2.8 
-#&gt; </span><span style='color: #555555;'>10</span><span>   134      12  2.93 9.02      1    5.11     0        0    11   3.19
-#&gt; </span><span style='color: #555555;'># … with 1,095 more rows</span><span></div><div class='input'><span class='no'>wages</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_n_obs</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='no'>id</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='no'>l_n_obs</span> <span class='kw'>==</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 78 x 10</span><span>
-#&gt;       id l_n_obs   lnw exper   ged postexp black hispanic   hgc uerate
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>   518       2 1.27  0.525     1   0.525     1        0     8  10.7 
-#&gt; </span><span style='color: #555555;'> 2</span><span>   518       2 1.61  1.93      1   1.93      1        0     8  10.7 
-#&gt; </span><span style='color: #555555;'> 3</span><span>  </span><span style='text-decoration: underline;'>1</span><span>687       2 1.66  0.688     0   0         1        0    10   5.39
-#&gt; </span><span style='color: #555555;'> 4</span><span>  </span><span style='text-decoration: underline;'>1</span><span>687       2 1.26  0.825     0   0         1        0    10   5.3 
-#&gt; </span><span style='color: #555555;'> 5</span><span>  </span><span style='text-decoration: underline;'>2</span><span>178       2 1.52  0.923     0   0         0        0     8   8.1 
-#&gt; </span><span style='color: #555555;'> 6</span><span>  </span><span style='text-decoration: underline;'>2</span><span>178       2 1.75  1.96      0   0         0        0     8  11.1 
-#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>2</span><span>456       2 0.898 4         0   0         0        0    11  12.1 
-#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>2</span><span>456       2 1.22  5         0   0         0        0    11  12   
-#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>2</span><span>612       2 1.42  0.875     1   0.875     0        0     8   7.73
-#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>2</span><span>612       2 1.57  1.14      1   1.14      0        0     8   7.73
-#&gt; </span><span style='color: #555555;'># … with 68 more rows</span><span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>wages_ts</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_n_obs</span>(<span class='no'>n_obs</span> <span class='kw'>&gt;</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tsibble: 1,105 x 10 [!]</span><span>
+#&gt; </span><span style='color: #555555;'># Key:       id [97]</span><span>
+#&gt;       id ln_wages    xp   ged postexp black hispanic high_grade unemploy_rate
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>   134     2.00 0.192     0    0        0        0         11          5.8 
+#&gt; </span><span style='color: #555555;'> 2</span><span>   134     2.10 0.972     0    0        0        0         11          5.49
+#&gt; </span><span style='color: #555555;'> 3</span><span>   134     2.32 1.93      0    0        0        0         11          6.09
+#&gt; </span><span style='color: #555555;'> 4</span><span>   134     2.39 2.95      0    0        0        0         11          8.4 
+#&gt; </span><span style='color: #555555;'> 5</span><span>   134     2.26 3.92      1    0        0        0         11          8.1 
+#&gt; </span><span style='color: #555555;'> 6</span><span>   134     2.33 4.64      1    0.72     0        0         11          6.39
+#&gt; </span><span style='color: #555555;'> 7</span><span>   134     2.30 5.64      1    1.72     0        0         11          5.89
+#&gt; </span><span style='color: #555555;'> 8</span><span>   134     2.67 6.75      1    2.84     0        0         11          5.09
+#&gt; </span><span style='color: #555555;'> 9</span><span>   134     2.81 8.25      1    4.34     0        0         11          2.8 
+#&gt; </span><span style='color: #555555;'>10</span><span>   134     2.93 9.02      1    5.11     0        0         11          3.19
+#&gt; </span><span style='color: #555555;'># … with 1,095 more rows, and 1 more variable: n_obs </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'><span class='no'>wages_ts</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_n_obs</span>(<span class='no'>n_obs</span> <span class='kw'>==</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tsibble: 78 x 10 [!]</span><span>
+#&gt; </span><span style='color: #555555;'># Key:       id [39]</span><span>
+#&gt;       id ln_wages    xp   ged postexp black hispanic high_grade unemploy_rate
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>   518    1.27  0.525     1   0.525     1        0          8         10.7 
+#&gt; </span><span style='color: #555555;'> 2</span><span>   518    1.61  1.93      1   1.93      1        0          8         10.7 
+#&gt; </span><span style='color: #555555;'> 3</span><span>  </span><span style='text-decoration: underline;'>1</span><span>687    1.66  0.688     0   0         1        0         10          5.39
+#&gt; </span><span style='color: #555555;'> 4</span><span>  </span><span style='text-decoration: underline;'>1</span><span>687    1.26  0.825     0   0         1        0         10          5.3 
+#&gt; </span><span style='color: #555555;'> 5</span><span>  </span><span style='text-decoration: underline;'>2</span><span>178    1.52  0.923     0   0         0        0          8          8.1 
+#&gt; </span><span style='color: #555555;'> 6</span><span>  </span><span style='text-decoration: underline;'>2</span><span>178    1.75  1.96      0   0         0        0          8         11.1 
+#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>2</span><span>456    0.898 4         0   0         0        0         11         12.1 
+#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>2</span><span>456    1.22  5         0   0         0        0         11         12   
+#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>2</span><span>612    1.42  0.875     1   0.875     0        0          8          7.73
+#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>2</span><span>612    1.57  1.14      1   1.14      0        0          8          7.73
+#&gt; </span><span style='color: #555555;'># … with 68 more rows, and 1 more variable: n_obs </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -201,7 +232,7 @@ would filter those observations with greater than 10 observations.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Tania Prvan, Di Cook, Nicholas Tierney.</p>
+  <p>Developed by Nicholas Tierney, Di Cook, Tania Prvan.</p>
 </div>
 
 <div class="pkgdown">
@@ -211,6 +242,23 @@ would filter those observations with greater than 10 observations.</p></td>
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '48bc42eefc5234a6463c3b99e53dfda1',
+    indexName: 'brolgar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
   </body>
 </html>

@@ -1,1 +1,15 @@
+url: http://brolgar.njtierney.com/
+
+template:
+  params:
+    bootswatch: flatly
+    docsearch:
+      api_key: 48bc42eefc5234a6463c3b99e53dfda1
+      index_name:  brolgar
+
+home:
+  links:
+  - text: Learn more
+    href: https://github.com/njtierney/brolgar
+
 destination: docs
