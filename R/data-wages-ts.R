@@ -20,7 +20,7 @@
 #'     on their first day at work. The number of time points and values of time
 #'     points for each subject can differ. This forms the `index` of the data}
 #'   \item{ged}{when/if a graduate equivalency diploma is obtained.}
-#'   \item{postexp}{change in experience since getting a ged (if they get one)}
+#'   \item{xp_since_ged}{change in experience since getting a ged (if they get one)}
 #'   \item{black}{categorical indicator of race = black.}
 #'   \item{hispanic}{categorical indicator of race = hispanic.}
 #'   \item{high_grade}{highest grade completed}
