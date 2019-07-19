@@ -11,8 +11,6 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
-library(brolgar)
-data(wages_ts)
 ```
 # brolgar
 
@@ -39,11 +37,28 @@ ggplot(wages_ts,
 
 These are hard to interpret. 
 
-You might then want to explore those interesting individual lines. Say, those with high or low variation. But calculating this for individuals draws you away from your analysis, and instead you are now wrangling with a different problem: summarising key information about each individual and incorporating that back into the data. 
+What you want is to identify those interesting individual lines, so you can get something like the following:
 
-This is annoying, and distracts from your analysis, inviting errors.
+```{r show-monotonic, echo = FALSE}
+library(gghighlight)
+library(ggplot2)
+library(dplyr)
+wages_ts %>%
+  features(ln_wages, feat_monotonic) %>%
+  left_join(wages_ts, by = "id") %>%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id)) +
+  geom_line() + 
+  gghighlight(increase)
+```
+```
 
-**brolgar** provides tools to calculate statistical summaries for each individual, and methods to assist you in identifying individuals of interest. 
+This is what `brolgar` helps you do, by providing tools to:
+
+* Calculate features (summaries) for each individual series
+* Efficiently explore your raw data
+* Evaluate statistical models.
 
 ## Installation
 
@@ -54,61 +69,184 @@ Install from [GitHub](https://github.com/) with:
 remotes::install_github("njtierney/brolgar")
 ```
 
-## Longitudinal data is time series data
+# Data in `brolgar`
 
-A **Big Idea** in `brolgar` is that longitudinal data is a time series.
+To efficiently look at your longitudinal data, we assume it **is a time series**, with irregular time periods between measurements. This might seem strange, (that's OK!), but there are **two important things** to remember:
 
-> Anything that is observed sequentially over time is a time series.
--- [Rob Hyndman and George Athanasopolous (Forecasting: Principles and Practice)](https://otexts.com/fpp2/data-methods.html)
-
-Once we account for this time series structure inherent in longitudinal data, we gain access to a suite of nice tools that simplify and accelerate how we work with time series data.
-
-## Converting your longitudinal data to a time series
-
-To convert longitudinal data into a "**t**ime **s**eries tibble", a `tsibble`, we need to consider:
-
-* What identifies the **time** component of the data? This is the **index**
-* What is the **unique identifier** of an individual/series? This is the **key**
+1. The **key** variable in your data is the **identifier** of your individuals or series.
+2. The **index** variable is the **time** component of your data.
 
 Together, the **index** and **key** uniquely identify an observation.
 
-What do we mean by this? Let's look at the first section of the wages, **wages** data analysed in Singer & Willett (2003):
+The term `key` is used a lot in brolgar, so it is an important idea to internalise:
 
-```{r slice-wages}
-library(dplyr)
-slice(wages_ts, 1:10)
-```
+> **The key is the identifier of your individuals or series**
 
-We have the `id` column, which identifies an individual.
 
-We also have the `xp` column, which identifies the experience an individual has.
-
-So:
-
-* key: `id`
-* index: `exper`
-
-We could create a `tsibble` of this data by using the `as_tsibble` function from `tsibble`, also stating, `regular = FALSE`, since we have an `irregular` time series:
-
-```{r create-tsibble}
-library(tsibble)
-as_tsibble(x = wages_ts,
-           key = id,
-           index = xp,
-           regular = FALSE)
-```
-
-Note the following information printed at the top of `wages_ts`
-
-```
-# A tsibble: 6,402 x 9 [!]
-# Key:       id [888]
-...
-```
-
-This says, we have `r nrow(wages_ts)` rows, with `r ncol(wages_ts)` columns. The `!` means that there is no regular spacing between series, and then our "key" is `id`, of which there `r n_keys(wages_ts)`.
+If you want to learn more about what longitudinal data as a time series, you can [read more in the vignette, "Longitudinal Data Structures"](library/brolgar/html/longitudinal-data-structures.html)
 
 ## Quickly exploring longitudinal data
+
+### `sample_n_keys()`
+
+Just as in `dplyr` how you can use `sample_n()` to sample `n` observations, you can take a random sample of `n keys` using `sample_n_keys()`:
+
+```{r plot-sample-n-keys}
+set.seed(2019-7-15-1300)
+wages_ts %>%
+  sample_n_keys(size = 10) %>%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id)) + 
+  geom_line()
+```
+
+You could also combine with this `filter_n_obs` to only show keys with many observations:
+
+```{r plot-filter-sample-n-keys}
+set.seed(2019-7-15-1259)
+wages_ts %>%
+  filter_n_obs(n_obs > 5) %>%
+  sample_n_keys(size = 10) %>%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id)) + 
+  geom_line()
+```
+
+There is also `sample_frac_keys()`, which samples a fraction of available keys.
+
+### `stratify_keys()`
+
+To look at as much of the raw data as possible, it can be helpful to stratify the data into groups for plotting. You can `stratify` the `keys` using the `stratify_keys()` function, which adds the column, `.strata`:
+
+```{r use-strata}
+wages_ts %>%
+  sample_n_keys(100) %>% 
+  stratify_keys(n_strata = 10)
+```
+
+This then allows the user to create facetted plots showing a lot more of the raw data
+
+```{r plot-strata}
+set.seed(2019-07-15-1258)
+wages_ts %>%
+  sample_n_keys(120) %>% 
+  stratify_keys(n_strata = 12) %>%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id)) + 
+  geom_line() + 
+  facet_wrap(~.strata)
+```
+
+
+## Exploratory modelling
+
+You can fit a linear model for each key using `key_slope()`. This returns the intercept and slope estimate for each key, given some linear model formula. We can get the number of observations, and slope information for each individual to identify those that are decreasing over time. 
+
+```{r use-gghighlight}
+key_slope(wages_ts,ln_wages ~ xp)
+```
+
+We can then join these summaries back to the data:
+
+```{r show-wages-lg}
+library(dplyr)
+wages_slope <- key_slope(wages_ts,ln_wages ~ xp) %>%
+  left_join(wages_ts, by = "id") 
+
+wages_slope
+```
+
+And highlight those individuals with a negative slope using `gghighlight`:
+
+```{r use-gg-highlight}
+library(gghighlight)
+
+wages_slope %>% 
+  ggplot(aes(x = xp, 
+             y = ln_wages, 
+             group = id)) + 
+  geom_line() +
+  gghighlight(.slope_xp < 0)
+```
+
+
+### Find keys near other summaries with `keys_near()`
+
+We could take our slope information and find those individuals who are representative of the min, median, maximum, etc of growth, using `keys_near()`:
+
+```{r keys-near}
+wages_slope %>%
+  keys_near(key = id,
+            var = .slope_xp,
+            funs = l_three_num)
+```
+
+```{r keys-near-plot}
+wages_slope %>%
+  keys_near(key = id,
+            var = .slope_xp,
+            funs = l_three_num) %>%
+  left_join(wages_ts, by = "id") %>%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id,
+             colour = stat)) + 
+  geom_line()
+```
+
+
+## Finding features in longitudinal data
+
+You can extract `features` of longitudinal data using the `features` function, from `fablelite`. You can, for example, calculate the minimum of a given variable for each key by providing a named list like so:
+
+```{r features-min}
+wages_ts %>%
+  features(ln_wages, 
+           list(min = min))
+```
+
+You want to get the first and last values using `dplyr::first` and `dplyr::last`
+
+```{r features-first-last}
+library(dplyr)
+
+wages_ts %>%
+  features(ln_wages, 
+           list(first = first,
+                last = last))
+```
+
+`brolgar` provides some helper features. For example, creating the five number summary:
+
+```{r features-five-num}
+wages_ts %>%
+  features(ln_wages, feat_five_num)
+```
+
+Or finding those whose values only increase or decrease with `monotonic`
+
+```{r features-monotonic}
+wages_ts %>%
+  features(ln_wages, feat_monotonic)
+```
+
+## Linking individuals back to the data
+
+You can join these features back to the data with `left_join`, like so:
+
+```{r features-left-join}
+wages_ts %>%
+  features(ln_wages, feat_monotonic) %>%
+  left_join(wages_ts, by = "id") %>%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id)) +
+  geom_line() + 
+  gghighlight(increase)
+```
 
 ### `n_key_obs()`
 
@@ -154,156 +292,13 @@ wages_ts %>%
   filter_n_obs(n_obs > 3)
 ```
 
-### `sample_n_keys()`
-
-You can take a random sample of `n` keys using `sample_n_keys()`:
-
-```{r plot-sample-n-keys}
-set.seed(2019-7-15-1300)
-wages_ts %>%
-  sample_n_keys(size = 10) %>%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id)) + 
-  geom_line()
-```
-
-You could also combine with this `filter_n_obs` to only show keys with many observations:
-
-```{r plot-filter-sample-n-keys}
-set.seed(2019-7-15-1259)
-wages_ts %>%
-  filter_n_obs(n_obs > 5) %>%
-  sample_n_keys(size = 10) %>%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id)) + 
-  geom_line()
-```
-
-There is also `sample_frac_keys()`, which allows for sampling a fraction of available keys.
-
-### `stratify_keys()`
-
-In keeping in the spirit of wanting to look at as much of the raw data as possible, it can be helpful to stratify the data into groups for plotting. You can `stratify` the `keys` using the `stratify_keys()` function, which adds the column, `.strata`:
-
-```{r use-strata}
-wages_ts %>%
-  sample_n_keys(100) %>% 
-  stratify_keys(n_strata = 10)
-```
-
-This then allows the user to create facetted plots showing a lot more of the raw data
-
-```{r plot-strata}
-set.seed(2019-07-15-1258)
-wages_ts %>%
-  sample_n_keys(120) %>% 
-  stratify_keys(n_strata = 12) %>%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id)) + 
-  geom_line() + 
-  facet_wrap(~.strata)
-```
-
-## Exploratory modelling
-
-You can fit a linear model for each key using `key_slope()`. This returns the intercept and slope estimate for each key, given some linear model formula. 
-
-We can get the number of observations, and slope information for each individual to identify those that are decreasing over time. 
-
-```{r use-gghighlight}
-sl <- key_slope(wages_ts,ln_wages ~ xp)
-ns <- n_key_obs(wages_ts)
-
-sl
-ns
-```
-
-We can then join these summaries back to the data:
-
-```{r show-wages-lg}
-wages_lg <- wages_ts %>%
-  left_join(sl, by = "id") %>%
-  left_join(ns, by = "id")
-
-wages_lg
-```
-
-And highlight those individuals with more than 5 observations, and highlight those with a negative slope using `gghighlight`:
-
-```{r use-gg-highlight}
-library(gghighlight)
-
-wages_lg %>% 
-  filter(n_obs > 5) %>%
-  ggplot(aes(x = xp, 
-             y = ln_wages, 
-             group = id)) + 
-  geom_line() +
-  gghighlight(.slope_xp < 0,
-              use_direct_label = FALSE)
-```
-
-
-### `keys_near()`
-
-## Finding features in longitudinal data
-
-You can extract `features` of longitudinal data using the `features` function, which is imported from `fablelite` and `feasts`. You can, for example, calculate the minimum of a given variable for each key by providing a named list like so:
-
-```{r features-min}
-wages_ts %>%
-  features(ln_wages, 
-           list(min = min))
-```
-
-You want to get the first and last values using `dplyr::first` and `dplyr::last`
-
-```{r features-first-last}
-library(dplyr)
-
-wages_ts %>%
-  features(ln_wages, 
-           list(first = first,
-                last = last))
-```
-
-`brolgar` provides some helper features. For example, creating the five number summary:
-
-```{r features-five-num}
-wages_ts %>%
-  features(ln_wages, feat_five_num)
-```
-
-Or finding those whose values only increase or decrease with `monotonic`
-
-```{r features-monotonic}
-wages_ts %>%
-  features(ln_wages, feat_monotonic)
-```
-
-## Linking individuals back to the data
-
-You can join these features back to the data with `left_join`, like so:
-
-```{r features-left-join}
-wages_ts %>%
-  features(ln_wages, feat_monotonic) %>%
-  left_join(wages_ts, by = "id") %>%
-  filter(increase) %>%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id)) +
-  geom_line()
-```
-
 # A Note on the API
 
 This version of brolgar was been forked from [tprvan/brolgar](https://github.com/tprvan/brolgar), and has undergone breaking changes to the API.
 
-
 <!-- These are referred to as a **longnostics**, a portmanteau of **long**itudinal and **cognostic**. These **longnostics** make it straightforward to extract subjects with certain properties to gain some insight into the data.  -->
 
 
+<!-- But calculating this for individuals draws you away from your analysis, and instead you are now wrangling with a different problem: summarising key information about each individual and incorporating that back into the data.  -->
+
+<!-- This is annoying, and distracts from your analysis, inviting errors. -->

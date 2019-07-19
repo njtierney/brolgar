@@ -1,5 +1,5 @@
 ---
-title: "longitudinal-data-structures"
+title: "Longitudinal Data Structures"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{longitudinal-data-structures}
@@ -22,57 +22,49 @@ library(tsibble)
 
 All data has structure. There are ways that we can specify some permanent structure to the data, which gives some useful features later on, for free. This vignette discusses how to structure your longitudinal data as a time series, and what that means.
 
-This idea, that longitudinal data is a time series, is **Big Ideas #1** behind the `brolgar` package:
+This idea, that **longitudinal data is a time series**, is _Big Idea #1_ behind the `brolgar` package.
 
-> There is a permanent structure to your longitudinal data that we need to document and account for. This can be achieved by consider longitudinal data as a type of _time series_ data.
+> Anything that is observed sequentially over time is a time series. -- [Professors Rob Hyndman and George Athanasopolous](https://otexts.com/fpp2/data-methods.html)
 
-Now, there are many different ways to think about _what your data looks like_. Longitudinal data is often typically called "panel data", for example. I used to always think that "time series" was defined as something that was by definition "regular" - with equal spacings between observations. This is actually not the case - you can have both "regular", and "irregular" time series. Don't believe me? Well, take it up with Professors Rob Hyndman and George Athanasopolous, who say:
+Longitudinal data has a few other names, such as "panel data". I used to always think that "time series" was defined as something that was by definition "regular" - with equal spacings between observations. This is actually not the case - you can have both "regular", and "irregular" time series. 
 
-> Anything that is observed sequentially over time is a time series. (https://otexts.com/fpp2/data-methods.html)
+Why care about using a time series? Once we account for this time series structure inherent in longitudinal data, we gain access to a suite of nice tools that simplify and accelerate how we work with time series data.
 
-OK, so what's the big deal with this, why care? Well, it turns out that if we define our data as a time series object, we can get access to a whole suite of really nice tools to handle time series data. 
+## Converting your longitudinal data to a time series
 
-We can now convert our longitudinal data into a really nice format called a `tsibble`, which stands for "**t**ime **s**eries tibble", built on top of the `tibble`.
+To convert longitudinal data into a "**t**ime **s**eries tibble", a `tsibble`, we need to consider:
 
-How do we convert our longitudinal data to time series? We need to consider the following:
-
-* What identifies the time component of the data? This is the **index**
-* What is the unique identifier of an individual/series? This is the **key**
+* What identifies the **time** component of the data? This is the **index**
+* What is the **unique identifier** of an individual/series? This is the **key**
 
 Together, the **index** and **key** uniquely identify an observation.
 
-What do we mean by this? Let's look at the first section of the wages data:
+What do we mean by this? Let's look at the first section of the wages, **wages** data analysed in Singer & Willett (2003):
 
 ```{r slice-wages}
-slice(wages, 1:10)
+slice(wages_ts, 1:10)
 ```
 
 We have the `id` column, which identifies an individual.
 
-We also have the `exper` column, which identifies the `exper`ience an individual has.
+We also have the `xp` column, which identifies the experience an individual has.
 
 So:
 
 * key: `id`
 * index: `exper`
 
-We can specify these things using the `as_tsibble` function from `tsibble`, also stating, `regular = FALSE`, since we have an `irregular` time series.
+We could create a `tsibble` of this data by using the `as_tsibble` function from `tsibble`, also stating, `regular = FALSE`, since we have an `irregular` time series (the measurements are not regularly measured, and have a varying distance between each measurement):
 
-```{r create-tsibble, eval = FALSE}
+```{r create-tsibble}
 library(tsibble)
-wages_ts <- as_tsibble(x = wages,
-                       key = id,
-                       index = exper,
-                       regular = FALSE)
+as_tsibble(x = wages_ts,
+           key = id,
+           index = xp,
+           regular = FALSE)
 ```
 
-What does it look like?
-
-```{r print-wages}
-wages_ts
-```
-
-In particular, the following information is printed at the top:
+Note the following information printed at the top of `wages_ts`
 
 ```
 # A tsibble: 6,402 x 9 [!]
@@ -82,8 +74,7 @@ In particular, the following information is printed at the top:
 
 This says, we have `r nrow(wages_ts)` rows, with `r ncol(wages_ts)` columns. The `!` means that there is no regular spacing between series, and then our "key" is `id`, of which there `r n_keys(wages_ts)`.
 
-The `wages_ts` dataset is actually already made available inside the `brolgar` package, so you won't need to do this.
+# Using time series data in `brolgar`
 
-# So what?
+This idea of longitudinal data is core to brolgar. Other vignettes in the package will further show why the time series `tsibble` is useful.
 
-So why did we do this? Because this idea is very core to the rest of the package, and I wanted to have a place that demonstrated _how_ to do this. The other vignettes in the package will show _why_ that is useful.

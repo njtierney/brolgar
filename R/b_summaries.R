@@ -111,6 +111,7 @@ b_iqr <- function(x, na.rm = TRUE, ... ){
 #' A named list of the five number summary
 #' 
 #' Designed for use with the [keys_near()] function.
+#' @name l_funs
 #' @export
 l_five_num <- list(
     min = b_min,
@@ -119,3 +120,11 @@ l_five_num <- list(
     q_75 = b_q75,
     max = b_max
   )
+
+#' @rdname l_funs
+#' @export
+l_three_num <- list(
+  min = b_min,
+  med = b_median,
+  max = b_max
+)
