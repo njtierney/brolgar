@@ -9,7 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  fig.align = "center",
+  out.width = "75%"
 )
 ```
 # brolgar
@@ -40,9 +41,9 @@ These are hard to interpret.
 What you want is to identify those interesting individual lines, so you can get something like the following:
 
 ```{r show-monotonic, echo = FALSE}
-library(gghighlight)
-library(ggplot2)
-library(dplyr)
+suppressPackageStartupMessages(library(gghighlight))
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(dplyr))
 wages_ts %>%
   features(ln_wages, feat_monotonic) %>%
   left_join(wages_ts, by = "id") %>%
@@ -52,13 +53,12 @@ wages_ts %>%
   geom_line() + 
   gghighlight(increase)
 ```
-```
 
-This is what `brolgar` helps you do, by providing tools to:
+`brolgar` helps you **br**owse **o**ver **l**ongitudinal **d**ata **g**raphically and **a**nalytically in **R**, by providing tools to:
 
 * Calculate features (summaries) for each individual series
 * Efficiently explore your raw data
-* Evaluate statistical models.
+* Evaluate diagnostics of statistical models
 
 ## Installation
 
@@ -85,11 +85,13 @@ The term `key` is used a lot in brolgar, so it is an important idea to internali
 
 If you want to learn more about what longitudinal data as a time series, you can [read more in the vignette, "Longitudinal Data Structures"](library/brolgar/html/longitudinal-data-structures.html)
 
-## Quickly exploring longitudinal data
+## Efficiently exploring longitudinal data
+
+To avoid staring at a plate of spaghetti, you can look at a random subset of the data. Brolgar provides some intuitive functions to help with this.
 
 ### `sample_n_keys()`
 
-Just as in `dplyr` how you can use `sample_n()` to sample `n` observations, you can take a random sample of `n keys` using `sample_n_keys()`:
+In `dplyr`, you can use `sample_n()` to sample `n` observations. Similarly, with `brolgar`, you can take a random sample of `n` keys using `sample_n_keys()`:
 
 ```{r plot-sample-n-keys}
 set.seed(2019-7-15-1300)
@@ -101,7 +103,7 @@ wages_ts %>%
   geom_line()
 ```
 
-You could also combine with this `filter_n_obs` to only show keys with many observations:
+You can combine with this `filter_n_obs` to only show keys with many observations:
 
 ```{r plot-filter-sample-n-keys}
 set.seed(2019-7-15-1259)
@@ -114,7 +116,7 @@ wages_ts %>%
   geom_line()
 ```
 
-There is also `sample_frac_keys()`, which samples a fraction of available keys.
+(Note: `sample_frac_keys()`, which samples a fraction of available keys.)
 
 ### `stratify_keys()`
 
@@ -208,25 +210,16 @@ wages_ts %>%
            list(min = min))
 ```
 
-You want to get the first and last values using `dplyr::first` and `dplyr::last`
+`brolgar` provides some sets of features, which start with `feat_`.
 
-```{r features-first-last}
-library(dplyr)
-
-wages_ts %>%
-  features(ln_wages, 
-           list(first = first,
-                last = last))
-```
-
-`brolgar` provides some helper features. For example, creating the five number summary:
+For example, the five number summary is `feat_five_num`:
 
 ```{r features-five-num}
 wages_ts %>%
   features(ln_wages, feat_five_num)
 ```
 
-Or finding those whose values only increase or decrease with `monotonic`
+Or finding those whose values only increase or decrease with `feat_monotonic`
 
 ```{r features-monotonic}
 wages_ts %>%
@@ -247,6 +240,8 @@ wages_ts %>%
   geom_line() + 
   gghighlight(increase)
 ```
+
+## Other helper functions
 
 ### `n_key_obs()`
 

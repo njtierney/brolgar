@@ -45,9 +45,6 @@
   </a>
 </li>
 <li>
-  <a href="../articles/brolgar.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -58,19 +55,19 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/basic_exploration.html">Starting Steps</a>
-    </li>
-    <li>
       <a href="../articles/creating-features.html">creating-features</a>
     </li>
     <li>
       <a href="../articles/find-summary-keys.html">Finding summary keys</a>
     </li>
     <li>
-      <a href="../articles/longitudinal-data-structures.html">longitudinal-data-structures</a>
+      <a href="../articles/getting-started.html">Getting Started</a>
     </li>
     <li>
-      <a href="../articles/stats_on_stats.html">Stats on Stats: Workflows with Longnostics</a>
+      <a href="../articles/longitudinal-data-structures.html">Longitudinal Data Structures</a>
+    </li>
+    <li>
+      <a href="../articles/stats_on_stats.html">Stats on Stats: Workflows with `brolgar`</a>
     </li>
     <li>
       <a href="../articles/visualisation-gallery.html">Visualisation Gallery</a>
@@ -215,18 +212,18 @@
 <a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">right_join</span>(wages_ts, <span class="dt">by =</span> <span class="st">"id"</span>)</a>
 <a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt; # A tibble: 6,402 x 11</span></a>
 <a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt; # Groups:   stat [6]</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt;       id .slope_xp stat  ln_wages    xp   ged postexp black hispanic</span></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;  1    31        NA &lt;NA&gt;      1.49 0.015     1   0.015     0        1</span></a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;  2    31        NA &lt;NA&gt;      1.43 0.715     1   0.715     0        1</span></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt;  3    31        NA &lt;NA&gt;      1.47 1.73      1   1.73      0        1</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt;  4    31        NA &lt;NA&gt;      1.75 2.77      1   2.77      0        1</span></a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt;  5    31        NA &lt;NA&gt;      1.93 3.93      1   3.93      0        1</span></a>
-<a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt;  6    31        NA &lt;NA&gt;      1.71 4.95      1   4.95      0        1</span></a>
-<a class="sourceLine" id="cb7-14" title="14"><span class="co">#&gt;  7    31        NA &lt;NA&gt;      2.09 5.96      1   5.96      0        1</span></a>
-<a class="sourceLine" id="cb7-15" title="15"><span class="co">#&gt;  8    31        NA &lt;NA&gt;      2.13 6.98      1   6.98      0        1</span></a>
-<a class="sourceLine" id="cb7-16" title="16"><span class="co">#&gt;  9    36        NA &lt;NA&gt;      1.98 0.315     1   0.315     0        0</span></a>
-<a class="sourceLine" id="cb7-17" title="17"><span class="co">#&gt; 10    36        NA &lt;NA&gt;      1.80 0.983     1   0.983     0        0</span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt;       id .slope_xp stat  ln_wages    xp   ged xp_since_ged black hispanic</span></a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;  1    31        NA &lt;NA&gt;      1.49 0.015     1        0.015     0        1</span></a>
+<a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;  2    31        NA &lt;NA&gt;      1.43 0.715     1        0.715     0        1</span></a>
+<a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt;  3    31        NA &lt;NA&gt;      1.47 1.73      1        1.73      0        1</span></a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt;  4    31        NA &lt;NA&gt;      1.75 2.77      1        2.77      0        1</span></a>
+<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt;  5    31        NA &lt;NA&gt;      1.93 3.93      1        3.93      0        1</span></a>
+<a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt;  6    31        NA &lt;NA&gt;      1.71 4.95      1        4.95      0        1</span></a>
+<a class="sourceLine" id="cb7-14" title="14"><span class="co">#&gt;  7    31        NA &lt;NA&gt;      2.09 5.96      1        5.96      0        1</span></a>
+<a class="sourceLine" id="cb7-15" title="15"><span class="co">#&gt;  8    31        NA &lt;NA&gt;      2.13 6.98      1        6.98      0        1</span></a>
+<a class="sourceLine" id="cb7-16" title="16"><span class="co">#&gt;  9    36        NA &lt;NA&gt;      1.98 0.315     1        0.315     0        0</span></a>
+<a class="sourceLine" id="cb7-17" title="17"><span class="co">#&gt; 10    36        NA &lt;NA&gt;      1.80 0.983     1        0.983     0        0</span></a>
 <a class="sourceLine" id="cb7-18" title="18"><span class="co">#&gt; # … with 6,392 more rows, and 2 more variables: high_grade &lt;int&gt;,</span></a>
 <a class="sourceLine" id="cb7-19" title="19"><span class="co">#&gt; #   unemploy_rate &lt;dbl&gt;</span></a></code></pre></div>
 <p>These transformation steps have been compacted into a summary called, <code><a href="../reference/keys_near.html">keys_near()</a></code>:</p>

@@ -37,7 +37,7 @@
     <loc>http://brolgar.njtierney.com//reference/keys_near.html</loc>
   </url>
   <url>
-    <loc>http://brolgar.njtierney.com//reference/l_five_num.html</loc>
+    <loc>http://brolgar.njtierney.com//reference/l_funs.html</loc>
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//reference/monotonic.html</loc>
@@ -79,16 +79,13 @@
     <loc>http://brolgar.njtierney.com//reference/world_heights.html</loc>
   </url>
   <url>
-    <loc>http://brolgar.njtierney.com//articles/basic_exploration.html</loc>
-  </url>
-  <url>
-    <loc>http://brolgar.njtierney.com//articles/brolgar.html</loc>
-  </url>
-  <url>
     <loc>http://brolgar.njtierney.com//articles/creating-features.html</loc>
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//articles/find-summary-keys.html</loc>
+  </url>
+  <url>
+    <loc>http://brolgar.njtierney.com//articles/getting-started.html</loc>
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//articles/longitudinal-data-structures.html</loc>

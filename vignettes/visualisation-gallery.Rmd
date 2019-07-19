@@ -33,17 +33,6 @@ Sample n random individuals to explore
 
 For example, we can sample 20 random individuals, and then plot them. (perhaps change `sample_n_keys` into `sample_id`.)
 
-```{r}
-is_xp_in_wages <- "xp" %in% names(wages_ts)
-
-if (!is_xp_in_wages){
-  stop("xp isn't in names of wages_ts?", 
-       glue::glue_collapse(names(wages_ts), sep = ", ", last = ", and "),
-       glue::glue_collapse(class(wages_ts), sep = ", "))
-}
-```
-
-
 ```{r selected-sample}
 
 wages_ts %>%
@@ -130,7 +119,7 @@ gg_wages_slope +
 * create a factor by cutting `key_slope` into bins
 * animate over `key_slope_bins`, add information about the number of observations in each animation.
 
-# Exploring data using longnostics
+# Exploring data using features
 
 ## Scaling data
 
@@ -148,8 +137,6 @@ wages_ts %>%
   geom_line()
 
 ```
-
-
 
 ## all features
 

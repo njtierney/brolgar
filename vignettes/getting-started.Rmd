@@ -1,8 +1,8 @@
 ---
-title: "Starting Steps"
+title: "Getting Started"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Starting Steps}
+  %\VignetteIndexEntry{Getting Started}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -32,11 +32,11 @@ wages_ts <- as_tsibble(wages_ts,
                        regular = FALSE)
 ```
 
-To learn more about longitudinal data as time series, see the vignette: [longitudinal-data-structures]()
+To learn more about longitudinal data as time series, see the vignette: [Longitudinal Data Structures]()
 
 # Basic summaries of the data
 
-When you first get a dataset, you need to 
+When you first get a dataset, you need to get an overall sense of what is in the data.
 
 ## How many observations are there?
 
@@ -52,7 +52,7 @@ Note that this is a single number, in this case, we have `r n_keys(wages_ts)` ob
 
 However, we might want to know how many observations we have for each individual. If we want the number of observations in each key (id), then we can use `n_key_obs`.
 
-```{r l-n-obs}
+```{r n-key-obs}
 n_key_obs(wages_ts)
 ```
 
@@ -71,7 +71,7 @@ n_key_obs(wages_ts) %>%
 
 With your longitudinal data, you want to look at as much of the raw data as possible.
 
-We know that looking at the `ln_wages` and `xpt` yields a plate of spaghetti:
+We know that looking at the `ln_wages` and `xp` yields a plate of spaghetti:
 
 ```{r show-spag}
 library(ggplot2)
@@ -118,12 +118,12 @@ wages_ts %>%
   geom_line()
 ```
 
-That's not bad, but we can split this up into a few random groups with `stratify_key`, and then plot those groups:
+That's not bad, but we can split this up into a few random groups with `stratify_keys`, and then plot those groups:
 
 ```{r show-add-k-groups}
 wages_ts %>%
   filter_n_obs(n_obs > 3) %>%
-  sample_n_keys(size = 120) %>%
+  sample_n_keys(size = 60) %>%
   stratify_keys(n_strata = 12) %>%
   ggplot(aes(x = ln_wages,
              y = xp,
@@ -169,19 +169,3 @@ wages_slope <- wages_ts %>%
   facet_wrap(~slope_group, nrow = 2)
   
 ```
-
-Or we can break the slope up into a few groups:
-
-```{r}
-
-# wages_slope %>%
-#   arrange(.slope_ln_wages) %>%
-#   stratify_keys(n_strata = 10) %>%
-#  ggplot(wages_slope,
-#          aes(x = ln_wages,
-#              y = xp,
-#              group = id)) + 
-#   geom_line() + 
-#   facet_wrap(~.strata)
-```
-

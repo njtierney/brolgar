@@ -1,8 +1,8 @@
 ---
-title: "Stats on Stats: Workflows with Longnostics"
+title: "Stats on Stats: Workflows with `brolgar`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Stats on Stats: Workflows with Longnostics}
+  %\VignetteIndexEntry{Stats on Stats: Workflows with `brolgar`}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -22,8 +22,10 @@ library(brolgar)
 To better understand longitudinal data we can think about some of the exploratory data analysis happening over three datasets:
 
 1. The full data, which contain profiles of the longitudinal observations
-2. The longnostics, which contain the longitudinal cognostics for each id
-3. The statistics on the longnostics. These are "stats on stats" of longitudinal data.
+2. The features, which contain the summary features for each unique key that identifies a group
+3. The statistics on the features.
+
+These are "stats on stats" of longitudinal data.
 
 Let's expand on this.
 
@@ -33,30 +35,30 @@ We have the full set of data, which we can look at in "full spaghetti" form like
 
 ```{r full-spaghetti}
 library(ggplot2)
-ggplot(wages,
-       aes(x = exper,
-           y = uerate,
+ggplot(wages_ts,
+       aes(x = xp,
+           y = ln_wages,
            group = id)) + 
   geom_line()
 ```
 
 So here we have our data
 ```{r top-tail}
-head(wages)
-tail(wages)
+head(wages_ts)
+tail(wages_ts)
 ```
 
-## The longnostics
+## The Features
 
-Now we can consider the longnostics, just say for example we are only interested in the maximum of `lnw`:
+Now we can consider the features, just say for example we are only interested in the maximum of `ln_wages`, we can do the following:
 
 ```{r wages-lnw-max}
-max_wages <- wages_ts %>% features(lnw, list(max = max))
+max_wages <- wages_ts %>% features(ln_wages, list(max = max))
 ```
 
-## The statistics on longnostics
+## The statistics on features
 
-And from here we can explore the longnostics - what is the distribution of the maximum values?
+And from here we can explore the features - what is the distribution of the maximum values?
 
 ```{r plot-max}
 ggplot(max_wages,
@@ -70,22 +72,33 @@ We can get the summary of these:
 summary(max_wages$max)
 ```
 
-And now we want to identify those individuals who are at, or closest to the quartiles.
+And now we want to identify those individuals who are at, or closest to the quartiles using `keys_near()`.
 
-```{r stats-on-stats}
+```{r stats-on-stats-libs}
 library(purrr)
 library(tidyr)
 library(dplyr)
 library(brolgar)
 library(glue)
+```
 
+```{r}
+quantiles_near <- keys_near(max_wages,
+                            key = id,
+                            var = max,
+                            funs = l_three_num)
+```
+
+
+```{r stats-on-stats}
 max_quants <- quantile(x = max_wages[["max"]],
-                         probs = c(0.25, 0.5, 0.75),
-                         type = 7)
+                       probs = c(0.25, 0.5, 0.75))
 
 part_near <- partial(near,
                      y = max_wages[["max"]],
                      tol = 0.05)
+
+
 
 summarise_l_max_wages <- max_wages %>%
   summarise(id = list(id), 

@@ -33,31 +33,21 @@ ggplot(wages_ts,
   geom_line()
 ```
 
-<img src="man/figures/README-show-spaghetti-1.png" width="100%" />
+<img src="man/figures/README-show-spaghetti-1.png" width="75%" style="display: block; margin: auto;" />
 
 These are hard to interpret.
 
 What you want is to identify those interesting individual lines, so you
 can get something like the following:
 
-    #> 
-    #> Attaching package: 'dplyr'
-    #> The following objects are masked from 'package:stats':
-    #> 
-    #>     filter, lag
-    #> The following objects are masked from 'package:base':
-    #> 
-    #>     intersect, setdiff, setequal, union
+<img src="man/figures/README-show-monotonic-1.png" width="75%" style="display: block; margin: auto;" />
 
-<img src="man/figures/README-show-monotonic-1.png" width="100%" />
+`brolgar` helps you **br**owse **o**ver **l**ongitudinal **d**ata
+**g**raphically and **a**nalytically in **R**, by providing tools to:
 
-```` 
-
-This is what `brolgar` helps you do, by providing tools to:
-
-* Calculate features (summaries) for each individual series
-* Efficiently explore your raw data
-* Evaluate statistical models.
+  - Calculate features (summaries) for each individual series
+  - Efficiently explore your raw data
+  - Evaluate diagnostics of statistical models
 
 ## Installation
 
@@ -66,7 +56,7 @@ Install from [GitHub](https://github.com/) with:
 ``` r
 # install.packages("remotes")
 remotes::install_github("njtierney/brolgar")
-````
+```
 
 # Data in `brolgar`
 
@@ -90,13 +80,17 @@ If you want to learn more about what longitudinal data as a time series,
 you can [read more in the vignette, “Longitudinal Data
 Structures”](library/brolgar/html/longitudinal-data-structures.html)
 
-## Quickly exploring longitudinal data
+## Efficiently exploring longitudinal data
+
+To avoid staring at a plate of spaghetti, you can look at a random
+subset of the data. Brolgar provides some intuitive functions to help
+with this.
 
 ### `sample_n_keys()`
 
-Just as in `dplyr` how you can use `sample_n()` to sample `n`
-observations, you can take a random sample of `n keys` using
-`sample_n_keys()`:
+In `dplyr`, you can use `sample_n()` to sample `n` observations.
+Similarly, with `brolgar`, you can take a random sample of `n` keys
+using `sample_n_keys()`:
 
 ``` r
 set.seed(2019-7-15-1300)
@@ -108,10 +102,10 @@ wages_ts %>%
   geom_line()
 ```
 
-<img src="man/figures/README-plot-sample-n-keys-1.png" width="100%" />
+<img src="man/figures/README-plot-sample-n-keys-1.png" width="75%" style="display: block; margin: auto;" />
 
-You could also combine with this `filter_n_obs` to only show keys with
-many observations:
+You can combine with this `filter_n_obs` to only show keys with many
+observations:
 
 ``` r
 set.seed(2019-7-15-1259)
@@ -124,10 +118,10 @@ wages_ts %>%
   geom_line()
 ```
 
-<img src="man/figures/README-plot-filter-sample-n-keys-1.png" width="100%" />
+<img src="man/figures/README-plot-filter-sample-n-keys-1.png" width="75%" style="display: block; margin: auto;" />
 
-There is also `sample_frac_keys()`, which samples a fraction of
-available keys.
+(Note: `sample_frac_keys()`, which samples a fraction of available
+keys.)
 
 ### `stratify_keys()`
 
@@ -173,7 +167,7 @@ wages_ts %>%
   facet_wrap(~.strata)
 ```
 
-<img src="man/figures/README-plot-strata-1.png" width="100%" />
+<img src="man/figures/README-plot-strata-1.png" width="75%" style="display: block; margin: auto;" />
 
 ## Exploratory modelling
 
@@ -240,7 +234,7 @@ wages_slope %>%
   gghighlight(.slope_xp < 0)
 ```
 
-<img src="man/figures/README-use-gg-highlight-1.png" width="100%" />
+<img src="man/figures/README-use-gg-highlight-1.png" width="75%" style="display: block; margin: auto;" />
 
 ### Find keys near other summaries with `keys_near()`
 
@@ -285,7 +279,7 @@ wages_slope %>%
   geom_line()
 ```
 
-<img src="man/figures/README-keys-near-plot-1.png" width="100%" />
+<img src="man/figures/README-keys-near-plot-1.png" width="75%" style="display: block; margin: auto;" />
 
 ## Finding features in longitudinal data
 
@@ -313,34 +307,9 @@ wages_ts %>%
 #> # … with 878 more rows
 ```
 
-You want to get the first and last values using `dplyr::first` and
-`dplyr::last`
+`brolgar` provides some sets of features, which start with `feat_`.
 
-``` r
-library(dplyr)
-
-wages_ts %>%
-  features(ln_wages, 
-           list(first = first,
-                last = last))
-#> # A tibble: 888 x 3
-#>       id first  last
-#>    <int> <dbl> <dbl>
-#>  1    31  1.49  2.13
-#>  2    36  1.98  2.33
-#>  3    53  1.76  1.66
-#>  4   122  2.12  2.67
-#>  5   134  2.00  2.76
-#>  6   145  1.56  1.91
-#>  7   155  1.78  2.64
-#>  8   173  1.56  2.34
-#>  9   206  2.03  2.48
-#> 10   207  1.58  2.26
-#> # … with 878 more rows
-```
-
-`brolgar` provides some helper features. For example, creating the five
-number summary:
+For example, the five number summary is `feat_five_num`:
 
 ``` r
 wages_ts %>%
@@ -361,7 +330,8 @@ wages_ts %>%
 #> # … with 878 more rows
 ```
 
-Or finding those whose values only increase or decrease with `monotonic`
+Or finding those whose values only increase or decrease with
+`feat_monotonic`
 
 ``` r
 wages_ts %>%
@@ -397,7 +367,9 @@ wages_ts %>%
   gghighlight(increase)
 ```
 
-<img src="man/figures/README-features-left-join-1.png" width="100%" />
+<img src="man/figures/README-features-left-join-1.png" width="75%" style="display: block; margin: auto;" />
+
+## Other helper functions
 
 ### `n_key_obs()`
 
@@ -435,7 +407,7 @@ ggplot(aes(x = n_obs)) +
   geom_bar()
 ```
 
-<img src="man/figures/README-summarise-n-obs-1.png" width="100%" />
+<img src="man/figures/README-summarise-n-obs-1.png" width="75%" style="display: block; margin: auto;" />
 
 ``` r
 

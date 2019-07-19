@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Brolgar summaries (b_summaries) — b_min • brolgar</title>
+<title>A named list of the five number summary — l_funs • brolgar</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -36,24 +36,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Brolgar summaries (b_summaries) — b_min" />
+<meta property="og:title" content="A named list of the five number summary — l_funs" />
 
-<meta property="og:description" content="Customised summaries of vectors with appropriate defaults for longitudinal
-data. The functions are prefixed with b_ to assist with autocomplete.
-The defaults are to use na.rm = TRUE for all, and for calculations
-involving quantiles, type = 8 and names = FALSE. Summaries include:
-* b_min: The minimum
-* b_max: The maximum
-* b_median: The median
-* b_mean: The mean
-* b_q25: The 25th quantile
-* b_q75: The 75th quantile
-* b_range: The range
-* b_range_diff: difference in range (max - min)
-* b_sd: The standard deviation
-* b_var: The variance
-* b_mad: The mean absolute deviation
-* b_iqr: The Inter-quartile range" />
+<meta property="og:description" content="Designed for use with the keys_near() function." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -151,80 +136,33 @@ involving quantiles, type = 8 and names = FALSE. Summaries include:
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Brolgar summaries (b_summaries)</h1>
+    <h1>A named list of the five number summary</h1>
     
-    <div class="hidden name"><code>b_summaries.Rd</code></div>
+    <div class="hidden name"><code>l_funs.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Customised summaries of vectors with appropriate defaults for longitudinal
-data. The functions are prefixed with <code>b_</code> to assist with autocomplete.
-The defaults are to use <code>na.rm = TRUE</code> for all, and for calculations
-involving quantiles, <code>type = 8</code> and <code>names = FALSE</code>. Summaries include:
-* b_min: The minimum
-* b_max: The maximum
-* b_median: The median
-* b_mean: The mean
-* b_q25: The 25th quantile
-* b_q75: The 75th quantile
-* b_range: The range
-* b_range_diff: difference in range (max - min)
-* b_sd: The standard deviation
-* b_var: The variance
-* b_mad: The mean absolute deviation
-* b_iqr: The Inter-quartile range</p>
+    <p>Designed for use with the <code><a href='keys_near.html'>keys_near()</a></code> function.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>b_min</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='no'>l_five_num</span>
 
-<span class='fu'>b_max</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='no'>l_three_num</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-<span class='fu'>b_median</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_mean</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_q25</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_q75</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_range</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_range_diff</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_sd</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_var</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_mad</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_iqr</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>a vector</p></td>
-    </tr>
-    <tr>
-      <th>na.rm</th>
-      <td><p>whether to remove NA values. Default is TRUE</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>other arguments to pass</p></td>
-    </tr>
-    </table>
+    <p>An object of class <code>list</code> of length 5.</p>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#format">Format</a></li>
+          </ul>
 
   </div>
 </div>

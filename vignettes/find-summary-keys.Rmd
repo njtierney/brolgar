@@ -2,7 +2,7 @@
 title: "Finding summary keys"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{finding-summary-keys}
+  %\VignetteIndexEntry{Finding Summary Keys}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

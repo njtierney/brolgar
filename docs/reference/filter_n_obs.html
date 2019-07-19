@@ -84,9 +84,6 @@ filter by the number of observations for each key." />
   </a>
 </li>
 <li>
-  <a href="../articles/brolgar.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -97,19 +94,19 @@ filter by the number of observations for each key." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/basic_exploration.html">Starting Steps</a>
-    </li>
-    <li>
       <a href="../articles/creating-features.html">creating-features</a>
     </li>
     <li>
       <a href="../articles/find-summary-keys.html">Finding summary keys</a>
     </li>
     <li>
-      <a href="../articles/longitudinal-data-structures.html">longitudinal-data-structures</a>
+      <a href="../articles/getting-started.html">Getting Started</a>
     </li>
     <li>
-      <a href="../articles/stats_on_stats.html">Stats on Stats: Workflows with Longnostics</a>
+      <a href="../articles/longitudinal-data-structures.html">Longitudinal Data Structures</a>
+    </li>
+    <li>
+      <a href="../articles/stats_on_stats.html">Stats on Stats: Workflows with `brolgar`</a>
     </li>
     <li>
       <a href="../articles/visualisation-gallery.html">Visualisation Gallery</a>
@@ -188,33 +185,34 @@ each <code>key</code>.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>wages_ts</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_n_obs</span>(<span class='no'>n_obs</span> <span class='kw'>&gt;</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tsibble: 1,105 x 10 [!]</span><span>
 #&gt; </span><span style='color: #555555;'># Key:       id [97]</span><span>
-#&gt;       id ln_wages    xp   ged postexp black hispanic high_grade unemploy_rate
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>   134     2.00 0.192     0    0        0        0         11          5.8 
-#&gt; </span><span style='color: #555555;'> 2</span><span>   134     2.10 0.972     0    0        0        0         11          5.49
-#&gt; </span><span style='color: #555555;'> 3</span><span>   134     2.32 1.93      0    0        0        0         11          6.09
-#&gt; </span><span style='color: #555555;'> 4</span><span>   134     2.39 2.95      0    0        0        0         11          8.4 
-#&gt; </span><span style='color: #555555;'> 5</span><span>   134     2.26 3.92      1    0        0        0         11          8.1 
-#&gt; </span><span style='color: #555555;'> 6</span><span>   134     2.33 4.64      1    0.72     0        0         11          6.39
-#&gt; </span><span style='color: #555555;'> 7</span><span>   134     2.30 5.64      1    1.72     0        0         11          5.89
-#&gt; </span><span style='color: #555555;'> 8</span><span>   134     2.67 6.75      1    2.84     0        0         11          5.09
-#&gt; </span><span style='color: #555555;'> 9</span><span>   134     2.81 8.25      1    4.34     0        0         11          2.8 
-#&gt; </span><span style='color: #555555;'>10</span><span>   134     2.93 9.02      1    5.11     0        0         11          3.19
-#&gt; </span><span style='color: #555555;'># … with 1,095 more rows, and 1 more variable: n_obs </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'><span class='no'>wages_ts</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_n_obs</span>(<span class='no'>n_obs</span> <span class='kw'>==</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tsibble: 78 x 10 [!]</span><span>
+#&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>   134     2.00 0.192     0         0        0        0         11
+#&gt; </span><span style='color: #555555;'> 2</span><span>   134     2.10 0.972     0         0        0        0         11
+#&gt; </span><span style='color: #555555;'> 3</span><span>   134     2.32 1.93      0         0        0        0         11
+#&gt; </span><span style='color: #555555;'> 4</span><span>   134     2.39 2.95      0         0        0        0         11
+#&gt; </span><span style='color: #555555;'> 5</span><span>   134     2.26 3.92      1         0        0        0         11
+#&gt; </span><span style='color: #555555;'> 6</span><span>   134     2.33 4.64      1         0.72     0        0         11
+#&gt; </span><span style='color: #555555;'> 7</span><span>   134     2.30 5.64      1         1.72     0        0         11
+#&gt; </span><span style='color: #555555;'> 8</span><span>   134     2.67 6.75      1         2.84     0        0         11
+#&gt; </span><span style='color: #555555;'> 9</span><span>   134     2.81 8.25      1         4.34     0        0         11
+#&gt; </span><span style='color: #555555;'>10</span><span>   134     2.93 9.02      1         5.11     0        0         11
+#&gt; </span><span style='color: #555555;'># … with 1,095 more rows, and 2 more variables: unemploy_rate </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   n_obs </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'><span class='no'>wages_ts</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_n_obs</span>(<span class='no'>n_obs</span> <span class='kw'>==</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tsibble: 78 x 10 [!]</span><span>
 #&gt; </span><span style='color: #555555;'># Key:       id [39]</span><span>
-#&gt;       id ln_wages    xp   ged postexp black hispanic high_grade unemploy_rate
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>   518    1.27  0.525     1   0.525     1        0          8         10.7 
-#&gt; </span><span style='color: #555555;'> 2</span><span>   518    1.61  1.93      1   1.93      1        0          8         10.7 
-#&gt; </span><span style='color: #555555;'> 3</span><span>  </span><span style='text-decoration: underline;'>1</span><span>687    1.66  0.688     0   0         1        0         10          5.39
-#&gt; </span><span style='color: #555555;'> 4</span><span>  </span><span style='text-decoration: underline;'>1</span><span>687    1.26  0.825     0   0         1        0         10          5.3 
-#&gt; </span><span style='color: #555555;'> 5</span><span>  </span><span style='text-decoration: underline;'>2</span><span>178    1.52  0.923     0   0         0        0          8          8.1 
-#&gt; </span><span style='color: #555555;'> 6</span><span>  </span><span style='text-decoration: underline;'>2</span><span>178    1.75  1.96      0   0         0        0          8         11.1 
-#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>2</span><span>456    0.898 4         0   0         0        0         11         12.1 
-#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>2</span><span>456    1.22  5         0   0         0        0         11         12   
-#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>2</span><span>612    1.42  0.875     1   0.875     0        0          8          7.73
-#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>2</span><span>612    1.57  1.14      1   1.14      0        0          8          7.73
-#&gt; </span><span style='color: #555555;'># … with 68 more rows, and 1 more variable: n_obs </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'>
+#&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>   518    1.27  0.525     1        0.525     1        0          8
+#&gt; </span><span style='color: #555555;'> 2</span><span>   518    1.61  1.93      1        1.93      1        0          8
+#&gt; </span><span style='color: #555555;'> 3</span><span>  </span><span style='text-decoration: underline;'>1</span><span>687    1.66  0.688     0        0         1        0         10
+#&gt; </span><span style='color: #555555;'> 4</span><span>  </span><span style='text-decoration: underline;'>1</span><span>687    1.26  0.825     0        0         1        0         10
+#&gt; </span><span style='color: #555555;'> 5</span><span>  </span><span style='text-decoration: underline;'>2</span><span>178    1.52  0.923     0        0         0        0          8
+#&gt; </span><span style='color: #555555;'> 6</span><span>  </span><span style='text-decoration: underline;'>2</span><span>178    1.75  1.96      0        0         0        0          8
+#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>2</span><span>456    0.898 4         0        0         0        0         11
+#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>2</span><span>456    1.22  5         0        0         0        0         11
+#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>2</span><span>612    1.42  0.875     1        0.875     0        0          8
+#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>2</span><span>612    1.57  1.14      1        1.14      0        0          8
+#&gt; </span><span style='color: #555555;'># … with 68 more rows, and 2 more variables: unemploy_rate </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, n_obs </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
