@@ -25,6 +25,7 @@ each other.
 
 ``` r
 library(brolgar)
+#> Loading required package: tsibble
 library(ggplot2)
 ggplot(wages_ts, 
        aes(x = xp, 
@@ -168,6 +169,39 @@ wages_ts %>%
 ```
 
 <img src="man/figures/README-plot-strata-1.png" width="75%" style="display: block; margin: auto;" />
+
+## Clever facets
+
+`brolgar` provides some clever facets to help make it easier to explore
+your data. `facet_strata()` splits the data into 12 groups by default:
+
+``` r
+set.seed(2019-07-23-1936)
+library(ggplot2)
+ggplot(wages_ts,
+       aes(x = xp,
+           y = ln_wages,
+           group = id)) +
+  geom_line() +
+  facet_strata()
+```
+
+<img src="man/figures/README-facet-strata-1.png" width="75%" style="display: block; margin: auto;" />
+
+And `facet_sample()` allows you to specify an ideal “n per plot” and “n
+facets”. It splits the data into 12 facets with 5 per group by default:
+
+``` r
+set.seed(2019-07-23-1937)
+ggplot(wages_ts,
+       aes(x = xp,
+           y = ln_wages,
+           group = id)) +
+  geom_line() +
+  facet_sample()
+```
+
+<img src="man/figures/README-facet-sample-1.png" width="75%" style="display: block; margin: auto;" />
 
 ## Exploratory modelling
 

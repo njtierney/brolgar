@@ -142,6 +142,34 @@ wages_ts %>%
   facet_wrap(~.strata)
 ```
 
+## Clever facets
+
+`brolgar` provides some clever facets to help make it easier to explore your data. `facet_strata()` splits the data into 12 groups by default:
+
+```{r facet-strata}
+set.seed(2019-07-23-1936)
+library(ggplot2)
+ggplot(wages_ts,
+       aes(x = xp,
+           y = ln_wages,
+           group = id)) +
+  geom_line() +
+  facet_strata()
+```
+
+And `facet_sample()` allows you to specify an ideal "n per plot" and "n facets". It splits the data into 12 facets with 5 per group by default:
+
+```{r facet-sample}
+set.seed(2019-07-23-1937)
+ggplot(wages_ts,
+       aes(x = xp,
+           y = ln_wages,
+           group = id)) +
+  geom_line() +
+  facet_sample()
+
+```
+
 
 ## Exploratory modelling
 
