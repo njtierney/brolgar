@@ -9,6 +9,8 @@
 #'  * country: The Country. This forms the identifying `key`.
 #'  * year: Year. This forms the time `index`.
 #'  * height_cm: Average male height in centimeters.
+#'  * continent: continent extracted from country name using `countrycode` 
+#'    package (https://joss.theoj.org/papers/10.21105/joss.00848).
 #' 
 #' For more information, see the article: "Why are you tall while others are 
 #'   short? Agricultural production and other proximate determinants of global

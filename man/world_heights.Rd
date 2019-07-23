@@ -4,7 +4,7 @@
 \name{world_heights}
 \alias{world_heights}
 \title{World Height Data}
-\format{An object of class \code{tbl_ts} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 1499 rows and 3 columns.}
+\format{An object of class \code{tbl_ts} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 1499 rows and 4 columns.}
 \usage{
 world_heights
 }
@@ -19,6 +19,8 @@ the variables:
 \item country: The Country. This forms the identifying \code{key}.
 \item year: Year. This forms the time \code{index}.
 \item height_cm: Average male height in centimeters.
+\item continent: continent extracted from country name using \code{countrycode}
+package (https://joss.theoj.org/papers/10.21105/joss.00848).
 }
 
 For more information, see the article: "Why are you tall while others are

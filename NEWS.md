@@ -11,6 +11,8 @@
 * rename `l_summarise()` to `keys_near()`
 * make monotonic functions return FALSE if length == 1. 
 * add `monotonic` function, which returns TRUE if increasing or decreasing, and false otherwise.
+* re export `as_tsibble()` and `n_keys()` from `tsibble
+* `world_heights` gains a continent column
 
 # brolgar 0.0.1.9000
 
