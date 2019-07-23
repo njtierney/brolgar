@@ -37,6 +37,7 @@ a ggplot object
 Facet data into groups to facilitate exploration
 }
 \examples{
+library(ggplot2)
 ggplot(world_heights,
 aes(x = year,
     y = height_cm,

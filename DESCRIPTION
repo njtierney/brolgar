@@ -45,7 +45,8 @@ Suggests:
     readr,
     rmarkdown,
     spelling,
-    testthat (>= 2.1.0)
+    testthat (>= 2.1.0),
+    vdiffr
 VignetteBuilder: 
     knitr
 Remotes: 

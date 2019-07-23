@@ -41,6 +41,7 @@ a ggplot object
 Facet data into groups to facilitate exploration
 }
 \examples{
+library(ggplot2)
 ggplot(world_heights,
        aes(x = year,
            y = height_cm,
@@ -62,6 +63,7 @@ ggplot(wages_ts,
   geom_line() +
   facet_strata(along = xp_since_ged)
 
+library(dplyr)
 wages_ts \%>\%
   key_slope(ln_wages ~ xp) \%>\%
   right_join(wages_ts, ., by = "id") \%>\%
