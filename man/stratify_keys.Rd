@@ -2,20 +2,20 @@
 % Please edit documentation in R/stratify-keys.R
 \name{stratify_keys}
 \alias{stratify_keys}
-\title{Stratify the keys into random groups to facilitate exploration}
+\title{Stratify the keys into groups to facilitate exploration}
 \usage{
-stratify_keys(.data, n_strata, along = NULL, fun, ...)
+stratify_keys(.data, n_strata, along = NULL, fun = mean, ...)
 }
 \arguments{
 \item{.data}{data.frame to explore}
 
-\item{n_strata}{number of random groups to create}
+\item{n_strata}{number of groups to create}
 
 \item{along}{variable to stratify along. This groups by each \code{key} and then
 takes a summary statistic (by default, the mean). It then arranges by the
 mean value for each \code{key} and assigns the \code{n_strata} groups.}
 
-\item{fun}{summary function}
+\item{fun}{summary function. Default is mean.}
 
 \item{...}{extra arguments}
 }
@@ -23,7 +23,7 @@ mean value for each \code{key} and assigns the \code{n_strata} groups.}
 data.frame with column, \code{.strata} containing \code{n_strata} groups
 }
 \description{
-Stratify the keys into random groups to facilitate exploration
+Stratify the keys into groups to facilitate exploration
 }
 \examples{
 library(ggplot2)

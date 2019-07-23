@@ -26,5 +26,20 @@
 #'            y = height_cm, 
 #'            group = country)) + 
 #'     geom_line()
+#'     
+#' ggplot(world_heights,
+#'        aes(x = year,
+#'            y = height_cm,
+#'            group = country)) +
+#'   geom_line() +
+#'   facet_strata()
+#' 
+#' ggplot(world_heights,
+#'        aes(x = year,
+#'            y = height_cm,
+#'            group = country)) +
+#'   geom_line() +
+#'   facet_wrap(~continent)
+#' 
 #' }
 "world_heights"
