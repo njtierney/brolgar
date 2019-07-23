@@ -29,6 +29,7 @@ Imports:
     dplyr,
     fablelite (>= 0.0.0.9100),
     feasts (>= 0.0.0.9001),
+    ggplot2,
     glue,
     magrittr,
     purrr,
@@ -40,7 +41,6 @@ Imports:
 Suggests: 
     covr,
     gghighlight,
-    ggplot2,
     knitr,
     readr,
     rmarkdown,
