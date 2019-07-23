@@ -4,12 +4,18 @@
 \alias{stratify_keys}
 \title{Stratify the keys into random groups to facilitate exploration}
 \usage{
-stratify_keys(.data, n_strata, ...)
+stratify_keys(.data, n_strata, along = NULL, fun, ...)
 }
 \arguments{
 \item{.data}{data.frame to explore}
 
 \item{n_strata}{number of random groups to create}
+
+\item{along}{variable to stratify along. This groups by each \code{key} and then
+takes a summary statistic (by default, the mean). It then arranges by the
+mean value for each \code{key} and assigns the \code{n_strata} groups.}
+
+\item{fun}{summary function}
 
 \item{...}{extra arguments}
 }
@@ -31,4 +37,29 @@ wages_ts \%>\%
             group = id)) + 
  geom_line() + 
  facet_wrap(~.strata)
+ 
+ # now facet along some feature
+ 
+library(dplyr)
+ wages_ts \%>\%
+key_slope(ln_wages ~ xp) \%>\%
+  right_join(wages_ts, ., by = "id") \%>\%
+  stratify_keys(n_strata = 12,
+                along = .slope_xp,
+                fun = median) \%>\%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id)) + 
+  geom_line() + 
+  facet_wrap(~.strata)
+
+
+wages_ts \%>\%
+  stratify_keys(n_strata = 12,
+                along = unemploy_rate) \%>\%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id)) + 
+  geom_line() + 
+  facet_wrap(~.strata)
 }

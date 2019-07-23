@@ -12,7 +12,8 @@
 * make monotonic functions return FALSE if length == 1. 
 * add `monotonic` function, which returns TRUE if increasing or decreasing, and false otherwise.
 * re export `as_tsibble()` and `n_keys()` from `tsibble
-* `world_heights` gains a continent column
+* Data `world_heights` gains a continent column
+* Implement `facet_strata()` to create a random group of size `n_strata` to put the data into (#32)
 
 # brolgar 0.0.1.9000
 
