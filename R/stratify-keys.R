@@ -1,11 +1,11 @@
-#' Stratify the keys into random groups to facilitate exploration
+#' Stratify the keys into groups to facilitate exploration
 #'
 #' @param .data data.frame to explore
-#' @param n_strata number of random groups to create
+#' @param n_strata number of groups to create
 #' @param along variable to stratify along. This groups by each `key` and then 
 #'   takes a summary statistic (by default, the mean). It then arranges by the 
 #'   mean value for each `key` and assigns the `n_strata` groups.
-#' @param fun summary function
+#' @param fun summary function. Default is mean.
 #' @param ... extra arguments
 #'
 #' @return data.frame with column, `.strata` containing `n_strata` groups
@@ -47,7 +47,7 @@
 #'              group = id)) + 
 #'   geom_line() + 
 #'   facet_wrap(~.strata)
-stratify_keys <- function(.data, n_strata, along = NULL, fun, ...){
+stratify_keys <- function(.data, n_strata, along = NULL, fun = mean, ...){
   test_if_tsibble(.data)
   test_if_null(.data)
   UseMethod("stratify_keys")

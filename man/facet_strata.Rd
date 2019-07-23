@@ -2,13 +2,20 @@
 % Please edit documentation in R/facet-strata.R
 \name{facet_strata}
 \alias{facet_strata}
-\title{Facet data into n strata}
+\title{Facet data into groups to facilitate exploration}
 \usage{
-facet_strata(n_strata = 12, nrow = NULL, ncol = NULL,
-  scales = "fixed", shrink = TRUE, strip.position = "top")
+facet_strata(n_strata = 12, along = NULL, fun = mean, nrow = NULL,
+  ncol = NULL, scales = "fixed", shrink = TRUE,
+  strip.position = "top")
 }
 \arguments{
-\item{n_strata}{Number of facet panels. Default is 12}
+\item{n_strata}{number of groups to create}
+
+\item{along}{variable to stratify along. This groups by each \code{key} and then
+takes a summary statistic (by default, the mean). It then arranges by the
+mean value for each \code{key} and assigns the \code{n_strata} groups.}
+
+\item{fun}{summary function. Default is mean.}
 
 \item{nrow}{Number of rows and columns.}
 
@@ -31,14 +38,36 @@ either of the four sides by setting \code{strip.position = c("top",
 a ggplot object
 }
 \description{
-Facet data into n strata
+Facet data into groups to facilitate exploration
 }
 \examples{
-library(ggplot2)
 ggplot(world_heights,
        aes(x = year,
            y = height_cm,
-           group = country)) + 
-  geom_line() + 
+           group = country)) +
+  geom_line() +
   facet_strata()
+
+ggplot(world_heights,
+       aes(x = year,
+           y = height_cm,
+           group = country)) +
+  geom_line() +
+  facet_wrap(~continent)
+
+ggplot(wages_ts,
+       aes(x = xp,
+           y = ln_wages,
+           group = id)) +
+  geom_line() +
+  facet_strata(along = xp_since_ged)
+
+wages_ts \%>\%
+  key_slope(ln_wages ~ xp) \%>\%
+  right_join(wages_ts, ., by = "id") \%>\%
+  ggplot(aes(x = xp,
+             y = ln_wages)) +
+  geom_line(aes(group = id)) +
+  geom_smooth(method = "lm") + 
+  facet_strata(along = .slope_xp)
 }
