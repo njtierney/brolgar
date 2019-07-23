@@ -4,12 +4,14 @@
 \alias{stratify_keys}
 \title{Stratify the keys into random groups to facilitate exploration}
 \usage{
-stratify_keys(.data, n_strata, ...)
+stratify_keys(.data, n_strata, along = NULL, ...)
 }
 \arguments{
 \item{.data}{data.frame to explore}
 
 \item{n_strata}{number of random groups to create}
+
+\item{along}{variable to stratify along}
 
 \item{...}{extra arguments}
 }
