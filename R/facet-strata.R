@@ -14,9 +14,9 @@
 #'            y = height_cm,
 #'            group = country)) + 
 #'   geom_line() + 
-#'   facet_n_strata()
+#'   facet_strata()
 
-facet_n_strata <- function(n_strata = 12, 
+facet_strata <- function(n_strata = 12,
                          nrow = NULL, 
                          ncol = NULL, 
                          scales = "fixed", 
@@ -31,15 +31,16 @@ facet_n_strata <- function(n_strata = 12,
                       strip.position = strip.position)
   
   facet$params$n <- n_strata
+  
   ggproto(NULL, 
-          FacetNStrata,
+          FacetStrata,
           shrink = shrink,
           params = facet$params
   )
 }
 
-FacetNStrata <- ggproto(
-  "FacetNStrata", 
+FacetStrata <- ggproto(
+  "FacetStrata", 
   FacetWrap,
   compute_layout = function(data, 
                             params) {
