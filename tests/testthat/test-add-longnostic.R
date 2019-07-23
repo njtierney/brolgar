@@ -1,17 +1,25 @@
 context("test-add-longnostic")
 library(dplyr)
-df_add_l_diff_1 <- features(wages_ts, ln_wages, diff) %>% left_join(wages_ts, by = "id")
-df_add_n_key_obs <- add_n_key_obs(wages_ts)
-df_add_key_slope <- add_key_slope(wages_ts, ln_wages ~ xp)
-df_add_key_slope_multi <- add_key_slope(wages_ts, ln_wages ~ xp + ged)
 
-updated_dim <- c(nrow(wages), ncol(wages) + 1)
+wages_test <- sample_frac_keys(wages_ts, 0.05)
+
+df_add_l_diff_1 <- wages_test %>%
+                    features(ln_wages, 
+                             diff) %>% 
+                     left_join(wages_test, by = "id")
+df_add_n_key_obs <- add_n_key_obs(wages_test)
+df_add_key_slope <- add_key_slope(wages_test, ln_wages ~ xp)
+df_add_key_slope_multi <- add_key_slope(wages_test, ln_wages ~ xp + ged)
+
+updated_dim <- c(nrow(wages_test), ncol(wages_test) + 1)
 
 test_that("longnostics returns the right dimensions", {
   expect_equal(dim(df_add_l_diff_1), updated_dim)
   expect_equal(dim(df_add_n_key_obs), updated_dim)
-  expect_equal(dim(df_add_key_slope), c(nrow(wages), ncol(wages) + 2))
-  expect_equal(dim(df_add_key_slope_multi), c(nrow(wages), ncol(wages) + 3))
+  expect_equal(dim(df_add_key_slope), c(nrow(wages_test), 
+                                        ncol(wages_test) + 2))
+  expect_equal(dim(df_add_key_slope_multi), c(nrow(wages_test), 
+                                              ncol(wages_test) + 3))
 })
 
 add_new_names <- function(data, x){
@@ -21,15 +29,15 @@ add_new_names <- function(data, x){
 }
 
 test_that("longnostic returns the right names", {
-  expect_equal(names(df_add_l_diff_1), add_new_names(wages_ts,
+  expect_equal(names(df_add_l_diff_1), add_new_names(wages_test,
                                                      "V1"))
-  expect_equal(names(df_add_n_key_obs), c(names(wages_ts), "n_obs"))
+  expect_equal(names(df_add_n_key_obs), c(names(wages_test), "n_obs"))
   expect_equal(names(df_add_key_slope), 
-               add_new_names(wages_ts,
+               add_new_names(wages_test,
                                   c(".intercept",
                                     ".slope_xp")))
   expect_equal(names(df_add_key_slope_multi), 
-               add_new_names(wages_ts,
+               add_new_names(wages_test,
                              c(".intercept", 
                                ".slope_xp", 
                                ".slope_ged")))
@@ -57,6 +65,6 @@ test_that("longnostic returns correct classes", {
 
 library(dplyr)
 test_that("add-key-slope returns different slopes and intercepts",{
-  expect_equal(n_distinct(df_add_key_slope$.intercept), 887)
-  expect_equal(n_distinct(df_add_key_slope$.slope_xp), 851)
+  expect_gte(n_distinct(df_add_key_slope$.intercept), 2)
+  expect_gte(n_distinct(df_add_key_slope$.slope_xp), 2)
           })
