@@ -27,6 +27,7 @@ Depends:
     R (>= 3.5.0),
     tsibble
 Imports:
+    covr (>= 3.2.1.9000),
     dplyr,
     fablelite (>= 0.0.0.9100),
     feasts (>= 0.0.0.9001),
@@ -39,7 +40,6 @@ Imports:
     tibble,
     tidyr
 Suggests: 
-    covr,
     gghighlight,
     knitr,
     readr,
@@ -50,6 +50,7 @@ Suggests:
 VignetteBuilder: 
     knitr
 Remotes: 
+    r-lib/covr,
     tidyverts/fablelite,
     tidyverts/feasts
 Encoding: UTF-8
