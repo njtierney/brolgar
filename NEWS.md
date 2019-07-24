@@ -15,6 +15,7 @@
 * Data `world_heights` gains a continent column
 * Implement `facet_strata()` to create a random group of size `n_strata` to put the data into (#32). Add support for `along`, and `fun`.
 * Implement `facet_sample()` to create facetted plots with a set number of keys inside each facet. (#32). 
+* `add_` functions now return a `tsibble()` (#49).
 
 # brolgar 0.0.1.9000
 

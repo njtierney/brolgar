@@ -4,7 +4,7 @@
 \alias{test_if_null}
 \title{Test if the input is NULL}
 \usage{
-test_if_null(x)
+test_if_null(x, message = "Input must not be NULL")
 }
 \arguments{
 \item{x}{object}

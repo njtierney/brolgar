@@ -42,8 +42,12 @@ add_n_key_obs.tbl_ts <- function(.data, ...){
   
   str_key <- purrr::map_chr(tsibble::key(.data), rlang::as_label)
 
-  dplyr::right_join(x = .data,
-                    y = n_key_obs(.data = .data),
-                    by = str_key)
+  dplyr::left_join(x = .data,
+                   y = n_key_obs(.data = .data),
+                   by = str_key) %>%
+    dplyr::select(!!!tsibble::key(.data),
+                  !!tsibble::index(.data),
+                  n_obs, 
+                  dplyr::everything())
   
 }

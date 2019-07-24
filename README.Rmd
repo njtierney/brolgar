@@ -195,6 +195,7 @@ And highlight those individuals with a negative slope using `gghighlight`:
 library(gghighlight)
 
 wages_slope %>% 
+  as_tibble() %>% # workaround for gghighlight + tsibble
   ggplot(aes(x = xp, 
              y = ln_wages, 
              group = id)) + 
@@ -314,6 +315,12 @@ Alternatively, you can use the shortcut, `filter_n_obs()`:
 wages_ts %>% 
   filter_n_obs(n_obs > 3)
 ```
+
+# Contributing
+
+Please note that the 'brolgar' project is released with a
+[Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md).
+By contributing to this project, you agree to abide by its terms.
 
 # A Note on the API
 

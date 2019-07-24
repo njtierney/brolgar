@@ -10,3 +10,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.pre-commit-config\.yaml$
+^\.github$
+^\.covrignore$

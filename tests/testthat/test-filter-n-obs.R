@@ -25,7 +25,7 @@ test_that("correct number of columns are returned", {
 
 test_that("n_key_obs is added to the dataframe",{
   expect_equal(names(wages_gt_10),
-               c(names(wages_ts), "n_obs")
+               add_new_names(wages_ts, "n_obs")
   )
 })
 

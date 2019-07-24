@@ -57,11 +57,11 @@ test_if_tsibble <- function(x){
 #' my_test <- NULL
 #' test_if_null(my_test)
 #' }
-test_if_null <- function(x){
+test_if_null <- function(x, message = "Input must not be NULL"){
   
   # test for null
   if (is.null(x)) {
-    stop("Input must not be NULL", call. = FALSE)
+    stop(message, call. = FALSE)
   }
 }
 
@@ -77,4 +77,12 @@ extract_formula_vars <- function(x){
       )
     )
   )  
+}
+
+# function to use inside testthat
+add_new_names <- function(data, x){
+  c(tsibble::key_vars(data), 
+    tsibble::index_var(data),
+    x,
+    tsibble::measured_vars(data))
 }

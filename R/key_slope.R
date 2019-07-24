@@ -63,6 +63,11 @@ add_key_slope <- function(.data, formula){
   key_slope(.data = .data,
             formula = !!quo_formula) %>%
     dplyr::left_join(.data,
-                     by = str_key)
+                     .,
+                      by = str_key) %>%
+    dplyr::select(!!!tsibble::key(.data),
+                  !!tsibble::index(.data),
+                  dplyr::starts_with("."), 
+                  dplyr::everything())
   
 }

@@ -13,6 +13,13 @@ df_add_key_slope_multi <- add_key_slope(wages_test, ln_wages ~ xp + ged)
 
 updated_dim <- c(nrow(wages_test), ncol(wages_test) + 1)
 
+test_that("add_* funs return a tsibble", {
+  expect_is(df_add_n_key_obs, class = c("tbl_ts"))
+  expect_is(df_add_key_slope, class = c("tbl_ts"))
+  expect_is(df_add_key_slope_multi, class = c("tbl_ts"))
+})
+
+
 test_that("longnostics returns the right dimensions", {
   expect_equal(dim(df_add_l_diff_1), updated_dim)
   expect_equal(dim(df_add_n_key_obs), updated_dim)
@@ -22,16 +29,14 @@ test_that("longnostics returns the right dimensions", {
                                               ncol(wages_test) + 3))
 })
 
-add_new_names <- function(data, x){
-  c(names(data)[1], 
-    x,
-    names(data)[2:ncol(data)])
-}
-
 test_that("longnostic returns the right names", {
-  expect_equal(names(df_add_l_diff_1), add_new_names(wages_test,
-                                                     "V1"))
-  expect_equal(names(df_add_n_key_obs), c(names(wages_test), "n_obs"))
+  expect_equal(names(df_add_l_diff_1), 
+               c(names(wages_test)[1],
+                 "V1",
+                 names(wages_test)[2:length(names(wages_test))])
+  )
+  expect_equal(names(df_add_n_key_obs), 
+               add_new_names(wages_test, "n_obs"))
   expect_equal(names(df_add_key_slope), 
                add_new_names(wages_test,
                                   c(".intercept",

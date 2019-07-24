@@ -261,6 +261,7 @@ And highlight those individuals with a negative slope using
 library(gghighlight)
 
 wages_slope %>% 
+  as_tibble() %>% # workaround for gghighlight + tsibble
   ggplot(aes(x = xp, 
              y = ln_wages, 
              group = id)) + 
@@ -464,20 +465,19 @@ with `add_n_key_obs()`:
 wages_ts %>% add_n_key_obs()
 #> # A tsibble: 6,402 x 10 [!]
 #> # Key:       id [888]
-#>       id ln_wages    xp   ged xp_since_ged black hispanic high_grade
-#>    <int>    <dbl> <dbl> <int>        <dbl> <int>    <int>      <int>
-#>  1    31     1.49 0.015     1        0.015     0        1          8
-#>  2    31     1.43 0.715     1        0.715     0        1          8
-#>  3    31     1.47 1.73      1        1.73      0        1          8
-#>  4    31     1.75 2.77      1        2.77      0        1          8
-#>  5    31     1.93 3.93      1        3.93      0        1          8
-#>  6    31     1.71 4.95      1        4.95      0        1          8
-#>  7    31     2.09 5.96      1        5.96      0        1          8
-#>  8    31     2.13 6.98      1        6.98      0        1          8
-#>  9    36     1.98 0.315     1        0.315     0        0          9
-#> 10    36     1.80 0.983     1        0.983     0        0          9
-#> # … with 6,392 more rows, and 2 more variables: unemploy_rate <dbl>,
-#> #   n_obs <int>
+#>       id    xp n_obs ln_wages   ged xp_since_ged black hispanic high_grade
+#>    <int> <dbl> <int>    <dbl> <int>        <dbl> <int>    <int>      <int>
+#>  1    31 0.015     8     1.49     1        0.015     0        1          8
+#>  2    31 0.715     8     1.43     1        0.715     0        1          8
+#>  3    31 1.73      8     1.47     1        1.73      0        1          8
+#>  4    31 2.77      8     1.75     1        2.77      0        1          8
+#>  5    31 3.93      8     1.93     1        3.93      0        1          8
+#>  6    31 4.95      8     1.71     1        4.95      0        1          8
+#>  7    31 5.96      8     2.09     1        5.96      0        1          8
+#>  8    31 6.98      8     2.13     1        6.98      0        1          8
+#>  9    36 0.315    10     1.98     1        0.315     0        0          9
+#> 10    36 0.983    10     1.80     1        0.983     0        0          9
+#> # … with 6,392 more rows, and 1 more variable: unemploy_rate <dbl>
 ```
 
 Which you can then use to filter observations:
@@ -488,20 +488,19 @@ wages_ts %>%
   filter(n_obs > 3)
 #> # A tsibble: 6,145 x 10 [!]
 #> # Key:       id [764]
-#>       id ln_wages    xp   ged xp_since_ged black hispanic high_grade
-#>    <int>    <dbl> <dbl> <int>        <dbl> <int>    <int>      <int>
-#>  1    31     1.49 0.015     1        0.015     0        1          8
-#>  2    31     1.43 0.715     1        0.715     0        1          8
-#>  3    31     1.47 1.73      1        1.73      0        1          8
-#>  4    31     1.75 2.77      1        2.77      0        1          8
-#>  5    31     1.93 3.93      1        3.93      0        1          8
-#>  6    31     1.71 4.95      1        4.95      0        1          8
-#>  7    31     2.09 5.96      1        5.96      0        1          8
-#>  8    31     2.13 6.98      1        6.98      0        1          8
-#>  9    36     1.98 0.315     1        0.315     0        0          9
-#> 10    36     1.80 0.983     1        0.983     0        0          9
-#> # … with 6,135 more rows, and 2 more variables: unemploy_rate <dbl>,
-#> #   n_obs <int>
+#>       id    xp n_obs ln_wages   ged xp_since_ged black hispanic high_grade
+#>    <int> <dbl> <int>    <dbl> <int>        <dbl> <int>    <int>      <int>
+#>  1    31 0.015     8     1.49     1        0.015     0        1          8
+#>  2    31 0.715     8     1.43     1        0.715     0        1          8
+#>  3    31 1.73      8     1.47     1        1.73      0        1          8
+#>  4    31 2.77      8     1.75     1        2.77      0        1          8
+#>  5    31 3.93      8     1.93     1        3.93      0        1          8
+#>  6    31 4.95      8     1.71     1        4.95      0        1          8
+#>  7    31 5.96      8     2.09     1        5.96      0        1          8
+#>  8    31 6.98      8     2.13     1        6.98      0        1          8
+#>  9    36 0.315    10     1.98     1        0.315     0        0          9
+#> 10    36 0.983    10     1.80     1        0.983     0        0          9
+#> # … with 6,135 more rows, and 1 more variable: unemploy_rate <dbl>
 ```
 
 Alternatively, you can use the shortcut, `filter_n_obs()`:
@@ -511,21 +510,26 @@ wages_ts %>%
   filter_n_obs(n_obs > 3)
 #> # A tsibble: 6,145 x 10 [!]
 #> # Key:       id [764]
-#>       id ln_wages    xp   ged xp_since_ged black hispanic high_grade
-#>    <int>    <dbl> <dbl> <int>        <dbl> <int>    <int>      <int>
-#>  1    31     1.49 0.015     1        0.015     0        1          8
-#>  2    31     1.43 0.715     1        0.715     0        1          8
-#>  3    31     1.47 1.73      1        1.73      0        1          8
-#>  4    31     1.75 2.77      1        2.77      0        1          8
-#>  5    31     1.93 3.93      1        3.93      0        1          8
-#>  6    31     1.71 4.95      1        4.95      0        1          8
-#>  7    31     2.09 5.96      1        5.96      0        1          8
-#>  8    31     2.13 6.98      1        6.98      0        1          8
-#>  9    36     1.98 0.315     1        0.315     0        0          9
-#> 10    36     1.80 0.983     1        0.983     0        0          9
-#> # … with 6,135 more rows, and 2 more variables: unemploy_rate <dbl>,
-#> #   n_obs <int>
+#>       id    xp n_obs ln_wages   ged xp_since_ged black hispanic high_grade
+#>    <int> <dbl> <int>    <dbl> <int>        <dbl> <int>    <int>      <int>
+#>  1    31 0.015     8     1.49     1        0.015     0        1          8
+#>  2    31 0.715     8     1.43     1        0.715     0        1          8
+#>  3    31 1.73      8     1.47     1        1.73      0        1          8
+#>  4    31 2.77      8     1.75     1        2.77      0        1          8
+#>  5    31 3.93      8     1.93     1        3.93      0        1          8
+#>  6    31 4.95      8     1.71     1        4.95      0        1          8
+#>  7    31 5.96      8     2.09     1        5.96      0        1          8
+#>  8    31 6.98      8     2.13     1        6.98      0        1          8
+#>  9    36 0.315    10     1.98     1        0.315     0        0          9
+#> 10    36 0.983    10     1.80     1        0.983     0        0          9
+#> # … with 6,135 more rows, and 1 more variable: unemploy_rate <dbl>
 ```
+
+# Contributing
+
+Please note that the ‘brolgar’ project is released with a [Contributor
+Code of Conduct](.github/CODE_OF_CONDUCT.md). By contributing to this
+project, you agree to abide by its terms.
 
 # A Note on the API
 
