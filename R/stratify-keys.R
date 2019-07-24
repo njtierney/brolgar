@@ -63,9 +63,8 @@ stratify_keys.tbl_ts <- function(.data,
   
   q_along <- rlang::enquo(along)
   
-  possible_strata <- sample(x = 1:n_strata, 
-                            size = tsibble::n_keys(.data), 
-                            replace = TRUE)
+  possible_strata <- sample(rep(seq_len(n_strata),
+                                length.out = tsibble::n_keys(.data)))
   
   full_strata <- rep.int(possible_strata,
                          times = lengths(tsibble::key_rows(.data)))

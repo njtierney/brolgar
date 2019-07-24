@@ -17,5 +17,6 @@ globalVariables(c("intercept",
                   "stat_diff", 
                   "stat_value",
                   ".rows",
-                  "quantile"
+                  "quantile",
+                  "n_obs"
                   ))

@@ -7,21 +7,17 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 ```
 
-```{r setup}
-library(brolgar)
-```
-
-
 To create your own features or summaries to pass to `feasts`, you can provide a named list of functions. For example:
 
 ```{r create-three}
+library(brolgar)
 library(feasts)
 feat_three <- list(min = min,
                    med = median,
@@ -43,7 +39,7 @@ world_heights %>%
  
 Inside `brolgar`, the featurs are created with the following syntax:
 
-```{r demo-feat-five-num eval = FALSE}
+```{r demo-feat-five-num, eval = FALSE}
 feat_five_num <- function(x, ...) {
   list(
     min = b_min(x, ...),
@@ -63,7 +59,7 @@ the cases of quantiles, they use `type = 8`, and `names = FALSE`.
 You can now create a set of features with:
 
 ```{r show-features-set}
-library(fabellite)
+library(fablelite)
 feature_set(pkgs = "brolgar")
 feature_set(pkgs = "feasts")
 feature_set(tag = "summary")

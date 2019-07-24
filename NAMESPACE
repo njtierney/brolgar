@@ -3,7 +3,6 @@
 S3method(add_n_key_obs,tbl_ts)
 S3method(filter_n_obs,tbl_ts)
 S3method(key_slope,tbl_ts)
-S3method(keys_near,data.frame)
 S3method(n_key_obs,tbl_ts)
 S3method(sample_frac_keys,tbl_ts)
 S3method(sample_n_keys,tbl_ts)

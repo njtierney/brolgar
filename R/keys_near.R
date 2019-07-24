@@ -7,9 +7,6 @@
 #'   list of the five number summary, `l_five_num`.
 #'
 #' @return data.frame containing keys closest to a given statistic.
-#' @name keys_near
-#' @export
-#'
 #' @examples
 #' wages_ts %>%
 #'   key_slope(ln_wages ~ xp) %>%
@@ -32,47 +29,11 @@
 #'   keys_near(key = id,
 #'               var = .slope_xp,
 #'               funs = l_ranges)
-keys_near <- function(.data, 
-                      var,
-                      funs,
-                      ...){
-  UseMethod("keys_near")
-}
-
-#' #' @rdname keys_near
-#' #' @export
-#' #' 
-#' keys_near.tbl_ts <- function(.data,
-#'                              var,
-#'                              funs = l_five_num,
-#'                              ...){
-#'   
-#'   .data %>%
-#'     # tibble::as_tibble() %>%
-#'     dplyr::mutate_at(
-#'       .vars = dplyr::vars({{var}}),
-#'       .funs = funs) %>%
-#'     dplyr::select({{key}},
-#'                   {{var}},
-#'                   dplyr::one_of(names(funs))) %>%
-#'     tidyr::gather(key = "stat",
-#'                   value = "stat_value",
-#'                   -{{key}},
-#'                   -{{var}}) %>%
-#'     dplyr::mutate(stat_diff = abs({{var}} - stat_value)) %>%
-#'     dplyr::group_by(stat) %>%
-#'     dplyr::top_n(-1,
-#'                  wt = stat_diff)
-#' }
-
-
-#' @rdname keys_near
 #' @export
-keys_near.data.frame <- function(.data,
-                                 key,
-                                 var,
-                                 funs = l_five_num,
-                                 ...){
+keys_near <- function(.data,
+                      key,
+                      var,
+                      funs = l_five_num){
   
   .data %>%
     tibble::as_tibble() %>%

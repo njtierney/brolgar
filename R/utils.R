@@ -46,6 +46,7 @@ test_if_tsibble <- function(x){
 #' Test if the input is NULL
 #'
 #' @param x object
+#' @param message message to pass
 #'
 #' @return an error if input (x) is NULL
 #'

@@ -2,54 +2,25 @@
 % Please edit documentation in R/keys_near.R
 \name{keys_near}
 \alias{keys_near}
-\alias{keys_near.data.frame}
 \title{Return keys nearest to a given statistics or summary.}
 \usage{
-keys_near(.data, var, funs, ...)
-
-\method{keys_near}{data.frame}(.data, key, var, funs = l_five_num, ...)
+keys_near(.data, key, var, funs = l_five_num)
 }
 \arguments{
 \item{.data}{data.frame}
+
+\item{key}{key, which identifies unique observations.}
 
 \item{var}{variable to summarise}
 
 \item{funs}{named list of functions to summarise by. Default is a given
 list of the five number summary, \code{l_five_num}.}
-
-\item{key}{key, which identifies unique observations.}
 }
 \value{
 data.frame containing keys closest to a given statistic.
 }
 \description{
 Return keys nearest to a given statistics or summary.
-
-#' @rdname keys_near
-#' @export
-#'
-keys_near.tbl_ts <- function(.data,
-var,
-funs = l_five_num,
-...){
-
-.data %>%
-# tibble::as_tibble() %>%
-dplyr::mutate_at(
-.vars = dplyr::vars({{var}}),
-.funs = funs) %>%
-dplyr::select({{key}},
-{{var}},
-dplyr::one_of(names(funs))) %>%
-tidyr::gather(key = "stat",
-value = "stat_value",
--{{key}},
--{{var}}) %>%
-dplyr::mutate(stat_diff = abs({{var}} - stat_value)) %>%
-dplyr::group_by(stat) %>%
-dplyr::top_n(-1,
-wt = stat_diff)
-}
 }
 \examples{
 wages_ts \%>\%

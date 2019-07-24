@@ -40,8 +40,35 @@ wages_strat_along_sum <- wages_strat_along %>%
                list(mean = mean),
                na.rm = TRUE)
 
-test_that("stratify_keys with along returns strata that are decreasing",{
-  expect_true(decreasing(wages_strat_along_sum$mean))
+test_that("stratify_keys with along returns strata that decrease on average",{
+  expect_true(mean(diff(wages_strat_along_sum$mean)) < 0)
+})
+
+strata_equal_1 <- wages_test %>%
+  sample_n_keys(12) %>%
+  stratify_keys(n_strata = 4) %>%
+  as_tibble() %>%
+  group_by(.strata) %>%
+  summarise(n = n_distinct(id)) 
+
+strata_equal_2 <- wages_test %>%
+  sample_n_keys(24) %>%
+  stratify_keys(n_strata = 4) %>%
+  as_tibble() %>%
+  group_by(.strata) %>%
+  summarise(n = n_distinct(id)) 
+
+strata_equal_3 <- wages_test %>%
+  sample_n_keys(25) %>%
+  stratify_keys(n_strata = 4) %>%
+  as_tibble() %>%
+  group_by(.strata) %>%
+  summarise(n = n_distinct(id)) 
+
+test_that("stratify_keys returns the same number of keys per strata", {
+  expect_true(all(strata_equal_1$n == 3))
+  expect_true(all(strata_equal_2$n == 6))
+  expect_true(all(strata_equal_3$n %in% c(6,7,6,6)))
 })
 
 # ggplot(wages_strat_sum,

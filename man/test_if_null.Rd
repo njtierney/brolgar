@@ -8,6 +8,8 @@ test_if_null(x, message = "Input must not be NULL")
 }
 \arguments{
 \item{x}{object}
+
+\item{message}{message to pass}
 }
 \value{
 an error if input (x) is NULL
