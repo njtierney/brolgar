@@ -10,6 +10,12 @@
     <loc>http://brolgar.njtierney.com//reference/brolgar.html</loc>
   </url>
   <url>
+    <loc>http://brolgar.njtierney.com//reference/facet_sample.html</loc>
+  </url>
+  <url>
+    <loc>http://brolgar.njtierney.com//reference/facet_strata.html</loc>
+  </url>
+  <url>
     <loc>http://brolgar.njtierney.com//reference/feat_brolgar.html</loc>
   </url>
   <url>
@@ -23,9 +29,6 @@
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//reference/feat_spread.html</loc>
-  </url>
-  <url>
-    <loc>http://brolgar.njtierney.com//reference/features.html</loc>
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//reference/filter_n_obs.html</loc>
@@ -56,6 +59,9 @@
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>http://brolgar.njtierney.com//reference/reexports.html</loc>
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//reference/safe_minima.html</loc>

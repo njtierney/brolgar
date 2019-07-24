@@ -107,141 +107,197 @@
     
     
 <p>This vignette unpacks how to find interesting individuals.</p>
-<p>Let’s look at slope.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">wages_slope &lt;-<span class="st"> </span><span class="kw"><a href="../reference/key_slope.html">key_slope</a></span>(wages_ts, ln_wages <span class="op">~</span><span class="st"> </span>xp)</a></code></pre></div>
+<p>Let’s say we calculate a slope for each individual <code>key</code>, using <code>keys_slope()</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">wages_slope &lt;-<span class="st"> </span><span class="kw"><a href="../reference/key_slope.html">key_slope</a></span>(wages_ts, ln_wages <span class="op">~</span><span class="st"> </span>xp) </a></code></pre></div>
+<p>And we want to know those <code>keys</code> that are <strong>nearest</strong> to some set of summary statistics of the slope. Let’s say the <em>five number summary</em>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(wages_slope<span class="op">$</span>.slope_xp)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="co">#&gt;     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's </span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt; -4.57692 -0.00764  0.04796  0.06235  0.09447 13.21569       38</span></a></code></pre></div>
+<p>If want to find those individuals that have slopes <strong>near</strong> these values.</p>
+<p>We can do this using <code><a href="../reference/keys_near.html">keys_near()</a></code>, which returns those nearest to some summary statistics. In this case, it is the five number summary, which is a list of functions, given by <code>l_five_num</code>. But you could provide your own list of functions.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"></a>
+<a class="sourceLine" id="cb3-2" title="2">wages_slope_near &lt;-<span class="st"> </span>wages_slope <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/keys_near.html">keys_near</a></span>(<span class="dt">key =</span> id,</a>
+<a class="sourceLine" id="cb3-4" title="4">            <span class="dt">var =</span> .slope_xp)</a>
+<a class="sourceLine" id="cb3-5" title="5"></a>
+<a class="sourceLine" id="cb3-6" title="6">wages_slope_near</a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; # A tibble: 6 x 5</span></a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt; # Groups:   stat [5]</span></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt;      id .slope_xp stat  stat_value stat_diff</span></a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt;   &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt; 1  7918  -4.58    min     -4.58    0        </span></a>
+<a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt; 2  2594  -0.00768 q25     -0.00769 0.0000127</span></a>
+<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt; 3  2305   0.0480  med      0.0480  0.0000498</span></a>
+<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt; 4 10380   0.0479  med      0.0480  0.0000498</span></a>
+<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt; 5 12178   0.0946  q_75     0.0947  0.0000579</span></a>
+<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt; 6 12455  13.2     max     13.2     0</span></a></code></pre></div>
+<p>We can then join this information back against the data and plot those interesting individuals:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"></a>
+<a class="sourceLine" id="cb4-2" title="2">wages_slope_near <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">left_join</span>(wages_ts, <span class="dt">by =</span> <span class="st">"id"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> xp,</a>
+<a class="sourceLine" id="cb4-5" title="5">             <span class="dt">y =</span> ln_wages,</a>
+<a class="sourceLine" id="cb4-6" title="6">             <span class="dt">group =</span> id,</a>
+<a class="sourceLine" id="cb4-7" title="7">             <span class="dt">colour =</span> stat)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<p><img src="find-summary-keys_files/figure-html/plot-keys-near-1.png" width="700"></p>
+<p>You could also, with a bit of work, show these lines against the background using gghighlight</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gghighlight)</a>
+<a class="sourceLine" id="cb5-2" title="2">wages_ts <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="st">  </span><span class="kw">left_join</span>(wages_slope_near, <span class="dt">by =</span> <span class="st">"id"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/reexports">aes</a></span>(<span class="dt">x =</span> xp,</a>
+<a class="sourceLine" id="cb5-6" title="6">             <span class="dt">y =</span> ln_wages,</a>
+<a class="sourceLine" id="cb5-7" title="7">             <span class="dt">group =</span> id,</a>
+<a class="sourceLine" id="cb5-8" title="8">             <span class="dt">colour =</span> stat)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/gghighlight">gghighlight</a></span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NA">is.na</a></span>(stat))</a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt; Warning: You set use_group_by = TRUE, but grouped calculation failed.</span></a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="co">#&gt; Falling back to ungrouped filter operation...</span></a>
+<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt; label_key: stat</span></a></code></pre></div>
+<p><img src="find-summary-keys_files/figure-html/gghighlight-near-1.png" width="700"></p>
+<div id="implementation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#implementation" class="anchor"></a>Implementation</h1>
+<p>This section describes the general format for how this method is implemented.</p>
 <p>To get the data into the right format, there are a few steps.</p>
 <p>First, we need to get the data into a format where we have all the statistics that we are interested in, along with the id, and the statistic of interest.</p>
-<p>Like this</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">wages_slope_all_stats &lt;-<span class="st"> </span>wages_slope <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="st">  </span><span class="kw">mutate_all</span>(<span class="dt">.funs =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">min =</span> b_min,</a>
-<a class="sourceLine" id="cb2-3" title="3">                          <span class="dt">max =</span> b_max,</a>
-<a class="sourceLine" id="cb2-4" title="4">                          <span class="dt">median =</span> b_median,</a>
-<a class="sourceLine" id="cb2-5" title="5">                          <span class="dt">q1 =</span> b_q25,</a>
-<a class="sourceLine" id="cb2-6" title="6">                          <span class="dt">q3 =</span> b_q75)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="st">  </span><span class="kw">select</span>(id,</a>
-<a class="sourceLine" id="cb2-8" title="8">         <span class="kw">starts_with</span>(<span class="st">".slope"</span>))</a>
-<a class="sourceLine" id="cb2-9" title="9"></a>
-<a class="sourceLine" id="cb2-10" title="10">wages_slope_all_stats</a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt; # A tibble: 888 x 7</span></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt;       id .slope_xp .slope_xp_min .slope_xp_max .slope_xp_median</span></a>
-<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt;  1    31    0.101          -4.58          13.2           0.0480</span></a>
-<a class="sourceLine" id="cb2-15" title="15"><span class="co">#&gt;  2    36    0.0588         -4.58          13.2           0.0480</span></a>
-<a class="sourceLine" id="cb2-16" title="16"><span class="co">#&gt;  3    53   -0.358          -4.58          13.2           0.0480</span></a>
-<a class="sourceLine" id="cb2-17" title="17"><span class="co">#&gt;  4   122    0.0374         -4.58          13.2           0.0480</span></a>
-<a class="sourceLine" id="cb2-18" title="18"><span class="co">#&gt;  5   134    0.0831         -4.58          13.2           0.0480</span></a>
-<a class="sourceLine" id="cb2-19" title="19"><span class="co">#&gt;  6   145    0.0469         -4.58          13.2           0.0480</span></a>
-<a class="sourceLine" id="cb2-20" title="20"><span class="co">#&gt;  7   155    0.0867         -4.58          13.2           0.0480</span></a>
-<a class="sourceLine" id="cb2-21" title="21"><span class="co">#&gt;  8   173    0.100          -4.58          13.2           0.0480</span></a>
-<a class="sourceLine" id="cb2-22" title="22"><span class="co">#&gt;  9   206    0.180          -4.58          13.2           0.0480</span></a>
-<a class="sourceLine" id="cb2-23" title="23"><span class="co">#&gt; 10   207    0.0884         -4.58          13.2           0.0480</span></a>
-<a class="sourceLine" id="cb2-24" title="24"><span class="co">#&gt; # … with 878 more rows, and 2 more variables: .slope_xp_q1 &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb2-25" title="25"><span class="co">#&gt; #   .slope_xp_q3 &lt;dbl&gt;</span></a></code></pre></div>
+<p>We can fit a linear model for each <code>key</code> in the dataset using <code><a href="../reference/key_slope.html">key_slope()</a></code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">wages_slope &lt;-<span class="st"> </span><span class="kw"><a href="../reference/key_slope.html">key_slope</a></span>(wages_ts, ln_wages <span class="op">~</span><span class="st"> </span>xp)</a>
+<a class="sourceLine" id="cb6-2" title="2"></a>
+<a class="sourceLine" id="cb6-3" title="3">wages_slope</a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt; # A tibble: 888 x 3</span></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt;       id .intercept .slope_xp</span></a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt;    &lt;int&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt;  1    31       1.41    0.101 </span></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt;  2    36       2.04    0.0588</span></a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt;  3    53       2.29   -0.358 </span></a>
+<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt;  4   122       1.93    0.0374</span></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt;  5   134       2.03    0.0831</span></a>
+<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt;  6   145       1.59    0.0469</span></a>
+<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt;  7   155       1.66    0.0867</span></a>
+<a class="sourceLine" id="cb6-14" title="14"><span class="co">#&gt;  8   173       1.61    0.100 </span></a>
+<a class="sourceLine" id="cb6-15" title="15"><span class="co">#&gt;  9   206       1.73    0.180 </span></a>
+<a class="sourceLine" id="cb6-16" title="16"><span class="co">#&gt; 10   207       1.62    0.0884</span></a>
+<a class="sourceLine" id="cb6-17" title="17"><span class="co">#&gt; # … with 878 more rows</span></a></code></pre></div>
+<p>We can then perform a summary of the statistic of interest, in this case the slope.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">wages_slope_all_stats &lt;-<span class="st"> </span>wages_slope <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="st">  </span><span class="kw">mutate_at</span>(<span class="dt">.vars =</span> <span class="kw">vars</span>(.slope_xp),</a>
+<a class="sourceLine" id="cb7-3" title="3">            <span class="dt">.funs =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">.slope_min =</span> b_min,</a>
+<a class="sourceLine" id="cb7-4" title="4">                         <span class="dt">.slope_max =</span> b_max,</a>
+<a class="sourceLine" id="cb7-5" title="5">                         <span class="dt">.slope_median =</span> b_median,</a>
+<a class="sourceLine" id="cb7-6" title="6">                         <span class="dt">.slope_q1 =</span> b_q25,</a>
+<a class="sourceLine" id="cb7-7" title="7">                         <span class="dt">.slope_q3 =</span> b_q75)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="st">  </span><span class="kw">select</span>(id,</a>
+<a class="sourceLine" id="cb7-9" title="9">         <span class="kw">starts_with</span>(<span class="st">".slope"</span>))</a>
+<a class="sourceLine" id="cb7-10" title="10"></a>
+<a class="sourceLine" id="cb7-11" title="11">wages_slope_all_stats</a>
+<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt; # A tibble: 888 x 7</span></a>
+<a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt;       id .slope_xp .slope_min .slope_max .slope_median .slope_q1 .slope_q3</span></a>
+<a class="sourceLine" id="cb7-14" title="14"><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb7-15" title="15"><span class="co">#&gt;  1    31    0.101       -4.58       13.2        0.0480  -0.00769    0.0947</span></a>
+<a class="sourceLine" id="cb7-16" title="16"><span class="co">#&gt;  2    36    0.0588      -4.58       13.2        0.0480  -0.00769    0.0947</span></a>
+<a class="sourceLine" id="cb7-17" title="17"><span class="co">#&gt;  3    53   -0.358       -4.58       13.2        0.0480  -0.00769    0.0947</span></a>
+<a class="sourceLine" id="cb7-18" title="18"><span class="co">#&gt;  4   122    0.0374      -4.58       13.2        0.0480  -0.00769    0.0947</span></a>
+<a class="sourceLine" id="cb7-19" title="19"><span class="co">#&gt;  5   134    0.0831      -4.58       13.2        0.0480  -0.00769    0.0947</span></a>
+<a class="sourceLine" id="cb7-20" title="20"><span class="co">#&gt;  6   145    0.0469      -4.58       13.2        0.0480  -0.00769    0.0947</span></a>
+<a class="sourceLine" id="cb7-21" title="21"><span class="co">#&gt;  7   155    0.0867      -4.58       13.2        0.0480  -0.00769    0.0947</span></a>
+<a class="sourceLine" id="cb7-22" title="22"><span class="co">#&gt;  8   173    0.100       -4.58       13.2        0.0480  -0.00769    0.0947</span></a>
+<a class="sourceLine" id="cb7-23" title="23"><span class="co">#&gt;  9   206    0.180       -4.58       13.2        0.0480  -0.00769    0.0947</span></a>
+<a class="sourceLine" id="cb7-24" title="24"><span class="co">#&gt; 10   207    0.0884      -4.58       13.2        0.0480  -0.00769    0.0947</span></a>
+<a class="sourceLine" id="cb7-25" title="25"><span class="co">#&gt; # … with 878 more rows</span></a></code></pre></div>
 <p>We then need to convert this into long format</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">wages_slope_all_stats_long &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb3-2" title="2">wages_slope_all_stats <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">"stat"</span>,</a>
-<a class="sourceLine" id="cb3-4" title="4">         <span class="dt">value =</span> <span class="st">"stat_value"</span>,</a>
-<a class="sourceLine" id="cb3-5" title="5">         <span class="op">-</span>id,</a>
-<a class="sourceLine" id="cb3-6" title="6">         <span class="op">-</span>.slope_xp)</a>
-<a class="sourceLine" id="cb3-7" title="7"></a>
-<a class="sourceLine" id="cb3-8" title="8">wages_slope_all_stats_long</a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt; # A tibble: 4,440 x 4</span></a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt;       id .slope_xp stat          stat_value</span></a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt;  1    31    0.101  .slope_xp_min      -4.58</span></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt;  2    36    0.0588 .slope_xp_min      -4.58</span></a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt;  3    53   -0.358  .slope_xp_min      -4.58</span></a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt;  4   122    0.0374 .slope_xp_min      -4.58</span></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt;  5   134    0.0831 .slope_xp_min      -4.58</span></a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="co">#&gt;  6   145    0.0469 .slope_xp_min      -4.58</span></a>
-<a class="sourceLine" id="cb3-18" title="18"><span class="co">#&gt;  7   155    0.0867 .slope_xp_min      -4.58</span></a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="co">#&gt;  8   173    0.100  .slope_xp_min      -4.58</span></a>
-<a class="sourceLine" id="cb3-20" title="20"><span class="co">#&gt;  9   206    0.180  .slope_xp_min      -4.58</span></a>
-<a class="sourceLine" id="cb3-21" title="21"><span class="co">#&gt; 10   207    0.0884 .slope_xp_min      -4.58</span></a>
-<a class="sourceLine" id="cb3-22" title="22"><span class="co">#&gt; # … with 4,430 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">wages_slope_all_stats_long &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb8-2" title="2">wages_slope_all_stats <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">"stat"</span>,</a>
+<a class="sourceLine" id="cb8-4" title="4">         <span class="dt">value =</span> <span class="st">"stat_value"</span>,</a>
+<a class="sourceLine" id="cb8-5" title="5">         <span class="op">-</span>id,</a>
+<a class="sourceLine" id="cb8-6" title="6">         <span class="op">-</span>.slope_xp)</a>
+<a class="sourceLine" id="cb8-7" title="7"></a>
+<a class="sourceLine" id="cb8-8" title="8">wages_slope_all_stats_long</a>
+<a class="sourceLine" id="cb8-9" title="9"><span class="co">#&gt; # A tibble: 4,440 x 4</span></a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="co">#&gt;       id .slope_xp stat       stat_value</span></a>
+<a class="sourceLine" id="cb8-11" title="11"><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb8-12" title="12"><span class="co">#&gt;  1    31    0.101  .slope_min      -4.58</span></a>
+<a class="sourceLine" id="cb8-13" title="13"><span class="co">#&gt;  2    36    0.0588 .slope_min      -4.58</span></a>
+<a class="sourceLine" id="cb8-14" title="14"><span class="co">#&gt;  3    53   -0.358  .slope_min      -4.58</span></a>
+<a class="sourceLine" id="cb8-15" title="15"><span class="co">#&gt;  4   122    0.0374 .slope_min      -4.58</span></a>
+<a class="sourceLine" id="cb8-16" title="16"><span class="co">#&gt;  5   134    0.0831 .slope_min      -4.58</span></a>
+<a class="sourceLine" id="cb8-17" title="17"><span class="co">#&gt;  6   145    0.0469 .slope_min      -4.58</span></a>
+<a class="sourceLine" id="cb8-18" title="18"><span class="co">#&gt;  7   155    0.0867 .slope_min      -4.58</span></a>
+<a class="sourceLine" id="cb8-19" title="19"><span class="co">#&gt;  8   173    0.100  .slope_min      -4.58</span></a>
+<a class="sourceLine" id="cb8-20" title="20"><span class="co">#&gt;  9   206    0.180  .slope_min      -4.58</span></a>
+<a class="sourceLine" id="cb8-21" title="21"><span class="co">#&gt; 10   207    0.0884 .slope_min      -4.58</span></a>
+<a class="sourceLine" id="cb8-22" title="22"><span class="co">#&gt; # … with 4,430 more rows</span></a></code></pre></div>
 <p>We can then calculate the difference between each stat and the slope, <code>.slope_xp</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">stats_diff &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb4-2" title="2">wages_slope_all_stats_long <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stat_diff =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/MathFun">abs</a></span>(.slope_xp <span class="op">-</span><span class="st"> </span>stat_value))</a>
-<a class="sourceLine" id="cb4-4" title="4"></a>
-<a class="sourceLine" id="cb4-5" title="5">stats_diff</a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; # A tibble: 4,440 x 5</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;       id .slope_xp stat          stat_value stat_diff</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  1    31    0.101  .slope_xp_min      -4.58      4.68</span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  2    36    0.0588 .slope_xp_min      -4.58      4.64</span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  3    53   -0.358  .slope_xp_min      -4.58      4.22</span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  4   122    0.0374 .slope_xp_min      -4.58      4.61</span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  5   134    0.0831 .slope_xp_min      -4.58      4.66</span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt;  6   145    0.0469 .slope_xp_min      -4.58      4.62</span></a>
-<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt;  7   155    0.0867 .slope_xp_min      -4.58      4.66</span></a>
-<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt;  8   173    0.100  .slope_xp_min      -4.58      4.68</span></a>
-<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt;  9   206    0.180  .slope_xp_min      -4.58      4.76</span></a>
-<a class="sourceLine" id="cb4-18" title="18"><span class="co">#&gt; 10   207    0.0884 .slope_xp_min      -4.58      4.67</span></a>
-<a class="sourceLine" id="cb4-19" title="19"><span class="co">#&gt; # … with 4,430 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">stats_diff &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb9-2" title="2">wages_slope_all_stats_long <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">stat_diff =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/MathFun">abs</a></span>(.slope_xp <span class="op">-</span><span class="st"> </span>stat_value))</a>
+<a class="sourceLine" id="cb9-4" title="4"></a>
+<a class="sourceLine" id="cb9-5" title="5">stats_diff</a>
+<a class="sourceLine" id="cb9-6" title="6"><span class="co">#&gt; # A tibble: 4,440 x 5</span></a>
+<a class="sourceLine" id="cb9-7" title="7"><span class="co">#&gt;       id .slope_xp stat       stat_value stat_diff</span></a>
+<a class="sourceLine" id="cb9-8" title="8"><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb9-9" title="9"><span class="co">#&gt;  1    31    0.101  .slope_min      -4.58      4.68</span></a>
+<a class="sourceLine" id="cb9-10" title="10"><span class="co">#&gt;  2    36    0.0588 .slope_min      -4.58      4.64</span></a>
+<a class="sourceLine" id="cb9-11" title="11"><span class="co">#&gt;  3    53   -0.358  .slope_min      -4.58      4.22</span></a>
+<a class="sourceLine" id="cb9-12" title="12"><span class="co">#&gt;  4   122    0.0374 .slope_min      -4.58      4.61</span></a>
+<a class="sourceLine" id="cb9-13" title="13"><span class="co">#&gt;  5   134    0.0831 .slope_min      -4.58      4.66</span></a>
+<a class="sourceLine" id="cb9-14" title="14"><span class="co">#&gt;  6   145    0.0469 .slope_min      -4.58      4.62</span></a>
+<a class="sourceLine" id="cb9-15" title="15"><span class="co">#&gt;  7   155    0.0867 .slope_min      -4.58      4.66</span></a>
+<a class="sourceLine" id="cb9-16" title="16"><span class="co">#&gt;  8   173    0.100  .slope_min      -4.58      4.68</span></a>
+<a class="sourceLine" id="cb9-17" title="17"><span class="co">#&gt;  9   206    0.180  .slope_min      -4.58      4.76</span></a>
+<a class="sourceLine" id="cb9-18" title="18"><span class="co">#&gt; 10   207    0.0884 .slope_min      -4.58      4.67</span></a>
+<a class="sourceLine" id="cb9-19" title="19"><span class="co">#&gt; # … with 4,430 more rows</span></a></code></pre></div>
 <p>With stats diff, we can then group by the <code>stat</code>, and find return those rows with the smallest difference between the statistic and the value:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">top_stats_diff &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb5-2" title="2">stats_diff <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(stat) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="st">  </span><span class="kw">top_n</span>(<span class="op">-</span><span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb5-5" title="5">        <span class="dt">wt =</span> stat_diff)</a>
-<a class="sourceLine" id="cb5-6" title="6"></a>
-<a class="sourceLine" id="cb5-7" title="7">top_stats_diff</a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt; # A tibble: 6 x 5</span></a>
-<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt; # Groups:   stat [5]</span></a>
-<a class="sourceLine" id="cb5-10" title="10"><span class="co">#&gt;      id .slope_xp stat             stat_value stat_diff</span></a>
-<a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt;   &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb5-12" title="12"><span class="co">#&gt; 1  7918  -4.58    .slope_xp_min      -4.58    0        </span></a>
-<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt; 2 12455  13.2     .slope_xp_max      13.2     0        </span></a>
-<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt; 3  2305   0.0480  .slope_xp_median    0.0480  0.0000498</span></a>
-<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt; 4 10380   0.0479  .slope_xp_median    0.0480  0.0000498</span></a>
-<a class="sourceLine" id="cb5-16" title="16"><span class="co">#&gt; 5  2594  -0.00768 .slope_xp_q1       -0.00769 0.0000127</span></a>
-<a class="sourceLine" id="cb5-17" title="17"><span class="co">#&gt; 6 12178   0.0946  .slope_xp_q3        0.0947  0.0000579</span></a></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">top_stats_diff <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="st">  </span><span class="kw">left_join</span>(wages, <span class="dt">by =</span> <span class="st">"id"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> exper,</a>
-<a class="sourceLine" id="cb6-4" title="4">             <span class="dt">y =</span> lnw,</a>
-<a class="sourceLine" id="cb6-5" title="5">             <span class="dt">group =</span> id,</a>
-<a class="sourceLine" id="cb6-6" title="6">             <span class="dt">colour =</span> stat)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">top_stats_diff &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb10-2" title="2">stats_diff <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(stat) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="st">  </span><span class="kw">top_n</span>(<span class="op">-</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb10-5" title="5">        <span class="dt">wt =</span> stat_diff)</a>
+<a class="sourceLine" id="cb10-6" title="6"></a>
+<a class="sourceLine" id="cb10-7" title="7">top_stats_diff</a>
+<a class="sourceLine" id="cb10-8" title="8"><span class="co">#&gt; # A tibble: 6 x 5</span></a>
+<a class="sourceLine" id="cb10-9" title="9"><span class="co">#&gt; # Groups:   stat [5]</span></a>
+<a class="sourceLine" id="cb10-10" title="10"><span class="co">#&gt;      id .slope_xp stat          stat_value stat_diff</span></a>
+<a class="sourceLine" id="cb10-11" title="11"><span class="co">#&gt;   &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb10-12" title="12"><span class="co">#&gt; 1  7918  -4.58    .slope_min      -4.58    0        </span></a>
+<a class="sourceLine" id="cb10-13" title="13"><span class="co">#&gt; 2 12455  13.2     .slope_max      13.2     0        </span></a>
+<a class="sourceLine" id="cb10-14" title="14"><span class="co">#&gt; 3  2305   0.0480  .slope_median    0.0480  0.0000498</span></a>
+<a class="sourceLine" id="cb10-15" title="15"><span class="co">#&gt; 4 10380   0.0479  .slope_median    0.0480  0.0000498</span></a>
+<a class="sourceLine" id="cb10-16" title="16"><span class="co">#&gt; 5  2594  -0.00768 .slope_q1       -0.00769 0.0000127</span></a>
+<a class="sourceLine" id="cb10-17" title="17"><span class="co">#&gt; 6 12178   0.0946  .slope_q3        0.0947  0.0000579</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">top_stats_diff <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="st">  </span><span class="kw">left_join</span>(wages, <span class="dt">by =</span> <span class="st">"id"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-3" title="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/reexports">aes</a></span>(<span class="dt">x =</span> exper,</a>
+<a class="sourceLine" id="cb11-4" title="4">             <span class="dt">y =</span> lnw,</a>
+<a class="sourceLine" id="cb11-5" title="5">             <span class="dt">group =</span> id,</a>
+<a class="sourceLine" id="cb11-6" title="6">             <span class="dt">colour =</span> stat)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-7" title="7"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
 <p><img src="find-summary-keys_files/figure-html/join-top-stats-diff-1.png" width="700"></p>
-<p>We can then join that back onto the data to show with gghighlight</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">top_stats_diff <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="st">  </span><span class="kw">select</span>(id, .slope_xp, stat) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">right_join</span>(wages_ts, <span class="dt">by =</span> <span class="st">"id"</span>)</a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt; # A tibble: 6,402 x 11</span></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt; # Groups:   stat [6]</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt;       id .slope_xp stat  ln_wages    xp   ged xp_since_ged black hispanic</span></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;  1    31        NA &lt;NA&gt;      1.49 0.015     1        0.015     0        1</span></a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;  2    31        NA &lt;NA&gt;      1.43 0.715     1        0.715     0        1</span></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt;  3    31        NA &lt;NA&gt;      1.47 1.73      1        1.73      0        1</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt;  4    31        NA &lt;NA&gt;      1.75 2.77      1        2.77      0        1</span></a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt;  5    31        NA &lt;NA&gt;      1.93 3.93      1        3.93      0        1</span></a>
-<a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt;  6    31        NA &lt;NA&gt;      1.71 4.95      1        4.95      0        1</span></a>
-<a class="sourceLine" id="cb7-14" title="14"><span class="co">#&gt;  7    31        NA &lt;NA&gt;      2.09 5.96      1        5.96      0        1</span></a>
-<a class="sourceLine" id="cb7-15" title="15"><span class="co">#&gt;  8    31        NA &lt;NA&gt;      2.13 6.98      1        6.98      0        1</span></a>
-<a class="sourceLine" id="cb7-16" title="16"><span class="co">#&gt;  9    36        NA &lt;NA&gt;      1.98 0.315     1        0.315     0        0</span></a>
-<a class="sourceLine" id="cb7-17" title="17"><span class="co">#&gt; 10    36        NA &lt;NA&gt;      1.80 0.983     1        0.983     0        0</span></a>
-<a class="sourceLine" id="cb7-18" title="18"><span class="co">#&gt; # … with 6,392 more rows, and 2 more variables: high_grade &lt;int&gt;,</span></a>
-<a class="sourceLine" id="cb7-19" title="19"><span class="co">#&gt; #   unemploy_rate &lt;dbl&gt;</span></a></code></pre></div>
-<p>These transformation steps have been compacted into a summary called, <code><a href="../reference/keys_near.html">keys_near()</a></code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">wages_ts <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/filter_n_obs.html">filter_n_obs</a></span>(n_obs <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/key_slope.html">key_slope</a></span>(<span class="dt">formula =</span> ln_wages <span class="op">~</span><span class="st"> </span>xp) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="st">  </span><span class="kw"><a href="../reference/keys_near.html">keys_near</a></span>(<span class="dt">key =</span> id,</a>
-<a class="sourceLine" id="cb8-5" title="5">            <span class="dt">var =</span> .slope_xp) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="st">  </span><span class="kw">left_join</span>(wages_ts, <span class="dt">by =</span> <span class="st">"id"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-7" title="7"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> xp,</a>
-<a class="sourceLine" id="cb8-8" title="8">             <span class="dt">y =</span> ln_wages,</a>
-<a class="sourceLine" id="cb8-9" title="9">             <span class="dt">group =</span> id,</a>
-<a class="sourceLine" id="cb8-10" title="10">             <span class="dt">colour =</span> stat)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-11" title="11"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
-<p><img src="find-summary-keys_files/figure-html/use-summarise-fivenum-1.png" width="700"></p>
+<p>We can see that we get the same output using <code><a href="../reference/keys_near.html">keys_near()</a></code>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">wages_ts <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/key_slope.html">key_slope</a></span>(ln_wages <span class="op">~</span><span class="st"> </span>xp) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/keys_near.html">keys_near</a></span>(<span class="dt">key =</span> id,</a>
+<a class="sourceLine" id="cb12-4" title="4">            <span class="dt">var =</span> .slope_xp) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-5" title="5"><span class="st">  </span><span class="kw">left_join</span>(wages_ts, <span class="dt">by =</span> <span class="st">"id"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/reexports">aes</a></span>(<span class="dt">x =</span> xp,</a>
+<a class="sourceLine" id="cb12-7" title="7">             <span class="dt">y =</span> ln_wages,</a>
+<a class="sourceLine" id="cb12-8" title="8">             <span class="dt">group =</span> id,</a>
+<a class="sourceLine" id="cb12-9" title="9">             <span class="dt">colour =</span> stat)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-10" title="10"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<p><img src="find-summary-keys_files/figure-html/show-same-1.png" width="700"></p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#implementation">Implementation</a></li>
+      </ul>
+</div>
       </div>
 
 </div>

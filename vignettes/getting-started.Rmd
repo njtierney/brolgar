@@ -150,20 +150,20 @@ wages_ts %>%
 
 # Highlight patterns of interest
 
-We can break the data into groups based on the slope of `xp~ln_wages`
+We can break the data into groups based on the slope of `ln_wages ~ xp`
 
 ```{r show-add-slope, eval = FALSE}
 
 wages_slope <- wages_ts %>%
   filter_n_obs(n_obs > 10) %>%
-  add_key_slope(xp ~ ln_wages) %>%
-  mutate(slope_group = if_else(condition = .slope_ln_wages > 0,
+  add_key_slope(ln_wages ~ xp) %>%
+  mutate(slope_group = if_else(condition = .slope_xp > 0,
                                true = "positive slope",
                                false = "negative slope"))
 
   ggplot(wages_slope,
-         aes(x = ln_wages,
-             y = xp,
+         aes(x = xp,
+             y = ln_wages,
              group = id)) + 
   geom_line() + 
   facet_wrap(~slope_group, nrow = 2)

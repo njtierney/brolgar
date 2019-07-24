@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • brolgar</title>
+<title>Facet data into groups to facilitate exploration — facet_sample • brolgar</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -36,7 +36,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Facet data into groups to facilitate exploration — facet_sample" />
+
+<meta property="og:description" content="Facet data into groups to facilitate exploration" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -53,7 +56,7 @@
   </head>
 
   <body>
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -133,91 +136,93 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      
+    <h1>Facet data into groups to facilitate exploration</h1>
+    
+    <div class="hidden name"><code>facet_sample.Rd</code></div>
     </div>
 
-    <div id="brolgar-0029100" class="section level1">
-<h1 class="page-header">
-<a href="#brolgar-0029100" class="anchor"></a>brolgar 0.0.2.9100</h1>
-<ul>
-<li>Gave more verbose names to the <code>wages_ts</code> data.</li>
-<li>renamed <code>sample_n_obs()</code> to <code><a href="../reference/sample-n-frac-keys.html">sample_n_keys()</a></code> and <code><a href="../reference/sample-n-frac-keys.html">sample_frac_keys()</a></code>
-</li>
-<li>renamed <code>add_k_groups()</code> to <code><a href="../reference/stratify_keys.html">stratify_keys()</a></code>
-</li>
-<li>removed many of the <code>l_&lt;summary&gt;</code> functions in favour of the <code>features</code> approach.</li>
-<li>rename <code>l_summarise_fivenum</code> to <code>l_summarise</code>, and have an option to pass a list of functions.</li>
-<li>rename <code>l_n_obs()</code> to <code><a href="../reference/n_obs.html">n_key_obs()</a></code>
-</li>
-<li>rename <code>l_slope()</code> to <code><a href="../reference/key_slope.html">key_slope()</a></code>
-</li>
-<li>added <code>monotonic</code> summaries and <code>feat_monotonic</code>
-</li>
-<li>rename <code>l_summarise()</code> to <code><a href="../reference/keys_near.html">keys_near()</a></code>
-</li>
-<li>make monotonic functions return FALSE if length == 1.</li>
-<li>add <code>monotonic</code> function, which returns TRUE if increasing or decreasing, and false otherwise.</li>
-<li>re export <code><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble()</a></code> and <code><a href="https://tsibble.tidyverts.org/reference/key-data.html">n_keys()</a></code> from `tsibble</li>
-<li>Data <code>world_heights</code> gains a continent column</li>
-<li>Implement <code><a href="../reference/facet_strata.html">facet_strata()</a></code> to create a random group of size <code>n_strata</code> to put the data into (#32). Add support for <code>along</code>, and <code>fun</code>.</li>
-<li>Implement <code><a href="../reference/facet_sample.html">facet_sample()</a></code> to create facetted plots with a set number of keys inside each facet. (#32).</li>
-<li>
-<code>add_</code> functions now return a <code>tsibble()</code> (#49).</li>
-<li>Fixed bug where <code><a href="../reference/stratify_keys.html">stratify_keys()</a></code> didn’t assign an equal number of keys per strata (#55)</li>
-</ul>
-</div>
-    <div id="brolgar-0019000" class="section level1">
-<h1 class="page-header">
-<a href="#brolgar-0019000" class="anchor"></a>brolgar 0.0.1.9000</h1>
-<ul>
-<li>Made brolgar integrate with <code>tsibble</code>.</li>
-</ul>
-</div>
-    <div id="brolgar-0009990" class="section level1">
-<h1 class="page-header">
-<a href="#brolgar-0009990" class="anchor"></a>brolgar 0.0.0.9990</h1>
-<ul>
-<li>Added the <code>world_heights</code> dataset, which contains average male height in centimetres for many countries. #28</li>
-<li>created <code>near_</code> family of functions to find values near to a quantile or percentile. So far there are <code><a href="../reference/near_quantile.html">near_quantile()</a></code>, <code><a href="../reference/near_middle.html">near_middle()</a></code>, and <code><a href="../reference/near_between.html">near_between()</a></code> (#11).
-<ul>
-<li>
-<code><a href="../reference/near_quantile.html">near_quantile()</a></code> Specify some quantile and then find those values around it (within some specified tolerance).</li>
-<li>
-<code><a href="../reference/near_middle.html">near_middle()</a></code> Specify some middle percentile value and find values within given percentiles.</li>
-<li>
-<code><a href="../reference/near_between.html">near_between()</a></code> Extract percentile values from a given percentile to another percentile.</li>
-</ul>
-</li>
-<li>Create <code>add_k_groups()</code> (#20) to randomly split the data into groups to explore the data.</li>
-<li>Add <code>sample_n_obs()</code> and <code>sample_frac_obs()</code> (#19) to select a random group of ids.</li>
-<li>Add <code><a href="../reference/filter_n_obs.html">filter_n_obs()</a></code> to filter the data by the number of observations #15</li>
-<li>Remove unnecessary use of <code>var</code>, in <code>l_n_obs()</code>, since it only needs information on the <code>id</code>. Also gets a nice 5x speedup with simpler code</li>
-<li>calculate all longnostics (#4)</li>
-<li>use the word <code>longnostic</code> instead of <code>lognostic</code> (#9)</li>
-<li>
-<code>l_slope</code> now returns <code>l_intercept</code> and <code>l_slope</code> instead of <code>intercept</code> and <code>slope</code>.</li>
-<li>
-<code>l_slope</code> now takes bare variable names</li>
-<li>Renamed <code>l_d1</code> to <code>l_diff</code> and added a lag argument. This makes <code>l_diff</code> more flexible and the function more clearly describes its purpose.</li>
-<li>Rename <code>l_length</code> to <code>l_n_obs</code> to more clearly indicate that this counts the number of observations.</li>
-<li>Create <code>longnostic</code> function to create longnostic functions to package up reproduced code inside the <code>l_</code> functions.</li>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    
+    <p>Facet data into groups to facilitate exploration</p>
+    
+    </div>
 
+    <pre class="usage"><span class='fu'>facet_sample</span>(<span class='kw'>n_per_facet</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>n_facets</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>scales</span> <span class='kw'>=</span> <span class='st'>"fixed"</span>, <span class='kw'>shrink</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>strip.position</span> <span class='kw'>=</span> <span class='st'>"top"</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>n_per_facet</th>
+      <td><p>Number of keys per facet you want to plot. Default is 5.</p></td>
+    </tr>
+    <tr>
+      <th>n_facets</th>
+      <td><p>Number of facets to create. Default is 12</p></td>
+    </tr>
+    <tr>
+      <th>nrow</th>
+      <td><p>Number of rows and columns.</p></td>
+    </tr>
+    <tr>
+      <th>ncol</th>
+      <td><p>Number of rows and columns.</p></td>
+    </tr>
+    <tr>
+      <th>scales</th>
+      <td><p>Should scales be fixed (<code>"fixed"</code>, the default),
+free (<code>"free"</code>), or free in one dimension (<code>"free_x"</code>,
+<code>"free_y"</code>)?</p></td>
+    </tr>
+    <tr>
+      <th>shrink</th>
+      <td><p>If <code>TRUE</code>, will shrink scales to fit output of
+statistics, not raw data. If <code>FALSE</code>, will be range of raw data
+before statistical summary.</p></td>
+    </tr>
+    <tr>
+      <th>strip.position</th>
+      <td><p>By default, the labels are displayed on the top of
+the plot. Using <code>strip.position</code> it is possible to place the labels on
+either of the four sides by setting <code>strip.position = c("top",
+  "bottom", "left", "right")</code></p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a ggplot object</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>world_heights</span>,
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>year</span>,
+    <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>height_cm</span>,
+    <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>country</span>)) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>() +
+  <span class='fu'>facet_sample</span>()</div><div class='img'><img src='facet_sample-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>world_heights</span>,
+       <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>year</span>,
+           <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>height_cm</span>,
+           <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>country</span>)) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>() +
+  <span class='fu'>facet_sample</span>(<span class='kw'>n_per_facet</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+               <span class='kw'>n_facets</span> <span class='kw'>=</span> <span class='fl'>12</span>)</div><div class='img'><img src='facet_sample-2.png' alt='' width='700' height='433' /></div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#brolgar-0029100">0.0.2.9100</a></li>
-        <li><a href="#brolgar-0019000">0.0.1.9000</a></li>
-        <li><a href="#brolgar-0009990">0.0.0.9990</a></li>
-      </ul>
-    </div>
-  </div>
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
+  </div>
 </div>
 
       <footer>
