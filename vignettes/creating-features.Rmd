@@ -41,3 +41,45 @@ world_heights %>%
   features(height_cm, feat_three)
 ```
  
+Inside `brolgar`, the featurs are created with the following syntax:
+
+```{r demo-feat-five-num eval = FALSE}
+feat_five_num <- function(x, ...) {
+  list(
+    min = b_min(x, ...),
+    q25 = b_q25(x, ...),
+    med = b_median(x, ...),
+    q75 = b_q75(x, ...),
+    max = b_max(x, ...)
+  )
+}
+```
+
+Here the functions `b_` are functions with a default of `na.rm = TRUE`, and in 
+the cases of quantiles, they use `type = 8`, and `names = FALSE`.
+
+## Accessing sets of featyres
+
+You can now create a set of features with:
+
+```{r show-features-set}
+library(fabellite)
+feature_set(pkgs = "brolgar")
+feature_set(pkgs = "feasts")
+feature_set(tag = "summary")
+feature_set(tag = "acf")
+```
+
+## Registering a feature in a package
+
+Functions can be registered via `fablelite::register_feature()`. 
+To register features in a package, I create a file called `zzz.R`, and use the
+`.onLoad(...)` function to set this up on loading the package:
+
+```{r show-register-feature, eval = FALSE}
+.onLoad <- function(...) {
+  fablelite::register_feature(feat_three_num, c("summary"))
+  # ... and as many as you want here!
+}
+```
+
