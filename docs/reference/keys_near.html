@@ -144,7 +144,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>keys_near</span>(<span class='no'>.data</span>, <span class='no'>key</span>, <span class='no'>var</span>, <span class='kw'>top_n</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>funs</span> <span class='kw'>=</span> <span class='no'>l_five_num</span>)</pre>
+    <pre class="usage"><span class='fu'>keys_near</span>(<span class='no'>.data</span>, <span class='no'>key</span>, <span class='no'>var</span>, <span class='kw'>top_n</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>funs</span> <span class='kw'>=</span> <span class='no'>l_five_num</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -169,6 +169,11 @@
       <th>funs</th>
       <td><p>named list of functions to summarise by. Default is a given
 list of the five number summary, <code>l_five_num</code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>extra arguments to pass to <code>mutate_at</code> when performing the summary
+as given by <code>funs</code>.</p></td>
     </tr>
     </table>
     
