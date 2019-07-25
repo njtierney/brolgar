@@ -27,7 +27,7 @@ each other.
 library(brolgar)
 #> Loading required package: tsibble
 library(ggplot2)
-ggplot(wages_ts, 
+ggplot(wages, 
        aes(x = xp, 
              y = ln_wages, 
              group = id)) + 
@@ -77,10 +77,10 @@ internalise:
 
 > **The key is the identifier of your individuals or series**
 
-So in the `wages_ts` data, we have the following setup:
+So in the `wages` data, we have the following setup:
 
 ``` r
-wages_ts <- as_tsibble(x = wages_ts,
+wages <- as_tsibble(x = wages,
                        key = id,
                        index = xp,
                        regular = FALSE)
@@ -104,7 +104,7 @@ using `sample_n_keys()`:
 
 ``` r
 set.seed(2019-7-15-1300)
-wages_ts %>%
+wages %>%
   sample_n_keys(size = 10) %>%
   ggplot(aes(x = xp,
              y = ln_wages,
@@ -121,7 +121,7 @@ with many observations:
 
 ``` r
 set.seed(2019-7-15-1259)
-wages_ts %>%
+wages %>%
   filter_n_obs(n_obs > 5) %>%
   sample_n_keys(size = 10) %>%
   ggplot(aes(x = xp,
@@ -145,7 +145,7 @@ your data. `facet_strata()` splits the data into 12 groups by default:
 ``` r
 set.seed(2019-07-23-1936)
 library(ggplot2)
-ggplot(wages_ts,
+ggplot(wages,
        aes(x = xp,
            y = ln_wages,
            group = id)) +
@@ -160,7 +160,7 @@ But you could ask it to split the data into a more groups
 ``` r
 set.seed(2019-07-25-1450)
 library(ggplot2)
-ggplot(wages_ts,
+ggplot(wages,
        aes(x = xp,
            y = ln_wages,
            group = id)) +
@@ -180,7 +180,7 @@ data into 12 facets with 5 per facet by default:
 
 ``` r
 set.seed(2019-07-23-1937)
-ggplot(wages_ts,
+ggplot(wages,
        aes(x = xp,
            y = ln_wages,
            group = id)) +
@@ -194,7 +194,7 @@ But you can specify your own number:
 
 ``` r
 set.seed(2019-07-25-1527)
-ggplot(wages_ts,
+ggplot(wages,
        aes(x = xp,
            y = ln_wages,
            group = id)) +
@@ -217,7 +217,7 @@ information for each individual to identify those that are decreasing
 over time.
 
 ``` r
-key_slope(wages_ts,ln_wages ~ xp)
+key_slope(wages,ln_wages ~ xp)
 #> # A tibble: 888 x 3
 #>       id .intercept .slope_xp
 #>    <int>      <dbl>     <dbl>
@@ -238,8 +238,8 @@ We can then join these summaries back to the data:
 
 ``` r
 library(dplyr)
-wages_slope <- key_slope(wages_ts,ln_wages ~ xp) %>%
-  left_join(wages_ts, by = "id") 
+wages_slope <- key_slope(wages,ln_wages ~ xp) %>%
+  left_join(wages, by = "id") 
 
 wages_slope
 #> # A tibble: 6,402 x 11
@@ -311,7 +311,7 @@ wages_slope %>%
   keys_near(key = id,
             var = .slope_xp,
             funs = l_three_num) %>%
-  left_join(wages_ts, by = "id") %>%
+  left_join(wages, by = "id") %>%
   ggplot(aes(x = xp,
              y = ln_wages,
              group = id,
@@ -328,7 +328,7 @@ function, from `fablelite`. You can, for example, calculate the minimum
 of a given variable for each key by providing a named list like so:
 
 ``` r
-wages_ts %>%
+wages %>%
   features(ln_wages, 
            list(min = min))
 #> # A tibble: 888 x 2
@@ -352,7 +352,7 @@ wages_ts %>%
 For example, the five number summary is `feat_five_num`:
 
 ``` r
-wages_ts %>%
+wages %>%
   features(ln_wages, feat_five_num)
 #> # A tibble: 888 x 6
 #>       id   min   q25   med   q75   max
@@ -374,7 +374,7 @@ Or finding those whose values only increase or decrease with
 `feat_monotonic`
 
 ``` r
-wages_ts %>%
+wages %>%
   features(ln_wages, feat_monotonic)
 #> # A tibble: 888 x 5
 #>       id increase decrease unvary monotonic
@@ -397,9 +397,9 @@ wages_ts %>%
 You can join these features back to the data with `left_join`, like so:
 
 ``` r
-wages_ts %>%
+wages %>%
   features(ln_wages, feat_monotonic) %>%
-  left_join(wages_ts, by = "id") %>%
+  left_join(wages, by = "id") %>%
   ggplot(aes(x = xp,
              y = ln_wages,
              group = id)) +
@@ -417,7 +417,7 @@ We can calculate the number of observations for each `key`, using
 `n_key_obs()`:
 
 ``` r
-n_key_obs(wages_ts)
+n_key_obs(wages)
 #> # A tibble: 888 x 2
 #>       id n_obs
 #>    <int> <int>
@@ -442,7 +442,7 @@ number of observations:
 
 ``` r
 library(ggplot2)
-n_key_obs(wages_ts) %>%
+n_key_obs(wages) %>%
 ggplot(aes(x = n_obs)) + 
   geom_bar()
 ```
@@ -451,7 +451,7 @@ ggplot(aes(x = n_obs)) +
 
 ``` r
 
-n_key_obs(wages_ts) %>% summary()
+n_key_obs(wages) %>% summary()
 #>        id            n_obs       
 #>  Min.   :   31   Min.   : 1.000  
 #>  1st Qu.: 3332   1st Qu.: 5.000  
@@ -467,7 +467,7 @@ You can add information about the number of observations for each key
 with `add_n_key_obs()`:
 
 ``` r
-wages_ts %>% add_n_key_obs()
+wages %>% add_n_key_obs()
 #> # A tsibble: 6,402 x 10 [!]
 #> # Key:       id [888]
 #>       id    xp n_obs ln_wages   ged xp_since_ged black hispanic high_grade
@@ -488,7 +488,7 @@ wages_ts %>% add_n_key_obs()
 Which you can then use to filter observations:
 
 ``` r
-wages_ts %>% 
+wages %>% 
   add_n_key_obs() %>%
   filter(n_obs > 3)
 #> # A tsibble: 6,145 x 10 [!]
@@ -511,7 +511,7 @@ wages_ts %>%
 Alternatively, you can use the shortcut, `filter_n_obs()`:
 
 ``` r
-wages_ts %>% 
+wages %>% 
   filter_n_obs(n_obs > 3)
 #> # A tsibble: 6,145 x 10 [!]
 #> # Key:       id [764]
@@ -538,7 +538,7 @@ stratify the data into groups for plotting. You can `stratify` the
 `.strata`:
 
 ``` r
-wages_ts %>%
+wages %>%
   sample_n_keys(100) %>% 
   stratify_keys(n_strata = 10)
 #> # A tsibble: 677 x 10 [!]
@@ -564,7 +564,7 @@ the raw data
 
 ``` r
 set.seed(2019-07-15-1258)
-wages_ts %>%
+wages %>%
   sample_n_keys(120) %>% 
   stratify_keys(n_strata = 12) %>%
   ggplot(aes(x = xp,

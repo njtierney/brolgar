@@ -1,4 +1,4 @@
-wages_monotonic <- wages_ts %>%
+wages_monotonic <- wages %>%
   features(ln_wages, feat_monotonic)
 
 test_that("feat_monotonic returns the right names", {

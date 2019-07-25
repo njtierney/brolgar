@@ -41,7 +41,7 @@
 <meta property="og:description" content="This data contains measurements on hourly wages by years in
 the workforce, with education and race as covariates. The population
 measured was male high-school dropouts, aged between 14 and 17 years
-when first measured.
+when first measured. wages is a time series tsibble.
 It comes from J. D. Singer and J. B. Willett.
 Applied Longitudinal Data Analysis.
 Oxford University Press, Oxford, UK, 2003.
@@ -99,7 +99,7 @@ http://gseacademic.harvard.edu/alda/" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/creating-features.html">creating-features</a>
+      <a href="../articles/creating-features.html">Creating Features</a>
     </li>
     <li>
       <a href="../articles/find-summary-keys.html">Finding summary keys</a>
@@ -109,9 +109,6 @@ http://gseacademic.harvard.edu/alda/" />
     </li>
     <li>
       <a href="../articles/longitudinal-data-structures.html">Longitudinal Data Structures</a>
-    </li>
-    <li>
-      <a href="../articles/stats_on_stats.html">Stats on Stats: Workflows with `brolgar`</a>
     </li>
     <li>
       <a href="../articles/visualisation-gallery.html">Visualisation Gallery</a>
@@ -153,7 +150,7 @@ http://gseacademic.harvard.edu/alda/" />
     <p>This data contains measurements on hourly wages by years in
 the workforce, with education and race as covariates. The population
 measured was male high-school dropouts, aged between 14 and 17 years
-when first measured.
+when first measured. <code>wages</code> is a time series <code>tsibble</code>.
 It comes from J. D. Singer and J. B. Willett.
 Applied Longitudinal Data Analysis.
 Oxford University Press, Oxford, UK, 2003.
@@ -165,30 +162,60 @@ http://gseacademic.harvard.edu/alda/</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame with 6402 rows and 8 variables:</p><dl class='dl-horizontal'>
-<dt>id</dt><dd><p>1–888, for each subject.</p></dd>
-<dt>lnw</dt><dd><p>natural log of wages, adjusted for inflation, to 1990 dollars.</p></dd>
-<dt>exper</dt><dd><p>length of time in the workforce (in years). This is treated
-as the time variable, with t0 for each subject starting on their first
-day at work. The number of time points and values of time points for
-each subject can differ.</p></dd>
+    <p>A <code>tsibble</code> data frame with 6402 rows and 8 variables:</p><dl class='dl-horizontal'>
+<dt>id</dt><dd><p>1–888, for each subject. This forms the <code>key</code> of the data</p></dd>
+<dt>ln_wages</dt><dd><p>natural log of wages, adjusted for inflation,
+to 1990 dollars.</p></dd>
+<dt>xp</dt><dd><p>Experience - the length of time in the workforce (in years).
+This is treated as the time variable, with t0 for each subject starting
+on their first day at work. The number of time points and values of time
+points for each subject can differ. This forms the <code>index</code> of the data</p></dd>
 <dt>ged</dt><dd><p>when/if a graduate equivalency diploma is obtained.</p></dd>
-<dt>postexp</dt><dd><p>change in experience since getting a ged (if they get one)</p></dd>
+<dt>xp_since_ged</dt><dd><p>change in experience since getting a ged (if they get one)</p></dd>
 <dt>black</dt><dd><p>categorical indicator of race = black.</p></dd>
 <dt>hispanic</dt><dd><p>categorical indicator of race = hispanic.</p></dd>
-<dt>hgc</dt><dd><p>highest grade completed</p></dd>
-<dt>uerate</dt><dd><p>unemployment rates in the local geographic region at each
-measurement time</p></dd>
+<dt>high_grade</dt><dd><p>highest grade completed</p></dd>
+<dt>unemploy_rate</dt><dd><p>unemployment rates in the local geographic region
+at each measurement time</p></dd>
 </dl>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"># NOT RUN {
+# This data is created as follows:
+get the original `wages` data from
+https://github.com/tprvan/brolgar/tree/master/data
+load("~/Downloads/wages.rda")
+
+wages_og <- wages
+
+wages <- wages_og %>%
+ dplyr::select(-hgc.9,
+               -ue.7,
+               -ue.centert1,
+               -ue.mean,
+               -ue.person.cen,
+               -ue1) %>%
+ as_tsibble(x = .,
+            key = id,
+            index = exper,
+            regular = FALSE) %>%
+ rename(ln_wages = lnw,
+        xp = exper,
+        high_grade = hgc,
+        xp_since_ged = postexp,
+        unemploy_rate = uerate)
+# }
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

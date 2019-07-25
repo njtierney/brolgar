@@ -29,7 +29,7 @@ observations in a compact way. \code{filter_n_obs} allows for the user to
 filter by the number of observations for each \code{key}.
 }
 \examples{
-wages_ts \%>\% filter_n_obs(n_obs > 10)
-wages_ts \%>\% filter_n_obs(n_obs == 2)
+wages \%>\% filter_n_obs(n_obs > 10)
+wages \%>\% filter_n_obs(n_obs == 2)
 
 }

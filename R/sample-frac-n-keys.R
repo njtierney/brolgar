@@ -11,7 +11,7 @@
 #' @export
 #' @examples
 #' library(ggplot2)
-#' sample_n_keys(wages_ts,
+#' sample_n_keys(wages,
 #'              size = 10) %>%
 #'   ggplot(aes(x = xp,
 #'              y = unemploy_rate,
@@ -41,7 +41,7 @@ sample_n_keys.tbl_ts <- function(.data, size, ...){
 #' @name sample-n-frac-keys
 #' @examples
 #' library(ggplot2)
-#' sample_frac_keys(wages_ts,
+#' sample_frac_keys(wages,
 #'                 0.1) %>%
 #'   ggplot(aes(x = xp,
 #'              y = unemploy_rate,

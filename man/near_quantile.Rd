@@ -26,11 +26,11 @@ near_quantile(x, 0.5, 0.05)
 near_quantile(x, c(0.25, 0.5, 0.75), 0.05)
 
 library(dplyr)
-wages_ts \%>\% 
+wages \%>\% 
   features(ln_wages, list(min = min)) \%>\% 
   mutate(min_near_median = near_quantile(min, 0.5, 0.01)) \%>\%
   filter(min_near_median)
-wages_ts \%>\% 
+wages \%>\% 
   features(ln_wages, list(min = min)) \%>\% 
   mutate(min_near_q3 = near_quantile(min, c(0.25, 0.5, 0.75), 0.01)) \%>\%
   filter(min_near_q3)

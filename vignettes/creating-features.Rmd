@@ -30,7 +30,7 @@ feat_three
 These are then passed to `features` like so:
 
 ```{r demo-feat-three}
-wages_ts %>%
+wages %>%
   features(ln_wages, feat_three)
 
 world_heights %>%

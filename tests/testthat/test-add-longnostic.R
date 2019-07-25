@@ -1,7 +1,7 @@
 context("test-add-longnostic")
 library(dplyr)
 
-wages_test <- sample_frac_keys(wages_ts, 0.05)
+wages_test <- sample_frac_keys(wages, 0.05)
 
 df_add_l_diff_1 <- wages_test %>%
                     features(ln_wages, 

@@ -29,7 +29,7 @@ Stratify the keys into groups to facilitate exploration
 library(ggplot2)
 library(brolgar)
 
-wages_ts \%>\%
+wages \%>\%
   sample_frac_keys(size = 0.1) \%>\%
   stratify_keys(10) \%>\%
  ggplot(aes(x = ln_wages,
@@ -41,9 +41,9 @@ wages_ts \%>\%
  # now facet along some feature
  
 library(dplyr)
- wages_ts \%>\%
+ wages \%>\%
 key_slope(ln_wages ~ xp) \%>\%
-  right_join(wages_ts, ., by = "id") \%>\%
+  right_join(wages, ., by = "id") \%>\%
   stratify_keys(n_strata = 12,
                 along = .slope_xp,
                 fun = median) \%>\%
@@ -54,7 +54,7 @@ key_slope(ln_wages ~ xp) \%>\%
   facet_wrap(~.strata)
 
 
-wages_ts \%>\%
+wages \%>\%
   stratify_keys(n_strata = 12,
                 along = unemploy_rate) \%>\%
   ggplot(aes(x = xp,

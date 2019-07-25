@@ -1,16 +1,16 @@
 context("test-sample-n-frac-obs")
 
-l_sample_n_keys <- sample_n_keys(.data = wages_ts, 
+l_sample_n_keys <- sample_n_keys(.data = wages, 
                                  key = id,
                                  size = 10)
 
-l_sample_frac_keys <- sample_frac_keys(.data = wages_ts,
+l_sample_frac_keys <- sample_frac_keys(.data = wages,
                                      key = id,
                                      size = 0.11)
 
 test_that("correct number of columns returned",{
-  expect_equal(ncol(l_sample_n_keys), ncol(wages_ts))
-  expect_equal(ncol(l_sample_frac_keys), ncol(wages_ts))
+  expect_equal(ncol(l_sample_n_keys), ncol(wages))
+  expect_equal(ncol(l_sample_frac_keys), ncol(wages))
 })
 
 test_that("correct number of ids returned",{
@@ -19,8 +19,8 @@ test_that("correct number of ids returned",{
 })
 
 test_that("correct names returned", {
-  expect_equal(names(l_sample_n_keys), names(wages_ts))
-  expect_equal(names(l_sample_frac_keys), names(wages_ts))
+  expect_equal(names(l_sample_n_keys), names(wages))
+  expect_equal(names(l_sample_frac_keys), names(wages))
 })
 
 test_that("Returns a tibble", {
@@ -31,6 +31,6 @@ test_that("Returns a tibble", {
 classes <- function(x) purrr::map_chr(x, class)
 
 test_that("Returns correct classes", {
-  expect_equal(classes(l_sample_n_keys), classes(wages_ts))
-  expect_equal(classes(l_sample_frac_keys), classes(wages_ts))
+  expect_equal(classes(l_sample_n_keys), classes(wages))
+  expect_equal(classes(l_sample_frac_keys), classes(wages))
 })

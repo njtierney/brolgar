@@ -3,8 +3,7 @@
 #' This data contains measurements on hourly wages by years in
 #' the workforce, with education and race as covariates. The population
 #' measured was male high-school dropouts, aged between 14 and 17 years
-#' when first measured. `wages_ts` is a time series `tsibble` of the `wages`
-#' data.
+#' when first measured. `wages` is a time series `tsibble`.
 #' It comes from J. D. Singer and J. B. Willett. 
 #' Applied Longitudinal Data Analysis. 
 #' Oxford University Press, Oxford, UK, 2003.
@@ -29,20 +28,33 @@
 #' }
 #' 
 #' @docType data
-#' @name wages_ts
+#' @name wages
 #' @keywords datasets
 #' @examples 
 #' \dontrun{
 #' # This data is created as follows:
-#' library(tsibble)
-#' wages_ts <- as_tsibble(x = wages,
-#'                        key = id,
-#'                        index = exper,
-#'                        regular = FALSE) %>%
-#'   dplyr::rename(ln_wages = lnw,
-#'                 experience = exper,
-#'                 high_grade = hgc,
-#'                 unemploy_rate = uerate)
+#' get the original `wages` data from
+#' https://github.com/tprvan/brolgar/tree/master/data
+#' load("~/Downloads/wages.rda")
+#'
+#'wages_og <- wages
+#'
+#'wages <- wages_og %>%
+#'  dplyr::select(-hgc.9,
+#'                -ue.7,
+#'                -ue.centert1,
+#'                -ue.mean,
+#'                -ue.person.cen,
+#'                -ue1) %>%
+#'  as_tsibble(x = .,
+#'             key = id,
+#'             index = exper,
+#'             regular = FALSE) %>%
+#'  rename(ln_wages = lnw,
+#'         xp = exper,
+#'         high_grade = hgc,
+#'         xp_since_ged = postexp,
+#'         unemploy_rate = uerate)
 #' }
-"wages_ts"
+"wages"
 

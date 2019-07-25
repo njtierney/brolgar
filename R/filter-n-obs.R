@@ -17,8 +17,8 @@
 #' @name filter_n_obs
 #'
 #' @examples
-#' wages_ts %>% filter_n_obs(n_obs > 10)
-#' wages_ts %>% filter_n_obs(n_obs == 2)
+#' wages %>% filter_n_obs(n_obs > 10)
+#' wages %>% filter_n_obs(n_obs == 2)
 #' 
 filter_n_obs <- function(.data, filter, ...){
   test_if_tsibble(.data)

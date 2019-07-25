@@ -1,4 +1,4 @@
-wages_brolgar <- wages_ts %>%
+wages_brolgar <- wages %>%
   features(ln_wages, feat_brolgar)
 
 test_that("feat_brolgar returns the right names", {

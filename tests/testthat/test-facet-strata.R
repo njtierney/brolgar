@@ -10,10 +10,10 @@ gg_facet_strata <- ggplot(world_heights,
   facet_strata()
 
 set.seed(2019-07-23-1836)
-gg_facet_strata_along <- wages_ts %>%
+gg_facet_strata_along <- wages %>%
   sample_frac_keys(0.1) %>%
   key_slope(ln_wages ~ xp) %>%
-  right_join(wages_ts, ., by = "id") %>%
+  right_join(wages, ., by = "id") %>%
   ggplot(aes(x = xp,
              y = ln_wages)) +
   geom_line(aes(group = id)) +

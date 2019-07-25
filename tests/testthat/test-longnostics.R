@@ -1,5 +1,5 @@
 context("test-longnostic")
-wages_test <- sample_frac_keys(wages_ts, 0.05)
+wages_test <- sample_frac_keys(wages, 0.05)
 
 df_l_diff_1 <- features(wages_test, ln_wages, diff)
 df_n_key_obs <- n_key_obs(wages_test)

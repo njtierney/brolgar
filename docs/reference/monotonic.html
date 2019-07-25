@@ -95,7 +95,7 @@ differences, so if you like you can pass extra arguments to diff." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/creating-features.html">creating-features</a>
+      <a href="../articles/creating-features.html">Creating Features</a>
     </li>
     <li>
       <a href="../articles/find-summary-keys.html">Finding summary keys</a>
@@ -105,9 +105,6 @@ differences, so if you like you can pass extra arguments to diff." />
     </li>
     <li>
       <a href="../articles/longitudinal-data-structures.html">Longitudinal Data Structures</a>
-    </li>
-    <li>
-      <a href="../articles/stats_on_stats.html">Stats on Stats: Workflows with `brolgar`</a>
     </li>
     <li>
       <a href="../articles/visualisation-gallery.html">Visualisation Gallery</a>
@@ -192,9 +189,9 @@ differences, so if you like you can pass extra arguments to <code>diff</code>.</
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>gghighlight</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 
-<span class='no'>wages_mono</span> <span class='kw'>&lt;-</span> <span class='no'>wages_ts</span> <span class='kw'>%&gt;%</span>
+<span class='no'>wages_mono</span> <span class='kw'>&lt;-</span> <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://fablelite.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='no'>feat_monotonic</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/join.html'>left_join</a></span>(<span class='no'>wages_ts</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"id"</span>)
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/join.html'>left_join</a></span>(<span class='no'>wages</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"id"</span>)
 
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>wages_mono</span>,
          <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>xp</span>,

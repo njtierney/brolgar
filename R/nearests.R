@@ -13,7 +13,7 @@
 #'             within = 0.2)
 #'             
 #' library(dplyr)
-#' wages_ts %>% features(ln_wages, min) %>%
+#' wages %>% features(ln_wages, min) %>%
 #'   filter(near_middle(V1, 0.5, 0.1))
 #'             
 near_middle <- function(x,
@@ -45,7 +45,7 @@ near_middle <- function(x,
 #'             within = 0.2)
 #' 
 #' library(dplyr)
-#' wages_ts %>% features(ln_wages, list(min = min)) %>%
+#' wages %>% features(ln_wages, list(min = min)) %>%
 #'   filter(near_between(min, 0.1, 0.9))
 #'
 #' near_quantile(x = x,
@@ -54,7 +54,7 @@ near_middle <- function(x,
 #' 
 #' near_quantile(x, c(0.25, 0.5, 0.75), 0.05)
 #' 
-#' wages_ts %>%
+#' wages %>%
 #'   features(ln_wages, l_five_num) %>%
 #'   mutate_at(vars(min:max),
 #'             .funs = near_quantile,
@@ -62,16 +62,16 @@ near_middle <- function(x,
 #'             0.01) %>%
 #'   filter(min)
 #' 
-#' wages_ts %>%
+#' wages %>%
 #'   features(ln_wages, list(min = min)) %>%
 #'   mutate(min_near_q3 = near_quantile(min, c(0.25, 0.5, 0.75), 0.01)) %>%
 #'   filter(min_near_q3)
 #' 
-#' wages_ts %>%
+#' wages %>%
 #'   features(ln_wages, list(min = min)) %>%
 #'   filter(near_between(min, 0.1, 0.9))
 #' 
-#' wages_ts %>%
+#' wages %>%
 #'   features(ln_wages, list(min = min)) %>%
 #'   filter(near_middle(min, 0.5, 0.1))
 near_between <- function(x,
@@ -96,11 +96,11 @@ near_between <- function(x,
 #' near_quantile(x, c(0.25, 0.5, 0.75), 0.05)
 #' 
 #' library(dplyr)
-#' wages_ts %>% 
+#' wages %>% 
 #'   features(ln_wages, list(min = min)) %>% 
 #'   mutate(min_near_median = near_quantile(min, 0.5, 0.01)) %>%
 #'   filter(min_near_median)
-#' wages_ts %>% 
+#' wages %>% 
 #'   features(ln_wages, list(min = min)) %>% 
 #'   mutate(min_near_q3 = near_quantile(min, c(0.25, 0.5, 0.75), 0.01)) %>%
 #'   filter(min_near_q3)
