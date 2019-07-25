@@ -4,7 +4,7 @@
 \alias{keys_near}
 \title{Return keys nearest to a given statistics or summary.}
 \usage{
-keys_near(.data, key, var, top_n = 1, funs = l_five_num)
+keys_near(.data, key, var, top_n = 1, funs = l_five_num, ...)
 }
 \arguments{
 \item{.data}{data.frame}
@@ -17,6 +17,9 @@ keys_near(.data, key, var, top_n = 1, funs = l_five_num)
 
 \item{funs}{named list of functions to summarise by. Default is a given
 list of the five number summary, \code{l_five_num}.}
+
+\item{...}{extra arguments to pass to \code{mutate_at} when performing the summary
+as given by \code{funs}.}
 }
 \value{
 data.frame containing keys closest to a given statistic.

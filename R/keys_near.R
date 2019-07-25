@@ -6,6 +6,8 @@
 #' @param top_n top number of closest observations to return - default is 1, which will also return ties.
 #' @param funs named list of functions to summarise by. Default is a given
 #'   list of the five number summary, `l_five_num`.
+#' @param ... extra arguments to pass to `mutate_at` when performing the summary
+#'   as given by `funs`.
 #'
 #' @return data.frame containing keys closest to a given statistic.
 #' @examples
@@ -35,13 +37,15 @@ keys_near <- function(.data,
                       key,
                       var,
                       top_n = 1,
-                      funs = l_five_num){
+                      funs = l_five_num,
+                      ...){
   
   .data %>%
     tibble::as_tibble() %>%
     dplyr::mutate_at(
       .vars = dplyr::vars({{var}}),
-      .funs = funs) %>%
+      .funs = funs,
+      ...) %>%
     dplyr::select({{key}},
                   {{var}},
                   dplyr::one_of(names(funs))) %>%
