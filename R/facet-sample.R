@@ -10,14 +10,14 @@
 #'
 #' @examples
 #' library(ggplot2)
-#' ggplot(world_heights,
+#' ggplot(heights,
 #' aes(x = year,
 #'     y = height_cm,
 #'     group = country)) +
 #'   geom_line() +
 #'   facet_sample()
 #' 
-#' ggplot(world_heights,
+#' ggplot(heights,
 #'        aes(x = year,
 #'            y = height_cm,
 #'            group = country)) +

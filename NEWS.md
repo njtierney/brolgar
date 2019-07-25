@@ -19,6 +19,7 @@
 * Fixed bug where `stratify_keys()` didn't assign an equal number of keys per strata (#55)
 * Update `wages_ts` dataset to now just be `wages` data, and remove previous `tibble()` version of `wages` (#39).
 * Add `top_n` argument to `keys_near` to provide control over the number of observations near a stat that are returned.
+* change `world_heights` to `heights`.
 
 # brolgar 0.0.1.9000
 

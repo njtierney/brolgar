@@ -4,9 +4,9 @@ library(dplyr)
 library(tsibble)
 library(countrycode)
 
-world_heights <- read_excel(here("data-raw",
-                                 "Height_Compact.xlsx"),
-                                       sheet = 2) %>%
+heights <- read_excel(here("data-raw",
+                           "Height_Compact.xlsx"),
+                      sheet = 2) %>%
   rename(country = country.name,
          height_cm = value) %>%
   select(-ccode) %>%
@@ -18,4 +18,4 @@ world_heights <- read_excel(here("data-raw",
              index = year,
              regular = FALSE)
 
-usethis::use_data(world_heights, overwrite = TRUE)
+usethis::use_data(heights, overwrite = TRUE)

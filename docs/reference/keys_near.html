@@ -144,7 +144,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>keys_near</span>(<span class='no'>.data</span>, <span class='no'>key</span>, <span class='no'>var</span>, <span class='kw'>funs</span> <span class='kw'>=</span> <span class='no'>l_five_num</span>)</pre>
+    <pre class="usage"><span class='fu'>keys_near</span>(<span class='no'>.data</span>, <span class='no'>key</span>, <span class='no'>var</span>, <span class='kw'>top_n</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>funs</span> <span class='kw'>=</span> <span class='no'>l_five_num</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,6 +160,10 @@
     <tr>
       <th>var</th>
       <td><p>variable to summarise</p></td>
+    </tr>
+    <tr>
+      <th>top_n</th>
+      <td><p>top number of closest observations to return - default is 1, which will also return ties.</p></td>
     </tr>
     <tr>
       <th>funs</th>

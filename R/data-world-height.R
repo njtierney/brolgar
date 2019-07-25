@@ -3,7 +3,7 @@
 #' Average male heights in 165 countries from 1810-1989, with a
 #'   smaller number of countries from 1500-1800. 
 #' 
-#' `world_heights` is stored as a time series `tsibble` object. It contains 
+#' `heights` is stored as a time series `tsibble` object. It contains 
 #'   the variables:
 #' 
 #'  * country: The Country. This forms the identifying `key`.
@@ -21,20 +21,20 @@
 #' @examples
 #' \dontrun{
 #' library(ggplot2)
-#' ggplot(world_heights, 
+#' ggplot(heights, 
 #'        aes(x = year, 
 #'            y = height_cm, 
 #'            group = country)) + 
 #'     geom_line()
 #'     
-#' ggplot(world_heights,
+#' ggplot(heights,
 #'        aes(x = year,
 #'            y = height_cm,
 #'            group = country)) +
 #'   geom_line() +
 #'   facet_strata()
 #' 
-#' ggplot(world_heights,
+#' ggplot(heights,
 #'        aes(x = year,
 #'            y = height_cm,
 #'            group = country)) +
@@ -42,4 +42,4 @@
 #'   facet_wrap(~continent)
 #' 
 #' }
-"world_heights"
+"heights"

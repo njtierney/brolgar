@@ -33,7 +33,7 @@ These are then passed to `features` like so:
 wages %>%
   features(ln_wages, feat_three)
 
-world_heights %>%
+heights %>%
   features(height_cm, feat_three)
 ```
  

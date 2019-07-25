@@ -2,7 +2,7 @@ context("facet-sample")
 
 library(ggplot2)
 set.seed(2019-07-23-1900)
-gg_facet_sample <- ggplot(world_heights,
+gg_facet_sample <- ggplot(heights,
                           aes(x = year,
                               y = height_cm,
                               group = country)) +
@@ -10,7 +10,7 @@ gg_facet_sample <- ggplot(world_heights,
   facet_sample()
 
 set.seed(2019-07-23-1901)
-gg_facet_sample_alt <- ggplot(world_heights,
+gg_facet_sample_alt <- ggplot(heights,
                               aes(x = year,
                                   y = height_cm,
                                   group = country)) +
