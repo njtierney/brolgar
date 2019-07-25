@@ -37,8 +37,7 @@ summary(wages_slope$.slope_xp)
 If want to find those individuals that have slopes **near** these values.
 
 We can do this using `keys_near()`, which returns those nearest to some summary
-statistics. In this case, it is the five number summary, which is a list of 
-functions, given by `l_five_num`. But you could provide your own list of functions.
+statistics. In this case, it is the five number summary. In the next section we describe how you can provide your own named list of functions to use.
 
 ```{r use-summarise-fivenum}
 
@@ -81,10 +80,27 @@ wages %>%
 
 ```
 
+# Specify your own summaries for `keys_near()`
+
+You can specify your own list of summaries to pass to `keys_near`.  For example, you could create your own summaries to give a sense of range. Note that the functions here start with `b_`, and are `b_summaries` provided by `brolgar` that have sensible defaults. You can [read about them here](http://brolgar.njtierney.com/reference/b_summaries.html), or with `?b_summaries`
+
+```{r create-your-own}
+l_ranges <- list(min = b_min,
+                range_diff = b_range_diff,
+                max = b_max,
+                iqr = b_iqr)
+
+wages %>%
+ key_slope(formula = ln_wages ~ xp) %>%
+ keys_near(key = id,
+           var = .slope_xp,
+           funs = l_ranges)
+
+```
 
 # Implementation
 
-This section describes the general format for how this method is implemented.
+This section describes the general format for how `keys_near()` is implemented.
 
 To get the data into the right format, there are a few steps.
 
