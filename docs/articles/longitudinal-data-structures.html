@@ -55,7 +55,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/creating-features.html">creating-features</a>
+      <a href="../articles/creating-features.html">Creating Features</a>
     </li>
     <li>
       <a href="../articles/find-summary-keys.html">Finding summary keys</a>
@@ -65,9 +65,6 @@
     </li>
     <li>
       <a href="../articles/longitudinal-data-structures.html">Longitudinal Data Structures</a>
-    </li>
-    <li>
-      <a href="../articles/stats_on_stats.html">Stats on Stats: Workflows with `brolgar`</a>
     </li>
     <li>
       <a href="../articles/visualisation-gallery.html">Visualisation Gallery</a>
@@ -140,7 +137,7 @@
 </ul>
 <p>Together, the <strong>index</strong> and <strong>key</strong> uniquely identify an observation.</p>
 <p>What do we mean by this? Let’s look at the first section of the wages, <strong>wages</strong> data analysed in Singer &amp; Willett (2003):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span>(wages_ts, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span>(wages, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="co">#&gt; # A tsibble: 10 x 9 [!]</span></a>
 <a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt; # Key:       id [2]</span></a>
 <a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade</span></a>
@@ -167,26 +164,11 @@
 </ul>
 <p>We could create a <code>tsibble</code> of this data by using the <code>as_tsibble</code> function from <code>tsibble</code>, also stating, <code>regular = FALSE</code>, since we have an <code>irregular</code> time series (the measurements are not regularly measured, and have a varying distance between each measurement):</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tsibble)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(<span class="dt">x =</span> wages_ts,</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(<span class="dt">x =</span> wages,</a>
 <a class="sourceLine" id="cb3-3" title="3">           <span class="dt">key =</span> id,</a>
 <a class="sourceLine" id="cb3-4" title="4">           <span class="dt">index =</span> xp,</a>
-<a class="sourceLine" id="cb3-5" title="5">           <span class="dt">regular =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt; # A tsibble: 6,402 x 9 [!]</span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; # Key:       id [888]</span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade</span></a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt;    &lt;int&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt;  1    31     1.49 0.015     1        0.015     0        1          8</span></a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt;  2    31     1.43 0.715     1        0.715     0        1          8</span></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt;  3    31     1.47 1.73      1        1.73      0        1          8</span></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt;  4    31     1.75 2.77      1        2.77      0        1          8</span></a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt;  5    31     1.93 3.93      1        3.93      0        1          8</span></a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt;  6    31     1.71 4.95      1        4.95      0        1          8</span></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt;  7    31     2.09 5.96      1        5.96      0        1          8</span></a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="co">#&gt;  8    31     2.13 6.98      1        6.98      0        1          8</span></a>
-<a class="sourceLine" id="cb3-18" title="18"><span class="co">#&gt;  9    36     1.98 0.315     1        0.315     0        0          9</span></a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="co">#&gt; 10    36     1.80 0.983     1        0.983     0        0          9</span></a>
-<a class="sourceLine" id="cb3-20" title="20"><span class="co">#&gt; # … with 6,392 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></a></code></pre></div>
-<p>Note the following information printed at the top of <code>wages_ts</code></p>
+<a class="sourceLine" id="cb3-5" title="5">           <span class="dt">regular =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>Note the following information printed at the top of <code>wages</code></p>
 <pre><code># A tsibble: 6,402 x 9 [!]
 # Key:       id [888]
 ...</code></pre>

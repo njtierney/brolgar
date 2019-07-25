@@ -92,7 +92,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/creating-features.html">creating-features</a>
+      <a href="../articles/creating-features.html">Creating Features</a>
     </li>
     <li>
       <a href="../articles/find-summary-keys.html">Finding summary keys</a>
@@ -102,9 +102,6 @@
     </li>
     <li>
       <a href="../articles/longitudinal-data-structures.html">Longitudinal Data Structures</a>
-    </li>
-    <li>
-      <a href="../articles/stats_on_stats.html">Stats on Stats: Workflows with `brolgar`</a>
     </li>
     <li>
       <a href="../articles/visualisation-gallery.html">Visualisation Gallery</a>
@@ -216,7 +213,7 @@ either of the four sides by setting <code>strip.position = c("top",
            <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>country</span>)) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>() +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(~<span class='no'>continent</span>)</div><div class='img'><img src='facet_strata-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>wages_ts</span>,
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>wages</span>,
        <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>xp</span>,
            <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>ln_wages</span>,
            <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>id</span>)) +
@@ -231,9 +228,9 @@ either of the four sides by setting <code>strip.position = c("top",
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='no'>wages_ts</span> <span class='kw'>%&gt;%</span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='no'>wages</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='key_slope.html'>key_slope</a></span>(<span class='no'>ln_wages</span> ~ <span class='no'>xp</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/join.html'>right_join</a></span>(<span class='no'>wages_ts</span>, <span class='no'>.</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"id"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/join.html'>right_join</a></span>(<span class='no'>wages</span>, <span class='no'>.</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"id"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>xp</span>,
              <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>ln_wages</span>)) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>id</span>)) +

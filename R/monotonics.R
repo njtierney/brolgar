@@ -37,9 +37,9 @@
 #' library(gghighlight)
 #' library(dplyr)
 #' 
-#' wages_mono <- wages_ts %>%
+#' wages_mono <- wages %>%
 #'   features(ln_wages, feat_monotonic) %>%
-#'   left_join(wages_ts, by = "id")
+#'   left_join(wages, by = "id")
 #'   
 #'   ggplot(wages_mono,
 #'          aes(x = xp,

@@ -1,4 +1,4 @@
-wages_three_num <- wages_ts %>%
+wages_three_num <- wages %>%
   features(ln_wages, feat_three_num)
 
 test_that("feat_three_num returns the right names", {

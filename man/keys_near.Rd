@@ -23,13 +23,13 @@ data.frame containing keys closest to a given statistic.
 Return keys nearest to a given statistics or summary.
 }
 \examples{
-wages_ts \%>\%
+wages \%>\%
   key_slope(ln_wages ~ xp) \%>\%
   keys_near(key = id,
             var = .slope_xp)
                
 # Return observations closest to the five number summary of ln_wages
-wages_ts \%>\%
+wages \%>\%
   keys_near(key = id,
             var = ln_wages)
                
@@ -39,7 +39,7 @@ l_ranges <- list(min = b_min,
                  max = b_max,
                  iqr = b_iqr)
 
-wages_ts \%>\%
+wages \%>\%
   key_slope(formula = ln_wages ~ xp) \%>\%
   keys_near(key = id,
               var = .slope_xp,

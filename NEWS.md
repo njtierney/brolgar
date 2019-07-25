@@ -17,6 +17,7 @@
 * Implement `facet_sample()` to create facetted plots with a set number of keys inside each facet. (#32). 
 * `add_` functions now return a `tsibble()` (#49).
 * Fixed bug where `stratify_keys()` didn't assign an equal number of keys per strata (#55)
+* Update `wages_ts` dataset to now just be `wages` data, and remove previous `tibble()` version of `wages` (#39).
 
 # brolgar 0.0.1.9000
 

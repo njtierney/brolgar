@@ -1,4 +1,4 @@
-wages_ranges <- wages_ts %>%
+wages_ranges <- wages %>%
   features(ln_wages, feat_ranges)
 
 test_that("feat_ranges returns the right names", {

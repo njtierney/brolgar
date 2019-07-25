@@ -1,5 +1,5 @@
 # Return observations closest to the five number summary of ln_wages
-summarise_ln_wages <- wages_ts %>%
+summarise_ln_wages <- wages %>%
   keys_near(key = id,
             var = ln_wages)
 
@@ -9,7 +9,7 @@ l_ranges <- list(min = b_min,
                  max = b_max,
                  iqr = b_iqr)
 
-summarise_slope <- wages_ts %>%
+summarise_slope <- wages %>%
   key_slope(formula = ln_wages ~ xp) %>%
   keys_near(key = id,
             var = .slope_xp)

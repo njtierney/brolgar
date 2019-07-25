@@ -35,7 +35,7 @@ test_that("monotonic correctly guesses", {
   expect_false(monotonic(1))
 })
 
-wages_monotonic <- wages_ts %>% features(ln_wages, feat_monotonic)
+wages_monotonic <- wages %>% features(ln_wages, feat_monotonic)
 
 test_that("wages_monotonic produces output 0 or 1",{
   expect_equal(max(rowSums(wages_monotonic[ , 2:4])), 1)

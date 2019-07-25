@@ -23,7 +23,7 @@
 #'   geom_line() +
 #'   facet_wrap(~continent)
 #' 
-#' ggplot(wages_ts,
+#' ggplot(wages,
 #'        aes(x = xp,
 #'            y = ln_wages,
 #'            group = id)) +
@@ -31,9 +31,9 @@
 #'   facet_strata(along = xp_since_ged)
 #' 
 #' library(dplyr)
-#' wages_ts %>%
+#' wages %>%
 #'   key_slope(ln_wages ~ xp) %>%
-#'   right_join(wages_ts, ., by = "id") %>%
+#'   right_join(wages, ., by = "id") %>%
 #'   ggplot(aes(x = xp,
 #'              y = ln_wages)) +
 #'   geom_line(aes(group = id)) +

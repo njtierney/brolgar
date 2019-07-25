@@ -94,7 +94,7 @@ filter by the number of observations for each key." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/creating-features.html">creating-features</a>
+      <a href="../articles/creating-features.html">Creating Features</a>
     </li>
     <li>
       <a href="../articles/find-summary-keys.html">Finding summary keys</a>
@@ -104,9 +104,6 @@ filter by the number of observations for each key." />
     </li>
     <li>
       <a href="../articles/longitudinal-data-structures.html">Longitudinal Data Structures</a>
-    </li>
-    <li>
-      <a href="../articles/stats_on_stats.html">Stats on Stats: Workflows with `brolgar`</a>
     </li>
     <li>
       <a href="../articles/visualisation-gallery.html">Visualisation Gallery</a>
@@ -183,7 +180,7 @@ each <code>key</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>wages_ts</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_n_obs</span>(<span class='no'>n_obs</span> <span class='kw'>&gt;</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tsibble: 1,105 x 10 [!]</span><span>
+    <pre class="examples"><div class='input'><span class='no'>wages</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_n_obs</span>(<span class='no'>n_obs</span> <span class='kw'>&gt;</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tsibble: 1,105 x 10 [!]</span><span>
 #&gt; </span><span style='color: #555555;'># Key:       id [97]</span><span>
 #&gt;       id    xp n_obs ln_wages   ged xp_since_ged black hispanic high_grade
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -197,7 +194,7 @@ each <code>key</code>.</p>
 #&gt; </span><span style='color: #555555;'> 8</span><span>   134 6.75     12     2.67     1         2.84     0        0         11
 #&gt; </span><span style='color: #555555;'> 9</span><span>   134 8.25     12     2.81     1         4.34     0        0         11
 #&gt; </span><span style='color: #555555;'>10</span><span>   134 9.02     12     2.93     1         5.11     0        0         11
-#&gt; </span><span style='color: #555555;'># … with 1,095 more rows, and 1 more variable: unemploy_rate </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='no'>wages_ts</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_n_obs</span>(<span class='no'>n_obs</span> <span class='kw'>==</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tsibble: 78 x 10 [!]</span><span>
+#&gt; </span><span style='color: #555555;'># … with 1,095 more rows, and 1 more variable: unemploy_rate </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='no'>wages</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter_n_obs</span>(<span class='no'>n_obs</span> <span class='kw'>==</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tsibble: 78 x 10 [!]</span><span>
 #&gt; </span><span style='color: #555555;'># Key:       id [39]</span><span>
 #&gt;       id    xp n_obs ln_wages   ged xp_since_ged black hispanic high_grade
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>

@@ -1,4 +1,4 @@
-wages_spread <- wages_ts %>%
+wages_spread <- wages %>%
   features(ln_wages, feat_spread)
 
 test_that("feat_spread returns the right names", {

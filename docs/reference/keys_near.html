@@ -92,7 +92,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/creating-features.html">creating-features</a>
+      <a href="../articles/creating-features.html">Creating Features</a>
     </li>
     <li>
       <a href="../articles/find-summary-keys.html">Finding summary keys</a>
@@ -102,9 +102,6 @@
     </li>
     <li>
       <a href="../articles/longitudinal-data-structures.html">Longitudinal Data Structures</a>
-    </li>
-    <li>
-      <a href="../articles/stats_on_stats.html">Stats on Stats: Workflows with `brolgar`</a>
     </li>
     <li>
       <a href="../articles/visualisation-gallery.html">Visualisation Gallery</a>
@@ -177,7 +174,7 @@ list of the five number summary, <code>l_five_num</code>.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>wages_ts</span> <span class='kw'>%&gt;%</span>
+    <pre class="examples"><div class='input'><span class='no'>wages</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='key_slope.html'>key_slope</a></span>(<span class='no'>ln_wages</span> ~ <span class='no'>xp</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>keys_near</span>(<span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>id</span>,
             <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>.slope_xp</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 5</span><span>
@@ -191,7 +188,7 @@ list of the five number summary, <code>l_five_num</code>.</p></td>
 #&gt; </span><span style='color: #555555;'>5</span><span> </span><span style='text-decoration: underline;'>12</span><span>178   0.094</span><span style='text-decoration: underline;'>6</span><span>  q_75     0.094</span><span style='text-decoration: underline;'>7</span><span>  0.000</span><span style='text-decoration: underline;'>057</span><span>9
 #&gt; </span><span style='color: #555555;'>6</span><span> </span><span style='text-decoration: underline;'>12</span><span>455  13.2     max     13.2     0        </div><div class='input'>
 <span class='co'># Return observations closest to the five number summary of ln_wages</span>
-<span class='no'>wages_ts</span> <span class='kw'>%&gt;%</span>
+<span class='no'>wages</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>keys_near</span>(<span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>id</span>,
             <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>ln_wages</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 71 x 5</span><span>
 #&gt; </span><span style='color: #555555;'># Groups:   stat [5]</span><span>
@@ -214,7 +211,7 @@ list of the five number summary, <code>l_five_num</code>.</p></td>
                  <span class='kw'>max</span> <span class='kw'>=</span> <span class='no'>b_max</span>,
                  <span class='kw'>iqr</span> <span class='kw'>=</span> <span class='no'>b_iqr</span>)
 
-<span class='no'>wages_ts</span> <span class='kw'>%&gt;%</span>
+<span class='no'>wages</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='key_slope.html'>key_slope</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>ln_wages</span> ~ <span class='no'>xp</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>keys_near</span>(<span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>id</span>,
               <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>.slope_xp</span>,

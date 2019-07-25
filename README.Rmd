@@ -29,7 +29,7 @@ Exploring longitudinal data can be challenging. For example, when there are many
 ```{r show-spaghetti}
 library(brolgar)
 library(ggplot2)
-ggplot(wages_ts, 
+ggplot(wages, 
        aes(x = xp, 
              y = ln_wages, 
              group = id)) + 
@@ -44,9 +44,9 @@ What you want is to identify those interesting individual lines, so you can get 
 suppressPackageStartupMessages(library(gghighlight))
 suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(dplyr))
-wages_ts %>%
+wages %>%
   features(ln_wages, feat_monotonic) %>%
-  left_join(wages_ts, by = "id") %>%
+  left_join(wages, by = "id") %>%
   ggplot(aes(x = xp,
              y = ln_wages,
              group = id)) +
@@ -83,10 +83,10 @@ The term `key` is used a lot in brolgar, so it is an important idea to internali
 > **The key is the identifier of your individuals or series**
 
 
-So in the `wages_ts` data, we have the following setup:
+So in the `wages` data, we have the following setup:
 
 ```{r setup-wages-ts, eval = FALSE}
-wages_ts <- as_tsibble(x = wages_ts,
+wages <- as_tsibble(x = wages,
                        key = id,
                        index = xp,
                        regular = FALSE)
@@ -106,7 +106,7 @@ In `dplyr`, you can use `sample_n()` to sample `n` observations. Similarly, with
 
 ```{r plot-sample-n-keys}
 set.seed(2019-7-15-1300)
-wages_ts %>%
+wages %>%
   sample_n_keys(size = 10) %>%
   ggplot(aes(x = xp,
              y = ln_wages,
@@ -120,7 +120,7 @@ You can combine `sample_n_keys()` with `filter_n_obs` to only show keys with man
 
 ```{r plot-filter-sample-n-keys}
 set.seed(2019-7-15-1259)
-wages_ts %>%
+wages %>%
   filter_n_obs(n_obs > 5) %>%
   sample_n_keys(size = 10) %>%
   ggplot(aes(x = xp,
@@ -140,7 +140,7 @@ Now, how do you break these into many plots?
 ```{r facet-strata}
 set.seed(2019-07-23-1936)
 library(ggplot2)
-ggplot(wages_ts,
+ggplot(wages,
        aes(x = xp,
            y = ln_wages,
            group = id)) +
@@ -153,7 +153,7 @@ But you could ask it to split the data into a more groups
 ```{r facet-strata-20}
 set.seed(2019-07-25-1450)
 library(ggplot2)
-ggplot(wages_ts,
+ggplot(wages,
        aes(x = xp,
            y = ln_wages,
            group = id)) +
@@ -169,7 +169,7 @@ And what if you want to show only a few samples per facet?
 
 ```{r facet-sample}
 set.seed(2019-07-23-1937)
-ggplot(wages_ts,
+ggplot(wages,
        aes(x = xp,
            y = ln_wages,
            group = id)) +
@@ -182,7 +182,7 @@ But you can specify your own number:
 
 ```{r facet-sample-3-by-20}
 set.seed(2019-07-25-1527)
-ggplot(wages_ts,
+ggplot(wages,
        aes(x = xp,
            y = ln_wages,
            group = id)) +
@@ -199,15 +199,15 @@ Under the hood, `facet_sample()` and `facet_strata()` use `sample_n_keys()` and 
 You can fit a linear model for each key using `key_slope()`. This returns the intercept and slope estimate for each key, given some linear model formula. We can get the number of observations, and slope information for each individual to identify those that are decreasing over time. 
 
 ```{r use-gghighlight}
-key_slope(wages_ts,ln_wages ~ xp)
+key_slope(wages,ln_wages ~ xp)
 ```
 
 We can then join these summaries back to the data:
 
 ```{r show-wages-lg}
 library(dplyr)
-wages_slope <- key_slope(wages_ts,ln_wages ~ xp) %>%
-  left_join(wages_ts, by = "id") 
+wages_slope <- key_slope(wages,ln_wages ~ xp) %>%
+  left_join(wages, by = "id") 
 
 wages_slope
 ```
@@ -243,7 +243,7 @@ wages_slope %>%
   keys_near(key = id,
             var = .slope_xp,
             funs = l_three_num) %>%
-  left_join(wages_ts, by = "id") %>%
+  left_join(wages, by = "id") %>%
   ggplot(aes(x = xp,
              y = ln_wages,
              group = id,
@@ -257,7 +257,7 @@ wages_slope %>%
 You can extract `features` of longitudinal data using the `features` function, from `fablelite`. You can, for example, calculate the minimum of a given variable for each key by providing a named list like so:
 
 ```{r features-min}
-wages_ts %>%
+wages %>%
   features(ln_wages, 
            list(min = min))
 ```
@@ -267,14 +267,14 @@ wages_ts %>%
 For example, the five number summary is `feat_five_num`:
 
 ```{r features-five-num}
-wages_ts %>%
+wages %>%
   features(ln_wages, feat_five_num)
 ```
 
 Or finding those whose values only increase or decrease with `feat_monotonic`
 
 ```{r features-monotonic}
-wages_ts %>%
+wages %>%
   features(ln_wages, feat_monotonic)
 ```
 
@@ -283,9 +283,9 @@ wages_ts %>%
 You can join these features back to the data with `left_join`, like so:
 
 ```{r features-left-join}
-wages_ts %>%
+wages %>%
   features(ln_wages, feat_monotonic) %>%
-  left_join(wages_ts, by = "id") %>%
+  left_join(wages, by = "id") %>%
   ggplot(aes(x = xp,
              y = ln_wages,
              group = id)) +
@@ -300,7 +300,7 @@ wages_ts %>%
 We can calculate the number of observations for each `key`, using `n_key_obs()`:
 
 ```{r example-n-obs}
-n_key_obs(wages_ts)
+n_key_obs(wages)
 ```
 
 This returns a dataframe, with one row per key, and the number of observations for each key.
@@ -309,11 +309,11 @@ This could be further summarised to get a sense of the patterns of the number of
 
 ```{r summarise-n-obs}
 library(ggplot2)
-n_key_obs(wages_ts) %>%
+n_key_obs(wages) %>%
 ggplot(aes(x = n_obs)) + 
   geom_bar()
 
-n_key_obs(wages_ts) %>% summary()
+n_key_obs(wages) %>% summary()
 ```
 
 ### `add_n_key_obs()`
@@ -321,13 +321,13 @@ n_key_obs(wages_ts) %>% summary()
 You can add information about the number of observations for each key with `add_n_key_obs()`:
 
 ```{r show-add-n-key-obs}
-wages_ts %>% add_n_key_obs()
+wages %>% add_n_key_obs()
 ```
 
 Which you can then use to filter observations:
 
 ```{r show-add-obs-filter}
-wages_ts %>% 
+wages %>% 
   add_n_key_obs() %>%
   filter(n_obs > 3)
 ```
@@ -335,7 +335,7 @@ wages_ts %>%
 Alternatively, you can use the shortcut, `filter_n_obs()`:
 
 ```{r use-filter-n-obs}
-wages_ts %>% 
+wages %>% 
   filter_n_obs(n_obs > 3)
 ```
 
@@ -344,7 +344,7 @@ wages_ts %>%
 To look at as much of the raw data as possible, it can be helpful to stratify the data into groups for plotting. You can `stratify` the `keys` using the `stratify_keys()` function, which adds the column, `.strata`:
 
 ```{r use-strata}
-wages_ts %>%
+wages %>%
   sample_n_keys(100) %>% 
   stratify_keys(n_strata = 10)
 ```
@@ -353,7 +353,7 @@ This then allows the user to create facetted plots showing a lot more of the raw
 
 ```{r plot-strata}
 set.seed(2019-07-15-1258)
-wages_ts %>%
+wages %>%
   sample_n_keys(120) %>% 
   stratify_keys(n_strata = 12) %>%
   ggplot(aes(x = xp,

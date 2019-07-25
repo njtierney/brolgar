@@ -1,6 +1,6 @@
 context("test-stratify-key")
 
-wages_test <- sample_frac_keys(wages_ts, size = 0.10)
+wages_test <- sample_frac_keys(wages, size = 0.10)
 
 wages_strat <- stratify_keys(wages_test, n_strata = 10)
 

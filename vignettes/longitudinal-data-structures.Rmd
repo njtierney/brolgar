@@ -42,7 +42,7 @@ Together, the **index** and **key** uniquely identify an observation.
 What do we mean by this? Let's look at the first section of the wages, **wages** data analysed in Singer & Willett (2003):
 
 ```{r slice-wages}
-slice(wages_ts, 1:10)
+slice(wages, 1:10)
 ```
 
 We have the `id` column, which identifies an individual.
@@ -58,13 +58,13 @@ We could create a `tsibble` of this data by using the `as_tsibble` function from
 
 ```{r create-tsibble, eval = FALSE}
 library(tsibble)
-as_tsibble(x = wages_ts,
+as_tsibble(x = wages,
            key = id,
            index = xp,
            regular = FALSE)
 ```
 
-Note the following information printed at the top of `wages_ts`
+Note the following information printed at the top of `wages`
 
 ```
 # A tsibble: 6,402 x 9 [!]
@@ -72,7 +72,7 @@ Note the following information printed at the top of `wages_ts`
 ...
 ```
 
-This says, we have `r nrow(wages_ts)` rows, with `r ncol(wages_ts)` columns. The `!` means that there is no regular spacing between series, and then our "key" is `id`, of which there `r n_keys(wages_ts)`.
+This says, we have `r nrow(wages)` rows, with `r ncol(wages)` columns. The `!` means that there is no regular spacing between series, and then our "key" is `id`, of which there `r n_keys(wages)`.
 
 # Using time series data in `brolgar`
 
