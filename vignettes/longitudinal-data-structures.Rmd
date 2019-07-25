@@ -56,7 +56,7 @@ So:
 
 We could create a `tsibble` of this data by using the `as_tsibble` function from `tsibble`, also stating, `regular = FALSE`, since we have an `irregular` time series (the measurements are not regularly measured, and have a varying distance between each measurement):
 
-```{r create-tsibble}
+```{r create-tsibble, eval = FALSE}
 library(tsibble)
 as_tsibble(x = wages_ts,
            key = id,

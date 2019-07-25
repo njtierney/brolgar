@@ -1,5 +1,5 @@
 ---
-title: "creating-features"
+title: "Creating Features"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{creating-features}

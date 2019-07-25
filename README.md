@@ -77,6 +77,15 @@ internalise:
 
 > **The key is the identifier of your individuals or series**
 
+So in the `wages_ts` data, we have the following setup:
+
+``` r
+wages_ts <- as_tsibble(x = wages_ts,
+                       key = id,
+                       index = xp,
+                       regular = FALSE)
+```
+
 If you want to learn more about what longitudinal data as a time series,
 you can [read more in the vignette, “Longitudinal Data
 Structures”](library/brolgar/html/longitudinal-data-structures.html)
@@ -105,8 +114,10 @@ wages_ts %>%
 
 <img src="man/figures/README-plot-sample-n-keys-1.png" width="75%" style="display: block; margin: auto;" />
 
-You can combine with this `filter_n_obs` to only show keys with many
-observations:
+## Filtering obserations
+
+You can combine `sample_n_keys()` with `filter_n_obs` to only show keys
+with many observations:
 
 ``` r
 set.seed(2019-7-15-1259)
@@ -124,53 +135,9 @@ wages_ts %>%
 (Note: `sample_frac_keys()`, which samples a fraction of available
 keys.)
 
-### `stratify_keys()`
+Now, how do you break these into many plots?
 
-To look at as much of the raw data as possible, it can be helpful to
-stratify the data into groups for plotting. You can `stratify` the
-`keys` using the `stratify_keys()` function, which adds the column,
-`.strata`:
-
-``` r
-wages_ts %>%
-  sample_n_keys(100) %>% 
-  stratify_keys(n_strata = 10)
-#> # A tsibble: 737 x 10 [!]
-#> # Key:       id [100]
-#>       id ln_wages    xp   ged xp_since_ged black hispanic high_grade
-#>    <int>    <dbl> <dbl> <int>        <dbl> <int>    <int>      <int>
-#>  1    53     1.76 0.781     0        0         0        1          7
-#>  2    53     1.54 0.943     0        0         0        1          7
-#>  3    53     3.24 0.957     1        0         0        1          7
-#>  4    53     1.60 1.04      1        0.08      0        1          7
-#>  5    53     1.57 1.06      1        0.1       0        1          7
-#>  6    53     1.88 1.11      1        0.152     0        1          7
-#>  7    53     1.89 1.18      1        0.227     0        1          7
-#>  8    53     1.66 1.78      1        0.82      0        1          7
-#>  9   145     1.56 0.235     0        0         0        0         10
-#> 10   145     1.48 0.828     1        0.473     0        0         10
-#> # … with 727 more rows, and 2 more variables: unemploy_rate <dbl>,
-#> #   .strata <int>
-```
-
-This then allows the user to create facetted plots showing a lot more of
-the raw data
-
-``` r
-set.seed(2019-07-15-1258)
-wages_ts %>%
-  sample_n_keys(120) %>% 
-  stratify_keys(n_strata = 12) %>%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id)) + 
-  geom_line() + 
-  facet_wrap(~.strata)
-```
-
-<img src="man/figures/README-plot-strata-1.png" width="75%" style="display: block; margin: auto;" />
-
-## Clever facets
+## Clever facets: `facet_strata()`
 
 `brolgar` provides some clever facets to help make it easier to explore
 your data. `facet_strata()` splits the data into 12 groups by default:
@@ -188,8 +155,28 @@ ggplot(wages_ts,
 
 <img src="man/figures/README-facet-strata-1.png" width="75%" style="display: block; margin: auto;" />
 
-And `facet_sample()` allows you to specify an ideal “n per plot” and “n
-facets”. It splits the data into 12 facets with 5 per group by default:
+But you could ask it to split the data into a more groups
+
+``` r
+set.seed(2019-07-25-1450)
+library(ggplot2)
+ggplot(wages_ts,
+       aes(x = xp,
+           y = ln_wages,
+           group = id)) +
+  geom_line() +
+  facet_strata(n_strata = 20)
+```
+
+<img src="man/figures/README-facet-strata-20-1.png" width="75%" style="display: block; margin: auto;" />
+
+And what if you want to show only a few samples per facet?
+
+## Clever facets: `facet_sample()`
+
+`facet_sample()` allows you to specify the number of keys per facet, and
+the number of facets with `n_per_facet` and `n_facets`. It splits the
+data into 12 facets with 5 per facet by default:
 
 ``` r
 set.seed(2019-07-23-1937)
@@ -202,6 +189,24 @@ ggplot(wages_ts,
 ```
 
 <img src="man/figures/README-facet-sample-1.png" width="75%" style="display: block; margin: auto;" />
+
+But you can specify your own number:
+
+``` r
+set.seed(2019-07-25-1527)
+ggplot(wages_ts,
+       aes(x = xp,
+           y = ln_wages,
+           group = id)) +
+  geom_line() +
+  facet_sample(n_per_facet = 3,
+               n_facets = 20)
+```
+
+<img src="man/figures/README-facet-sample-3-by-20-1.png" width="75%" style="display: block; margin: auto;" />
+
+Under the hood, `facet_sample()` and `facet_strata()` use
+`sample_n_keys()` and `stratify_keys()`.
 
 ## Exploratory modelling
 
@@ -524,6 +529,52 @@ wages_ts %>%
 #> 10    36 0.983    10     1.80     1        0.983     0        0          9
 #> # … with 6,135 more rows, and 1 more variable: unemploy_rate <dbl>
 ```
+
+### `stratify_keys()`
+
+To look at as much of the raw data as possible, it can be helpful to
+stratify the data into groups for plotting. You can `stratify` the
+`keys` using the `stratify_keys()` function, which adds the column,
+`.strata`:
+
+``` r
+wages_ts %>%
+  sample_n_keys(100) %>% 
+  stratify_keys(n_strata = 10)
+#> # A tsibble: 677 x 10 [!]
+#> # Key:       id [100]
+#>       id ln_wages    xp   ged xp_since_ged black hispanic high_grade
+#>    <int>    <dbl> <dbl> <int>        <dbl> <int>    <int>      <int>
+#>  1   122    2.12   2.04     0            0     0        0         12
+#>  2   122    2.92   2.64     0            0     0        0         12
+#>  3   122    1.92   3.66     0            0     0        0         12
+#>  4   122    0.763  4.64     0            0     0        0         12
+#>  5   122    2.44   5.83     0            0     0        0         12
+#>  6   122    2.18   6.72     0            0     0        0         12
+#>  7   122    2.14   8.16     0            0     0        0         12
+#>  8   122    2.20   9.1      0            0     0        0         12
+#>  9   122    2.34  10.4      0            0     0        0         12
+#> 10   122    2.67  11.1      0            0     0        0         12
+#> # … with 667 more rows, and 2 more variables: unemploy_rate <dbl>,
+#> #   .strata <int>
+```
+
+This then allows the user to create facetted plots showing a lot more of
+the raw data
+
+``` r
+set.seed(2019-07-15-1258)
+wages_ts %>%
+  sample_n_keys(120) %>% 
+  stratify_keys(n_strata = 12) %>%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id)) + 
+  geom_line() + 
+  facet_wrap(~.strata)
+```
+
+<img src="man/figures/README-plot-strata-1.png" width="75%" style="display: block; margin: auto;" />
 
 # Contributing
 

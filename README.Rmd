@@ -83,6 +83,17 @@ The term `key` is used a lot in brolgar, so it is an important idea to internali
 > **The key is the identifier of your individuals or series**
 
 
+So in the `wages_ts` data, we have the following setup:
+
+```{r setup-wages-ts, eval = FALSE}
+wages_ts <- as_tsibble(x = wages_ts,
+                       key = id,
+                       index = xp,
+                       regular = FALSE)
+```
+
+
+
 If you want to learn more about what longitudinal data as a time series, you can [read more in the vignette, "Longitudinal Data Structures"](library/brolgar/html/longitudinal-data-structures.html)
 
 ## Efficiently exploring longitudinal data
@@ -103,7 +114,9 @@ wages_ts %>%
   geom_line()
 ```
 
-You can combine with this `filter_n_obs` to only show keys with many observations:
+## Filtering obserations
+
+You can combine `sample_n_keys()` with `filter_n_obs` to only show keys with many observations:
 
 ```{r plot-filter-sample-n-keys}
 set.seed(2019-7-15-1259)
@@ -118,31 +131,9 @@ wages_ts %>%
 
 (Note: `sample_frac_keys()`, which samples a fraction of available keys.)
 
-### `stratify_keys()`
+Now, how do you break these into many plots?
 
-To look at as much of the raw data as possible, it can be helpful to stratify the data into groups for plotting. You can `stratify` the `keys` using the `stratify_keys()` function, which adds the column, `.strata`:
-
-```{r use-strata}
-wages_ts %>%
-  sample_n_keys(100) %>% 
-  stratify_keys(n_strata = 10)
-```
-
-This then allows the user to create facetted plots showing a lot more of the raw data
-
-```{r plot-strata}
-set.seed(2019-07-15-1258)
-wages_ts %>%
-  sample_n_keys(120) %>% 
-  stratify_keys(n_strata = 12) %>%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id)) + 
-  geom_line() + 
-  facet_wrap(~.strata)
-```
-
-## Clever facets
+## Clever facets: `facet_strata()`
 
 `brolgar` provides some clever facets to help make it easier to explore your data. `facet_strata()` splits the data into 12 groups by default:
 
@@ -157,7 +148,24 @@ ggplot(wages_ts,
   facet_strata()
 ```
 
-And `facet_sample()` allows you to specify an ideal "n per plot" and "n facets". It splits the data into 12 facets with 5 per group by default:
+But you could ask it to split the data into a more groups
+
+```{r facet-strata-20}
+set.seed(2019-07-25-1450)
+library(ggplot2)
+ggplot(wages_ts,
+       aes(x = xp,
+           y = ln_wages,
+           group = id)) +
+  geom_line() +
+  facet_strata(n_strata = 20)
+```
+
+And what if you want to show only a few samples per facet?
+
+## Clever facets: `facet_sample()`
+
+`facet_sample()` allows you to specify the number of keys per facet, and the number of facets with `n_per_facet` and `n_facets`. It splits the data into 12 facets with 5 per facet by default:
 
 ```{r facet-sample}
 set.seed(2019-07-23-1937)
@@ -170,6 +178,21 @@ ggplot(wages_ts,
 
 ```
 
+But you can specify your own number:
+
+```{r facet-sample-3-by-20}
+set.seed(2019-07-25-1527)
+ggplot(wages_ts,
+       aes(x = xp,
+           y = ln_wages,
+           group = id)) +
+  geom_line() +
+  facet_sample(n_per_facet = 3,
+               n_facets = 20)
+
+```
+
+Under the hood, `facet_sample()` and `facet_strata()` use `sample_n_keys()` and `stratify_keys()`.
 
 ## Exploratory modelling
 
@@ -316,6 +339,30 @@ wages_ts %>%
   filter_n_obs(n_obs > 3)
 ```
 
+### `stratify_keys()`
+
+To look at as much of the raw data as possible, it can be helpful to stratify the data into groups for plotting. You can `stratify` the `keys` using the `stratify_keys()` function, which adds the column, `.strata`:
+
+```{r use-strata}
+wages_ts %>%
+  sample_n_keys(100) %>% 
+  stratify_keys(n_strata = 10)
+```
+
+This then allows the user to create facetted plots showing a lot more of the raw data
+
+```{r plot-strata}
+set.seed(2019-07-15-1258)
+wages_ts %>%
+  sample_n_keys(120) %>% 
+  stratify_keys(n_strata = 12) %>%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id)) + 
+  geom_line() + 
+  facet_wrap(~.strata)
+```
+
 # Contributing
 
 Please note that the 'brolgar' project is released with a
@@ -332,3 +379,5 @@ This version of brolgar was been forked from [tprvan/brolgar](https://github.com
 <!-- But calculating this for individuals draws you away from your analysis, and instead you are now wrangling with a different problem: summarising key information about each individual and incorporating that back into the data.  -->
 
 <!-- This is annoying, and distracts from your analysis, inviting errors. -->
+
+
