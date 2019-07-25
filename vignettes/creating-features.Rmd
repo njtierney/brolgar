@@ -37,7 +37,7 @@ world_heights %>%
   features(height_cm, feat_three)
 ```
  
-Inside `brolgar`, the featurs are created with the following syntax:
+Inside `brolgar`, the features are created with the following syntax:
 
 ```{r demo-feat-five-num, eval = FALSE}
 feat_five_num <- function(x, ...) {
@@ -54,7 +54,7 @@ feat_five_num <- function(x, ...) {
 Here the functions `b_` are functions with a default of `na.rm = TRUE`, and in 
 the cases of quantiles, they use `type = 8`, and `names = FALSE`.
 
-## Accessing sets of featyres
+## Accessing sets of features
 
 You can now create a set of features with:
 

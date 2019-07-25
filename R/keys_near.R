@@ -3,6 +3,7 @@
 #' @param .data data.frame
 #' @param key key, which identifies unique observations.
 #' @param var variable to summarise
+#' @param top_n top number of closest observations to return - default is 1, which will also return ties.
 #' @param funs named list of functions to summarise by. Default is a given
 #'   list of the five number summary, `l_five_num`.
 #'
@@ -33,6 +34,7 @@
 keys_near <- function(.data,
                       key,
                       var,
+                      top_n = 1,
                       funs = l_five_num){
   
   .data %>%
@@ -49,6 +51,6 @@ keys_near <- function(.data,
            -{{var}}) %>%
     dplyr::mutate(stat_diff = abs({{var}} - stat_value)) %>%
     dplyr::group_by(stat) %>%
-    dplyr::top_n(-1,
+    dplyr::top_n(-top_n,
                  wt = stat_diff)
 }

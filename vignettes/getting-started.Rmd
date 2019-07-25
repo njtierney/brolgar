@@ -83,7 +83,7 @@ wages %>%
   geom_line()
 ```
 
-## Filtering obserations
+## Filtering observations
 
 You can combine `sample_n_keys()` with `filter_n_obs` to only show keys with many observations:
 

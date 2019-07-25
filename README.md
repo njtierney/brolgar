@@ -114,7 +114,7 @@ wages %>%
 
 <img src="man/figures/README-plot-sample-n-keys-1.png" width="75%" style="display: block; margin: auto;" />
 
-## Filtering obserations
+## Filtering observations
 
 You can combine `sample_n_keys()` with `filter_n_obs` to only show keys
 with many observations:
@@ -578,7 +578,7 @@ wages %>%
 
 # Contributing
 
-Please note that the ‘brolgar’ project is released with a [Contributor
+Please note that the `brolgar` project is released with a [Contributor
 Code of Conduct](.github/CODE_OF_CONDUCT.md). By contributing to this
 project, you agree to abide by its terms.
 
