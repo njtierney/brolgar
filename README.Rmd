@@ -116,12 +116,14 @@ wages %>%
 
 ## Filtering observations
 
-You can combine `sample_n_keys()` with `filter_n_obs` to only show keys with many observations:
+You can combine `sample_n_keys()` with `add_n_obs()` and `filter()` to only show keys with many observations:
 
 ```{r plot-filter-sample-n-keys}
 set.seed(2019-7-15-1259)
+library(dplyr)
 wages %>%
-  filter_n_obs(n_obs > 5) %>%
+  add_n_obs() %>%
+  filter(n_obs > 5) %>%
   sample_n_keys(size = 10) %>%
   ggplot(aes(x = xp,
              y = ln_wages,
@@ -193,67 +195,6 @@ ggplot(wages,
 ```
 
 Under the hood, `facet_sample()` and `facet_strata()` use `sample_n_keys()` and `stratify_keys()`.
-
-## Exploratory modelling
-
-You can fit a linear model for each key using `key_slope()`. This returns the intercept and slope estimate for each key, given some linear model formula. We can get the number of observations, and slope information for each individual to identify those that are decreasing over time. 
-
-```{r use-gghighlight}
-key_slope(wages,ln_wages ~ xp)
-```
-
-We can then join these summaries back to the data:
-
-```{r show-wages-lg}
-library(dplyr)
-wages_slope <- key_slope(wages,ln_wages ~ xp) %>%
-  left_join(wages, by = "id") 
-
-wages_slope
-```
-
-And highlight those individuals with a negative slope using `gghighlight`:
-
-```{r use-gg-highlight}
-library(gghighlight)
-
-wages_slope %>% 
-  as_tibble() %>% # workaround for gghighlight + tsibble
-  ggplot(aes(x = xp, 
-             y = ln_wages, 
-             group = id)) + 
-  geom_line() +
-  gghighlight(.slope_xp < 0)
-```
-
-
-### Find keys near other summaries with `keys_near()`
-
-We could take our slope information and find those individuals who are representative of the min, median, maximum, etc of growth, using `keys_near()`:
-
-```{r keys-near}
-wages_slope %>%
-  keys_near(key = id,
-            var = .slope_xp,
-            funs = l_three_num)
-```
-
-```{r keys-near-plot}
-wages_slope %>%
-  keys_near(key = id,
-            var = .slope_xp,
-            funs = l_three_num) %>%
-  left_join(wages, by = "id") %>%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id,
-             colour = stat)) + 
-  geom_line()
-```
-
-
-You can read more about `keys_near()` at the [finding summary keys vignette](http://brolgar.njtierney.com/articles/find-summary-keys.html).
-
 
 ## Finding features in longitudinal data
 
@@ -353,13 +294,6 @@ wages %>%
   filter(n_obs > 3)
 ```
 
-Alternatively, you can use the shortcut, `filter_n_obs()`:
-
-```{r use-filter-n-obs}
-wages %>% 
-  filter_n_obs(n_obs > 3)
-```
-
 ### `stratify_keys()`
 
 To look at as much of the raw data as possible, it can be helpful to stratify the data into groups for plotting. You can `stratify` the `keys` using the `stratify_keys()` function, which adds the column, `.strata`:
@@ -370,7 +304,7 @@ wages %>%
   stratify_keys(n_strata = 10)
 ```
 
-This then allows the user to create facetted plots showing a lot more of the raw data
+This then allows the user to create facetted plots showing a lot more of the raw data. 
 
 ```{r plot-strata}
 set.seed(2019-07-15-1258)
@@ -383,6 +317,81 @@ wages %>%
   geom_line() + 
   facet_wrap(~.strata)
 ```
+
+This is what powers `facet_strata()` under the hood.
+
+## Exploratory modelling
+
+It can be useful to fit a model to explore your data. One technique is to fit a linear model for each group in a dataset. For example, you could fit a linear model for each key in the data.
+
+`brolgar` provides a simple helper function to help with this, called `key_slope()`. 
+
+`key_slope()` returns the intercept and slope estimate for each key, given a linear model formula. We can get the number of observations, and slope information for each individual to identify those that are decreasing over time. 
+
+```{r use-gghighlight}
+key_slope(wages,ln_wages ~ xp)
+```
+
+We can then join these summaries back to the data:
+
+```{r show-wages-lg}
+library(dplyr)
+wages_slope <- key_slope(wages,ln_wages ~ xp) %>%
+  left_join(wages, by = "id") 
+
+wages_slope
+```
+
+And highlight those individuals with a negative slope using `gghighlight`:
+
+```{r use-gg-highlight}
+library(gghighlight)
+
+wages_slope %>% 
+  as_tibble() %>% # workaround for gghighlight + tsibble
+  ggplot(aes(x = xp, 
+             y = ln_wages, 
+             group = id)) + 
+  geom_line() +
+  gghighlight(.slope_xp < 0)
+```
+
+### Find keys near other summaries with `keys_near()`
+
+We might want to further summarise our exploratory modelling by finding those slopes that are near a five number summary values:
+
+```{r summary-slope}
+summary(wages_slope$.slope_xp)
+```
+
+Finding those groups that are near these values can be surprisingly challenging!
+
+`brolgar` makes it easier by providing the `keys_near()` function. You tell it what the key is, what variable you want to summarse by, and then by default it returns those keys near the five number summary. Let's return the keys near the `.slope_xp`:
+
+```{r keys-near}
+wages_slope %>%
+  keys_near(key = id,
+            var = .slope_xp)
+```
+
+Here it returns the `id`, the `.slope_xp`, and the statistic that it was closest to, and what the difference between the slope_xp and the statistic.
+
+You can visualise these summary keys by joining them back to the data:
+
+```{r keys-near-plot}
+wages_slope %>%
+  keys_near(key = id,
+            var = .slope_xp) %>%
+  left_join(wages, by = "id") %>%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id,
+             colour = stat)) + 
+  geom_line()
+```
+
+
+You can read more about `keys_near()` at the [finding summary keys vignette](http://brolgar.njtierney.com/articles/find-summary-keys.html).
 
 # Contributing
 

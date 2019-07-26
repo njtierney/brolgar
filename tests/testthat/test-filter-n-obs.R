@@ -1,5 +1,13 @@
 context("test-filter-n-obs")
 
+# function to use inside testthat
+add_new_names <- function(data, x){
+  c(tsibble::key_vars(data), 
+    tsibble::index_var(data),
+    x,
+    tsibble::measured_vars(data))
+}
+
 wages_test <- wages %>% add_n_obs()
 wages_gt_10 <- filter(wages_test, n_obs > 10)
 

@@ -1,6 +1,14 @@
 context("test-add-longnostic")
 library(dplyr)
 
+# function to use inside testthat
+add_new_names <- function(data, x){
+  c(tsibble::key_vars(data), 
+    tsibble::index_var(data),
+    x,
+    tsibble::measured_vars(data))
+}
+
 wages_test <- sample_frac_keys(wages, 0.05)
 
 df_add_l_diff_1 <- wages_test %>%
