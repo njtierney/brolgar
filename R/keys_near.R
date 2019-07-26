@@ -40,20 +40,23 @@ keys_near <- function(.data,
                       funs = l_five_num,
                       ...){
   
+  q_var <- rlang::enquo(var)
+  q_key <- rlang::enquo(key)
+  
   .data %>%
     tibble::as_tibble() %>%
     dplyr::mutate_at(
-      .vars = dplyr::vars({{var}}),
+      .vars = dplyr::vars(!!q_var),
       .funs = funs,
       ...) %>%
-    dplyr::select({{key}},
-                  {{var}},
+    dplyr::select(!!q_key,
+                  !!q_var,
                   dplyr::one_of(names(funs))) %>%
     tidyr::gather(key = "stat",
                   value = "stat_value",
-           -{{key}},
-           -{{var}}) %>%
-    dplyr::mutate(stat_diff = abs({{var}} - stat_value)) %>%
+           -!!q_key,
+           -!!q_var) %>%
+    dplyr::mutate(stat_diff = abs(!!q_var - stat_value)) %>%
     dplyr::group_by(stat) %>%
     dplyr::top_n(-top_n,
                  wt = stat_diff)
