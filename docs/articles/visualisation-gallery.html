@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.9100</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9100</span>
       </span>
     </div>
 
@@ -104,8 +104,7 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(brolgar)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="co">#&gt; Loading required package: tsibble</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a></code></pre></div>
 <p><code>brolgar</code> explores two ways to explore the data, first exploring the raw data, then exploring the data using longnostics</p>
 <div id="exploring-raw-data" class="section level1">
 <h1 class="hasAnchor">
@@ -119,21 +118,21 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"></a>
 <a class="sourceLine" id="cb2-2" title="2">wages <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb2-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt; # A tsibble: 160 x 9 [!]</span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt; # A tsibble: 145 x 9 [!]</span></a>
 <a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt; # Key:       id [20]</span></a>
 <a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade</span></a>
 <a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt;    &lt;int&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt;  1  1134     1.72 0.918     0            0     0        0          9</span></a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt;  2  1134     1.59 1.41      0            0     0        0          9</span></a>
-<a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt;  3  1134     1.47 2.27      0            0     0        0          9</span></a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt;  4  1134     1.53 3.05      0            0     0        0          9</span></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt;  5  1134     1.38 3.79      0            0     0        0          9</span></a>
-<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt;  6  1134     1.46 4.24      0            0     0        0          9</span></a>
-<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt;  7  1134     1.97 5.64      0            0     0        0          9</span></a>
-<a class="sourceLine" id="cb2-15" title="15"><span class="co">#&gt;  8  1134     1.98 6.54      0            0     0        0          9</span></a>
-<a class="sourceLine" id="cb2-16" title="16"><span class="co">#&gt;  9  1134     2.30 7.83      0            0     0        0          9</span></a>
-<a class="sourceLine" id="cb2-17" title="17"><span class="co">#&gt; 10  1134     2.36 8.64      0            0     0        0          9</span></a>
-<a class="sourceLine" id="cb2-18" title="18"><span class="co">#&gt; # … with 150 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt;  1   336     1.89 1.91      1         0.46     1        0          8</span></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt;  2   336     1.28 2.51      1         1.06     1        0          8</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt;  3   336     2.22 3.71      1         2.26     1        0          8</span></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt;  4   396     1.07 0.165     1         0        1        0          9</span></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt;  5   396     2.42 2.88      1         2.72     1        0          9</span></a>
+<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt;  6   396     1.97 3.98      1         3.81     1        0          9</span></a>
+<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt;  7   396     1.54 5.44      1         5.27     1        0          9</span></a>
+<a class="sourceLine" id="cb2-15" title="15"><span class="co">#&gt;  8   396     1.88 6.46      1         6.29     1        0          9</span></a>
+<a class="sourceLine" id="cb2-16" title="16"><span class="co">#&gt;  9   396     2.17 7.60      1         7.44     1        0          9</span></a>
+<a class="sourceLine" id="cb2-17" title="17"><span class="co">#&gt; 10   396     1.91 8.31      1         8.15     1        0          9</span></a>
+<a class="sourceLine" id="cb2-18" title="18"><span class="co">#&gt; # … with 135 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></a>
 <a class="sourceLine" id="cb2-19" title="19"></a>
 <a class="sourceLine" id="cb2-20" title="20">wages <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb2-21" title="21"><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">20</span>) <span class="op">%&gt;%</span></a>
@@ -146,14 +145,24 @@
 <div id="filter-only-those-with-certain-number-of-observations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#filter-only-those-with-certain-number-of-observations" class="anchor"></a>Filter only those with certain number of observations</h2>
-<p>We can combine this with <code>sample_n_keys</code> to filter those with at least 5 observations using <code>filter_n_obs</code>. This provides us with 20 people with at least 5 observations.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">wages <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/filter_n_obs.html">filter_n_obs</a></span>(n_obs <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">20</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</a>
-<a class="sourceLine" id="cb3-5" title="5">             <span class="dt">y =</span> ln_wages,</a>
-<a class="sourceLine" id="cb3-6" title="6">             <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</a></code></pre></div>
+<p>We can combine this with <code><a href="../reference/sample-n-frac-keys.html">sample_n_keys()</a></code> to filter those with at least 5 observations using <code><a href="../reference/add_n_obs.html">add_n_obs()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. This provides us with 20 people with at least 5 observations.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt; Attaching package: 'dplyr'</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt; The following objects are masked from 'package:stats':</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt;     filter, lag</span></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; The following objects are masked from 'package:base':</span></a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
+<a class="sourceLine" id="cb3-10" title="10">wages <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-11" title="11"><span class="st">  </span><span class="kw"><a href="../reference/add_n_obs.html">add_n_obs</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-12" title="12"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n_obs <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-13" title="13"><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">20</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-14" title="14"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</a>
+<a class="sourceLine" id="cb3-15" title="15">             <span class="dt">y =</span> ln_wages,</a>
+<a class="sourceLine" id="cb3-16" title="16">             <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-17" title="17"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</a></code></pre></div>
 <p><img src="visualisation-gallery_files/figure-html/filter-sample-1.png" width="700"></p>
 </div>
 <div id="clever-facets" class="section level2">
@@ -186,14 +195,15 @@
 <p>About 20 lines per plot is a good number, but we might want to split this into about 6 different groups, so we can look at many at once. So now we can look at those with at least 5 observations, then sample 120 individuals, and break them into 6 groups with <code>stratify_keys</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"></a>
 <a class="sourceLine" id="cb6-2" title="2">wages <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/filter_n_obs.html">filter_n_obs</a></span>(n_obs <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">120</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="st">  </span><span class="kw"><a href="../reference/stratify_keys.html">stratify_keys</a></span>(<span class="dv">6</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</a>
-<a class="sourceLine" id="cb6-7" title="7">             <span class="dt">y =</span> ln_wages,</a>
-<a class="sourceLine" id="cb6-8" title="8">             <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>.strata)</a></code></pre></div>
+<a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/add_n_obs.html">add_n_obs</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n_obs <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">120</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="st">  </span><span class="kw"><a href="../reference/stratify_keys.html">stratify_keys</a></span>(<span class="dv">6</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</a>
+<a class="sourceLine" id="cb6-8" title="8">             <span class="dt">y =</span> ln_wages,</a>
+<a class="sourceLine" id="cb6-9" title="9">             <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-10" title="10"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>.strata)</a></code></pre></div>
 <p><img src="visualisation-gallery_files/figure-html/filter-sample-group-1.png" width="700"></p>
 <p>This allows for you to look at a larger set of the data.</p>
 <p>However, it does not point you to those individuals who are “interesting”, in the sense of those being outliers, or representative of the middle of the group.</p>
@@ -203,31 +213,20 @@
 <a href="#highlight-individuals-gghighlight" class="anchor"></a>Highlight individuals (gghighlight)</h2>
 <p>We can find those individuals who have a negative slope using <code>add_key_slope</code>. This adds columns <code>l_intercept</code> and <code>key_slope_xp</code>. Using the <code>gghighlight</code> library, we can identify those with an overall negative slope.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="co">#&gt; Attaching package: 'dplyr'</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt; The following object is masked from 'package:tsibble':</span></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt;     id</span></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt; The following objects are masked from 'package:stats':</span></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;     filter, lag</span></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt; The following objects are masked from 'package:base':</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
-<a class="sourceLine" id="cb7-13" title="13">wages_slope &lt;-<span class="st"> </span>wages <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-14" title="14"><span class="st">  </span><span class="kw"><a href="../reference/key_slope.html">key_slope</a></span>(ln_wages <span class="op">~</span><span class="st"> </span>xp) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-15" title="15"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(wages, <span class="dt">by =</span> <span class="st">"id"</span>)</a>
-<a class="sourceLine" id="cb7-16" title="16"></a>
-<a class="sourceLine" id="cb7-17" title="17"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gghighlight)</a>
-<a class="sourceLine" id="cb7-18" title="18"></a>
-<a class="sourceLine" id="cb7-19" title="19">gg_wages_slope &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(wages_slope,</a>
-<a class="sourceLine" id="cb7-20" title="20">       <span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/reexports">aes</a></span>(<span class="dt">x =</span> xp,</a>
-<a class="sourceLine" id="cb7-21" title="21">           <span class="dt">y =</span> ln_wages,</a>
-<a class="sourceLine" id="cb7-22" title="22">           <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-23" title="23"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() </a>
-<a class="sourceLine" id="cb7-24" title="24"></a>
-<a class="sourceLine" id="cb7-25" title="25">gg_wages_slope <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-26" title="26"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/gghighlight">gghighlight</a></span>(.slope_xp <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb7-2" title="2">wages_slope &lt;-<span class="st"> </span>wages <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/key_slope.html">key_slope</a></span>(ln_wages <span class="op">~</span><span class="st"> </span>xp) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(wages, <span class="dt">by =</span> <span class="st">"id"</span>)</a>
+<a class="sourceLine" id="cb7-5" title="5"></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gghighlight)</a>
+<a class="sourceLine" id="cb7-7" title="7"></a>
+<a class="sourceLine" id="cb7-8" title="8">gg_wages_slope &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(wages_slope,</a>
+<a class="sourceLine" id="cb7-9" title="9">       <span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/reexports">aes</a></span>(<span class="dt">x =</span> xp,</a>
+<a class="sourceLine" id="cb7-10" title="10">           <span class="dt">y =</span> ln_wages,</a>
+<a class="sourceLine" id="cb7-11" title="11">           <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-12" title="12"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() </a>
+<a class="sourceLine" id="cb7-13" title="13"></a>
+<a class="sourceLine" id="cb7-14" title="14">gg_wages_slope <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-15" title="15"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/gghighlight">gghighlight</a></span>(.slope_xp <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</a></code></pre></div>
 <p><img src="visualisation-gallery_files/figure-html/wages-ts-slope-1.png" width="700"></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"></a>
 <a class="sourceLine" id="cb8-2" title="2">gg_wages_slope <span class="op">+</span><span class="st"> </span></a>

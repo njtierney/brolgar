@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Feature: Spread — feat_spread • brolgar</title>
+<title>Add the number of observations for each key in a <code>tsibble</code> — add_n_obs • brolgar</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -36,10 +36,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Feature: Spread — feat_spread" />
+<meta property="og:title" content="Add the number of observations for each key in a <code>tsibble</code> — add_n_obs" />
 
-<meta property="og:description" content="This feature returns measurements of spread: variance, standard deviation,
-median absolute distance, and interquartile range" />
+<meta property="og:description" content="Here, we are not counting the number of rows in the dataset, but rather
+we are counting the number observations for each keys in the data." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -134,32 +134,36 @@ median absolute distance, and interquartile range" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Feature: Spread</h1>
+    <h1>Add the number of observations for each key in a <code>tsibble</code></h1>
     
-    <div class="hidden name"><code>feat_spread.Rd</code></div>
+    <div class="hidden name"><code>add_n_obs.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This feature returns measurements of spread: variance, standard deviation,
-median absolute distance, and interquartile range</p>
+    <p>Here, we are not counting the number of rows in the dataset, but rather
+we are counting the number observations for each keys in the data.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>feat_spread</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>add_n_obs</span>(<span class='no'>.data</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A vector to extract features from.</p></td>
+      <th>.data</th>
+      <td><p>data.frame</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Further arguments passed to other functions.</p></td>
+      <td><p>extra arguments</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>dataframe with <code>n_obs</code>, the number of observations per key added.</p>
     
 
   </div>
@@ -167,7 +171,9 @@ median absolute distance, and interquartile range</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
 
   </div>
 </div>

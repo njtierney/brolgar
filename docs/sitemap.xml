@@ -4,6 +4,9 @@
     <loc>http://brolgar.njtierney.com//index.html</loc>
   </url>
   <url>
+    <loc>http://brolgar.njtierney.com//reference/add_n_obs.html</loc>
+  </url>
+  <url>
     <loc>http://brolgar.njtierney.com//reference/b_summaries.html</loc>
   </url>
   <url>
@@ -29,9 +32,6 @@
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//reference/feat_spread.html</loc>
-  </url>
-  <url>
-    <loc>http://brolgar.njtierney.com//reference/filter_n_obs.html</loc>
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//reference/heights.html</loc>
@@ -67,16 +67,10 @@
     <loc>http://brolgar.njtierney.com//reference/reexports.html</loc>
   </url>
   <url>
-    <loc>http://brolgar.njtierney.com//reference/safe_minima.html</loc>
-  </url>
-  <url>
     <loc>http://brolgar.njtierney.com//reference/sample-n-frac-keys.html</loc>
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//reference/stratify_keys.html</loc>
-  </url>
-  <url>
-    <loc>http://brolgar.njtierney.com//reference/test_if_null.html</loc>
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//reference/wages.html</loc>

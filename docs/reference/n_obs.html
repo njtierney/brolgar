@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Find number of observations for each key in a dataset — n_obs • brolgar</title>
+<title>Return the number of observations — n_obs • brolgar</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -36,10 +36,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Find number of observations for each key in a dataset — n_obs" />
+<meta property="og:title" content="Return the number of observations — n_obs" />
 
-<meta property="og:description" content="Here, we are not counting the number of rows in the dataset, but rather
-we are counting the number of individual, or keys, in the data." />
+<meta property="og:description" content="Returns the number of obserations of a vector or data.frame. It uses
+vctrs::vec_size() under the hood." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -70,7 +70,7 @@ we are counting the number of individual, or keys, in the data." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.9100</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9100</span>
       </span>
     </div>
 
@@ -134,46 +134,58 @@ we are counting the number of individual, or keys, in the data." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Find number of observations for each key in a dataset</h1>
+    <h1>Return the number of observations</h1>
     
     <div class="hidden name"><code>n_obs.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Here, we are not counting the number of rows in the dataset, but rather
-we are counting the number of individual, or keys, in the data.</p>
+    <p>Returns the number of obserations of a vector or data.frame. It uses
+<code><a href='https://www.rdocumentation.org/packages/vctrs/topics/vec_size'>vctrs::vec_size()</a></code> under the hood.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>n_key_obs</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
-
-<span class='co'># S3 method for tbl_ts</span>
-<span class='fu'>n_key_obs</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
-
-<span class='fu'>add_n_key_obs</span>(<span class='no'>.data</span>, <span class='no'>...</span>)
-
-<span class='co'># S3 method for tbl_ts</span>
-<span class='fu'>add_n_key_obs</span>(<span class='no'>.data</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>n_obs</span>(<span class='no'>x</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.data</th>
-      <td><p>data.frame</p></td>
+      <th>x</th>
+      <td><p>vector or dataframe</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>extra arguments</p></td>
+      <th>names</th>
+      <td><p>logical; If TRUE the result is a named vector named "n_obs", else
+it is just the number of observations.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>number of observations - the number of individuals</p>
+    <p>number of observations</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>n_obs</span>(<span class='no'>iris</span>)</div><div class='output co'>#&gt; n_obs 
+#&gt;   150 </div><div class='input'><span class='fu'>n_obs</span>(<span class='fl'>1</span>:<span class='fl'>10</span>)</div><div class='output co'>#&gt; n_obs 
+#&gt;    10 </div><div class='input'><span class='co'># return the number of observations</span>
+<span class='no'>wages</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://fablelite.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>id</span>, <span class='no'>n_obs</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 888 x 2</span><span>
+#&gt;       id n_obs
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>    31     8
+#&gt; </span><span style='color: #555555;'> 2</span><span>    36    10
+#&gt; </span><span style='color: #555555;'> 3</span><span>    53     8
+#&gt; </span><span style='color: #555555;'> 4</span><span>   122    10
+#&gt; </span><span style='color: #555555;'> 5</span><span>   134    12
+#&gt; </span><span style='color: #555555;'> 6</span><span>   145     9
+#&gt; </span><span style='color: #555555;'> 7</span><span>   155    11
+#&gt; </span><span style='color: #555555;'> 8</span><span>   173     6
+#&gt; </span><span style='color: #555555;'> 9</span><span>   206     3
+#&gt; </span><span style='color: #555555;'>10</span><span>   207    11
+#&gt; </span><span style='color: #555555;'># … with 878 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -181,7 +193,9 @@ we are counting the number of individual, or keys, in the data.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

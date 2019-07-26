@@ -66,7 +66,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.9100</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9100</span>
       </span>
     </div>
 
@@ -134,9 +134,9 @@
       
     </div>
 
-    <div id="brolgar-0029100" class="section level1">
+    <div id="brolgar-0039000" class="section level1">
 <h1 class="page-header">
-<a href="#brolgar-0029100" class="anchor"></a>brolgar 0.0.2.9100</h1>
+<a href="#brolgar-0039000" class="anchor"></a>brolgar 0.0.3.9000</h1>
 <ul>
 <li>Gave more verbose names to the <code>wages_ts</code> data.</li>
 <li>renamed <code>sample_n_obs()</code> to <code><a href="../reference/sample-n-frac-keys.html">sample_n_keys()</a></code> and <code><a href="../reference/sample-n-frac-keys.html">sample_frac_keys()</a></code>
@@ -145,7 +145,7 @@
 </li>
 <li>removed many of the <code>l_&lt;summary&gt;</code> functions in favour of the <code>features</code> approach.</li>
 <li>rename <code>l_summarise_fivenum</code> to <code>l_summarise</code>, and have an option to pass a list of functions.</li>
-<li>rename <code>l_n_obs()</code> to <code><a href="../reference/n_obs.html">n_key_obs()</a></code>
+<li>rename <code>l_n_obs()</code> to <code>n_key_obs()</code>
 </li>
 <li>rename <code>l_slope()</code> to <code><a href="../reference/key_slope.html">key_slope()</a></code>
 </li>
@@ -165,6 +165,8 @@
 <li>Update <code>wages_ts</code> dataset to now just be <code>wages</code> data, and remove previous <code>tibble()</code> version of <code>wages</code> (#39).</li>
 <li>Add <code>top_n</code> argument to <code>keys_near</code> to provide control over the number of observations near a stat that are returned.</li>
 <li>change <code>world_heights</code> to <code>heights</code>.</li>
+<li>remove function <code>n_key_obs()</code> in favour of using <code><a href="../reference/n_obs.html">n_obs()</a></code> (#62)</li>
+<li>remove function <code>filter_n_obs()</code> in favour of cleaner workflow with <code><a href="../reference/add_n_obs.html">add_n_obs()</a></code> (#63)</li>
 </ul>
 </div>
     <div id="brolgar-0019000" class="section level1">
@@ -191,7 +193,7 @@
 </li>
 <li>Create <code>add_k_groups()</code> (#20) to randomly split the data into groups to explore the data.</li>
 <li>Add <code>sample_n_obs()</code> and <code>sample_frac_obs()</code> (#19) to select a random group of ids.</li>
-<li>Add <code><a href="../reference/filter_n_obs.html">filter_n_obs()</a></code> to filter the data by the number of observations #15</li>
+<li>Add <code>filter_n_obs()</code> to filter the data by the number of observations #15</li>
 <li>Remove unnecessary use of <code>var</code>, in <code>l_n_obs()</code>, since it only needs information on the <code>id</code>. Also gets a nice 5x speedup with simpler code</li>
 <li>calculate all longnostics (#4)</li>
 <li>use the word <code>longnostic</code> instead of <code>lognostic</code> (#9)</li>
@@ -211,7 +213,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#brolgar-0029100">0.0.2.9100</a></li>
+        <li><a href="#brolgar-0039000">0.0.3.9000</a></li>
         <li><a href="#brolgar-0019000">0.0.1.9000</a></li>
         <li><a href="#brolgar-0009990">0.0.0.9990</a></li>
       </ul>
