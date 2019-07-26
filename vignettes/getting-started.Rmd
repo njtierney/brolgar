@@ -87,12 +87,13 @@ wages %>%
 
 ## Filtering observations
 
-You can combine `sample_n_keys()` with `filter_n_obs` to only show keys with many observations:
+You can combine `sample_n_keys()` with `add_n_obs()` and `filter()` to only show keys with many observations:
 
 ```{r plot-filter-sample-n-keys}
-set.seed(2019-7-15-1259)
+library(dplyr)
 wages %>%
-  filter_n_obs(n_obs > 5) %>%
+  add_n_obs() %>%
+  filter(n_obs > 5) %>%
   sample_n_keys(size = 10) %>%
   ggplot(aes(x = xp,
              y = ln_wages,

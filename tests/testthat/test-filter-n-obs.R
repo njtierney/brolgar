@@ -1,12 +1,13 @@
 context("test-filter-n-obs")
 
-wages_gt_10 <- filter_n_obs(wages, filter = n_obs > 10)
+wages_test <- wages %>% add_n_obs()
+wages_gt_10 <- filter(wages_test, n_obs > 10)
 
-wages_et_2 <- filter_n_obs(wages, filter = n_obs == 2)
+wages_et_2 <- filter(wages_test, n_obs == 2)
 
-wages_gte_10 <- wages %>% filter_n_obs(filter = n_obs >= 10)
+wages_gte_10 <- filter(wages_test, n_obs >= 10)
 
-wages_lte_2 <- wages %>% filter_n_obs(filter = n_obs <= 2)
+wages_lte_2 <- filter(wages_test, n_obs <= 2)
 
 
 test_that("correct number of observations are returned", {

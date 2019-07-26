@@ -50,11 +50,13 @@ wages %>%
 
 ## Filter only those with certain number of observations
 
-We can combine this with `sample_n_keys` to filter those with at least 5 observations using `filter_n_obs`. This provides us with 20 people with at least 5 observations.
+We can combine this with `sample_n_keys()` to filter those with at least 5 observations using `add_n_obs()` and `filter()`. This provides us with 20 people with at least 5 observations.
 
 ```{r filter-sample}
+library(dplyr)
 wages %>%
-  filter_n_obs(n_obs >= 5) %>%
+  add_n_obs() %>%
+  filter(n_obs >= 5) %>%
   sample_n_keys(size = 20) %>%
   ggplot(aes(x = xp,
              y = ln_wages,
@@ -100,7 +102,8 @@ About 20 lines per plot is a good number, but we might want to split this into a
 ```{r filter-sample-group}
 
 wages %>%
-  filter_n_obs(n_obs >= 5) %>%
+  add_n_obs() %>%
+  filter(n_obs >= 5) %>%
   sample_n_keys(size = 120) %>%
   stratify_keys(6) %>%
   ggplot(aes(x = xp,

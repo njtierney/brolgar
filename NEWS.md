@@ -21,6 +21,7 @@
 * Add `top_n` argument to `keys_near` to provide control over the number of observations near a stat that are returned.
 * change `world_heights` to `heights`.
 * remove function `n_key_obs()` in favour of using `n_obs()` (#62)
+* remove function `filter_n_obs()` in favour of cleaner workflow with `add_n_obs()` (#63)
 
 # brolgar 0.0.1.9000
 
