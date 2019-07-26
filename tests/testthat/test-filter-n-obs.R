@@ -23,7 +23,7 @@ test_that("correct number of columns are returned", {
   expect_equal(ncol(wages_lte_2), ncol(wages) + 1)
 })
 
-test_that("n_key_obs is added to the dataframe",{
+test_that("n_obs is added to the dataframe",{
   expect_equal(names(wages_gt_10),
                add_new_names(wages, "n_obs")
   )

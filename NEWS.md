@@ -1,4 +1,4 @@
-# brolgar 0.0.2.9100
+# brolgar 0.0.3.9000
 
 * Gave more verbose names to the `wages_ts` data.
 * renamed `sample_n_obs()` to `sample_n_keys()` and `sample_frac_keys()`
@@ -20,6 +20,7 @@
 * Update `wages_ts` dataset to now just be `wages` data, and remove previous `tibble()` version of `wages` (#39).
 * Add `top_n` argument to `keys_near` to provide control over the number of observations near a stat that are returned.
 * change `world_heights` to `heights`.
+* remove function `n_key_obs()` in favour of using `n_obs()` (#62)
 
 # brolgar 0.0.1.9000
 

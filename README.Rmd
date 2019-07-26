@@ -252,6 +252,9 @@ wages_slope %>%
 ```
 
 
+You can read more about `keys_near()` at the [finding summary keys vignette](http://brolgar.njtierney.com/articles/find-summary-keys.html).
+
+
 ## Finding features in longitudinal data
 
 You can extract `features` of longitudinal data using the `features` function, from `fablelite`. You can, for example, calculate the minimum of a given variable for each key by providing a named list like so:
@@ -295,13 +298,28 @@ wages %>%
 
 ## Other helper functions
 
-### `n_key_obs()`
+### `n_obs()`
 
-We can calculate the number of observations for each `key`, using `n_key_obs()`:
+We can calculate the number of observations total using `n_obs()`:
 
 ```{r example-n-obs}
-n_key_obs(wages)
+n_obs(wages)
 ```
+
+And the number of observations for each key using `n_keys()`:
+
+```{r example-n-keys}
+n_keys(wages)
+```
+
+
+You can also use `n_obs()` inside features to return the number of observations:
+
+```{r n-obs-features}
+wages %>%
+  features(id, n_obs)
+```
+
 
 This returns a dataframe, with one row per key, and the number of observations for each key.
 
@@ -309,26 +327,29 @@ This could be further summarised to get a sense of the patterns of the number of
 
 ```{r summarise-n-obs}
 library(ggplot2)
-n_key_obs(wages) %>%
+wages %>%
+  features(id, n_obs) %>%
 ggplot(aes(x = n_obs)) + 
   geom_bar()
 
-n_key_obs(wages) %>% summary()
+wages %>%
+  features(id, n_obs) %>%
+  summary()
 ```
 
-### `add_n_key_obs()`
+### `add_n_obs()`
 
-You can add information about the number of observations for each key with `add_n_key_obs()`:
+You can add information about the number of observations for each key with `add_n_obs()`:
 
-```{r show-add-n-key-obs}
-wages %>% add_n_key_obs()
+```{r show-add-n-obs}
+wages %>% add_n_obs()
 ```
 
 Which you can then use to filter observations:
 
 ```{r show-add-obs-filter}
 wages %>% 
-  add_n_key_obs() %>%
+  add_n_obs() %>%
   filter(n_obs > 3)
 ```
 

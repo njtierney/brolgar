@@ -25,7 +25,6 @@ each other.
 
 ``` r
 library(brolgar)
-#> Loading required package: tsibble
 library(ggplot2)
 ggplot(wages, 
        aes(x = xp, 
@@ -321,6 +320,9 @@ wages_slope %>%
 
 <img src="man/figures/README-keys-near-plot-1.png" width="75%" style="display: block; margin: auto;" />
 
+You can read more about `keys_near()` at the [finding summary keys
+vignette](http://brolgar.njtierney.com/articles/find-summary-keys.html).
+
 ## Finding features in longitudinal data
 
 You can extract `features` of longitudinal data using the `features`
@@ -411,13 +413,29 @@ wages %>%
 
 ## Other helper functions
 
-### `n_key_obs()`
+### `n_obs()`
 
-We can calculate the number of observations for each `key`, using
-`n_key_obs()`:
+We can calculate the number of observations total using `n_obs()`:
 
 ``` r
-n_key_obs(wages)
+n_obs(wages)
+#> n_obs 
+#>  6402
+```
+
+And the number of observations for each key using `n_keys()`:
+
+``` r
+n_keys(wages)
+#> [1] 888
+```
+
+You can also use `n_obs()` inside features to return the number of
+observations:
+
+``` r
+wages %>%
+  features(id, n_obs)
 #> # A tibble: 888 x 2
 #>       id n_obs
 #>    <int> <int>
@@ -442,7 +460,8 @@ number of observations:
 
 ``` r
 library(ggplot2)
-n_key_obs(wages) %>%
+wages %>%
+  features(id, n_obs) %>%
 ggplot(aes(x = n_obs)) + 
   geom_bar()
 ```
@@ -451,7 +470,9 @@ ggplot(aes(x = n_obs)) +
 
 ``` r
 
-n_key_obs(wages) %>% summary()
+wages %>%
+  features(id, n_obs) %>%
+  summary()
 #>        id            n_obs       
 #>  Min.   :   31   Min.   : 1.000  
 #>  1st Qu.: 3332   1st Qu.: 5.000  
@@ -461,13 +482,13 @@ n_key_obs(wages) %>% summary()
 #>  Max.   :12543   Max.   :13.000
 ```
 
-### `add_n_key_obs()`
+### `add_n_obs()`
 
 You can add information about the number of observations for each key
-with `add_n_key_obs()`:
+with `add_n_obs()`:
 
 ``` r
-wages %>% add_n_key_obs()
+wages %>% add_n_obs()
 #> # A tsibble: 6,402 x 10 [!]
 #> # Key:       id [888]
 #>       id    xp n_obs ln_wages   ged xp_since_ged black hispanic high_grade
@@ -489,7 +510,7 @@ Which you can then use to filter observations:
 
 ``` r
 wages %>% 
-  add_n_key_obs() %>%
+  add_n_obs() %>%
   filter(n_obs > 3)
 #> # A tsibble: 6,145 x 10 [!]
 #> # Key:       id [764]
