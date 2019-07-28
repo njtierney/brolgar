@@ -23,7 +23,11 @@ mean value for each \code{key} and assigns the \code{n_strata} groups.}
 data.frame with column, \code{.strata} containing \code{n_strata} groups
 }
 \description{
-Stratify the keys into groups to facilitate exploration
+To look at as much of the raw data as possible, it can be helpful to
+stratify the data into groups for plotting. You can \code{stratify} the
+\code{keys} using the \code{stratify_keys()} function, which adds the column,
+\code{.strata}. This allows the user to create facetted plots showing a more
+of the raw data.
 }
 \examples{
 library(ggplot2)

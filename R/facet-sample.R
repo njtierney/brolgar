@@ -1,5 +1,9 @@
 #' Facet data into groups to facilitate exploration
-#'
+#' 
+#' This function requires a `tbl_ts` object, which can be created with 
+#'   `tsibble::as_tsibble()`. Under the hood, `facet_strata` is powered by 
+#'   [stratify_keys()] and [sample_n_keys()].
+#'   
 #' @param n_per_facet Number of keys per facet you want to plot. Default is 5.
 #' @param n_facets Number of facets to create. Default is 12
 #' @inheritParams ggplot2::facet_wrap

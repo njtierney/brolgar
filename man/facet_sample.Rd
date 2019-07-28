@@ -34,7 +34,9 @@ either of the four sides by setting \code{strip.position = c("top",
 a ggplot object
 }
 \description{
-Facet data into groups to facilitate exploration
+This function requires a \code{tbl_ts} object, which can be created with
+\code{tsibble::as_tsibble()}. Under the hood, \code{facet_strata} is powered by
+\code{\link[=stratify_keys]{stratify_keys()}} and \code{\link[=sample_n_keys]{sample_n_keys()}}.
 }
 \examples{
 library(ggplot2)

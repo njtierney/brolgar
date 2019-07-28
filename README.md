@@ -3,51 +3,29 @@
 
 # brolgar
 
-**br**owse **o**ver **l**ongitudinal **d**ata **g**raphically and
-**a**nalytically in **R**
-
 <!-- badges: start -->
 
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Travis build
 status](https://travis-ci.org/njtierney/brolgar.svg?branch=master)](https://travis-ci.org/njtierney/brolgar)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/njtierney/brolgar?branch=master&svg=true)](https://ci.appveyor.com/project/njtierney/brolgar)
 [![Codecov test
 coverage](https://codecov.io/gh/njtierney/brolgar/branch/master/graph/badge.svg)](https://codecov.io/gh/njtierney/brolgar?branch=master)
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
-
-Exploring longitudinal data can be challenging. For example, when there
-are many individuals it is difficult to look at all of them, as you
-often get a “plate of spaghetti” plot, with many lines plotted on top of
-each other.
-
-``` r
-library(brolgar)
-library(ggplot2)
-ggplot(wages, 
-       aes(x = xp, 
-             y = ln_wages, 
-             group = id)) + 
-  geom_line()
-```
-
-<img src="man/figures/README-show-spaghetti-1.png" width="75%" style="display: block; margin: auto;" />
-
-These are hard to interpret.
-
-What you want is to identify those interesting individual lines, so you
-can get something like the following:
-
-<img src="man/figures/README-show-monotonic-1.png" width="75%" style="display: block; margin: auto;" />
 
 `brolgar` helps you **br**owse **o**ver **l**ongitudinal **d**ata
 **g**raphically and **a**nalytically in **R**, by providing tools to:
 
-  - Calculate features (summaries) for each individual series
   - Efficiently explore your raw data
+  - Calculate features (summaries) for each individual series
   - Evaluate diagnostics of statistical models
+
+This helps you go from the “plate of spaghetti” plot on the left, to
+“interesting observations” plot on the left.
+
+<img src="man/figures/README-show-spaghetti-1.png" width="75%" style="display: block; margin: auto;" />
 
 ## Installation
 
@@ -58,12 +36,11 @@ Install from [GitHub](https://github.com/) with:
 remotes::install_github("njtierney/brolgar")
 ```
 
-# Data in `brolgar`
+# Using `brolgar`: We need to talk about data
 
 To efficiently look at your longitudinal data, we assume it **is a time
-series**, with irregular time periods between measurements. This might
-seem strange, (that’s OK\!), but there are **two important things** to
-remember:
+series**, with **irregular** time periods between measurements. This
+might seem strange, (that’s OK\!), so **remember these two things**:
 
 1.  The **key** variable in your data is the **identifier** of your
     individuals or series.
@@ -91,9 +68,11 @@ Structures”](library/brolgar/html/longitudinal-data-structures.html)
 
 ## Efficiently exploring longitudinal data
 
-To avoid staring at a plate of spaghetti, you can look at a random
-subset of the data. Brolgar provides some intuitive functions to help
-with this.
+Exploring longitudinal data can be challenging. When there are many
+individuals it is difficult to look at all of them, as you often get a
+“plate of spaghetti” plot, with many lines plotted on top of each
+other. To avoid staring at a plate of spaghetti, you can look at a
+random subset of the data using tools in `brolgar`.
 
 ### `sample_n_keys()`
 
@@ -414,54 +393,6 @@ wages %>%
 #> 10    36 0.983    10     1.80     1        0.983     0        0          9
 #> # … with 6,135 more rows, and 1 more variable: unemploy_rate <dbl>
 ```
-
-### `stratify_keys()`
-
-To look at as much of the raw data as possible, it can be helpful to
-stratify the data into groups for plotting. You can `stratify` the
-`keys` using the `stratify_keys()` function, which adds the column,
-`.strata`:
-
-``` r
-wages %>%
-  sample_n_keys(100) %>% 
-  stratify_keys(n_strata = 10)
-#> # A tsibble: 677 x 10 [!]
-#> # Key:       id [100]
-#>       id ln_wages    xp   ged xp_since_ged black hispanic high_grade
-#>    <int>    <dbl> <dbl> <int>        <dbl> <int>    <int>      <int>
-#>  1   122    2.12   2.04     0            0     0        0         12
-#>  2   122    2.92   2.64     0            0     0        0         12
-#>  3   122    1.92   3.66     0            0     0        0         12
-#>  4   122    0.763  4.64     0            0     0        0         12
-#>  5   122    2.44   5.83     0            0     0        0         12
-#>  6   122    2.18   6.72     0            0     0        0         12
-#>  7   122    2.14   8.16     0            0     0        0         12
-#>  8   122    2.20   9.1      0            0     0        0         12
-#>  9   122    2.34  10.4      0            0     0        0         12
-#> 10   122    2.67  11.1      0            0     0        0         12
-#> # … with 667 more rows, and 2 more variables: unemploy_rate <dbl>,
-#> #   .strata <int>
-```
-
-This then allows the user to create facetted plots showing a lot more of
-the raw data.
-
-``` r
-set.seed(2019-07-15-1258)
-wages %>%
-  sample_n_keys(120) %>% 
-  stratify_keys(n_strata = 12) %>%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id)) + 
-  geom_line() + 
-  facet_wrap(~.strata)
-```
-
-<img src="man/figures/README-plot-strata-1.png" width="75%" style="display: block; margin: auto;" />
-
-This is what powers `facet_strata()` under the hood.
 
 ## Exploratory modelling
 

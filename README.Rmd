@@ -15,35 +15,36 @@ knitr::opts_chunk$set(
 ```
 # brolgar
 
-**br**owse **o**ver **l**ongitudinal **d**ata **g**raphically and **a**nalytically in **R**
-
 <!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Travis build status](https://travis-ci.org/njtierney/brolgar.svg?branch=master)](https://travis-ci.org/njtierney/brolgar)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/njtierney/brolgar?branch=master&svg=true)](https://ci.appveyor.com/project/njtierney/brolgar)
 [![Codecov test coverage](https://codecov.io/gh/njtierney/brolgar/branch/master/graph/badge.svg)](https://codecov.io/gh/njtierney/brolgar?branch=master)
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-Exploring longitudinal data can be challenging. For example, when there are many individuals it is difficult to look at all of them, as you often get a "plate of spaghetti" plot, with many lines plotted on top of each other. 
+`brolgar` helps you **br**owse **o**ver **l**ongitudinal **d**ata **g**raphically and **a**nalytically in **R**, by providing tools to:
 
-```{r show-spaghetti}
+* Efficiently explore your raw data
+* Calculate features (summaries) for each individual series
+* Evaluate diagnostics of statistical models
+
+This helps you go from the "plate of spaghetti" plot on the left, to "interesting observations" plot on the left.
+
+
+```{r show-spaghetti, echo = FALSE, fig.height = 3, fig.width = 6}
 library(brolgar)
 library(ggplot2)
-ggplot(wages, 
+suppressPackageStartupMessages(library(gghighlight))
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(dplyr))
+
+p1 <- ggplot(wages, 
        aes(x = xp, 
              y = ln_wages, 
              group = id)) + 
   geom_line()
-```
 
-These are hard to interpret. 
-
-What you want is to identify those interesting individual lines, so you can get something like the following:
-
-```{r show-monotonic, echo = FALSE}
-suppressPackageStartupMessages(library(gghighlight))
-suppressPackageStartupMessages(library(ggplot2))
-suppressPackageStartupMessages(library(dplyr))
+p2 <- 
 wages %>%
   features(ln_wages, feat_monotonic) %>%
   left_join(wages, by = "id") %>%
@@ -52,13 +53,12 @@ wages %>%
              group = id)) +
   geom_line() + 
   gghighlight(increase)
+
+gridExtra::grid.arrange(p1, p2, ncol = 2)
+
 ```
 
-`brolgar` helps you **br**owse **o**ver **l**ongitudinal **d**ata **g**raphically and **a**nalytically in **R**, by providing tools to:
 
-* Calculate features (summaries) for each individual series
-* Efficiently explore your raw data
-* Evaluate diagnostics of statistical models
 
 ## Installation
 
@@ -69,9 +69,9 @@ Install from [GitHub](https://github.com/) with:
 remotes::install_github("njtierney/brolgar")
 ```
 
-# Data in `brolgar`
+# Using `brolgar`: We need to talk about data
 
-To efficiently look at your longitudinal data, we assume it **is a time series**, with irregular time periods between measurements. This might seem strange, (that's OK!), but there are **two important things** to remember:
+To efficiently look at your longitudinal data, we assume it **is a time series**, with **irregular** time periods between measurements. This might seem strange, (that's OK!), so **remember these two things**:
 
 1. The **key** variable in your data is the **identifier** of your individuals or series.
 2. The **index** variable is the **time** component of your data.
@@ -98,7 +98,7 @@ If you want to learn more about what longitudinal data as a time series, you can
 
 ## Efficiently exploring longitudinal data
 
-To avoid staring at a plate of spaghetti, you can look at a random subset of the data. Brolgar provides some intuitive functions to help with this.
+Exploring longitudinal data can be challenging. When there are many individuals it is difficult to look at all of them, as you often get a "plate of spaghetti" plot, with many lines plotted on top of each other. To avoid staring at a plate of spaghetti, you can look at a random subset of the data using tools in `brolgar`.
 
 ### `sample_n_keys()`
 
@@ -293,32 +293,6 @@ wages %>%
   add_n_obs() %>%
   filter(n_obs > 3)
 ```
-
-### `stratify_keys()`
-
-To look at as much of the raw data as possible, it can be helpful to stratify the data into groups for plotting. You can `stratify` the `keys` using the `stratify_keys()` function, which adds the column, `.strata`:
-
-```{r use-strata}
-wages %>%
-  sample_n_keys(100) %>% 
-  stratify_keys(n_strata = 10)
-```
-
-This then allows the user to create facetted plots showing a lot more of the raw data. 
-
-```{r plot-strata}
-set.seed(2019-07-15-1258)
-wages %>%
-  sample_n_keys(120) %>% 
-  stratify_keys(n_strata = 12) %>%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id)) + 
-  geom_line() + 
-  facet_wrap(~.strata)
-```
-
-This is what powers `facet_strata()` under the hood.
 
 ## Exploratory modelling
 

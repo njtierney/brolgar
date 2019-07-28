@@ -1,4 +1,8 @@
 #' Facet data into groups to facilitate exploration
+#' 
+#' This function requires a `tbl_ts` object, which can be created with 
+#'   `tsibble::as_tsibble()`. Under the hood, `facet_strata` is powered by 
+#'   [stratify_keys()].
 #'
 #' @inheritParams stratify_keys
 #' @inheritParams ggplot2::facet_wrap

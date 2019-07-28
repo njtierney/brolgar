@@ -1,4 +1,10 @@
 #' Stratify the keys into groups to facilitate exploration
+#' 
+#' To look at as much of the raw data as possible, it can be helpful to 
+#'   stratify the data into groups for plotting. You can `stratify` the 
+#'   `keys` using the `stratify_keys()` function, which adds the column, 
+#'   `.strata`. This allows the user to create facetted plots showing a more 
+#'   of the raw data. 
 #'
 #' @param .data data.frame to explore
 #' @param n_strata number of groups to create
