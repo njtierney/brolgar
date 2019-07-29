@@ -483,9 +483,9 @@ Finding those groups that are near these values can be surprisingly
 challenging\!
 
 `brolgar` makes it easier by providing the `keys_near()` function. You
-tell it what the key is, what variable you want to summarse by, and then
-by default it returns those keys near the five number summary. Let’s
-return the keys near the `.slope_xp`:
+tell it what the key is, what variable you want to summarise by, and
+then by default it returns those keys near the five number summary.
+Let’s return the keys near the `.slope_xp`:
 
 ``` r
 wages_slope %>%

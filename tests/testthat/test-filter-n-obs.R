@@ -18,6 +18,12 @@ wages_gte_10 <- filter(wages_test, n_obs >= 10)
 wages_lte_2 <- filter(wages_test, n_obs <= 2)
 
 
+test_that("n_obs works with names", {
+  expect_equal(as.numeric(n_obs(wages)), nrow(wages))
+  expect_equal(n_obs(wages), c(n_obs = nrow(wages)))
+  expect_equal(n_obs(wages, names = FALSE), nrow(wages))
+})
+
 test_that("correct number of observations are returned", {
   expect_equal(nrow(wages_gt_10), 1105)
   expect_equal(nrow(wages_et_2), 78)

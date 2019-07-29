@@ -1,6 +1,6 @@
 #' Return the number of observations
 #' 
-#' Returns the number of obserations of a vector or data.frame. It uses 
+#' Returns the number of observations of a vector or data.frame. It uses 
 #'   `vctrs::vec_size()` under the hood.
 #'
 #' @param x vector or dataframe

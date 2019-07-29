@@ -16,7 +16,7 @@ it is just the number of observations.}
 number of observations
 }
 \description{
-Returns the number of obserations of a vector or data.frame. It uses
+Returns the number of observations of a vector or data.frame. It uses
 \code{vctrs::vec_size()} under the hood.
 }
 \examples{
