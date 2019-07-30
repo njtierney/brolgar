@@ -68,22 +68,26 @@ Structures”](library/brolgar/html/longitudinal-data-structures.html)
 
 ## Efficiently exploring longitudinal data
 
-Exploring longitudinal data can be challenging. When there are many
-individuals it is difficult to look at all of them, as you often get a
-“plate of spaghetti” plot, with many lines plotted on top of each
-other. To avoid staring at a plate of spaghetti, you can look at a
-random subset of the data using tools in `brolgar`.
+Exploring longitudinal data can be challenging when there are many
+individuals. It is difficult to look at all of them\!
+
+You often get a “plate of spaghetti” plot, with many lines plotted on
+top of each other. To avoid the spaghetti by looking at a random subset
+of the data using tools in `brolgar`.
 
 ### `sample_n_keys()`
 
-In `dplyr`, you can use `sample_n()` to sample `n` observations.
-Similarly, with `brolgar`, you can take a random sample of `n` keys
-using `sample_n_keys()`:
+In `dplyr`, you can use `sample_n()` to sample `n` observations, or
+`sample_frac()` to look at a `frac`tion of observations.
+
+`brolgar` builds on this providing `sample_n_keys()` and
+`sample_frac_keys()`. This allos you to take a random sample of `n` keys
+using `sample_n_keys()`, for example:
 
 ``` r
 set.seed(2019-7-15-1300)
 wages %>%
-  sample_n_keys(size = 10) %>%
+  sample_n_keys(size = 5) %>%
   ggplot(aes(x = xp,
              y = ln_wages,
              group = id)) + 
@@ -92,30 +96,7 @@ wages %>%
 
 <img src="man/figures/README-plot-sample-n-keys-1.png" width="75%" style="display: block; margin: auto;" />
 
-## Filtering observations
-
-You can combine `sample_n_keys()` with `add_n_obs()` and `filter()` to
-only show keys with many observations:
-
-``` r
-set.seed(2019-7-15-1259)
-library(dplyr)
-wages %>%
-  add_n_obs() %>%
-  filter(n_obs > 5) %>%
-  sample_n_keys(size = 10) %>%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id)) + 
-  geom_line()
-```
-
-<img src="man/figures/README-plot-filter-sample-n-keys-1.png" width="75%" style="display: block; margin: auto;" />
-
-(Note: `sample_frac_keys()`, which samples a fraction of available
-keys.)
-
-Now, how do you break these into many plots?
+But how do you break these into many plots?
 
 ## Clever facets: `facet_strata()`
 
@@ -135,22 +116,8 @@ ggplot(wages,
 
 <img src="man/figures/README-facet-strata-1.png" width="75%" style="display: block; margin: auto;" />
 
-But you could ask it to split the data into a more groups
-
-``` r
-set.seed(2019-07-25-1450)
-library(ggplot2)
-ggplot(wages,
-       aes(x = xp,
-           y = ln_wages,
-           group = id)) +
-  geom_line() +
-  facet_strata(n_strata = 20)
-```
-
-<img src="man/figures/README-facet-strata-20-1.png" width="75%" style="display: block; margin: auto;" />
-
-And what if you want to show only a few samples per facet?
+And if you want to show only a few samples per facet, you can use
+`facet_sample()`
 
 ## Clever facets: `facet_sample()`
 
@@ -169,21 +136,6 @@ ggplot(wages,
 ```
 
 <img src="man/figures/README-facet-sample-1.png" width="75%" style="display: block; margin: auto;" />
-
-But you can specify your own number:
-
-``` r
-set.seed(2019-07-25-1527)
-ggplot(wages,
-       aes(x = xp,
-           y = ln_wages,
-           group = id)) +
-  geom_line() +
-  facet_sample(n_per_facet = 3,
-               n_facets = 20)
-```
-
-<img src="man/figures/README-facet-sample-3-by-20-1.png" width="75%" style="display: block; margin: auto;" />
 
 Under the hood, `facet_sample()` and `facet_strata()` use
 `sample_n_keys()` and `stratify_keys()`.
@@ -216,28 +168,7 @@ wages %>%
 
 `brolgar` provides some sets of features, which start with `feat_`.
 
-For example, the five number summary is `feat_five_num`:
-
-``` r
-wages %>%
-  features(ln_wages, feat_five_num)
-#> # A tibble: 888 x 6
-#>       id   min   q25   med   q75   max
-#>    <int> <dbl> <dbl> <dbl> <dbl> <dbl>
-#>  1    31 1.43   1.48  1.73  2.02  2.13
-#>  2    36 1.80   1.97  2.32  2.59  2.93
-#>  3    53 1.54   1.58  1.71  1.89  3.24
-#>  4   122 0.763  2.10  2.19  2.46  2.92
-#>  5   134 2.00   2.28  2.36  2.79  2.93
-#>  6   145 1.48   1.58  1.77  1.89  2.04
-#>  7   155 1.54   1.83  2.22  2.44  2.64
-#>  8   173 1.56   1.68  2.00  2.05  2.34
-#>  9   206 2.03   2.07  2.30  2.45  2.48
-#> 10   207 1.58   1.87  2.15  2.26  2.66
-#> # … with 878 more rows
-```
-
-Or finding those whose values only increase or decrease with
+For example, finding those whose values only increase or decrease with
 `feat_monotonic`
 
 ``` r
@@ -288,7 +219,7 @@ n_obs(wages)
 #>  6402
 ```
 
-And the number of observations for each key using `n_keys()`:
+And the number of keys in the data using `n_keys()`:
 
 ``` r
 n_keys(wages)

@@ -98,42 +98,27 @@ If you want to learn more about what longitudinal data as a time series, you can
 
 ## Efficiently exploring longitudinal data
 
-Exploring longitudinal data can be challenging. When there are many individuals it is difficult to look at all of them, as you often get a "plate of spaghetti" plot, with many lines plotted on top of each other. To avoid staring at a plate of spaghetti, you can look at a random subset of the data using tools in `brolgar`.
+Exploring longitudinal data can be challenging when there are many individuals. It is difficult to look at all of them!
+
+You often get a "plate of spaghetti" plot, with many lines plotted on top of each other. To avoid the spaghetti by looking at a random subset of the data using tools in `brolgar`.
 
 ### `sample_n_keys()`
 
-In `dplyr`, you can use `sample_n()` to sample `n` observations. Similarly, with `brolgar`, you can take a random sample of `n` keys using `sample_n_keys()`:
+In `dplyr`, you can use `sample_n()` to sample `n` observations, or `sample_frac()` to look at a `frac`tion of observations. 
+
+`brolgar` builds on this providing `sample_n_keys()` and `sample_frac_keys()`. This allos you to take a random sample of `n` keys using `sample_n_keys()`, for example:
 
 ```{r plot-sample-n-keys}
 set.seed(2019-7-15-1300)
 wages %>%
-  sample_n_keys(size = 10) %>%
+  sample_n_keys(size = 5) %>%
   ggplot(aes(x = xp,
              y = ln_wages,
              group = id)) + 
   geom_line()
 ```
 
-## Filtering observations
-
-You can combine `sample_n_keys()` with `add_n_obs()` and `filter()` to only show keys with many observations:
-
-```{r plot-filter-sample-n-keys}
-set.seed(2019-7-15-1259)
-library(dplyr)
-wages %>%
-  add_n_obs() %>%
-  filter(n_obs > 5) %>%
-  sample_n_keys(size = 10) %>%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id)) + 
-  geom_line()
-```
-
-(Note: `sample_frac_keys()`, which samples a fraction of available keys.)
-
-Now, how do you break these into many plots?
+But how do you break these into many plots?
 
 ## Clever facets: `facet_strata()`
 
@@ -150,20 +135,7 @@ ggplot(wages,
   facet_strata()
 ```
 
-But you could ask it to split the data into a more groups
-
-```{r facet-strata-20}
-set.seed(2019-07-25-1450)
-library(ggplot2)
-ggplot(wages,
-       aes(x = xp,
-           y = ln_wages,
-           group = id)) +
-  geom_line() +
-  facet_strata(n_strata = 20)
-```
-
-And what if you want to show only a few samples per facet?
+And if you want to show only a few samples per facet, you can use `facet_sample()`
 
 ## Clever facets: `facet_sample()`
 
@@ -177,20 +149,6 @@ ggplot(wages,
            group = id)) +
   geom_line() +
   facet_sample()
-
-```
-
-But you can specify your own number:
-
-```{r facet-sample-3-by-20}
-set.seed(2019-07-25-1527)
-ggplot(wages,
-       aes(x = xp,
-           y = ln_wages,
-           group = id)) +
-  geom_line() +
-  facet_sample(n_per_facet = 3,
-               n_facets = 20)
 
 ```
 
@@ -208,14 +166,7 @@ wages %>%
 
 `brolgar` provides some sets of features, which start with `feat_`.
 
-For example, the five number summary is `feat_five_num`:
-
-```{r features-five-num}
-wages %>%
-  features(ln_wages, feat_five_num)
-```
-
-Or finding those whose values only increase or decrease with `feat_monotonic`
+For example, finding those whose values only increase or decrease with `feat_monotonic`
 
 ```{r features-monotonic}
 wages %>%
@@ -247,12 +198,11 @@ We can calculate the number of observations total using `n_obs()`:
 n_obs(wages)
 ```
 
-And the number of observations for each key using `n_keys()`:
+And the number of keys in the data using `n_keys()`:
 
 ```{r example-n-keys}
 n_keys(wages)
 ```
-
 
 You can also use `n_obs()` inside features to return the number of observations:
 
@@ -260,7 +210,6 @@ You can also use `n_obs()` inside features to return the number of observations:
 wages %>%
   features(id, n_obs)
 ```
-
 
 This returns a dataframe, with one row per key, and the number of observations for each key.
 
@@ -383,5 +332,3 @@ This version of brolgar was been forked from [tprvan/brolgar](https://github.com
 <!-- But calculating this for individuals draws you away from your analysis, and instead you are now wrangling with a different problem: summarising key information about each individual and incorporating that back into the data.  -->
 
 <!-- This is annoying, and distracts from your analysis, inviting errors. -->
-
-

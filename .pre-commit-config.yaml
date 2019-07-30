@@ -1,6 +1,6 @@
 repos:
 -   repo: https://github.com/lorenzwalthert/pre-commit-hooks
-    rev: v0.0.0.9008
+    rev: v0.0.0.9014
     hooks: 
     -   id: parsable-R
     -   id: no-browser-statement
