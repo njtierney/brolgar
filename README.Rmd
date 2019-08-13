@@ -24,12 +24,11 @@ knitr::opts_chunk$set(
 
 `brolgar` helps you **br**owse **o**ver **l**ongitudinal **d**ata **g**raphically and **a**nalytically in **R**, by providing tools to:
 
-* Efficiently explore your raw data
-* Calculate features (summaries) for each individual series
+* Efficiently explore raw longitudinal data
+* Calculate features (summaries) for individual series
 * Evaluate diagnostics of statistical models
 
 This helps you go from the "plate of spaghetti" plot on the left, to "interesting observations" plot on the left.
-
 
 ```{r show-spaghetti, echo = FALSE, fig.height = 3, fig.width = 6}
 library(brolgar)
@@ -58,8 +57,6 @@ gridExtra::grid.arrange(p1, p2, ncol = 2)
 
 ```
 
-
-
 ## Installation
 
 Install from [GitHub](https://github.com/) with:
@@ -82,7 +79,6 @@ The term `key` is used a lot in brolgar, so it is an important idea to internali
 
 > **The key is the identifier of your individuals or series**
 
-
 So in the `wages` data, we have the following setup:
 
 ```{r setup-wages-ts, eval = FALSE}
@@ -92,21 +88,23 @@ wages <- as_tsibble(x = wages,
                        regular = FALSE)
 ```
 
+Here `as_tsibble()` takes wages, and a `key`, and `index`, and we state the `regular = FALSE` (since there are not regular time periouds between measurements).
 
+This is done using `as_tsibble`, which turns out data into a `tsibble` object - a powerful data abstraction made available in the [`tsibble`](https://tsibble.tidyverts.org/) package by [Earo Wang](https://earo.me/), if you would like to learn more about `tsibble`, see the [official package documentation](https://tsibble.tidyverts.org/) or read [the paper](https://arxiv.org/abs/1901.10257).
 
-If you want to learn more about what longitudinal data as a time series, you can [read more in the vignette, "Longitudinal Data Structures"](library/brolgar/html/longitudinal-data-structures.html)
+If you want to learn more about what longitudinal data as a time series, you can [read more in the vignette, "Longitudinal Data Structures"](http://brolgar.njtierney.com/articles/longitudinal-data-structures.html).
 
 ## Efficiently exploring longitudinal data
 
 Exploring longitudinal data can be challenging when there are many individuals. It is difficult to look at all of them!
 
-You often get a "plate of spaghetti" plot, with many lines plotted on top of each other. To avoid the spaghetti by looking at a random subset of the data using tools in `brolgar`.
+You often get a "plate of spaghetti" plot, with many lines plotted on top of each other. You can avoid the spaghetti by looking at a random subset of the data using tools in `brolgar`.
 
 ### `sample_n_keys()`
 
 In `dplyr`, you can use `sample_n()` to sample `n` observations, or `sample_frac()` to look at a `frac`tion of observations. 
 
-`brolgar` builds on this providing `sample_n_keys()` and `sample_frac_keys()`. This allos you to take a random sample of `n` keys using `sample_n_keys()`, for example:
+`brolgar` builds on this providing `sample_n_keys()` and `sample_frac_keys()`. This allows you to take a random sample of `n` keys using `sample_n_keys()`. For example:
 
 ```{r plot-sample-n-keys}
 set.seed(2019-7-15-1300)
@@ -118,28 +116,11 @@ wages %>%
   geom_line()
 ```
 
-But how do you break these into many plots?
-
-## Clever facets: `facet_strata()`
-
-`brolgar` provides some clever facets to help make it easier to explore your data. `facet_strata()` splits the data into 12 groups by default:
-
-```{r facet-strata}
-set.seed(2019-07-23-1936)
-library(ggplot2)
-ggplot(wages,
-       aes(x = xp,
-           y = ln_wages,
-           group = id)) +
-  geom_line() +
-  facet_strata()
-```
-
-And if you want to show only a few samples per facet, you can use `facet_sample()`
+And what if you want to create many of these plots?
 
 ## Clever facets: `facet_sample()`
 
-`facet_sample()` allows you to specify the number of keys per facet, and the number of facets with `n_per_facet` and `n_facets`. It splits the data into 12 facets with 5 per facet by default:
+`brolgar` provides some clever facets to help make it easier to explore your data. `facet_sample()` allows you to specify the number of keys per facet, and the number of facets with `n_per_facet` and `n_facets`. It splits the data into 12 facets with 5 per facet by default:
 
 ```{r facet-sample}
 set.seed(2019-07-23-1937)
@@ -152,30 +133,25 @@ ggplot(wages,
 
 ```
 
-Under the hood, `facet_sample()` and `facet_strata()` use `sample_n_keys()` and `stratify_keys()`.
+Under the hood, this facet is powered by `sample_n_keys()` and `stratify_keys()`. 
+
+You can see other facets (e.g., `facet_strata`) and data visualisations you can make in brolgar in the [Visualisation Gallery](http://brolgar.njtierney.com/articles/visualisation-gallery.html).
+
 
 ## Finding features in longitudinal data
 
-You can extract `features` of longitudinal data using the `features` function, from `fabletools`. You can, for example, calculate the minimum of a given variable for each key by providing a named list like so:
-
-```{r features-min}
-wages %>%
-  features(ln_wages, 
-           list(min = min))
-```
-
-`brolgar` provides some sets of features, which start with `feat_`.
-
-For example, finding those whose values only increase or decrease with `feat_monotonic`
+You can extract `features` of longitudinal data using the `features` function, from [`fabletools`](http://fabletools.tidyverts.org/). These features all begin with `feat_`. You can, for example, find those whose values only increase or decrease with `feat_monotonic`:
 
 ```{r features-monotonic}
 wages %>%
   features(ln_wages, feat_monotonic)
 ```
 
+You can read more about creating and using features in the [Finding Features](http://brolgar.njtierney.com/articles/finding-features.html) vignette.
+
 ## Linking individuals back to the data
 
-You can join these features back to the data with `left_join`, like so:
+Once you have created these features, you can join them back to the data with a `left_join`, like so:
 
 ```{r features-left-join}
 wages %>%
@@ -188,15 +164,17 @@ wages %>%
   gghighlight(increase)
 ```
 
-## Other helper functions
+# Other helper functions
 
-### `n_obs()`
+## `n_obs()`
 
-We can calculate the number of observations total using `n_obs()`:
+Return the number of observations total with `n_obs()`:
 
 ```{r example-n-obs}
 n_obs(wages)
 ```
+
+## `n_keys()`
 
 And the number of keys in the data using `n_keys()`:
 
@@ -204,7 +182,9 @@ And the number of keys in the data using `n_keys()`:
 n_keys(wages)
 ```
 
-You can also use `n_obs()` inside features to return the number of observations:
+## Finding the number of observations per `key`.
+
+You can also use `n_obs()` inside features to return the number of observations for each key:
 
 ```{r n-obs-features}
 wages %>%
@@ -219,90 +199,33 @@ This could be further summarised to get a sense of the patterns of the number of
 library(ggplot2)
 wages %>%
   features(id, n_obs) %>%
-ggplot(aes(x = n_obs)) + 
-  geom_bar()
+  ggplot(aes(x = n_obs)) + 
+    geom_bar()
 
 wages %>%
   features(id, n_obs) %>%
   summary()
 ```
 
-### `add_n_obs()`
+# Further Reading
 
-You can add information about the number of observations for each key with `add_n_obs()`:
+`brolgar` provides other useful functions to explore your data, which you can read about in the [exploratory modelling](http://brolgar.njtierney.com/articles/exploratory-modelling.html) and [Identify Interesting Obserations](http://brolgar.njtierney.com/articles/id-interesting-obs.html) vignettes. As a taster, here are some of the figures you can produce:
 
-```{r show-add-n-obs}
-wages %>% add_n_obs()
-```
-
-Which you can then use to filter observations:
-
-```{r show-add-obs-filter}
-wages %>% 
-  add_n_obs() %>%
-  filter(n_obs > 3)
-```
-
-## Exploratory modelling
-
-It can be useful to fit a model to explore your data. One technique is to fit a linear model for each group in a dataset. For example, you could fit a linear model for each key in the data.
-
-`brolgar` provides a simple helper function to help with this, called `key_slope()`. 
-
-`key_slope()` returns the intercept and slope estimate for each key, given a linear model formula. We can get the number of observations, and slope information for each individual to identify those that are decreasing over time. 
-
-```{r use-gghighlight}
-key_slope(wages,ln_wages ~ xp)
-```
-
-We can then join these summaries back to the data:
-
-```{r show-wages-lg}
-library(dplyr)
+```{r show-wages-lg, echo = FALSE,  fig.height = 3, fig.width = 6}
+suppressMessages(library(dplyr))
+suppressMessages(library(gghighlight))
 wages_slope <- key_slope(wages,ln_wages ~ xp) %>%
   left_join(wages, by = "id") 
 
-wages_slope
-```
-
-And highlight those individuals with a negative slope using `gghighlight`:
-
-```{r use-gg-highlight}
-library(gghighlight)
-
-wages_slope %>% 
+p3 <- wages_slope %>% 
   as_tibble() %>% # workaround for gghighlight + tsibble
   ggplot(aes(x = xp, 
              y = ln_wages, 
              group = id)) + 
   geom_line() +
   gghighlight(.slope_xp < 0)
-```
 
-### Find keys near other summaries with `keys_near()`
-
-We might want to further summarise our exploratory modelling by finding those slopes that are near a five number summary values:
-
-```{r summary-slope}
-summary(wages_slope$.slope_xp)
-```
-
-Finding those groups that are near these values can be surprisingly challenging!
-
-`brolgar` makes it easier by providing the `keys_near()` function. You tell it what the key is, what variable you want to summarise by, and then by default it returns those keys near the five number summary. Let's return the keys near the `.slope_xp`:
-
-```{r keys-near}
-wages_slope %>%
-  keys_near(key = id,
-            var = .slope_xp)
-```
-
-Here it returns the `id`, the `.slope_xp`, and the statistic that it was closest to, and what the difference between the slope_xp and the statistic.
-
-You can visualise these summary keys by joining them back to the data:
-
-```{r keys-near-plot}
-wages_slope %>%
+p4 <- wages_slope %>%
   keys_near(key = id,
             var = .slope_xp) %>%
   left_join(wages, by = "id") %>%
@@ -311,10 +234,15 @@ wages_slope %>%
              group = id,
              colour = stat)) + 
   geom_line()
+
+gridExtra::grid.arrange(p3, p4, ncol = 2)
 ```
 
+# Related work
 
-You can read more about `keys_near()` at the [finding summary keys vignette](http://brolgar.njtierney.com/articles/find-summary-keys.html).
+One of the sources of inspiration for this work was the [`lasangar` R package by Bryan Swihart](https://github.com/swihart/lasagnar) (and [paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2937254/)).
+
+For evan more expansive time series summarisation, make sure you check out the [`feasts` package](https://github.com/tidyverts/feasts) (and [talk!](https://slides.mitchelloharawild.com/user2019/#1)).
 
 # Contributing
 
@@ -330,5 +258,3 @@ This version of brolgar was been forked from [tprvan/brolgar](https://github.com
 
 
 <!-- But calculating this for individuals draws you away from your analysis, and instead you are now wrangling with a different problem: summarising key information about each individual and incorporating that back into the data.  -->
-
-<!-- This is annoying, and distracts from your analysis, inviting errors. -->
