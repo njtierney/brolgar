@@ -121,12 +121,66 @@ near_quantile <- function(x, probs, tol){
   
 }
 
+
+#' Is x nearest to y?
+#' 
+#' @description  Returns TRUE if x is nearest to y. 
+#'     There are two implementations. `nearest_lgl()` returns a logical vector
+#'     when an element of the first argument is nearest to an element of the
+#'     second argument. `nearest_qt_lgl()` is similar to `nearest_lgl()`, but 
+#'     instead determines if an element of the first argument is nearest to
+#'     some value of the given quantile probabilities. See example for more 
+#'     detail.
+#'
+#' @param x a numeric vector
+#' @param y a numeric vector
+#' @param ... (if used) arguments to pass to `quantile()`.
+#'
+#' @return logical vector of `length(y)` 
+#' @name nearests
+#' @export
+#'
+#' @examples
+#' 
+#' x <- 1:10
+#' y <- 5:14
+#' z <- 16:25
+#' a <- -1:-5
+#' b <- -1
+#' 
+#' nearest_lgl(x, y)
+#' nearest_lgl(y, x)
+#' 
+#' nearest_lgl(x, z)
+#' nearest_lgl(z, x)
+#' 
+#' nearest_lgl(x, a)
+#' nearest_lgl(a, x)
+#' 
+#' nearest_lgl(x, b)
+#' nearest_lgl(b, x)
+#' 
+#' library(dplyr)
+#' wages_near_min <- wages %>%
+#'   filter(nearest_lgl(min(ln_wages), ln_wages))
+#'   
+#' wages_near_fivenum <- wages %>%
+#'   filter(nearest_lgl(fivenum(ln_wages), ln_wages))
+#'   
+#' wages_near_qt_1 <- wages %>%
+#'   filter(nearest_qt_lgl(ln_wages, c(0.5)))
+#'   
+#' wages_near_qt_3 <- wages %>%
+#'   filter(nearest_qt_lgl(ln_wages, c(0.1, 0.5, 0.9)))
+#' 
 nearest_lgl <- function(x, y){
   out <- logical(length(y))
   out[purrr::map_dbl(x, function(x) which.min(abs(y - x)))] <- TRUE
   out
 }
 
+#' @export
+#' @rdname nearests
 nearest_qt_lgl <- function(y, ...){
   x <- stats::quantile(y, ...)
   out <- logical(length(y))
@@ -134,14 +188,15 @@ nearest_qt_lgl <- function(y, ...){
   out
 }
 
-nearest_qt <- function(y, ...){
-  x <- stats::quantile(y, ...)
-  purrr::map(x, function(x) which.min(abs(y - x)))
-  out <- logical(length(y))
-  out[purrr::map_dbl(x, function(x) which.min(abs(y - x)))] <- TRUE
-  out
-}
-
+# it is not clear to me how this is significantly different to nearest_qt_lgl
+# nearest_qt <- function(y, ...){
+#   x <- stats::quantile(y, ...)
+#   purrr::map(x, function(x) which.min(abs(y - x)))
+#   out <- logical(length(y))
+#   out[purrr::map_dbl(x, function(x) which.min(abs(y - x)))] <- TRUE
+#   out
+# }
+# 
 # 
 # # Mitch's notes 
 # stat_near_quant(min, 0.5, 0.1)(map(seq_len(100), rnorm))
