@@ -66,20 +66,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9100</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
+  <a href="../articles/articles/getting-started.html">Getting Started</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/visualisation-gallery.html">Gallery</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -89,24 +86,24 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/creating-features.html">Creating Features</a>
+      <a href="../articles/longitudinal-data-structures.html">Data Structures</a>
     </li>
     <li>
-      <a href="../articles/find-summary-keys.html">Finding summary keys</a>
+      <a href="../articles/exploratory-modelling.html">Exploratory Modelling</a>
     </li>
     <li>
-      <a href="../articles/getting-started.html">Getting Started</a>
+      <a href="../articles/finding-features.html">Finding Features</a>
     </li>
     <li>
-      <a href="../articles/longitudinal-data-structures.html">Longitudinal Data Structures</a>
-    </li>
-    <li>
-      <a href="../articles/visualisation-gallery.html">Visualisation Gallery</a>
+      <a href="../articles/id-interesting-obs.html">Identify Interesting Observations</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       
@@ -144,29 +141,31 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-data" class="hasAnchor"><a href="#section-data" class="anchor"></a>Data</h2>
+          <p class="section-desc"><p>Datasets that come with <code>brolgar</code></p></p>
         </th>
       </tr>
       <tr>
         
         <td>
-          <p><code><a href="add_n_obs.html">add_n_obs()</a></code> </p>
+          <p><code><a href="wages.html">wages</a></code> </p>
         </td>
-        <td><p>Add the number of observations for each key in a <code>tsibble</code></p></td>
+        <td><p>Wages data from National Longitudinal Survey of Youth (NLSY)</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="b_summaries.html">b_min()</a></code> <code><a href="b_summaries.html">b_max()</a></code> <code><a href="b_summaries.html">b_median()</a></code> <code><a href="b_summaries.html">b_mean()</a></code> <code><a href="b_summaries.html">b_q25()</a></code> <code><a href="b_summaries.html">b_q75()</a></code> <code><a href="b_summaries.html">b_range()</a></code> <code><a href="b_summaries.html">b_range_diff()</a></code> <code><a href="b_summaries.html">b_sd()</a></code> <code><a href="b_summaries.html">b_var()</a></code> <code><a href="b_summaries.html">b_mad()</a></code> <code><a href="b_summaries.html">b_iqr()</a></code> </p>
+          <p><code><a href="heights.html">heights</a></code> </p>
         </td>
-        <td><p>Brolgar summaries (b_summaries)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="brolgar.html">brolgar</a></code> </p>
-        </td>
-        <td><p>brolgar</p></td>
-      </tr><tr>
+        <td><p>World Height Data</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-ggplot-helpers" class="hasAnchor"><a href="#section-ggplot-helpers" class="anchor"></a>ggplot helpers</h2>
+          <p class="section-desc"><p>ggplot2 functions to help explore your data</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="facet_sample.html">facet_sample()</a></code> </p>
@@ -178,7 +177,35 @@
           <p><code><a href="facet_strata.html">facet_strata()</a></code> </p>
         </td>
         <td><p>Facet data into groups to facilitate exploration</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-sampling-helpers" class="hasAnchor"><a href="#section-sampling-helpers" class="anchor"></a>Sampling helpers</h2>
+          <p class="section-desc"><p>Functions to help sampling series from the data</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="sample-n-frac-keys.html">sample_n_keys()</a></code> <code><a href="sample-n-frac-keys.html">sample_frac_keys()</a></code> </p>
+        </td>
+        <td><p>Sample a number or fraction of keys to explore</p></td>
       </tr><tr>
+        
+        <td>
+          <p><code><a href="stratify_keys.html">stratify_keys()</a></code> </p>
+        </td>
+        <td><p>Stratify the keys into groups to facilitate exploration</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-features" class="hasAnchor"><a href="#section-features" class="anchor"></a>Features</h2>
+          <p class="section-desc"><p>Identify features in your data:</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="feat_brolgar.html">feat_three_num()</a></code> <code><a href="feat_brolgar.html">feat_brolgar()</a></code> </p>
@@ -208,13 +235,15 @@
           <p><code><a href="feat_spread.html">feat_spread()</a></code> </p>
         </td>
         <td><p>Feature: Spread</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="heights.html">heights</a></code> </p>
-        </td>
-        <td><p>World Height Data</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-exploratory-tools-experimental-" class="hasAnchor"><a href="#section-exploratory-tools-experimental-" class="anchor"></a>Exploratory tools (Experimental)</h2>
+          <p class="section-desc"><p>Tools to help with exploratory modelling of your data</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="key_slope.html">key_slope()</a></code> <code><a href="key_slope.html">add_key_slope()</a></code> </p>
@@ -226,25 +255,15 @@
           <p><code><a href="keys_near.html">keys_near()</a></code> </p>
         </td>
         <td><p>Return keys nearest to a given statistics or summary.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="l_funs.html">l_five_num</a></code> <code><a href="l_funs.html">l_three_num</a></code> </p>
-        </td>
-        <td><p>A named list of the five number summary</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="monotonic.html">increasing()</a></code> <code><a href="monotonic.html">decreasing()</a></code> <code><a href="monotonic.html">unvarying()</a></code> <code><a href="monotonic.html">monotonic()</a></code> </p>
-        </td>
-        <td><p>Are values monotonic? Always increasing, decreasing, or unvarying?</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="n_obs.html">n_obs()</a></code> </p>
-        </td>
-        <td><p>Return the number of observations</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-find-observations-near-a-value" class="hasAnchor"><a href="#section-find-observations-near-a-value" class="anchor"></a>Find observations near a value</h2>
+          <p class="section-desc"><p>Identify observations near some summary value</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="near_between.html">near_between()</a></code> </p>
@@ -265,21 +284,61 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="sample-n-frac-keys.html">sample_n_keys()</a></code> <code><a href="sample-n-frac-keys.html">sample_frac_keys()</a></code> </p>
+          <p><code><a href="nearests.html">nearest_lgl()</a></code> <code><a href="nearests.html">nearest_qt_lgl()</a></code> </p>
         </td>
-        <td><p>Sample a number or fraction of keys to explore</p></td>
+        <td><p>Is x nearest to y?</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-summaries" class="hasAnchor"><a href="#section-summaries" class="anchor"></a>Summaries</h2>
+          <p class="section-desc"><p>Functions that are used to power the summary functions in <code>brolgar</code></p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="b_summaries.html">b_min()</a></code> <code><a href="b_summaries.html">b_max()</a></code> <code><a href="b_summaries.html">b_median()</a></code> <code><a href="b_summaries.html">b_mean()</a></code> <code><a href="b_summaries.html">b_q25()</a></code> <code><a href="b_summaries.html">b_q75()</a></code> <code><a href="b_summaries.html">b_range()</a></code> <code><a href="b_summaries.html">b_range_diff()</a></code> <code><a href="b_summaries.html">b_sd()</a></code> <code><a href="b_summaries.html">b_var()</a></code> <code><a href="b_summaries.html">b_mad()</a></code> <code><a href="b_summaries.html">b_iqr()</a></code> </p>
+        </td>
+        <td><p>Brolgar summaries (b_summaries)</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="stratify_keys.html">stratify_keys()</a></code> </p>
+          <p><code><a href="l_funs.html">l_five_num</a></code> <code><a href="l_funs.html">l_three_num</a></code> </p>
         </td>
-        <td><p>Stratify the keys into groups to facilitate exploration</p></td>
+        <td><p>A named list of the five number summary</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-helpers" class="hasAnchor"><a href="#section-helpers" class="anchor"></a>Helpers</h2>
+          <p class="section-desc"><p>Helper functions to assist summarising data</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="n_obs.html">n_obs()</a></code> </p>
+        </td>
+        <td><p>Return the number of observations</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="wages.html">wages</a></code> </p>
+          <p><code><a href="add_n_obs.html">add_n_obs()</a></code> </p>
         </td>
-        <td><p>Wages data from National Longitudinal Survey of Youth (NLSY)</p></td>
+        <td><p>Add the number of observations for each key in a <code>tsibble</code></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="reexports.html">reexports</a></code> </p>
+        </td>
+        <td><p>Objects exported from other packages</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="monotonic.html">increasing()</a></code> <code><a href="monotonic.html">decreasing()</a></code> <code><a href="monotonic.html">unvarying()</a></code> <code><a href="monotonic.html">monotonic()</a></code> </p>
+        </td>
+        <td><p>Are values monotonic? Always increasing, decreasing, or unvarying?</p></td>
       </tr>
     </tbody>
     </table>
@@ -288,7 +347,14 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-data">Data</a></li>
+      <li><a href="#section-ggplot-helpers">ggplot helpers</a></li>
+      <li><a href="#section-sampling-helpers">Sampling helpers</a></li>
+      <li><a href="#section-features">Features</a></li>
+      <li><a href="#section-exploratory-tools-experimental-">Exploratory tools (Experimental)</a></li>
+      <li><a href="#section-find-observations-near-a-value">Find observations near a value</a></li>
+      <li><a href="#section-summaries">Summaries</a></li>
+      <li><a href="#section-helpers">Helpers</a></li>
     </ul>
   </div>
 </div>

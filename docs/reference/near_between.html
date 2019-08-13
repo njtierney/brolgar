@@ -69,20 +69,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9100</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
+  <a href="../articles/articles/getting-started.html">Getting Started</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/visualisation-gallery.html">Gallery</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -92,24 +89,24 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/creating-features.html">Creating Features</a>
+      <a href="../articles/longitudinal-data-structures.html">Data Structures</a>
     </li>
     <li>
-      <a href="../articles/find-summary-keys.html">Finding summary keys</a>
+      <a href="../articles/exploratory-modelling.html">Exploratory Modelling</a>
     </li>
     <li>
-      <a href="../articles/getting-started.html">Getting Started</a>
+      <a href="../articles/finding-features.html">Finding Features</a>
     </li>
     <li>
-      <a href="../articles/longitudinal-data-structures.html">Longitudinal Data Structures</a>
-    </li>
-    <li>
-      <a href="../articles/visualisation-gallery.html">Visualisation Gallery</a>
+      <a href="../articles/id-interesting-obs.html">Identify Interesting Observations</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       
@@ -176,7 +173,7 @@
             <span class='kw'>within</span> <span class='kw'>=</span> <span class='fl'>0.2</span>)</div><div class='output co'>#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
 #&gt; [13] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE</div><div class='input'>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='no'>wages</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://fablelite.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
+<span class='no'>wages</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>near_between</span>(<span class='no'>min</span>, <span class='fl'>0.1</span>, <span class='fl'>0.9</span>))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 710 x 2</span><span>
 #&gt;       id   min
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -198,7 +195,7 @@
 <span class='fu'><a href='near_quantile.html'>near_quantile</a></span>(<span class='no'>x</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.25</span>, <span class='fl'>0.5</span>, <span class='fl'>0.75</span>), <span class='fl'>0.05</span>)</div><div class='output co'>#&gt;  [1]  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE
 #&gt; [13] FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE</div><div class='input'>
 <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://fablelite.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='no'>l_five_num</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='no'>l_five_num</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate_all.html'>mutate_at</a></span>(<span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span>(<span class='no'>min</span>:<span class='no'>max</span>),
             <span class='kw'>.funs</span> <span class='kw'>=</span> <span class='no'>near_quantile</span>,
             <span class='fl'>0.5</span>,
@@ -218,7 +215,7 @@
 #&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>6</span><span>918 TRUE  FALSE FALSE FALSE FALSE
 #&gt; </span><span style='color: #555555;'># … with 20 more rows</span><span></div><div class='input'>
 <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://fablelite.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>min_near_q3</span> <span class='kw'>=</span> <span class='fu'><a href='near_quantile.html'>near_quantile</a></span>(<span class='no'>min</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.25</span>, <span class='fl'>0.5</span>, <span class='fl'>0.75</span>), <span class='fl'>0.01</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>min_near_q3</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 66 x 3</span><span>
 #&gt;       id   min min_near_q3
@@ -235,7 +232,7 @@
 #&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>1</span><span>811  1.64 TRUE       
 #&gt; </span><span style='color: #555555;'># … with 56 more rows</span><span></div><div class='input'>
 <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://fablelite.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>near_between</span>(<span class='no'>min</span>, <span class='fl'>0.1</span>, <span class='fl'>0.9</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 710 x 2</span><span>
 #&gt;       id   min
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -251,7 +248,7 @@
 #&gt; </span><span style='color: #555555;'>10</span><span>   234  1.54
 #&gt; </span><span style='color: #555555;'># … with 700 more rows</span><span></div><div class='input'>
 <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://fablelite.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='near_middle.html'>near_middle</a></span>(<span class='no'>min</span>, <span class='fl'>0.5</span>, <span class='fl'>0.1</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 88 x 2</span><span>
 #&gt;       id   min
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>

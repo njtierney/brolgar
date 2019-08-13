@@ -61,6 +61,9 @@
     <loc>http://brolgar.njtierney.com//reference/near_quantile.html</loc>
   </url>
   <url>
+    <loc>http://brolgar.njtierney.com//reference/nearests.html</loc>
+  </url>
+  <url>
     <loc>http://brolgar.njtierney.com//reference/pipe.html</loc>
   </url>
   <url>
@@ -76,13 +79,16 @@
     <loc>http://brolgar.njtierney.com//reference/wages.html</loc>
   </url>
   <url>
-    <loc>http://brolgar.njtierney.com//articles/creating-features.html</loc>
+    <loc>http://brolgar.njtierney.com//articles/exploratory-modelling.html</loc>
   </url>
   <url>
-    <loc>http://brolgar.njtierney.com//articles/find-summary-keys.html</loc>
+    <loc>http://brolgar.njtierney.com//articles/finding-features.html</loc>
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//articles/getting-started.html</loc>
+  </url>
+  <url>
+    <loc>http://brolgar.njtierney.com//articles/id-interesting-obs.html</loc>
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//articles/longitudinal-data-structures.html</loc>

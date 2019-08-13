@@ -32,20 +32,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9100</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
+  <a href="../articles/articles/getting-started.html">Getting Started</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/visualisation-gallery.html">Gallery</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -55,24 +52,24 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/creating-features.html">Creating Features</a>
+      <a href="../articles/longitudinal-data-structures.html">Data Structures</a>
     </li>
     <li>
-      <a href="../articles/find-summary-keys.html">Finding summary keys</a>
+      <a href="../articles/exploratory-modelling.html">Exploratory Modelling</a>
     </li>
     <li>
-      <a href="../articles/getting-started.html">Getting Started</a>
+      <a href="../articles/finding-features.html">Finding Features</a>
     </li>
     <li>
-      <a href="../articles/longitudinal-data-structures.html">Longitudinal Data Structures</a>
-    </li>
-    <li>
-      <a href="../articles/visualisation-gallery.html">Visualisation Gallery</a>
+      <a href="../articles/id-interesting-obs.html">Identify Interesting Observations</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -103,33 +100,17 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(brolgar)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co">#&gt; Attaching package: 'dplyr'</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="co">#&gt; The following objects are masked from 'package:stats':</span></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="co">#&gt;     filter, lag</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="co">#&gt; The following objects are masked from 'package:base':</span></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tsibble)</a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="co">#&gt; Attaching package: 'tsibble'</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="co">#&gt; The following object is masked from 'package:dplyr':</span></a>
-<a class="sourceLine" id="cb1-15" title="15"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb1-16" title="16"><span class="co">#&gt;     id</span></a></code></pre></div>
 <p>All data has structure. There are ways that we can specify some permanent structure to the data, which gives some useful features later on, for free. This vignette discusses how to structure your longitudinal data as a time series, and what that means.</p>
 <p>This idea, that <strong>longitudinal data is a time series</strong>, is <em>Big Idea #1</em> behind the <code>brolgar</code> package.</p>
 <blockquote>
 <p>Anything that is observed sequentially over time is a time series. – <a href="https://otexts.com/fpp2/data-methods.html">Professors Rob Hyndman and George Athanasopolous</a></p>
 </blockquote>
 <p>Longitudinal data has a few other names, such as “panel data”. I used to always think that “time series” was defined as something that was by definition “regular” - with equal spacings between observations. This is actually not the case - you can have both “regular”, and “irregular” time series.</p>
-<p>Why care about using a time series? Once we account for this time series structure inherent in longitudinal data, we gain access to a suite of nice tools that simplify and accelerate how we work with time series data.</p>
+<p>Why care about using a time series? Once we account for this time series structure inherent in longitudinal data, we gain access to a suite of nice tools that simplify and accelerate how we work with time series data. <code>brolgar</code> is built on top of the powerful <a href="https://tsibble.tidyverts.org/"><code>tsibble</code></a> package by <a href="https://earo.me/">Earo Wang</a>, if you would like to learn more, see the <a href="https://tsibble.tidyverts.org/">official package documentation</a> or read <a href="https://arxiv.org/abs/1901.10257">the paper</a>.</p>
 <div id="converting-your-longitudinal-data-to-a-time-series" class="section level2">
 <h2 class="hasAnchor">
 <a href="#converting-your-longitudinal-data-to-a-time-series" class="anchor"></a>Converting your longitudinal data to a time series</h2>
-<p>To convert longitudinal data into a “<strong>t</strong>ime <strong>s</strong>eries tibble”, a <code>tsibble</code>, we need to consider:</p>
+<p>To convert longitudinal data into a “<strong>t</strong>ime <strong>s</strong>eries tibble”, a <a href="https://tsibble.tidyverts.org/"><code>tsibble</code></a>, we need to consider:</p>
 <ul>
 <li>What identifies the <strong>time</strong> component of the data? This is the <strong>index</strong>
 </li>
@@ -138,37 +119,39 @@
 </ul>
 <p>Together, the <strong>index</strong> and <strong>key</strong> uniquely identify an observation.</p>
 <p>What do we mean by this? Let’s look at the first section of the wages, <strong>wages</strong> data analysed in Singer &amp; Willett (2003):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span>(wages, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="co">#&gt; # A tsibble: 10 x 9 [!]</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt; # Key:       id [2]</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade</span></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt;    &lt;int&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt;  1    31     1.49 0.015     1        0.015     0        1          8</span></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt;  2    31     1.43 0.715     1        0.715     0        1          8</span></a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt;  3    31     1.47 1.73      1        1.73      0        1          8</span></a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt;  4    31     1.75 2.77      1        2.77      0        1          8</span></a>
-<a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt;  5    31     1.93 3.93      1        3.93      0        1          8</span></a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt;  6    31     1.71 4.95      1        4.95      0        1          8</span></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt;  7    31     2.09 5.96      1        5.96      0        1          8</span></a>
-<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt;  8    31     2.13 6.98      1        6.98      0        1          8</span></a>
-<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt;  9    36     1.98 0.315     1        0.315     0        0          9</span></a>
-<a class="sourceLine" id="cb2-15" title="15"><span class="co">#&gt; 10    36     1.80 0.983     1        0.983     0        0          9</span></a>
-<a class="sourceLine" id="cb2-16" title="16"><span class="co">#&gt; # … with 1 more variable: unemploy_rate &lt;dbl&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(brolgar)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/message">suppressPackageStartupMessages</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr))</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span>(wages, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#&gt; # A tsibble: 10 x 9 [!]</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#&gt; # Key:       id [2]</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt;    &lt;int&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt;  1    31     1.49 0.015     1        0.015     0        1          8</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt;  2    31     1.43 0.715     1        0.715     0        1          8</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#&gt;  3    31     1.47 1.73      1        1.73      0        1          8</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#&gt;  4    31     1.75 2.77      1        2.77      0        1          8</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">#&gt;  5    31     1.93 3.93      1        3.93      0        1          8</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co">#&gt;  6    31     1.71 4.95      1        4.95      0        1          8</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co">#&gt;  7    31     2.09 5.96      1        5.96      0        1          8</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="co">#&gt;  8    31     2.13 6.98      1        6.98      0        1          8</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co">#&gt;  9    36     1.98 0.315     1        0.315     0        0          9</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co">#&gt; 10    36     1.80 0.983     1        0.983     0        0          9</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="co">#&gt; # … with 1 more variable: unemploy_rate &lt;dbl&gt;</span></span></code></pre></div>
 <p>We have the <code>id</code> column, which identifies an individual.</p>
 <p>We also have the <code>xp</code> column, which identifies the experience an individual has.</p>
 <p>So:</p>
 <ul>
 <li>key: <code>id</code>
 </li>
-<li>index: <code>exper</code>
+<li>index: <code>xp</code>
 </li>
 </ul>
 <p>We could create a <code>tsibble</code> of this data by using the <code>as_tsibble</code> function from <code>tsibble</code>, also stating, <code>regular = FALSE</code>, since we have an <code>irregular</code> time series (the measurements are not regularly measured, and have a varying distance between each measurement):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tsibble)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(<span class="dt">x =</span> wages,</a>
-<a class="sourceLine" id="cb3-3" title="3">           <span class="dt">key =</span> id,</a>
-<a class="sourceLine" id="cb3-4" title="4">           <span class="dt">index =</span> xp,</a>
-<a class="sourceLine" id="cb3-5" title="5">           <span class="dt">regular =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tsibble)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(<span class="dt">x =</span> wages,</span>
+<span id="cb2-3"><a href="#cb2-3"></a>           <span class="dt">key =</span> id,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>           <span class="dt">index =</span> xp,</span>
+<span id="cb2-5"><a href="#cb2-5"></a>           <span class="dt">regular =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>Note the following information printed at the top of <code>wages</code></p>
 <pre><code># A tsibble: 6,402 x 9 [!]
 # Key:       id [888]

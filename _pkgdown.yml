@@ -76,7 +76,7 @@ reference:
 navbar:
   left:
   - text: Getting Started
-    href: articles/articles/getting-started.html
+    href: articles/getting-started.html
   - text: Gallery
     href: articles/visualisation-gallery.html
   - text: "Articles"
@@ -87,8 +87,8 @@ navbar:
         href: articles/exploratory-modelling.html
       - text: Finding Features
         href: articles/finding-features.html
-      - text: Finding Summary Keys
-        href: articles/find-summary-keys.html
+      - text: Identify Interesting Observations
+        href: articles/id-interesting-obs.html
   - text: Reference
     href: reference/index.html
   - text: News

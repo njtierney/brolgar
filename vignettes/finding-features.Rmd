@@ -49,7 +49,7 @@ This vignette discusses how to calculate these features of the data.
 
 # Calculating features
 
-We can calcluate `features` of longitudinal data using the `features` function (from [`fabletools`](http://fabletools.tidyverts.org/), made available in `brolgar`).
+We can calculate `features` of longitudinal data using the `features` function (from [`fabletools`](http://fabletools.tidyverts.org/), made available in `brolgar`).
 
 `features` works by specifying the data, the variable to summarise, and the feature to calculate:
 

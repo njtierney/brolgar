@@ -63,7 +63,7 @@ wages <- as_tsibble(x = wages,
 ```
 
 Here `as_tsibble()` takes wages, and a `key`, and `index`, and we state
-the `regular = FALSE` (since there are not regular time periouds between
+the `regular = FALSE` (since there are not regular time periods between
 measurements).
 
 This is done using `as_tsibble`, which turns out data into a `tsibble`
@@ -113,9 +113,12 @@ And what if you want to create many of these plots?
 ## Clever facets: `facet_sample()`
 
 `brolgar` provides some clever facets to help make it easier to explore
-your data. `facet_sample()` allows you to specify the number of keys per
-facet, and the number of facets with `n_per_facet` and `n_facets`. It
-splits the data into 12 facets with 5 per facet by default:
+your data.
+
+One issue when making `facet_sample()` allows you to specify the number
+of keys per facet, and the number of facets with `n_per_facet` and
+`n_facets`. It splits the data into 12 facets with 5 per facet by
+default:
 
 ``` r
 set.seed(2019-07-23-1937)
@@ -265,7 +268,7 @@ wages %>%
 you can read about in the [exploratory
 modelling](http://brolgar.njtierney.com/articles/exploratory-modelling.html)
 and [Identify Interesting
-Obserations](http://brolgar.njtierney.com/articles/id-interesting-obs.html)
+Observations](http://brolgar.njtierney.com/articles/id-interesting-obs.html)
 vignettes. As a taster, here are some of the figures you can produce:
 
 <img src="man/figures/README-show-wages-lg-1.png" width="75%" style="display: block; margin: auto;" />
@@ -276,7 +279,7 @@ One of the sources of inspiration for this work was the [`lasangar` R
 package by Bryan Swihart](https://github.com/swihart/lasagnar) (and
 [paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2937254/)).
 
-For evan more expansive time series summarisation, make sure you check
+For even more expansive time series summarisation, make sure you check
 out the [`feasts` package](https://github.com/tidyverts/feasts) (and
 [talk\!](https://slides.mitchelloharawild.com/user2019/#1)).
 
@@ -291,6 +294,17 @@ project, you agree to abide by its terms.
 This version of brolgar was been forked from
 [tprvan/brolgar](https://github.com/tprvan/brolgar), and has undergone
 breaking changes to the API.
+
+# Acknowledgements
+
+Thank you to [Mitchell O’Hara-Wild](https://mitchelloharawild.com/) and
+[Earo Wang](https://earo.me/) for many useful discussions on the
+implementation of brolgar, as it was heavily inspired by the
+[`feasts`](https://github.com/tidyverts/feasts) package from the
+[`tidyverts`](https://tidyverts.org/). I would also like to thank [Tania
+Prvan](https://researchers.mq.edu.au/en/persons/tania-prvan) for her
+valuable early contributions to the project, as well as [Stuart
+Lee](https://stuartlee.org/) for helpful discussions.
 
 <!-- These are referred to as a **longnostics**, a portmanteau of **long**itudinal and **cognostic**. These **longnostics** make it straightforward to extract subjects with certain properties to gain some insight into the data.  -->
 

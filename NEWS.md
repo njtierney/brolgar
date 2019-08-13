@@ -1,4 +1,4 @@
-# brolgar 0.0.3.9000
+# brolgar 0.0.4.9000
 
 * add `nearest_lgl` and `nearest_qt_lgl`
 * Gave more verbose names to the `wages_ts` data.

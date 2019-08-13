@@ -25,7 +25,6 @@ When we first get a longitudinal dataset, you need to understand some of its str
 To use `brolgar` with your work, you should convert your longitudinal data into a time series `tsibble` using the `tsibble` package. To do so, you need to identify the unique identifying `key`, and time `index`. For example:
 
 ```{r wages-ts, eval = FALSE}
-library(tsibble)
 wages <- as_tsibble(wages,
                     key = id,
                     index = xp,
@@ -43,7 +42,6 @@ When you first get a dataset, you need to get an overall sense of what is in the
 We can kind the number of keys using `n_keys()`:
 
 ```{r n-obs}
-library(tsibble)
 n_keys(wages)
 ```
 

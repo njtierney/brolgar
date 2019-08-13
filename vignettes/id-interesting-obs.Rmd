@@ -1,5 +1,5 @@
 ---
-title: "Identify Interesting Obserations"
+title: "Identify Interesting Observations"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{id-interesting-obs}
