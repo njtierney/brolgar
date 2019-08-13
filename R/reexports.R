@@ -11,18 +11,18 @@
 NULL
 
 
-#' @importFrom fablelite features features_at features_if features_all
+#' @importFrom fabletools features features_at features_if features_all
 #' @export
-fablelite::features
+fabletools::features
 
 #' @export
-fablelite::features_at
+fabletools::features_at
 
 #' @export
-fablelite::features_if
+fabletools::features_if
 
 #' @export
-fablelite::features_all
+fabletools::features_all
 
 #' @importFrom tsibble as_tsibble n_keys
 #' @export

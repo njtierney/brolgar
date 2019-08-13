@@ -156,7 +156,7 @@ Under the hood, `facet_sample()` and `facet_strata()` use `sample_n_keys()` and 
 
 ## Finding features in longitudinal data
 
-You can extract `features` of longitudinal data using the `features` function, from `fablelite`. You can, for example, calculate the minimum of a given variable for each key by providing a named list like so:
+You can extract `features` of longitudinal data using the `features` function, from `fabletools`. You can, for example, calculate the minimum of a given variable for each key by providing a named list like so:
 
 ```{r features-min}
 wages %>%

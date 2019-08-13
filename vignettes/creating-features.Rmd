@@ -59,7 +59,7 @@ the cases of quantiles, they use `type = 8`, and `names = FALSE`.
 You can now create a set of features with:
 
 ```{r show-features-set}
-library(fablelite)
+library(fabletools)
 feature_set(pkgs = "brolgar")
 feature_set(pkgs = "feasts")
 feature_set(tag = "summary")
@@ -68,13 +68,13 @@ feature_set(tag = "acf")
 
 ## Registering a feature in a package
 
-Functions can be registered via `fablelite::register_feature()`. 
+Functions can be registered via `fabletools::register_feature()`. 
 To register features in a package, I create a file called `zzz.R`, and use the
 `.onLoad(...)` function to set this up on loading the package:
 
 ```{r show-register-feature, eval = FALSE}
 .onLoad <- function(...) {
-  fablelite::register_feature(feat_three_num, c("summary"))
+  fabletools::register_feature(feat_three_num, c("summary"))
   # ... and as many as you want here!
 }
 ```

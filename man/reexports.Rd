@@ -16,7 +16,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{fablelite}{\code{\link[fablelite]{features}}, \code{\link[fablelite]{features_at}}, \code{\link[fablelite]{features_if}}, \code{\link[fablelite]{features_all}}}
+  \item{fabletools}{\code{\link[fabletools]{features}}, \code{\link[fabletools]{features_at}}, \code{\link[fabletools]{features_if}}, \code{\link[fabletools]{features_all}}}
 
   \item{tsibble}{\code{\link[tsibble]{as_tsibble}}, \code{\link[tsibble]{n_keys}}}
 }}
