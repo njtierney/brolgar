@@ -1,0 +1,89 @@
+---
+title: "Exploratory Modelling"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{exploratory-modelling}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(brolgar)
+```
+
+It can be useful to fit a model to explore your data. One technique is to fit a linear model for each group in a dataset. For example, you could fit a linear model for each key in the data.
+
+`brolgar` provides a helper function to help with this, called `key_slope()`. 
+
+`key_slope()` returns the intercept and slope estimate for each key, given a linear model formula. We can get the number of observations, and slope information for each individual to identify those that are decreasing over time. 
+
+```{r use-gghighlight}
+key_slope(wages,ln_wages ~ xp)
+```
+
+We can then join these summaries back to the data:
+
+```{r show-wages-lg}
+library(dplyr)
+wages_slope <- key_slope(wages,ln_wages ~ xp) %>%
+  left_join(wages, by = "id") 
+
+wages_slope
+```
+
+And highlight those individuals with a negative slope using `gghighlight`:
+
+```{r use-gg-highlight}
+library(gghighlight)
+
+wages_slope %>% 
+  as_tibble() %>% # workaround for gghighlight + tsibble
+  ggplot(aes(x = xp, 
+             y = ln_wages, 
+             group = id)) + 
+  geom_line() +
+  gghighlight(.slope_xp < 0)
+```
+
+### Find keys near other summaries with `keys_near()`
+
+We might want to further summarise our exploratory modelling by finding those slopes that are near a five number summary values:
+
+```{r summary-slope}
+summary(wages_slope$.slope_xp)
+```
+
+Finding those groups that are near these values can be surprisingly challenging!
+
+`brolgar` makes it easier by providing the `keys_near()` function. You tell it what the key is, what variable you want to summarise by, and then by default it returns those keys near the five number summary. Let's return the keys near the `.slope_xp`:
+
+```{r keys-near}
+wages_slope %>%
+  keys_near(key = id,
+            var = .slope_xp)
+```
+
+Here it returns the `id`, the `.slope_xp`, and the statistic that it was closest to, and what the difference between the slope_xp and the statistic.
+
+You can visualise these summary keys by joining them back to the data:
+
+```{r keys-near-plot}
+wages_slope %>%
+  keys_near(key = id,
+            var = .slope_xp) %>%
+  left_join(wages, by = "id") %>%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id,
+             colour = stat)) + 
+  geom_line()
+```
+
+You can read more about `keys_near()` in the [Identifying interesting observations](http://brolgar.njtierney.com/articles/id-interesting-obs.html) vignette.

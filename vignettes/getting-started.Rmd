@@ -27,9 +27,9 @@ To use `brolgar` with your work, you should convert your longitudinal data into 
 ```{r wages-ts, eval = FALSE}
 library(tsibble)
 wages <- as_tsibble(wages,
-                       key = id,
-                       index = xp,
-                       regular = FALSE)
+                    key = id,
+                    index = xp,
+                    regular = FALSE)
 ```
 
 To learn more about longitudinal data as time series, see the vignette: [Longitudinal Data Structures](http://brolgar.njtierney.com/articles/longitudinal-data-structures.html).
@@ -40,7 +40,6 @@ When you first get a dataset, you need to get an overall sense of what is in the
 
 ## How many observations are there?
 
-The number of observations can mean different things
 We can kind the number of keys using `n_keys()`:
 
 ```{r n-obs}
@@ -66,6 +65,24 @@ wages %>%
   ggplot(aes(x = n_obs)) + 
   geom_bar()
 ```
+
+### `add_n_obs()`
+
+You can add information about the number of observations for each key with `add_n_obs()`:
+
+```{r show-add-n-obs}
+wages %>% add_n_obs()
+```
+
+Which you can then use to `filter()` observations:
+
+```{r show-add-obs-filter}
+library(dplyr)
+wages %>% 
+  add_n_obs() %>%
+  filter(n_obs > 3)
+```
+
 
 ## Efficiently exploring longitudinal data
 

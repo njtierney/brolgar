@@ -1,8 +1,8 @@
 ---
-title: "Finding summary keys"
+title: "Identify Interesting Obserations"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Finding Summary Keys}
+  %\VignetteIndexEntry{id-interesting-obs}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -25,10 +25,12 @@ Let's say we calculate a slope for each individual `key`, using `keys_slope()`:
 
 ```{r wages-slope}
 wages_slope <- key_slope(wages, ln_wages ~ xp) 
+wages_slope
 ```
 
-And we want to know those `keys` that are **nearest** to some set of summary
-statistics of the slope. Let's say the _five number summary_:
+This is neat! But now we want to know those `keys` that are **nearest** to some set of summary statistics of the slope. By **nearest** here we mean which values have the smallest numerical difference.
+
+Let's say the _five number summary_:
 
 ```{r summary-slope}
 summary(wages_slope$.slope_xp)
@@ -98,9 +100,9 @@ wages %>%
 
 ```
 
-# Implementation
+# Implementation of `keys_near()`
 
-This section describes the general format for how `keys_near()` is implemented.
+If you are interested in the specifics of how `keys_near()` works, this section describes how it is implemented in `brolgar`.
 
 To get the data into the right format, there are a few steps.
 

@@ -14,12 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(brolgar)
-library(dplyr)
-library(tsibble)
-```
-
 All data has structure. There are ways that we can specify some permanent structure to the data, which gives some useful features later on, for free. This vignette discusses how to structure your longitudinal data as a time series, and what that means.
 
 This idea, that **longitudinal data is a time series**, is _Big Idea #1_ behind the `brolgar` package.
@@ -28,11 +22,11 @@ This idea, that **longitudinal data is a time series**, is _Big Idea #1_ behind 
 
 Longitudinal data has a few other names, such as "panel data". I used to always think that "time series" was defined as something that was by definition "regular" - with equal spacings between observations. This is actually not the case - you can have both "regular", and "irregular" time series. 
 
-Why care about using a time series? Once we account for this time series structure inherent in longitudinal data, we gain access to a suite of nice tools that simplify and accelerate how we work with time series data.
+Why care about using a time series? Once we account for this time series structure inherent in longitudinal data, we gain access to a suite of nice tools that simplify and accelerate how we work with time series data. `brolgar` is built on top of the powerful [`tsibble`](https://tsibble.tidyverts.org/) package by [Earo Wang](https://earo.me/), if you would like to learn more, see the [official package documentation](https://tsibble.tidyverts.org/) or read [the paper](https://arxiv.org/abs/1901.10257).
 
 ## Converting your longitudinal data to a time series
 
-To convert longitudinal data into a "**t**ime **s**eries tibble", a `tsibble`, we need to consider:
+To convert longitudinal data into a "**t**ime **s**eries tibble", a [`tsibble`](https://tsibble.tidyverts.org/), we need to consider:
 
 * What identifies the **time** component of the data? This is the **index**
 * What is the **unique identifier** of an individual/series? This is the **key**
@@ -42,6 +36,8 @@ Together, the **index** and **key** uniquely identify an observation.
 What do we mean by this? Let's look at the first section of the wages, **wages** data analysed in Singer & Willett (2003):
 
 ```{r slice-wages}
+library(brolgar)
+suppressPackageStartupMessages(library(dplyr))
 slice(wages, 1:10)
 ```
 
@@ -52,7 +48,7 @@ We also have the `xp` column, which identifies the experience an individual has.
 So:
 
 * key: `id`
-* index: `exper`
+* index: `xp`
 
 We could create a `tsibble` of this data by using the `as_tsibble` function from `tsibble`, also stating, `regular = FALSE`, since we have an `irregular` time series (the measurements are not regularly measured, and have a varying distance between each measurement):
 

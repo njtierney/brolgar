@@ -1,0 +1,204 @@
+---
+title: "Finding Features"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{finding-features}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+```
+
+# Finding Features in data
+
+When you are presented with longitudinal data, it is useful to summarise the data into a format where you have one row per key. Say for example if you wanted to take the wages data
+
+```{r print-wages}
+library(brolgar)
+wages
+```
+
+And then return one row for each key, with say the minimum value for `ln_wages`, for each key:
+
+```{r wages-summary, echo = FALSE}
+wages_min <- wages %>%
+  features(ln_wages, 
+           list(min = min))
+
+wages_min
+```
+
+This then allows us to summarise these kinds of data, to say for example find the distribution of minimum values:
+
+```{r gg-min-wages}
+library(ggplot2)
+ggplot(wages_min,
+       aes(x = min)) + 
+  geom_density()
+```
+
+We call these summaries `features` of the data. 
+
+This vignette discusses how to calculate these features of the data.
+
+# Calculating features
+
+We can calcluate `features` of longitudinal data using the `features` function (from [`fabletools`](http://fabletools.tidyverts.org/), made available in `brolgar`).
+
+`features` works by specifying the data, the variable to summarise, and the feature to calculate:
+
+```r
+features(<DATA>, <VARIABLE>, <FEATURE>)
+```
+
+or with the pipe:
+
+```r
+<DATA> %>% features(<VARIABLE>, <FEATURE>)
+```
+
+As an example, we can calculate a five number summary (minimum, 25th quantile, median, mean, 75th quantile, and maximum) of the data like so:
+
+```{r features-fivenum}
+wages_five <- wages %>%
+  features(ln_wages, feat_five_num)
+
+wages_five
+```
+
+Here we are taking the `wages` data, piping it to `features`, and then telling it to summarise the `ln_wages` variable, using `feat_five_num`. `brolgar` provides a set of features in the package, which all start with `feat_`.
+
+You can, for example, find those whose values only increase or decrease with `feat_monotonic`:
+
+```{r features-monotonic}
+wages_mono <- wages %>%
+  features(ln_wages, feat_monotonic)
+
+wages_mono
+```
+
+These could then be used to identify individuals who only increase like so:
+
+```{r wages-mono-filter}
+library(dplyr)
+wages_mono %>%
+  filter(increase)
+```
+
+They could then be joined back to the data
+
+```{r wages-mono-join}
+wages_mono_join <- wages_mono %>%
+  filter(increase) %>%
+  left_join(wages, by = "id")
+
+wages_mono_join
+```
+
+And these could be plotted:
+
+```{r gg-wages-mono}
+ggplot(wages_mono_join,
+       aes(x = xp,
+           y = ln_wages,
+           group = id)) + 
+  geom_line()
+```
+
+To get a sense of the data and where ti came from, we could create a plot with `gghighlight` to highlight those that only increase, by using `gghighlight(increase)` - since `increase` is a logical, this tells `gghighlight` to highlight those that are TRUE. 
+
+```{r gg-high-mono}
+library(gghighlight)
+wages_mono %>%
+  left_join(wages, by = "id") %>%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id)) +
+  geom_line() + 
+  gghighlight(increase)
+```
+
+You can explore the available features, see the function [References](http://brolgar.njtierney.com/reference/index.html)
+
+# Creating your own Features
+
+To create your own features or summaries to pass to `features`, you provide a named list of functions. For example:
+
+```{r create-three}
+library(brolgar)
+library(feasts)
+feat_three <- list(min = min,
+                   med = median,
+                   max = max)
+
+feat_three
+
+```
+
+These are then passed to `features` like so:
+
+```{r demo-feat-three}
+wages %>%
+  features(ln_wages, feat_three)
+
+heights %>%
+  features(height_cm, feat_three)
+```
+ 
+Inside `brolgar`, the features are created with the following syntax:
+
+```{r demo-feat-five-num, eval = FALSE}
+feat_five_num <- function(x, ...) {
+  list(
+    min = b_min(x, ...),
+    q25 = b_q25(x, ...),
+    med = b_median(x, ...),
+    q75 = b_q75(x, ...),
+    max = b_max(x, ...)
+  )
+}
+```
+
+Here the functions `b_` are functions with a default of `na.rm = TRUE`, and in 
+the cases of quantiles, they use `type = 8`, and `names = FALSE`.
+
+# Accessing sets of features
+
+If you want to run many or all features from a package on your data you can collect them all with `feature_set`. For example:
+
+```{r show-features-set}
+library(fabletools)
+feat_brolgar <- feature_set(pkgs = "brolgar")
+length(feat_brolgar)
+```
+
+You could then run these like so: 
+
+```{r run-features-set}
+wages %>%
+  features(ln_wages, feat_brolgar)
+```
+
+For more information see `?fabletools::feature_set`
+
+# Registering a feature in a package
+
+If you create features in your own package and want to make them accessible with `feature_set`, do the following.
+
+Functions can be registered via `fabletools::register_feature()`. 
+To register features in a package, I create a file called `zzz.R`, and use the
+`.onLoad(...)` function to set this up on loading the package:
+
+```{r show-register-feature, eval = FALSE}
+.onLoad <- function(...) {
+  fabletools::register_feature(feat_three_num, c("summary"))
+  # ... and as many as you want here!
+}
+```
+

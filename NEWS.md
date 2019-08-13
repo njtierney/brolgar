@@ -1,5 +1,6 @@
 # brolgar 0.0.3.9000
 
+* add `nearest_lgl` and `nearest_qt_lgl`
 * Gave more verbose names to the `wages_ts` data.
 * renamed `sample_n_obs()` to `sample_n_keys()` and `sample_frac_keys()`
 * renamed `add_k_groups()` to `stratify_keys()`

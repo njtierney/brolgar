@@ -19,12 +19,11 @@ library(brolgar)
 library(ggplot2)
 ```
 
-`brolgar` explores two ways to explore the data, first exploring the raw data, then exploring the data using longnostics
+`brolgar` explores two ways to explore the data, first exploring the raw data, then exploring the data using summaries. This vignette displays a variety of ways to explore your data around these two ideas.
 
 # Exploring raw data
 
 When you first receive your data, you want to look at as much raw data as possible. This section discusses a few techniques to make it more palatable to explore your raw data without getting too much overplotting.
-
 
 ## Select a sample of individuals
 
