@@ -60,6 +60,11 @@ as_tsibble(x = wages,
            regular = FALSE)
 ```
 
+```{r print-wages-tsibble, echo = FALSE}
+wages
+```
+
+
 Note the following information printed at the top of `wages`
 
 ```
@@ -68,7 +73,14 @@ Note the following information printed at the top of `wages`
 ...
 ```
 
-This says, we have `r nrow(wages)` rows, with `r ncol(wages)` columns. The `!` means that there is no regular spacing between series, and then our "key" is `id`, of which there `r n_keys(wages)`.
+This says:
+
+- We have `r nrow(wages)` rows, 
+- with `r ncol(wages)` columns. 
+
+The `!` at the top means that there is no regular spacing between series
+
+The "key" variable is then listed - `id`, of which there `r n_keys(wages)`.
 
 # Using time series data in `brolgar`
 

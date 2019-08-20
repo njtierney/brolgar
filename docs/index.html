@@ -42,7 +42,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="articles/articles/getting-started.html">Getting Started</a>
+  <a href="articles/getting-started.html">Getting Started</a>
 </li>
 <li>
   <a href="articles/visualisation-gallery.html">Gallery</a>
@@ -108,7 +108,7 @@
 <li>Calculate features (summaries) for individual series</li>
 <li>Evaluate diagnostics of statistical models</li>
 </ul>
-<p>This helps you go from the “plate of spaghetti” plot on the left, to “interesting observations” plot on the left.</p>
+<p>This helps you go from the “plate of spaghetti” plot on the left, to “interesting observations” plot on the right.</p>
 <p><img src="reference/figures/README-show-spaghetti-1.png" width="75%" style="display: block; margin: auto;"></p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -133,9 +133,9 @@
 </blockquote>
 <p>So in the <code>wages</code> data, we have the following setup:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>wages &lt;-<span class="st"> </span><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(<span class="dt">x =</span> wages,</span>
-<span id="cb2-2"><a href="#cb2-2"></a>                       <span class="dt">key =</span> id,</span>
-<span id="cb2-3"><a href="#cb2-3"></a>                       <span class="dt">index =</span> xp,</span>
-<span id="cb2-4"><a href="#cb2-4"></a>                       <span class="dt">regular =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2"></a>                    <span class="dt">key =</span> id,</span>
+<span id="cb2-3"><a href="#cb2-3"></a>                    <span class="dt">index =</span> xp,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>                    <span class="dt">regular =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>Here <code><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble()</a></code> takes wages, and a <code>key</code>, and <code>index</code>, and we state the <code>regular = FALSE</code> (since there are not regular time periods between measurements).</p>
 <p>This is done using <code>as_tsibble</code>, which turns out data into a <code>tsibble</code> object - a powerful data abstraction made available in the <a href="https://tsibble.tidyverts.org/"><code>tsibble</code></a> package by <a href="https://earo.me/">Earo Wang</a>, if you would like to learn more about <code>tsibble</code>, see the <a href="https://tsibble.tidyverts.org/">official package documentation</a> or read <a href="https://arxiv.org/abs/1901.10257">the paper</a>.</p>
 <p>If you want to learn more about what longitudinal data as a time series, you can <a href="http://brolgar.njtierney.com/articles/longitudinal-data-structures.html">read more in the vignette, “Longitudinal Data Structures”</a>.</p>
@@ -165,7 +165,8 @@
 <h2 class="hasAnchor">
 <a href="#clever-facets-facet_sample" class="anchor"></a>Clever facets: <code><a href="reference/facet_sample.html">facet_sample()</a></code>
 </h2>
-<p><code>brolgar</code> provides some clever facets to help make it easier to explore your data. <code><a href="reference/facet_sample.html">facet_sample()</a></code> allows you to specify the number of keys per facet, and the number of facets with <code>n_per_facet</code> and <code>n_facets</code>. It splits the data into 12 facets with 5 per facet by default:</p>
+<p><code>brolgar</code> provides some clever facets to help make it easier to explore your data.</p>
+<p>One issue when making <code><a href="reference/facet_sample.html">facet_sample()</a></code> allows you to specify the number of keys per facet, and the number of facets with <code>n_per_facet</code> and <code>n_facets</code>. It splits the data into 12 facets with 5 per facet by default:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">2019-07-23-1937</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="kw">ggplot</span>(wages,</span>
 <span id="cb4-3"><a href="#cb4-3"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> xp,</span>
@@ -300,7 +301,7 @@
 <div id="acknowledgements" class="section level1">
 <h1 class="hasAnchor">
 <a href="#acknowledgements" class="anchor"></a>Acknowledgements</h1>
-<p>Thank you to <a href="https://mitchelloharawild.com/">Mitchell O’Hara-Wild</a> and <a href="https://earo.me/">Earo Wang</a> for many useful discussions on the implementation of brolgar, as it was heavily inspired by the <a href="https://github.com/tidyverts/feasts"><code>feasts</code></a> package from the <a href="https://tidyverts.org/"><code>tidyverts</code></a>. I would also like to thank <a href="https://researchers.mq.edu.au/en/persons/tania-prvan">Tania Prvan</a> for her valuable early contributions to the project, as well as <a href="https://stuartlee.org/">Stuart Lee</a> for helpful discussions.</p>
+<p>Thank you to <a href="https://mitchelloharawild.com/">Mitchell O’Hara-Wild</a> and <a href="https://earo.me/">Earo Wang</a> for many useful discussions on the implementation of brolgar, as it was heavily inspired by the <a href="https://github.com/tidyverts/feasts"><code>feasts</code></a> package from the <a href="https://tidyverts.org/"><code>tidyverts</code></a>. I would also like to thank <a href="https://researchers.mq.edu.au/en/persons/tania-prvan">Tania Prvan</a> for her valuable early contributions to the project, as well as <a href="https://stuartlee.org/">Stuart Lee</a> for helpful discussions. Thanks also to <a href="https://research.monash.edu/en/persons/ursula-laa">Urusla Laa</a> for her feedback on the package structure and documentation.</p>
 <!-- These are referred to as a **longnostics**, a portmanteau of **long**itudinal and **cognostic**. These **longnostics** make it straightforward to extract subjects with certain properties to gain some insight into the data.  -->
 <!-- But calculating this for individuals draws you away from your analysis, and instead you are now wrangling with a different problem: summarising key information about each individual and incorporating that back into the data.  -->
 </div>

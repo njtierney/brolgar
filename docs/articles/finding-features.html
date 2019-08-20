@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Finding Features • brolgar</title>
+<title>Finding Features in Data • brolgar</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="../docsearch.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Finding Features">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Finding Features in Data">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -39,7 +39,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../articles/articles/getting-started.html">Getting Started</a>
+  <a href="../articles/getting-started.html">Getting Started</a>
 </li>
 <li>
   <a href="../articles/visualisation-gallery.html">Gallery</a>
@@ -90,7 +90,7 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Finding Features</h1>
+      <h1>Finding Features in Data</h1>
             
       
       
@@ -100,10 +100,8 @@
 
     
     
-<div id="finding-features-in-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#finding-features-in-data" class="anchor"></a>Finding Features in data</h1>
-<p>When you are presented with longitudinal data, it is useful to summarise the data into a format where you have one row per key. Say for example if you wanted to take the wages data</p>
+<p>When you are presented with longitudinal data, it is useful to summarise the data into a format where you have one row per key. That means one row per unique identifier of the data - if you aren’t sure what this means, see the vignette, <a href="http://brolgar.njtierney.com/articles/longitudinal-data-structures.html">“Longitudinal Data Structures”</a>.</p>
+<p>So, say for example you wanted to find features in the wages data, which looks like this:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(brolgar)</span>
 <span id="cb1-2"><a href="#cb1-2"></a>wages</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="co">#&gt; # A tsibble: 6,402 x 9 [!]</span></span>
@@ -121,7 +119,7 @@
 <span id="cb1-15"><a href="#cb1-15"></a><span class="co">#&gt;  9    36     1.98 0.315     1        0.315     0        0          9</span></span>
 <span id="cb1-16"><a href="#cb1-16"></a><span class="co">#&gt; 10    36     1.80 0.983     1        0.983     0        0          9</span></span>
 <span id="cb1-17"><a href="#cb1-17"></a><span class="co">#&gt; # … with 6,392 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span></code></pre></div>
-<p>And then return one row for each key, with say the minimum value for <code>ln_wages</code>, for each key:</p>
+<p>You can return a dataset that has one row per key, with say the minimum value for <code>ln_wages</code>, for each key:</p>
 <pre><code>#&gt; # A tibble: 888 x 2
 #&gt;       id   min
 #&gt;    &lt;int&gt; &lt;dbl&gt;
@@ -144,7 +142,6 @@
 <p><img src="finding-features_files/figure-html/gg-min-wages-1.png" width="700"></p>
 <p>We call these summaries <code>features</code> of the data.</p>
 <p>This vignette discusses how to calculate these features of the data.</p>
-</div>
 <div id="calculating-features" class="section level1">
 <h1 class="hasAnchor">
 <a href="#calculating-features" class="anchor"></a>Calculating features</h1>
@@ -153,7 +150,7 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(<span class="op">&lt;</span>DATA<span class="op">&gt;</span>, <span class="op">&lt;</span>VARIABLE<span class="op">&gt;</span>, <span class="op">&lt;</span>FEATURE<span class="op">&gt;</span>)</span></code></pre></div>
 <p>or with the pipe:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="op">&lt;</span>DATA<span class="op">&gt;</span><span class="st"> </span><span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(<span class="op">&lt;</span>VARIABLE<span class="op">&gt;</span>, <span class="op">&lt;</span>FEATURE<span class="op">&gt;</span>)</span></code></pre></div>
-<p>As an example, we can calculate a five number summary (minimum, 25th quantile, median, mean, 75th quantile, and maximum) of the data like so:</p>
+<p>As an example, we can calculate a five number summary (minimum, 25th quantile, median, mean, 75th quantile, and maximum) of the data using <code>feat_five_num</code>, like so:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>wages_five &lt;-<span class="st"> </span>wages <span class="op">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(ln_wages, feat_five_num)</span>
 <span id="cb6-3"><a href="#cb6-3"></a></span>
@@ -172,7 +169,8 @@
 <span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt;  9   206 2.03   2.07  2.30  2.45  2.48</span></span>
 <span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; 10   207 1.58   1.87  2.15  2.26  2.66</span></span>
 <span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt; # … with 878 more rows</span></span></code></pre></div>
-<p>Here we are taking the <code>wages</code> data, piping it to <code>features</code>, and then telling it to summarise the <code>ln_wages</code> variable, using <code>feat_five_num</code>. <code>brolgar</code> provides a set of features in the package, which all start with <code>feat_</code>.</p>
+<p>Here we are taking the <code>wages</code> data, piping it to <code>features</code>, and then telling it to summarise the <code>ln_wages</code> variable, using <code>feat_five_num</code>.</p>
+<p>There are several handy functions for calculating features of the data that <code>brolgar</code> provides. These all start with <code>feat_</code>.</p>
 <p>You can, for example, find those whose values only increase or decrease with <code>feat_monotonic</code>:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>wages_mono &lt;-<span class="st"> </span>wages <span class="op">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(ln_wages, feat_monotonic)</span>
@@ -263,127 +261,22 @@
 <a href="#creating-your-own-features" class="anchor"></a>Creating your own Features</h1>
 <p>To create your own features or summaries to pass to <code>features</code>, you provide a named list of functions. For example:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(brolgar)</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(feasts)</span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="co">#&gt; Loading required package: fablelite</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="co">#&gt; Registered S3 methods overwritten by 'fablelite':</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="co">#&gt;   method                   from      </span></span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="co">#&gt;   $.hilo                   fabletools</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="co">#&gt;   [.agg_key                fabletools</span></span>
-<span id="cb12-8"><a href="#cb12-8"></a><span class="co">#&gt;   [.fbl_ts                 fabletools</span></span>
-<span id="cb12-9"><a href="#cb12-9"></a><span class="co">#&gt;   [.fcdist                 fabletools</span></span>
-<span id="cb12-10"><a href="#cb12-10"></a><span class="co">#&gt;   [.hilo                   fabletools</span></span>
-<span id="cb12-11"><a href="#cb12-11"></a><span class="co">#&gt;   [.lst_mdl                fabletools</span></span>
-<span id="cb12-12"><a href="#cb12-12"></a><span class="co">#&gt;   Ops.fcdist               fabletools</span></span>
-<span id="cb12-13"><a href="#cb12-13"></a><span class="co">#&gt;   Ops.lst_mdl              fabletools</span></span>
-<span id="cb12-14"><a href="#cb12-14"></a><span class="co">#&gt;   Ops.mdl_defn             fabletools</span></span>
-<span id="cb12-15"><a href="#cb12-15"></a><span class="co">#&gt;   Ops.mdl_ts               fabletools</span></span>
-<span id="cb12-16"><a href="#cb12-16"></a><span class="co">#&gt;   as.data.frame.hilo       fabletools</span></span>
-<span id="cb12-17"><a href="#cb12-17"></a><span class="co">#&gt;   as_tibble.mdl_df         fabletools</span></span>
-<span id="cb12-18"><a href="#cb12-18"></a><span class="co">#&gt;   as_tsibble.dcmp_ts       fabletools</span></span>
-<span id="cb12-19"><a href="#cb12-19"></a><span class="co">#&gt;   as_tsibble.fbl_ts        fabletools</span></span>
-<span id="cb12-20"><a href="#cb12-20"></a><span class="co">#&gt;   as_tsibble.grouped_fbl   fabletools</span></span>
-<span id="cb12-21"><a href="#cb12-21"></a><span class="co">#&gt;   augment.mdl_df           fabletools</span></span>
-<span id="cb12-22"><a href="#cb12-22"></a><span class="co">#&gt;   augment.mdl_ts           fabletools</span></span>
-<span id="cb12-23"><a href="#cb12-23"></a><span class="co">#&gt;   autolayer.fbl_ts         fabletools</span></span>
-<span id="cb12-24"><a href="#cb12-24"></a><span class="co">#&gt;   autolayer.tbl_ts         fabletools</span></span>
-<span id="cb12-25"><a href="#cb12-25"></a><span class="co">#&gt;   autoplot.dcmp_ts         fabletools</span></span>
-<span id="cb12-26"><a href="#cb12-26"></a><span class="co">#&gt;   autoplot.fbl_ts          fabletools</span></span>
-<span id="cb12-27"><a href="#cb12-27"></a><span class="co">#&gt;   autoplot.tbl_ts          fabletools</span></span>
-<span id="cb12-28"><a href="#cb12-28"></a><span class="co">#&gt;   c.fcdist                 fabletools</span></span>
-<span id="cb12-29"><a href="#cb12-29"></a><span class="co">#&gt;   c.hilo                   fabletools</span></span>
-<span id="cb12-30"><a href="#cb12-30"></a><span class="co">#&gt;   c.lst_mdl                fabletools</span></span>
-<span id="cb12-31"><a href="#cb12-31"></a><span class="co">#&gt;   components.mdl_df        fabletools</span></span>
-<span id="cb12-32"><a href="#cb12-32"></a><span class="co">#&gt;   components.mdl_ts        fabletools</span></span>
-<span id="cb12-33"><a href="#cb12-33"></a><span class="co">#&gt;   duplicated.hilo          fabletools</span></span>
-<span id="cb12-34"><a href="#cb12-34"></a><span class="co">#&gt;   equation.mdl_df          fabletools</span></span>
-<span id="cb12-35"><a href="#cb12-35"></a><span class="co">#&gt;   equation.mdl_ts          fabletools</span></span>
-<span id="cb12-36"><a href="#cb12-36"></a><span class="co">#&gt;   fitted.mdl_df            fabletools</span></span>
-<span id="cb12-37"><a href="#cb12-37"></a><span class="co">#&gt;   fitted.mdl_ts            fabletools</span></span>
-<span id="cb12-38"><a href="#cb12-38"></a><span class="co">#&gt;   fitted.model_combination fabletools</span></span>
-<span id="cb12-39"><a href="#cb12-39"></a><span class="co">#&gt;   fitted.null_mdl          fabletools</span></span>
-<span id="cb12-40"><a href="#cb12-40"></a><span class="co">#&gt;   format.agg_key           fabletools</span></span>
-<span id="cb12-41"><a href="#cb12-41"></a><span class="co">#&gt;   format.fcdist            fabletools</span></span>
-<span id="cb12-42"><a href="#cb12-42"></a><span class="co">#&gt;   format.hilo              fabletools</span></span>
-<span id="cb12-43"><a href="#cb12-43"></a><span class="co">#&gt;   format.lst_mdl           fabletools</span></span>
-<span id="cb12-44"><a href="#cb12-44"></a><span class="co">#&gt;   fortify.fbl_ts           fabletools</span></span>
-<span id="cb12-45"><a href="#cb12-45"></a><span class="co">#&gt;   gather.mdl_df            fabletools</span></span>
-<span id="cb12-46"><a href="#cb12-46"></a><span class="co">#&gt;   generate.mdl_df          fabletools</span></span>
-<span id="cb12-47"><a href="#cb12-47"></a><span class="co">#&gt;   generate.mdl_ts          fabletools</span></span>
-<span id="cb12-48"><a href="#cb12-48"></a><span class="co">#&gt;   generate.null_mdl        fabletools</span></span>
-<span id="cb12-49"><a href="#cb12-49"></a><span class="co">#&gt;   glance.mdl_df            fabletools</span></span>
-<span id="cb12-50"><a href="#cb12-50"></a><span class="co">#&gt;   glance.mdl_ts            fabletools</span></span>
-<span id="cb12-51"><a href="#cb12-51"></a><span class="co">#&gt;   glance.null_mdl          fabletools</span></span>
-<span id="cb12-52"><a href="#cb12-52"></a><span class="co">#&gt;   group_by.fbl_ts          fabletools</span></span>
-<span id="cb12-53"><a href="#cb12-53"></a><span class="co">#&gt;   group_by.grouped_fbl     fabletools</span></span>
-<span id="cb12-54"><a href="#cb12-54"></a><span class="co">#&gt;   guide_geom.guide_level   fabletools</span></span>
-<span id="cb12-55"><a href="#cb12-55"></a><span class="co">#&gt;   interpolate.mdl_df       fabletools</span></span>
-<span id="cb12-56"><a href="#cb12-56"></a><span class="co">#&gt;   interpolate.mdl_ts       fabletools</span></span>
-<span id="cb12-57"><a href="#cb12-57"></a><span class="co">#&gt;   is.na.hilo               fabletools</span></span>
-<span id="cb12-58"><a href="#cb12-58"></a><span class="co">#&gt;   key.mdl_df               fabletools</span></span>
-<span id="cb12-59"><a href="#cb12-59"></a><span class="co">#&gt;   key_data.mdl_df          fabletools</span></span>
-<span id="cb12-60"><a href="#cb12-60"></a><span class="co">#&gt;   key_vars.mdl_df          fabletools</span></span>
-<span id="cb12-61"><a href="#cb12-61"></a><span class="co">#&gt;   length.fcdist            fabletools</span></span>
-<span id="cb12-62"><a href="#cb12-62"></a><span class="co">#&gt;   length.mdl_ts            fabletools</span></span>
-<span id="cb12-63"><a href="#cb12-63"></a><span class="co">#&gt;   mutate.fbl_ts            fabletools</span></span>
-<span id="cb12-64"><a href="#cb12-64"></a><span class="co">#&gt;   mutate.grouped_fbl       fabletools</span></span>
-<span id="cb12-65"><a href="#cb12-65"></a><span class="co">#&gt;   mutate.mdl_df            fabletools</span></span>
-<span id="cb12-66"><a href="#cb12-66"></a><span class="co">#&gt;   print.agg_key            fabletools</span></span>
-<span id="cb12-67"><a href="#cb12-67"></a><span class="co">#&gt;   print.fcdist             fabletools</span></span>
-<span id="cb12-68"><a href="#cb12-68"></a><span class="co">#&gt;   print.hilo               fabletools</span></span>
-<span id="cb12-69"><a href="#cb12-69"></a><span class="co">#&gt;   print.lst_mdl            fabletools</span></span>
-<span id="cb12-70"><a href="#cb12-70"></a><span class="co">#&gt;   print.mdl_ts             fabletools</span></span>
-<span id="cb12-71"><a href="#cb12-71"></a><span class="co">#&gt;   print.transformation     fabletools</span></span>
-<span id="cb12-72"><a href="#cb12-72"></a><span class="co">#&gt;   quantile.fcdist          fabletools</span></span>
-<span id="cb12-73"><a href="#cb12-73"></a><span class="co">#&gt;   rbind.dcmp_ts            fabletools</span></span>
-<span id="cb12-74"><a href="#cb12-74"></a><span class="co">#&gt;   rbind.fbl_ts             fabletools</span></span>
-<span id="cb12-75"><a href="#cb12-75"></a><span class="co">#&gt;   refit.mdl_df             fabletools</span></span>
-<span id="cb12-76"><a href="#cb12-76"></a><span class="co">#&gt;   refit.mdl_ts             fabletools</span></span>
-<span id="cb12-77"><a href="#cb12-77"></a><span class="co">#&gt;   refit.null_mdl           fabletools</span></span>
-<span id="cb12-78"><a href="#cb12-78"></a><span class="co">#&gt;   rename.mdl_df            fabletools</span></span>
-<span id="cb12-79"><a href="#cb12-79"></a><span class="co">#&gt;   rep.fcdist               fabletools</span></span>
-<span id="cb12-80"><a href="#cb12-80"></a><span class="co">#&gt;   rep.hilo                 fabletools</span></span>
-<span id="cb12-81"><a href="#cb12-81"></a><span class="co">#&gt;   residuals.mdl_df         fabletools</span></span>
-<span id="cb12-82"><a href="#cb12-82"></a><span class="co">#&gt;   residuals.mdl_ts         fabletools</span></span>
-<span id="cb12-83"><a href="#cb12-83"></a><span class="co">#&gt;   residuals.null_mdl       fabletools</span></span>
-<span id="cb12-84"><a href="#cb12-84"></a><span class="co">#&gt;   scale_type.yearmonth     fabletools</span></span>
-<span id="cb12-85"><a href="#cb12-85"></a><span class="co">#&gt;   scale_type.yearquarter   fabletools</span></span>
-<span id="cb12-86"><a href="#cb12-86"></a><span class="co">#&gt;   scale_type.yearweek      fabletools</span></span>
-<span id="cb12-87"><a href="#cb12-87"></a><span class="co">#&gt;   select.fbl_ts            fabletools</span></span>
-<span id="cb12-88"><a href="#cb12-88"></a><span class="co">#&gt;   select.grouped_fbl       fabletools</span></span>
-<span id="cb12-89"><a href="#cb12-89"></a><span class="co">#&gt;   select.mdl_df            fabletools</span></span>
-<span id="cb12-90"><a href="#cb12-90"></a><span class="co">#&gt;   tidy.mdl_df              fabletools</span></span>
-<span id="cb12-91"><a href="#cb12-91"></a><span class="co">#&gt;   tidy.mdl_ts              fabletools</span></span>
-<span id="cb12-92"><a href="#cb12-92"></a><span class="co">#&gt;   tidy.null_mdl            fabletools</span></span>
-<span id="cb12-93"><a href="#cb12-93"></a><span class="co">#&gt;   ungroup.fbl_ts           fabletools</span></span>
-<span id="cb12-94"><a href="#cb12-94"></a><span class="co">#&gt;   ungroup.grouped_fbl      fabletools</span></span>
-<span id="cb12-95"><a href="#cb12-95"></a><span class="co">#&gt;   unique.fcdist            fabletools</span></span>
-<span id="cb12-96"><a href="#cb12-96"></a><span class="co">#&gt;   unique.hilo              fabletools</span></span>
-<span id="cb12-97"><a href="#cb12-97"></a><span class="co">#&gt; </span></span>
-<span id="cb12-98"><a href="#cb12-98"></a><span class="co">#&gt; Attaching package: 'fablelite'</span></span>
-<span id="cb12-99"><a href="#cb12-99"></a><span class="co">#&gt; The following objects are masked from 'package:brolgar':</span></span>
-<span id="cb12-100"><a href="#cb12-100"></a><span class="co">#&gt; </span></span>
-<span id="cb12-101"><a href="#cb12-101"></a><span class="co">#&gt;     features, features_all, features_at, features_if</span></span>
-<span id="cb12-102"><a href="#cb12-102"></a><span class="co">#&gt; </span></span>
-<span id="cb12-103"><a href="#cb12-103"></a><span class="co">#&gt; Attaching package: 'feasts'</span></span>
-<span id="cb12-104"><a href="#cb12-104"></a><span class="co">#&gt; The following object is masked from 'package:grDevices':</span></span>
-<span id="cb12-105"><a href="#cb12-105"></a><span class="co">#&gt; </span></span>
-<span id="cb12-106"><a href="#cb12-106"></a><span class="co">#&gt;     X11</span></span>
-<span id="cb12-107"><a href="#cb12-107"></a>feat_three &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">min =</span> min,</span>
-<span id="cb12-108"><a href="#cb12-108"></a>                   <span class="dt">med =</span> median,</span>
-<span id="cb12-109"><a href="#cb12-109"></a>                   <span class="dt">max =</span> max)</span>
-<span id="cb12-110"><a href="#cb12-110"></a></span>
-<span id="cb12-111"><a href="#cb12-111"></a>feat_three</span>
-<span id="cb12-112"><a href="#cb12-112"></a><span class="co">#&gt; $min</span></span>
-<span id="cb12-113"><a href="#cb12-113"></a><span class="co">#&gt; function (..., na.rm = FALSE)  .Primitive("min")</span></span>
-<span id="cb12-114"><a href="#cb12-114"></a><span class="co">#&gt; </span></span>
-<span id="cb12-115"><a href="#cb12-115"></a><span class="co">#&gt; $med</span></span>
-<span id="cb12-116"><a href="#cb12-116"></a><span class="co">#&gt; function (x, na.rm = FALSE, ...) </span></span>
-<span id="cb12-117"><a href="#cb12-117"></a><span class="co">#&gt; UseMethod("median")</span></span>
-<span id="cb12-118"><a href="#cb12-118"></a><span class="co">#&gt; &lt;bytecode: 0x7f957d0ab070&gt;</span></span>
-<span id="cb12-119"><a href="#cb12-119"></a><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span>
-<span id="cb12-120"><a href="#cb12-120"></a><span class="co">#&gt; </span></span>
-<span id="cb12-121"><a href="#cb12-121"></a><span class="co">#&gt; $max</span></span>
-<span id="cb12-122"><a href="#cb12-122"></a><span class="co">#&gt; function (..., na.rm = FALSE)  .Primitive("max")</span></span></code></pre></div>
+<span id="cb12-2"><a href="#cb12-2"></a>feat_three &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">min =</span> min,</span>
+<span id="cb12-3"><a href="#cb12-3"></a>                   <span class="dt">med =</span> median,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>                   <span class="dt">max =</span> max)</span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a>feat_three</span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="co">#&gt; $min</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="co">#&gt; function (..., na.rm = FALSE)  .Primitive("min")</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="co">#&gt; </span></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="co">#&gt; $med</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="co">#&gt; function (x, na.rm = FALSE, ...) </span></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="co">#&gt; UseMethod("median")</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="co">#&gt; &lt;bytecode: 0x7fe455c20270&gt;</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="co">#&gt; </span></span>
+<span id="cb12-16"><a href="#cb12-16"></a><span class="co">#&gt; $max</span></span>
+<span id="cb12-17"><a href="#cb12-17"></a><span class="co">#&gt; function (..., na.rm = FALSE)  .Primitive("max")</span></span></code></pre></div>
 <p>These are then passed to <code>features</code> like so:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>wages <span class="op">%&gt;%</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="st">  </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(ln_wages, feat_three)</span>
@@ -435,34 +328,9 @@
 <a href="#accessing-sets-of-features" class="anchor"></a>Accessing sets of features</h1>
 <p>If you want to run many or all features from a package on your data you can collect them all with <code>feature_set</code>. For example:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fabletools)</span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="co">#&gt; </span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="co">#&gt; Attaching package: 'fabletools'</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="co">#&gt; The following objects are masked from 'package:fablelite':</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="co">#&gt; </span></span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="co">#&gt;     accuracy, ACF1, aggregate_key, as_dable, as_fable, as_mable,</span></span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="co">#&gt;     bias_adjust, box_cox, combination_ensemble, combination_model,</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a><span class="co">#&gt;     common_periods, construct_fc, dable, decomposition_definition,</span></span>
-<span id="cb15-9"><a href="#cb15-9"></a><span class="co">#&gt;     decomposition_model, dist_mv_normal, dist_normal, dist_sim,</span></span>
-<span id="cb15-10"><a href="#cb15-10"></a><span class="co">#&gt;     dist_unknown, distribution_accuracy_measures, estimate, fable,</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a><span class="co">#&gt;     feature_set, features, features_all, features_at, features_if,</span></span>
-<span id="cb15-12"><a href="#cb15-12"></a><span class="co">#&gt;     forecast, GeomForecast, get_frequencies, guide_level, hilo,</span></span>
-<span id="cb15-13"><a href="#cb15-13"></a><span class="co">#&gt;     interval_accuracy_measures, inv_box_cox,</span></span>
-<span id="cb15-14"><a href="#cb15-14"></a><span class="co">#&gt;     invert_transformation, is_aggregated, is_fable, is_hilo,</span></span>
-<span id="cb15-15"><a href="#cb15-15"></a><span class="co">#&gt;     is_mable, is_model, is_null_model, mable, MAE, MAPE, MASE, ME,</span></span>
-<span id="cb15-16"><a href="#cb15-16"></a><span class="co">#&gt;     min_trace, model, model_definition, model_lhs, model_rhs,</span></span>
-<span id="cb15-17"><a href="#cb15-17"></a><span class="co">#&gt;     model_sum, MPE, MSE, new_decomposition_class,</span></span>
-<span id="cb15-18"><a href="#cb15-18"></a><span class="co">#&gt;     new_decomposition_definition, new_fcdist, new_fcdist_env,</span></span>
-<span id="cb15-19"><a href="#cb15-19"></a><span class="co">#&gt;     new_hilo, new_model_class, new_model_definition, new_specials,</span></span>
-<span id="cb15-20"><a href="#cb15-20"></a><span class="co">#&gt;     new_transformation, null_model, parse_model, parse_model_lhs,</span></span>
-<span id="cb15-21"><a href="#cb15-21"></a><span class="co">#&gt;     parse_model_rhs, percentile_score, point_accuracy_measures,</span></span>
-<span id="cb15-22"><a href="#cb15-22"></a><span class="co">#&gt;     reconcile, register_feature, report, response, RMSE,</span></span>
-<span id="cb15-23"><a href="#cb15-23"></a><span class="co">#&gt;     scale_level_continuous, scale_level_gradient,</span></span>
-<span id="cb15-24"><a href="#cb15-24"></a><span class="co">#&gt;     scale_x_yearmonth, scale_x_yearquarter, scale_x_yearweek,</span></span>
-<span id="cb15-25"><a href="#cb15-25"></a><span class="co">#&gt;     StatForecast, stream, traverse, validate_formula,</span></span>
-<span id="cb15-26"><a href="#cb15-26"></a><span class="co">#&gt;     winkler_score</span></span>
-<span id="cb15-27"><a href="#cb15-27"></a>feat_brolgar &lt;-<span class="st"> </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/feature_set.html">feature_set</a></span>(<span class="dt">pkgs =</span> <span class="st">"brolgar"</span>)</span>
-<span id="cb15-28"><a href="#cb15-28"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(feat_brolgar)</span>
-<span id="cb15-29"><a href="#cb15-29"></a><span class="co">#&gt; [1] 6</span></span></code></pre></div>
+<span id="cb15-2"><a href="#cb15-2"></a>feat_brolgar &lt;-<span class="st"> </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/feature_set.html">feature_set</a></span>(<span class="dt">pkgs =</span> <span class="st">"brolgar"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(feat_brolgar)</span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="co">#&gt; [1] 6</span></span></code></pre></div>
 <p>You could then run these like so:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>wages <span class="op">%&gt;%</span></span>
 <span id="cb16-2"><a href="#cb16-2"></a><span class="st">  </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(ln_wages, feat_brolgar)</span>
@@ -504,8 +372,7 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#finding-features-in-data">Finding Features in data</a></li>
-      <li><a href="#calculating-features">Calculating features</a></li>
+<li><a href="#calculating-features">Calculating features</a></li>
       <li><a href="#creating-your-own-features">Creating your own Features</a></li>
       <li><a href="#accessing-sets-of-features">Accessing sets of features</a></li>
       <li><a href="#registering-a-feature-in-a-package">Registering a feature in a package</a></li>

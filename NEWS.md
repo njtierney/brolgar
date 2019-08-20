@@ -1,5 +1,7 @@
 # brolgar 0.0.4.9000
 
+* remove `feasts` from dependencies as the functions required in `brolgar` are
+  actually in `fabletools`.
 * add `nearest_lgl` and `nearest_qt_lgl`
 * Gave more verbose names to the `wages_ts` data.
 * renamed `sample_n_obs()` to `sample_n_keys()` and `sample_frac_keys()`

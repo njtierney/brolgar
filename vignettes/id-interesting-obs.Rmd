@@ -82,7 +82,7 @@ wages %>%
 
 ```
 
-# Specify your own summaries for `keys_near()`
+# Specify your own summaries for `keys_near`
 
 You can specify your own list of summaries to pass to `keys_near`.  For example, you could create your own summaries to give a sense of range. Note that the functions here start with `b_`, and are `b_summaries` provided by `brolgar` that have sensible defaults. You can [read about them here](http://brolgar.njtierney.com/reference/b_summaries.html), or with `?b_summaries`
 
@@ -100,7 +100,7 @@ wages %>%
 
 ```
 
-# Implementation of `keys_near()`
+# Implementation of `keys_near`
 
 If you are interested in the specifics of how `keys_near()` works, this section describes how it is implemented in `brolgar`.
 

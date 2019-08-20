@@ -39,7 +39,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../articles/articles/getting-started.html">Getting Started</a>
+  <a href="../articles/getting-started.html">Getting Started</a>
 </li>
 <li>
   <a href="../articles/visualisation-gallery.html">Gallery</a>
@@ -106,11 +106,10 @@
 <h1 class="hasAnchor">
 <a href="#setting-up-your-data" class="anchor"></a>Setting up your data</h1>
 <p>To use <code>brolgar</code> with your work, you should convert your longitudinal data into a time series <code>tsibble</code> using the <code>tsibble</code> package. To do so, you need to identify the unique identifying <code>key</code>, and time <code>index</code>. For example:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tsibble)</span>
-<span id="cb2-2"><a href="#cb2-2"></a>wages &lt;-<span class="st"> </span><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(wages,</span>
-<span id="cb2-3"><a href="#cb2-3"></a>                    <span class="dt">key =</span> id,</span>
-<span id="cb2-4"><a href="#cb2-4"></a>                    <span class="dt">index =</span> xp,</span>
-<span id="cb2-5"><a href="#cb2-5"></a>                    <span class="dt">regular =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>wages &lt;-<span class="st"> </span><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(wages,</span>
+<span id="cb2-2"><a href="#cb2-2"></a>                    <span class="dt">key =</span> id,</span>
+<span id="cb2-3"><a href="#cb2-3"></a>                    <span class="dt">index =</span> xp,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>                    <span class="dt">regular =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>To learn more about longitudinal data as time series, see the vignette: <a href="http://brolgar.njtierney.com/articles/longitudinal-data-structures.html">Longitudinal Data Structures</a>.</p>
 </div>
 <div id="basic-summaries-of-the-data" class="section level1">
@@ -121,9 +120,8 @@
 <h2 class="hasAnchor">
 <a href="#how-many-observations-are-there" class="anchor"></a>How many observations are there?</h2>
 <p>We can kind the number of keys using <code><a href="https://tsibble.tidyverts.org/reference/key-data.html">n_keys()</a></code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tsibble)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw"><a href="https://tsibble.tidyverts.org/reference/key-data.html">n_keys</a></span>(wages)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; [1] 888</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://tsibble.tidyverts.org/reference/key-data.html">n_keys</a></span>(wages)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt; [1] 888</span></span></code></pre></div>
 <p>Note that this is a single number, in this case, we have 888 observations.</p>
 <p>However, we might want to know how many observations we have for each individual. If we want the number of observations in each key (id), then we can use <code><a href="../reference/n_obs.html">n_obs()</a></code> with <code><a href="https://fabletools.tidyverts.org/reference/features.html">features()</a></code></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>wages <span class="op">%&gt;%</span></span>
@@ -174,33 +172,30 @@
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&gt; </span></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt; The following object is masked from 'package:tsibble':</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
 <span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; </span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt;     id</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt;     filter, lag</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
 <span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; </span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt;     filter, lag</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt; </span></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a>wages <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="st">  </span><span class="kw"><a href="../reference/add_n_obs.html">add_n_obs</a></span>() <span class="op">%&gt;%</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n_obs <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>)</span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&gt; # A tsibble: 6,145 x 10 [!]</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="co">#&gt; # Key:       id [764]</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="co">#&gt;       id    xp n_obs ln_wages   ged xp_since_ged black hispanic high_grade</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a><span class="co">#&gt;    &lt;int&gt; &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a><span class="co">#&gt;  1    31 0.015     8     1.49     1        0.015     0        1          8</span></span>
-<span id="cb7-21"><a href="#cb7-21"></a><span class="co">#&gt;  2    31 0.715     8     1.43     1        0.715     0        1          8</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a><span class="co">#&gt;  3    31 1.73      8     1.47     1        1.73      0        1          8</span></span>
-<span id="cb7-23"><a href="#cb7-23"></a><span class="co">#&gt;  4    31 2.77      8     1.75     1        2.77      0        1          8</span></span>
-<span id="cb7-24"><a href="#cb7-24"></a><span class="co">#&gt;  5    31 3.93      8     1.93     1        3.93      0        1          8</span></span>
-<span id="cb7-25"><a href="#cb7-25"></a><span class="co">#&gt;  6    31 4.95      8     1.71     1        4.95      0        1          8</span></span>
-<span id="cb7-26"><a href="#cb7-26"></a><span class="co">#&gt;  7    31 5.96      8     2.09     1        5.96      0        1          8</span></span>
-<span id="cb7-27"><a href="#cb7-27"></a><span class="co">#&gt;  8    31 6.98      8     2.13     1        6.98      0        1          8</span></span>
-<span id="cb7-28"><a href="#cb7-28"></a><span class="co">#&gt;  9    36 0.315    10     1.98     1        0.315     0        0          9</span></span>
-<span id="cb7-29"><a href="#cb7-29"></a><span class="co">#&gt; 10    36 0.983    10     1.80     1        0.983     0        0          9</span></span>
-<span id="cb7-30"><a href="#cb7-30"></a><span class="co">#&gt; # … with 6,135 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span></code></pre></div>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>wages <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="st">  </span><span class="kw"><a href="../reference/add_n_obs.html">add_n_obs</a></span>() <span class="op">%&gt;%</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n_obs <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>)</span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt; # A tsibble: 6,145 x 10 [!]</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&gt; # Key:       id [764]</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&gt;       id    xp n_obs ln_wages   ged xp_since_ged black hispanic high_grade</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&gt;    &lt;int&gt; &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="co">#&gt;  1    31 0.015     8     1.49     1        0.015     0        1          8</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="co">#&gt;  2    31 0.715     8     1.43     1        0.715     0        1          8</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="co">#&gt;  3    31 1.73      8     1.47     1        1.73      0        1          8</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="co">#&gt;  4    31 2.77      8     1.75     1        2.77      0        1          8</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="co">#&gt;  5    31 3.93      8     1.93     1        3.93      0        1          8</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a><span class="co">#&gt;  6    31 4.95      8     1.71     1        4.95      0        1          8</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a><span class="co">#&gt;  7    31 5.96      8     2.09     1        5.96      0        1          8</span></span>
+<span id="cb7-24"><a href="#cb7-24"></a><span class="co">#&gt;  8    31 6.98      8     2.13     1        6.98      0        1          8</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a><span class="co">#&gt;  9    36 0.315    10     1.98     1        0.315     0        0          9</span></span>
+<span id="cb7-26"><a href="#cb7-26"></a><span class="co">#&gt; 10    36 0.983    10     1.80     1        0.983     0        0          9</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a><span class="co">#&gt; # … with 6,135 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span></code></pre></div>
 </div>
 </div>
 <div id="efficiently-exploring-longitudinal-data" class="section level2">
@@ -241,7 +236,7 @@
 </div>
 <div id="clever-facets-facet_strata" class="section level2">
 <h2 class="hasAnchor">
-<a href="#clever-facets-facet_strata" class="anchor"></a>Clever facets: <code><a href="../reference/facet_strata.html">facet_strata()</a></code>
+<a href="#clever-facets-facet_strata" class="anchor"></a>Clever facets: <code>facet_strata</code>
 </h2>
 <p><code>brolgar</code> provides some clever facets to help make it easier to explore your data. <code><a href="../reference/facet_strata.html">facet_strata()</a></code> splits the data into 12 groups by default:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">2019-07-23-1936</span>)</span>
@@ -267,7 +262,7 @@
 </div>
 <div id="clever-facets-facet_sample" class="section level2">
 <h2 class="hasAnchor">
-<a href="#clever-facets-facet_sample" class="anchor"></a>Clever facets: <code><a href="../reference/facet_sample.html">facet_sample()</a></code>
+<a href="#clever-facets-facet_sample" class="anchor"></a>Clever facets: <code>facet_sample</code>
 </h2>
 <p><code><a href="../reference/facet_sample.html">facet_sample()</a></code> allows you to specify the number of keys per facet, and the number of facets with <code>n_per_facet</code> and <code>n_facets</code>. It splits the data into 12 facets with 5 per facet by default:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">2019-07-23-1937</span>)</span>
@@ -343,7 +338,7 @@
 <p><img src="getting-started_files/figure-html/use-gg-highlight-1.png" width="700"></p>
 <div id="find-keys-near-other-summaries-with-keys_near" class="section level3">
 <h3 class="hasAnchor">
-<a href="#find-keys-near-other-summaries-with-keys_near" class="anchor"></a>Find keys near other summaries with <code><a href="../reference/keys_near.html">keys_near()</a></code>
+<a href="#find-keys-near-other-summaries-with-keys_near" class="anchor"></a>Find keys near other summaries with <code>keys_near</code>
 </h3>
 <p>We could take our slope information and find those individuals who are representative of the min, median, maximum, etc of growth, using <code><a href="../reference/keys_near.html">keys_near()</a></code>:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>wages_slope <span class="op">%&gt;%</span></span>
@@ -465,8 +460,8 @@
 <li><a href="#how-many-observations-are-there">How many observations are there?</a></li>
       <li><a href="#efficiently-exploring-longitudinal-data">Efficiently exploring longitudinal data</a></li>
       <li><a href="#filtering-observations">Filtering observations</a></li>
-      <li><a href="#clever-facets-facet_strata">Clever facets: <code><a href="--/reference/facet_strata-html">facet_strata()</a></code></a></li>
-      <li><a href="#clever-facets-facet_sample">Clever facets: <code><a href="--/reference/facet_sample-html">facet_sample()</a></code></a></li>
+      <li><a href="#clever-facets-facet_strata">Clever facets: <code>facet_strata</code></a></li>
+      <li><a href="#clever-facets-facet_sample">Clever facets: <code>facet_sample</code></a></li>
       <li><a href="#exploratory-modelling">Exploratory modelling</a></li>
       <li><a href="#finding-features-in-longitudinal-data">Finding features in longitudinal data</a></li>
       <li><a href="#linking-individuals-back-to-the-data">Linking individuals back to the data</a></li>

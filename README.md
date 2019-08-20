@@ -23,7 +23,7 @@ coverage](https://codecov.io/gh/njtierney/brolgar/branch/master/graph/badge.svg)
   - Evaluate diagnostics of statistical models
 
 This helps you go from the “plate of spaghetti” plot on the left, to
-“interesting observations” plot on the left.
+“interesting observations” plot on the right.
 
 <img src="man/figures/README-show-spaghetti-1.png" width="75%" style="display: block; margin: auto;" />
 
@@ -57,9 +57,9 @@ So in the `wages` data, we have the following setup:
 
 ``` r
 wages <- as_tsibble(x = wages,
-                       key = id,
-                       index = xp,
-                       regular = FALSE)
+                    key = id,
+                    index = xp,
+                    regular = FALSE)
 ```
 
 Here `as_tsibble()` takes wages, and a `key`, and `index`, and we state
@@ -304,7 +304,9 @@ implementation of brolgar, as it was heavily inspired by the
 [`tidyverts`](https://tidyverts.org/). I would also like to thank [Tania
 Prvan](https://researchers.mq.edu.au/en/persons/tania-prvan) for her
 valuable early contributions to the project, as well as [Stuart
-Lee](https://stuartlee.org/) for helpful discussions.
+Lee](https://stuartlee.org/) for helpful discussions. Thanks also to
+[Urusla Laa](https://research.monash.edu/en/persons/ursula-laa) for her
+feedback on the package structure and documentation.
 
 <!-- These are referred to as a **longnostics**, a portmanteau of **long**itudinal and **cognostic**. These **longnostics** make it straightforward to extract subjects with certain properties to gain some insight into the data.  -->
 

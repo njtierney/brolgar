@@ -28,7 +28,6 @@ Depends:
 Imports:
     dplyr (>= 0.8.3),
     fabletools,
-    feasts (>= 0.0.0.9001),
     ggplot2 (>= 3.2.0),
     glue (>= 1.3.1),
     magrittr (>= 1.5),
@@ -50,8 +49,6 @@ Suggests:
     vdiffr (>= 0.3.1)
 VignetteBuilder: 
     knitr
-Remotes: 
-    tidyverts/feasts
 Encoding: UTF-8
 Language: en-US
 LazyData: true

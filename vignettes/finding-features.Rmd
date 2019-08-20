@@ -1,5 +1,5 @@
 ---
-title: "Finding Features"
+title: "Finding Features in Data"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{finding-features}
@@ -15,16 +15,16 @@ knitr::opts_chunk$set(
 
 ```
 
-# Finding Features in data
+When you are presented with longitudinal data, it is useful to summarise the data into a format where you have one row per key. That means one row per unique identifier of the data - if you aren't sure what this means, see the vignette, ["Longitudinal Data Structures"](http://brolgar.njtierney.com/articles/longitudinal-data-structures.html). 
 
-When you are presented with longitudinal data, it is useful to summarise the data into a format where you have one row per key. Say for example if you wanted to take the wages data
+So, say for example you wanted to find features in the wages data, which looks like this:
 
 ```{r print-wages}
 library(brolgar)
 wages
 ```
 
-And then return one row for each key, with say the minimum value for `ln_wages`, for each key:
+You can return a dataset that has one row per key, with say the minimum value for `ln_wages`, for each key:
 
 ```{r wages-summary, echo = FALSE}
 wages_min <- wages %>%
@@ -63,7 +63,7 @@ or with the pipe:
 <DATA> %>% features(<VARIABLE>, <FEATURE>)
 ```
 
-As an example, we can calculate a five number summary (minimum, 25th quantile, median, mean, 75th quantile, and maximum) of the data like so:
+As an example, we can calculate a five number summary (minimum, 25th quantile, median, mean, 75th quantile, and maximum) of the data using `feat_five_num`, like so:
 
 ```{r features-fivenum}
 wages_five <- wages %>%
@@ -72,7 +72,10 @@ wages_five <- wages %>%
 wages_five
 ```
 
-Here we are taking the `wages` data, piping it to `features`, and then telling it to summarise the `ln_wages` variable, using `feat_five_num`. `brolgar` provides a set of features in the package, which all start with `feat_`.
+Here we are taking the `wages` data, piping it to `features`, and then telling it to summarise the `ln_wages` variable, using `feat_five_num`.
+
+There are several handy functions for calculating features of the data that 
+`brolgar` provides. These all start with `feat_`.
 
 You can, for example, find those whose values only increase or decrease with `feat_monotonic`:
 
@@ -132,7 +135,6 @@ To create your own features or summaries to pass to `features`, you provide a na
 
 ```{r create-three}
 library(brolgar)
-library(feasts)
 feat_three <- list(min = min,
                    med = median,
                    max = max)

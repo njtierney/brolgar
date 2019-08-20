@@ -39,7 +39,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../articles/articles/getting-started.html">Getting Started</a>
+  <a href="../articles/getting-started.html">Getting Started</a>
 </li>
 <li>
   <a href="../articles/visualisation-gallery.html">Gallery</a>
@@ -115,21 +115,21 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2"></a>wages <span class="op">%&gt;%</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">20</span>)</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; # A tsibble: 134 x 9 [!]</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; # A tsibble: 126 x 9 [!]</span></span>
 <span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; # Key:       id [20]</span></span>
 <span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade</span></span>
 <span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt;    &lt;int&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt;  1   396     1.07 0.165     1         0        1        0          9</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt;  2   396     2.42 2.88      1         2.72     1        0          9</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt;  3   396     1.97 3.98      1         3.81     1        0          9</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt;  4   396     1.54 5.44      1         5.27     1        0          9</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt;  5   396     1.88 6.46      1         6.29     1        0          9</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt;  6   396     2.17 7.60      1         7.44     1        0          9</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt;  7   396     1.91 8.31      1         8.15     1        0          9</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt;  8   419     1.60 0.457     1         0        0        0          9</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt;  9   419     1.67 1.10      1         0.64     0        0          9</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#&gt; 10   419     2.00 2.14      1         1.69     0        0          9</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co">#&gt; # … with 124 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt;  1   477     1.46 0.075     1        0         0        0          8</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt;  2   477     1.42 0.736     1        0.661     0        0          8</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt;  3   477     1.57 1.34      1        1.26      0        0          8</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt;  4   477     1.64 2.10      1        2.03      0        0          8</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt;  5   477     1.80 3.12      1        3.05      0        0          8</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt;  6   477     2.12 4.12      1        4.05      0        0          8</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt;  7   477     1.95 4.79      1        4.71      0        0          8</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt;  8   477     2.16 5.85      1        5.77      0        0          8</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt;  9  1515     1.48 1.15      0        0         0        0         12</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#&gt; 10  1515     1.81 2.15      0        0         0        0         12</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co">#&gt; # … with 116 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span>
 <span id="cb2-19"><a href="#cb2-19"></a></span>
 <span id="cb2-20"><a href="#cb2-20"></a>wages <span class="op">%&gt;%</span></span>
 <span id="cb2-21"><a href="#cb2-21"></a><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">20</span>) <span class="op">%&gt;%</span></span>
@@ -182,7 +182,7 @@
 </div>
 <div id="clever-facets-facet_strata" class="section level2">
 <h2 class="hasAnchor">
-<a href="#clever-facets-facet_strata" class="anchor"></a>Clever facets: <code><a href="../reference/facet_strata.html">facet_strata()</a></code>
+<a href="#clever-facets-facet_strata" class="anchor"></a>Clever facets: <code>facet_strata</code>
 </h2>
 <p><code>brolgar</code> provides some clever facets to help make it easier to explore your data. <code><a href="../reference/facet_strata.html">facet_strata()</a></code> splits the data into 12 groups by default:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">2019-07-23-1936</span>)</span>
@@ -219,7 +219,7 @@
 </div>
 <div id="clever-facets-facet_sample" class="section level2">
 <h2 class="hasAnchor">
-<a href="#clever-facets-facet_sample" class="anchor"></a>Clever facets: <code><a href="../reference/facet_sample.html">facet_sample()</a></code>
+<a href="#clever-facets-facet_sample" class="anchor"></a>Clever facets: <code>facet_sample</code>
 </h2>
 <p><code><a href="../reference/facet_sample.html">facet_sample()</a></code> allows you to specify a number of samples per plot with, “n per plot” and the number of facets to show with “n facets”. By default it splits the data into 12 facets with 5 per group:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">2019-07-23-1937</span>)</span>
@@ -315,12 +315,14 @@
 <span id="cb14-4"><a href="#cb14-4"></a><span class="co">#&gt; adjust the group aesthetic?</span></span></code></pre></div>
 <p><img src="visualisation-gallery_files/figure-html/wags-ts-slope-facet-1.png" width="700"></p>
 </div>
-<div id="facet_strata-along-features" class="section level2">
+</div>
+<div id="move-along-features-with-facet_strata" class="section level1">
+<h1 class="hasAnchor">
+<a href="#move-along-features-with-facet_strata" class="anchor"></a>Move along features with <code>facet_strata</code>
+</h1>
+<div id="visualise-along-slope" class="section level2">
 <h2 class="hasAnchor">
-<a href="#facet_strata-along-features" class="anchor"></a><code><a href="../reference/facet_strata.html">facet_strata()</a></code> along features</h2>
-<div id="with-slope" class="section level3">
-<h3 class="hasAnchor">
-<a href="#with-slope" class="anchor"></a>with slope</h3>
+<a href="#visualise-along-slope" class="anchor"></a>Visualise along slope</h2>
 <p>We can use the <code>along</code> argument of <code><a href="../reference/facet_strata.html">facet_strata()</a></code> to break the data according to some feature. The only catch is that the data passed must be a <code>tsibble</code>.</p>
 <p>For example, we could break the data <code>along</code> the <code>.slope_xp</code> variable into 12 groups, which by default will be arranged in descending order. So here we have to groups broken up from most positive slope to most negative.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>wages_slope &lt;-<span class="st"> </span>wages <span class="op">%&gt;%</span></span>
@@ -344,28 +346,47 @@
 <span id="cb16-3"><a href="#cb16-3"></a><span class="st">  </span><span class="co"># ensures that we keep the data as a `tsibble`</span></span>
 <span id="cb16-4"><a href="#cb16-4"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(<span class="dt">x =</span> wages, <span class="dt">y =</span> ., <span class="dt">by =</span> <span class="st">"id"</span>)</span>
 <span id="cb16-5"><a href="#cb16-5"></a></span>
-<span id="cb16-6"><a href="#cb16-6"></a>gg_wages_five &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(wages_five,</span>
-<span id="cb16-7"><a href="#cb16-7"></a>                         <span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/reexports">aes</a></span>(<span class="dt">x =</span> xp,</span>
-<span id="cb16-8"><a href="#cb16-8"></a>                             <span class="dt">y =</span> ln_wages,</span>
-<span id="cb16-9"><a href="#cb16-9"></a>                             <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb16-10"><a href="#cb16-10"></a><span class="st">                     </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() </span></code></pre></div>
+<span id="cb16-6"><a href="#cb16-6"></a>wages_five</span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="co">#&gt; # A tsibble: 6,402 x 14 [!]</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="co">#&gt; # Key:       id [888]</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="co">#&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="co">#&gt;    &lt;int&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="co">#&gt;  1    31     1.49 0.015     1        0.015     0        1          8</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="co">#&gt;  2    31     1.43 0.715     1        0.715     0        1          8</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="co">#&gt;  3    31     1.47 1.73      1        1.73      0        1          8</span></span>
+<span id="cb16-14"><a href="#cb16-14"></a><span class="co">#&gt;  4    31     1.75 2.77      1        2.77      0        1          8</span></span>
+<span id="cb16-15"><a href="#cb16-15"></a><span class="co">#&gt;  5    31     1.93 3.93      1        3.93      0        1          8</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a><span class="co">#&gt;  6    31     1.71 4.95      1        4.95      0        1          8</span></span>
+<span id="cb16-17"><a href="#cb16-17"></a><span class="co">#&gt;  7    31     2.09 5.96      1        5.96      0        1          8</span></span>
+<span id="cb16-18"><a href="#cb16-18"></a><span class="co">#&gt;  8    31     2.13 6.98      1        6.98      0        1          8</span></span>
+<span id="cb16-19"><a href="#cb16-19"></a><span class="co">#&gt;  9    36     1.98 0.315     1        0.315     0        0          9</span></span>
+<span id="cb16-20"><a href="#cb16-20"></a><span class="co">#&gt; 10    36     1.80 0.983     1        0.983     0        0          9</span></span>
+<span id="cb16-21"><a href="#cb16-21"></a><span class="co">#&gt; # … with 6,392 more rows, and 6 more variables: unemploy_rate &lt;dbl&gt;,</span></span>
+<span id="cb16-22"><a href="#cb16-22"></a><span class="co">#&gt; #   min &lt;dbl&gt;, q25 &lt;dbl&gt;, med &lt;dbl&gt;, q75 &lt;dbl&gt;, max &lt;dbl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>gg_wages_five &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(wages_five,</span>
+<span id="cb17-2"><a href="#cb17-2"></a>                         <span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/reexports">aes</a></span>(<span class="dt">x =</span> xp,</span>
+<span id="cb17-3"><a href="#cb17-3"></a>                             <span class="dt">y =</span> ln_wages,</span>
+<span id="cb17-4"><a href="#cb17-4"></a>                             <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="st">                     </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() </span>
+<span id="cb17-6"><a href="#cb17-6"></a></span>
+<span id="cb17-7"><a href="#cb17-7"></a>gg_wages_five</span></code></pre></div>
+<p><img src="visualisation-gallery_files/figure-html/gg-wages-features-along-1.png" width="700"></p>
 <p>We could move along the minimum:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>gg_wages_five <span class="op">+</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="st">  </span><span class="kw"><a href="../reference/facet_strata.html">facet_strata</a></span>(<span class="dt">n_strata =</span> <span class="dv">12</span>,</span>
-<span id="cb17-3"><a href="#cb17-3"></a>               <span class="dt">along =</span> min)</span></code></pre></div>
-<p><img src="visualisation-gallery_files/figure-html/wages-features-min-1.png" width="700"></p>
-<p>We could move along the maximum:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>gg_wages_five <span class="op">+</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="st">  </span><span class="kw"><a href="../reference/facet_strata.html">facet_strata</a></span>(<span class="dt">n_strata =</span> <span class="dv">12</span>,</span>
-<span id="cb18-3"><a href="#cb18-3"></a>               <span class="dt">along =</span> max)</span></code></pre></div>
-<p><img src="visualisation-gallery_files/figure-html/wages-features-max-1.png" width="700"></p>
-<p>We could move along the median:</p>
+<span id="cb18-3"><a href="#cb18-3"></a>               <span class="dt">along =</span> min)</span></code></pre></div>
+<p><img src="visualisation-gallery_files/figure-html/wages-features-min-1.png" width="700"></p>
+<p>We could move along the maximum:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>gg_wages_five <span class="op">+</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a><span class="st">  </span><span class="kw"><a href="../reference/facet_strata.html">facet_strata</a></span>(<span class="dt">n_strata =</span> <span class="dv">12</span>,</span>
-<span id="cb19-3"><a href="#cb19-3"></a>               <span class="dt">along =</span> med)</span></code></pre></div>
+<span id="cb19-3"><a href="#cb19-3"></a>               <span class="dt">along =</span> max)</span></code></pre></div>
+<p><img src="visualisation-gallery_files/figure-html/wages-features-max-1.png" width="700"></p>
+<p>We could move along the median:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>gg_wages_five <span class="op">+</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="st">  </span><span class="kw"><a href="../reference/facet_strata.html">facet_strata</a></span>(<span class="dt">n_strata =</span> <span class="dv">12</span>,</span>
+<span id="cb20-3"><a href="#cb20-3"></a>               <span class="dt">along =</span> med)</span></code></pre></div>
 <p><img src="visualisation-gallery_files/figure-html/wages-features-med-1.png" width="700"></p>
 <p>Under the hood there needs to be some summarisation of the data to arrange it like this, details on the implementation are in the helpfile for <code><a href="../reference/facet_strata.html">?facet_strata</a></code>.</p>
-</div>
 </div>
 </div>
   </div>
@@ -379,8 +400,8 @@
 <a href="#exploring-raw-data">Exploring raw data</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#select-a-sample-of-individuals">Select a sample of individuals</a></li>
       <li><a href="#filter-only-those-with-certain-number-of-observations">Filter only those with certain number of observations</a></li>
-      <li><a href="#clever-facets-facet_strata">Clever facets: <code><a href="--/reference/facet_strata-html">facet_strata()</a></code></a></li>
-      <li><a href="#clever-facets-facet_sample">Clever facets: <code><a href="--/reference/facet_sample-html">facet_sample()</a></code></a></li>
+      <li><a href="#clever-facets-facet_strata">Clever facets: <code>facet_strata</code></a></li>
+      <li><a href="#clever-facets-facet_sample">Clever facets: <code>facet_sample</code></a></li>
       <li><a href="#clever-facets-with-number-of-observations">Clever facets with number of observations</a></li>
       </ul>
 </li>
@@ -388,7 +409,11 @@
 <a href="#exploring-data-using-features">Exploring data using features</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#plot-monotonic-individual-series">Plot monotonic individual series</a></li>
       <li><a href="#plot-individuals-with-negative-slope">Plot individuals with negative slope</a></li>
-      <li><a href="#facet_strata-along-features"><code><a href="--/reference/facet_strata-html">facet_strata()</a></code> along features</a></li>
+      </ul>
+</li>
+      <li>
+<a href="#move-along-features-with-facet_strata">Move along features with <code>facet_strata</code></a><ul class="nav nav-pills nav-stacked">
+<li><a href="#visualise-along-slope">Visualise along slope</a></li>
       </ul>
 </li>
       </ul>

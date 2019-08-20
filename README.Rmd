@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 * Calculate features (summaries) for individual series
 * Evaluate diagnostics of statistical models
 
-This helps you go from the "plate of spaghetti" plot on the left, to "interesting observations" plot on the left.
+This helps you go from the "plate of spaghetti" plot on the left, to "interesting observations" plot on the right.
 
 ```{r show-spaghetti, echo = FALSE, fig.height = 3, fig.width = 6}
 library(brolgar)
@@ -83,9 +83,9 @@ So in the `wages` data, we have the following setup:
 
 ```{r setup-wages-ts, eval = FALSE}
 wages <- as_tsibble(x = wages,
-                       key = id,
-                       index = xp,
-                       regular = FALSE)
+                    key = id,
+                    index = xp,
+                    regular = FALSE)
 ```
 
 Here `as_tsibble()` takes wages, and a `key`, and `index`, and we state the `regular = FALSE` (since there are not regular time periods between measurements).
@@ -259,7 +259,7 @@ This version of brolgar was been forked from [tprvan/brolgar](https://github.com
 
 # Acknowledgements
 
-Thank you to [Mitchell O'Hara-Wild](https://mitchelloharawild.com/) and [Earo Wang](https://earo.me/) for many useful discussions on the implementation of brolgar, as it was heavily inspired by the [`feasts`](https://github.com/tidyverts/feasts) package from the [`tidyverts`](https://tidyverts.org/). I would also like to thank [Tania Prvan](https://researchers.mq.edu.au/en/persons/tania-prvan) for her valuable early contributions to the project, as well as [Stuart Lee](https://stuartlee.org/) for helpful discussions. 
+Thank you to [Mitchell O'Hara-Wild](https://mitchelloharawild.com/) and [Earo Wang](https://earo.me/) for many useful discussions on the implementation of brolgar, as it was heavily inspired by the [`feasts`](https://github.com/tidyverts/feasts) package from the [`tidyverts`](https://tidyverts.org/). I would also like to thank [Tania Prvan](https://researchers.mq.edu.au/en/persons/tania-prvan) for her valuable early contributions to the project, as well as [Stuart Lee](https://stuartlee.org/) for helpful discussions. Thanks also to [Urusla Laa](https://research.monash.edu/en/persons/ursula-laa) for her feedback on the package structure and documentation.
 
 <!-- These are referred to as a **longnostics**, a portmanteau of **long**itudinal and **cognostic**. These **longnostics** make it straightforward to extract subjects with certain properties to gain some insight into the data.  -->
 

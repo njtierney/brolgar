@@ -52,7 +52,7 @@ wages_slope %>%
   gghighlight(.slope_xp < 0)
 ```
 
-### Find keys near other summaries with `keys_near()`
+# Find keys near other summaries with `keys_near()`
 
 We might want to further summarise our exploratory modelling by finding those slopes that are near a five number summary values:
 

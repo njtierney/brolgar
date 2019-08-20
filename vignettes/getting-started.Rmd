@@ -120,7 +120,7 @@ wages %>%
 
 Now, how do you break these into many plots?
 
-## Clever facets: `facet_strata()`
+## Clever facets: `facet_strata`
 
 `brolgar` provides some clever facets to help make it easier to explore your data. `facet_strata()` splits the data into 12 groups by default:
 
@@ -150,7 +150,7 @@ ggplot(wages,
 
 And what if you want to show only a few samples per facet?
 
-## Clever facets: `facet_sample()`
+## Clever facets: `facet_sample`
 
 `facet_sample()` allows you to specify the number of keys per facet, and the number of facets with `n_per_facet` and `n_facets`. It splits the data into 12 facets with 5 per facet by default:
 
@@ -214,7 +214,7 @@ wages_slope %>%
 ```
 
 
-### Find keys near other summaries with `keys_near()`
+### Find keys near other summaries with `keys_near`
 
 We could take our slope information and find those individuals who are representative of the min, median, maximum, etc of growth, using `keys_near()`:
 
