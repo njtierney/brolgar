@@ -8,3 +8,9 @@ r_github_packages:
 
 after_success:
   - Rscript -e 'covr::codecov()'
+
+before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
+deploy:
+  provider: script
+  script: Rscript -e 'pkgdown::deploy_site_github()'
+  skip_cleanup: true
