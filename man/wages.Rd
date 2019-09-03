@@ -35,30 +35,12 @@ Oxford University Press, Oxford, UK, 2003.
 http://gseacademic.harvard.edu/alda/
 }
 \examples{
-\dontrun{
-# This data is created as follows:
-get the original `wages` data from
-https://github.com/tprvan/brolgar/tree/master/data
-load("~/Downloads/wages.rda")
-
-wages_og <- wages
-
-wages <- wages_og \%>\%
- dplyr::select(-hgc.9,
-               -ue.7,
-               -ue.centert1,
-               -ue.mean,
-               -ue.person.cen,
-               -ue1) \%>\%
- as_tsibble(x = .,
-            key = id,
-            index = exper,
-            regular = FALSE) \%>\%
- rename(ln_wages = lnw,
-        xp = exper,
-        high_grade = hgc,
-        xp_since_ged = postexp,
-        unemploy_rate = uerate)
-}
+set.seed(2019-7-15-1300)
+wages \%>\%
+  sample_n_keys(size = 5) \%>\%
+  ggplot(aes(x = xp,
+             y = ln_wages,
+             group = id)) + 
+  geom_line()
 }
 \keyword{datasets}

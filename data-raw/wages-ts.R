@@ -2,9 +2,7 @@ library(dplyr)
 library(brolgar)
 library(tsibble)
 
-# get the original `wages` data from
-# https://github.com/tprvan/brolgar/tree/master/data
-# load("~/Downloads/wages.rda")
+# The original `wages` data from ggobi: http://ggobi.org/book/index.html
 
 wages_og <- wages
 
