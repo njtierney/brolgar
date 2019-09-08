@@ -1,0 +1,180 @@
+---
+title: "Using brolgar to understand Mixed Effects Models"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{mixed-effects-models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(brolgar)
+library(lme4)
+library(modelr)
+library(ggplot2)
+
+```
+
+Just as it is important to explore your data before modelling, it is important to explore your data after you fit a model, and during the modelling process.
+
+Let's take our wages data
+
+```{r print-wages}
+wages
+```
+
+```{r wages-ggplot}
+ggplot(wages,
+       aes(x = xp,
+           y = ln_wages,
+           group = id)) + 
+  geom_line()
+```
+Ugh. Spaghetti plot.
+
+Let's look at a random sample of people.
+
+```{r wages-ggplot-sample}
+ggplot(wages,
+       aes(x = xp,
+           y = ln_wages,
+           group = id)) + 
+  geom_line() +
+  facet_sample()
+```
+
+So let's fit a model where we look at the impact of xp and ged, and fit an intercept for each individual.
+
+```{r}
+wages_fit_int <- lmer(ln_wages ~ xp + ged + (xp |id), data = wages)
+```
+
+We can use the tools from `modelr` to add predictions and residuals to the data
+
+```{r}
+wages_aug <- wages %>%
+  add_predictions(wages_fit_int, var = "pred_int") %>%
+  add_residuals(wages_fit_int, var = "res_int")
+```
+
+Now let's look at the predictions over xp
+
+```{r}
+ggplot(wages_aug,
+       aes(x = xp,
+           y = pred_int,
+           group = id)) + 
+  geom_line() 
+
+```
+
+Ugh. Straight spaghetti. Let's sample that.
+
+```{r}
+ggplot(wages_aug,
+       aes(x = xp,
+           y = pred_int,
+           group = id)) + 
+  geom_line() + 
+  facet_sample()
+```
+
+Hmmm, and now let's add in the data to the predictions.
+
+```{r}
+wages_aug %>%
+  sample_n_keys(size = 9) %>%
+  ggplot(aes(x = xp,
+             y = pred_int,
+             group = id,
+             colour = factor(id))) + 
+  geom_line() + 
+  geom_point(aes(x = xp,
+                 y = ln_wages,
+                 colour = factor(id))) + 
+  facet_wrap(~id) + 
+  theme(legend.position = "none")
+```
+
+And let's add some confidence bands
+
+```{r}
+
+```
+
+
+What if we grabbed a sample of those who have the best, middle, and worst residuals?
+
+```{r}
+summary(wages_aug$res_int)
+```
+
+We can use `keys_near()` to help with this
+
+```{r}
+wages_aug_near <- wages_aug %>%
+  keys_near(key = id,
+            var = res_int)
+
+wages_aug_near
+```
+
+This shows us the id's where we the residuals match closest to the five number summary. 
+
+We can plot this data by joining it back to the wages data with predictions, to see what the spread of predictions is like.
+
+```{r}
+library(dplyr)
+left_join(wages_aug_near,
+          wages_aug,
+            by = "id") %>%
+  ggplot(aes(x = xp,
+             y = pred_int,
+             group = id,
+             colour = stat)) + 
+  geom_line() + 
+  geom_point(aes(y = ln_wages)) + 
+  facet_wrap(~id)
+```
+
+
+```{r}
+# can we stratify_along to group things by the worst fits?
+wages_aug %>%
+  stratify_keys(n_strata = 12, along = res_int) %>%
+  sample_n_keys(size = 9) %>%
+  ggplot(aes(x = xp,
+             y = pred_int,
+             group = id,
+             colour = factor(id))) + 
+  geom_line() + 
+  geom_point(aes(x = xp,
+                 y = ln_wages,
+                 colour = factor(id))) + 
+  facet_wrap(~.strata) + 
+  theme(legend.position = "none")
+
+```
+
+# Exploring changes across models
+
+We can also explore how the data match the model when we change the model
+
+```{r}
+wages_fit_int_slope <- lmer(ln_wages ~ xp + ged + (1 + xp |id), 
+                            data = wages)
+
+wages_aug_int_slope <- wages_aug %>%
+  add_predictions(wages_fit_int_slope, var = "pred_int_slope") %>%
+  add_residuals(wages_fit_int_slope, var = "res_int_slope")
+
+```
+
+# Can we keep the actual data points with the samples with facet sample?
