@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r knitr-setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -52,13 +52,13 @@ ggplot(wages,
 
 So let's fit a model where we look at the impact of xp and ged, and fit an intercept for each individual.
 
-```{r}
+```{r fit-int}
 wages_fit_int <- lmer(ln_wages ~ xp + ged + (xp |id), data = wages)
 ```
 
 We can use the tools from `modelr` to add predictions and residuals to the data
 
-```{r}
+```{r wages-aug}
 wages_aug <- wages %>%
   add_predictions(wages_fit_int, var = "pred_int") %>%
   add_residuals(wages_fit_int, var = "res_int")
@@ -66,18 +66,18 @@ wages_aug <- wages %>%
 
 Now let's look at the predictions over xp
 
-```{r}
+```{r gg-wages-aug}
 ggplot(wages_aug,
        aes(x = xp,
            y = pred_int,
            group = id)) + 
-  geom_line() 
+  geom_line(alpha = 0.4) 
 
 ```
 
 Ugh. Straight spaghetti. Let's sample that.
 
-```{r}
+```{r gg-wages-sample}
 ggplot(wages_aug,
        aes(x = xp,
            y = pred_int,
@@ -88,7 +88,7 @@ ggplot(wages_aug,
 
 Hmmm, and now let's add in the data to the predictions.
 
-```{r}
+```{r gg-wages-predictions}
 wages_aug %>%
   sample_n_keys(size = 9) %>%
   ggplot(aes(x = xp,
@@ -105,20 +105,20 @@ wages_aug %>%
 
 And let's add some confidence bands
 
-```{r}
+```{r gg-conf-band}
 
 ```
 
 
 What if we grabbed a sample of those who have the best, middle, and worst residuals?
 
-```{r}
+```{r summary-residuals}
 summary(wages_aug$res_int)
 ```
 
 We can use `keys_near()` to help with this
 
-```{r}
+```{r wages-keys-near}
 wages_aug_near <- wages_aug %>%
   keys_near(key = id,
             var = res_int)
@@ -130,7 +130,7 @@ This shows us the id's where we the residuals match closest to the five number s
 
 We can plot this data by joining it back to the wages data with predictions, to see what the spread of predictions is like.
 
-```{r}
+```{r join-wages-near}
 library(dplyr)
 left_join(wages_aug_near,
           wages_aug,
@@ -145,10 +145,11 @@ left_join(wages_aug_near,
 ```
 
 
-```{r}
+```{r gg-stratify-residuals}
 # can we stratify_along to group things by the worst fits?
 wages_aug %>%
-  stratify_keys(n_strata = 12, along = res_int) %>%
+  stratify_keys(n_strata = 12, 
+                along = res_int) %>%
   sample_n_keys(size = 9) %>%
   ggplot(aes(x = xp,
              y = pred_int,

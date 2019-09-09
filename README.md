@@ -38,6 +38,11 @@ remotes::install_github("njtierney/brolgar")
 
 # Using `brolgar`: We need to talk about data
 
+The tools and workflows in `brolgar` are designed to work with a special
+tidy time series data frame called a `tsibble`. This handles a lot of
+the details of the data, making it **very efficient** to explore your
+data. This section discusses the details of what this means.
+
 To efficiently look at your longitudinal data, we assume it **is a time
 series**, with **irregular** time periods between measurements. This
 might seem strange, (that’s OK\!), so **remember these two things**:
@@ -53,7 +58,29 @@ internalise:
 
 > **The key is the identifier of your individuals or series**
 
-So in the `wages` data, we have the following setup:
+The `wages` data is an example dataset provided with brolgar. It looks
+like this:
+
+``` r
+wages
+#> # A tsibble: 6,402 x 9 [!]
+#> # Key:       id [888]
+#>       id ln_wages    xp   ged xp_since_ged black hispanic high_grade
+#>    <int>    <dbl> <dbl> <int>        <dbl> <int>    <int>      <int>
+#>  1    31     1.49 0.015     1        0.015     0        1          8
+#>  2    31     1.43 0.715     1        0.715     0        1          8
+#>  3    31     1.47 1.73      1        1.73      0        1          8
+#>  4    31     1.75 2.77      1        2.77      0        1          8
+#>  5    31     1.93 3.93      1        3.93      0        1          8
+#>  6    31     1.71 4.95      1        4.95      0        1          8
+#>  7    31     2.09 5.96      1        5.96      0        1          8
+#>  8    31     2.13 6.98      1        6.98      0        1          8
+#>  9    36     1.98 0.315     1        0.315     0        0          9
+#> 10    36     1.80 0.983     1        0.983     0        0          9
+#> # … with 6,392 more rows, and 1 more variable: unemploy_rate <dbl>
+```
+
+And under the hood, it was created with the following setup:
 
 ``` r
 wages <- as_tsibble(x = wages,
@@ -64,10 +91,8 @@ wages <- as_tsibble(x = wages,
 
 Here `as_tsibble()` takes wages, and a `key`, and `index`, and we state
 the `regular = FALSE` (since there are not regular time periods between
-measurements).
-
-This is done using `as_tsibble`, which turns out data into a `tsibble`
-object - a powerful data abstraction made available in the
+measurements). This turns the data into a `tsibble` object - a powerful
+data abstraction made available in the
 [`tsibble`](https://tsibble.tidyverts.org/) package by [Earo
 Wang](https://earo.me/), if you would like to learn more about
 `tsibble`, see the [official package
@@ -112,13 +137,10 @@ And what if you want to create many of these plots?
 
 ## Clever facets: `facet_sample()`
 
-`brolgar` provides some clever facets to help make it easier to explore
-your data.
+`facet_sample()` allows you to specify the number of keys per facet, and
+the number of facets with `n_per_facet` and `n_facets`.
 
-One issue when making `facet_sample()` allows you to specify the number
-of keys per facet, and the number of facets with `n_per_facet` and
-`n_facets`. It splits the data into 12 facets with 5 per facet by
-default:
+By default, it splits the data into 12 facets with 5 per facet:
 
 ``` r
 set.seed(2019-07-23-1937)
@@ -132,19 +154,50 @@ ggplot(wages,
 
 <img src="man/figures/README-facet-sample-1.png" width="75%" style="display: block; margin: auto;" />
 
-Under the hood, this facet is powered by `sample_n_keys()` and
+Under the hood, `facet_sample()` is powered by `sample_n_keys()` and
 `stratify_keys()`.
 
-You can see other facets (e.g., `facet_strata`) and data visualisations
+You can see more facets (e.g., `facet_strata()`) and data visualisations
 you can make in brolgar in the [Visualisation
 Gallery](http://brolgar.njtierney.com/articles/visualisation-gallery.html).
 
 ## Finding features in longitudinal data
 
-You can extract `features` of longitudinal data using the `features`
-function, from [`fabletools`](http://fabletools.tidyverts.org/). These
-features all begin with `feat_`. You can, for example, find those whose
-values only increase or decrease with `feat_monotonic`:
+Sometimes you want to know what the range or a summary of a variable for
+each individual. We call these summaries `features` of the data, and
+they can be extracted using the `features` function, from
+[`fabletools`](http://fabletools.tidyverts.org/).
+
+For example, if you want to answer the question “What is the summary of
+wages for each individual?”. You can use `features()` to find the five
+number summary (min, max, q1, q3, and median) of `ln_wages` with
+`feat_five_num`:
+
+``` r
+wages %>%
+  features(ln_wages,
+           feat_five_num)
+#> # A tibble: 888 x 6
+#>       id   min   q25   med   q75   max
+#>    <int> <dbl> <dbl> <dbl> <dbl> <dbl>
+#>  1    31 1.43   1.48  1.73  2.02  2.13
+#>  2    36 1.80   1.97  2.32  2.59  2.93
+#>  3    53 1.54   1.58  1.71  1.89  3.24
+#>  4   122 0.763  2.10  2.19  2.46  2.92
+#>  5   134 2.00   2.28  2.36  2.79  2.93
+#>  6   145 1.48   1.58  1.77  1.89  2.04
+#>  7   155 1.54   1.83  2.22  2.44  2.64
+#>  8   173 1.56   1.68  2.00  2.05  2.34
+#>  9   206 2.03   2.07  2.30  2.45  2.48
+#> 10   207 1.58   1.87  2.15  2.26  2.66
+#> # … with 878 more rows
+```
+
+This returns the id, and then the features.
+
+There are many features in brolgar - these features all begin with
+`feat_`. You can, for example, find those whose ln\_wages values only
+increase or decrease with `feat_monotonic`:
 
 ``` r
 wages %>%
@@ -167,7 +220,8 @@ wages %>%
 
 You can read more about creating and using features in the [Finding
 Features](http://brolgar.njtierney.com/articles/finding-features.html)
-vignette.
+vignette. You can also see other features for time series in the
+[`feasts` package](https://feasts.tidyverts.org).
 
 ## Linking individuals back to the data
 
