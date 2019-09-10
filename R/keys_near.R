@@ -59,5 +59,8 @@ keys_near <- function(.data,
     dplyr::mutate(stat_diff = abs(!!q_var - stat_value)) %>%
     dplyr::group_by(stat) %>%
     dplyr::top_n(-top_n,
-                 wt = stat_diff)
+                 wt = stat_diff) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(stat = forcats::fct_relevel(.f = stat,
+                                              levels = names(funs)))
 }
