@@ -96,7 +96,7 @@ wages <- as_tsibble(x = wages,
                     regular = FALSE)
 ```
 
-Here `as_tsibble()` takes wages, and a `key`, and `index`, and we state the `regular = FALSE` (since there are not regular time periods between measurements). This turns the data into a `tsibble` object - a powerful data abstraction made available in the [`tsibble`](https://tsibble.tidyverts.org/) package by [Earo Wang](https://earo.me/), if you would like to learn more about `tsibble`, see the [official package documentation](https://tsibble.tidyverts.org/) or read [the paper](https://arxiv.org/abs/1901.10257).
+Here `as_tsibble()` takes wages, and a `key`, and `index`, and we state the `regular = FALSE` (since there are not regular time periods between measurements). This turns the data into a `tsibble` object - a powerful data abstraction made available in the [`tsibble`](https://tsibble.tidyverts.org/) package by [Earo Wang](https://earo.me/), if you would like to learn more about `tsibble`, see the [official package documentation](https://tsibble.tidyverts.org/) or read [the paper](http://pdf.earo.me/tsibble.pdf).
 
 If you want to learn more about what longitudinal data as a time series, you can [read more in the vignette, "Longitudinal Data Structures"](http://brolgar.njtierney.com/articles/longitudinal-data-structures.html).
 
@@ -161,7 +161,7 @@ wages %>%
 
 This returns the id, and then the features.
 
-There are many features in brolgar - these features all begin with `feat_`. You can, for example, find those whose ln_wages values only increase or decrease with `feat_monotonic`:
+There are many features in brolgar - these features all begin with `feat_`. You can, for example, find those whose `ln_wages` values only increase or decrease with `feat_monotonic`:
 
 ```{r features-monotonic}
 wages %>%

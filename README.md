@@ -97,7 +97,7 @@ data abstraction made available in the
 Wang](https://earo.me/), if you would like to learn more about
 `tsibble`, see the [official package
 documentation](https://tsibble.tidyverts.org/) or read [the
-paper](https://arxiv.org/abs/1901.10257).
+paper](http://pdf.earo.me/tsibble.pdf).
 
 If you want to learn more about what longitudinal data as a time series,
 you can [read more in the vignette, “Longitudinal Data
@@ -196,7 +196,7 @@ wages %>%
 This returns the id, and then the features.
 
 There are many features in brolgar - these features all begin with
-`feat_`. You can, for example, find those whose ln\_wages values only
+`feat_`. You can, for example, find those whose `ln_wages` values only
 increase or decrease with `feat_monotonic`:
 
 ``` r
@@ -324,6 +324,8 @@ modelling](http://brolgar.njtierney.com/articles/exploratory-modelling.html)
 and [Identify Interesting
 Observations](http://brolgar.njtierney.com/articles/id-interesting-obs.html)
 vignettes. As a taster, here are some of the figures you can produce:
+
+    #> Warning: Outer names are only allowed for unnamed scalar atomic inputs
 
 <img src="man/figures/README-show-wages-lg-1.png" width="75%" style="display: block; margin: auto;" />
 
