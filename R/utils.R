@@ -26,7 +26,7 @@ test_if_null <- function(x, message = "Input must not be NULL"){
 #- Palette helper functions
 
 middle <- function(x){
-  floor(median(seq_along(x)))
+  floor(stats::median(seq_along(x)))
 }
 
 

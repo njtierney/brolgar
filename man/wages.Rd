@@ -36,6 +36,7 @@ http://gseacademic.harvard.edu/alda/
 }
 \examples{
 set.seed(2019-7-15-1300)
+library(ggplot2)
 wages \%>\%
   sample_n_keys(size = 5) \%>\%
   ggplot(aes(x = xp,

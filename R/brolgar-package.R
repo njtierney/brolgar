@@ -18,5 +18,6 @@ globalVariables(c("intercept",
                   "stat_value",
                   ".rows",
                   "quantile",
-                  "n_obs"
+                  "n_obs",
+                  "colorRampPalette"
                   ))

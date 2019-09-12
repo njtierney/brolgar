@@ -86,7 +86,7 @@ ggplot(wages_aug,
   facet_sample()
 ```
 
-Hmmm, and now let's add in the data to the predictions.
+Now let's add in the data to the predictions.
 
 ```{r gg-wages-predictions}
 wages_aug %>%
