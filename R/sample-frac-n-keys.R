@@ -4,7 +4,6 @@
 #' @param size The number or fraction of observations, depending on the 
 #'   function used. In `sample_n_keys`, it is a number > 0, and in 
 #'   `sample_frac_keys` it is a fraction, between 0 and 1.
-#' @param ... extra arguments
 #'
 #' @return data.frame with fewer observations of key
 #' @name sample-n-frac-keys
@@ -17,14 +16,14 @@
 #'              y = unemploy_rate,
 #'              group = id)) + 
 #'   geom_line()
-sample_n_keys <- function(.data, size, ...){
+sample_n_keys <- function(.data, size){
   test_if_tsibble(.data)
   test_if_null(.data)
   UseMethod("sample_n_keys")
 }
 
 #' @export
-sample_n_keys.tbl_ts <- function(.data, size, ...){
+sample_n_keys.tbl_ts <- function(.data, size){
   
   key_chr <- tsibble::key_vars(.data)
 
@@ -48,7 +47,7 @@ sample_n_keys.tbl_ts <- function(.data, size, ...){
 #'              group = id)) + 
 #'   geom_line()
 #' @export
-sample_frac_keys <- function(.data, size, ...){
+sample_frac_keys <- function(.data, size){
   test_if_tsibble(.data)
   test_if_null(.data)
   UseMethod("sample_frac_keys")
@@ -56,7 +55,7 @@ sample_frac_keys <- function(.data, size, ...){
 
 #' @inheritParams sample-n-frac-keys
 #' @export
-sample_frac_keys.tbl_ts <- function(.data, size, ...){
+sample_frac_keys.tbl_ts <- function(.data, size){
   
   key_chr <- tsibble::key_vars(.data)
   
