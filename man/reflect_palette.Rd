@@ -10,6 +10,8 @@ reflect_palette(palette = "hawaii", pal_dir = "left", n = 5,
 \arguments{
 \item{palette}{character}
 
+\item{pal_dir}{direction of palette reflection}
+
 \item{n}{number of colours}
 
 \item{alpha}{transparency}
@@ -20,9 +22,7 @@ reflect_palette(palette = "hawaii", pal_dir = "left", n = 5,
 
 \item{direction}{direction}
 
-\item{...}{extra args}
-
-\item{direction}{direction?}
+\item{...}{extra arguments}
 }
 \value{
 palette

@@ -11,7 +11,7 @@ scale_colour_reflective(palette = "hawaii", pal_dir = "left", ...)
 
 \item{pal_dir}{character}
 
-\item{...}{extra args}
+\item{...}{extra arguments}
 }
 \value{
 ggplot

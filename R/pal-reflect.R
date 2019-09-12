@@ -1,13 +1,13 @@
 #' reflective palettes
 #'
 #' @param palette character
-#' @param direction direction
+#' @param pal_dir direction of palette reflection
 #' @param n number of colours
 #' @param alpha transparency
 #' @param begin start point
 #' @param end end point
-#' @param direction direction?
-#' @param ... extra args
+#' @param direction direction
+#' @param ... extra arguments
 #'
 #' @return palette
 #' @export
@@ -63,7 +63,7 @@ reflect_palette <- function(palette = "hawaii",
 #'
 #' @param palette character
 #' @param pal_dir character
-#' @param ... extra args
+#' @param ... extra arguments
 #'
 #' @return ggplot
 #' @export
