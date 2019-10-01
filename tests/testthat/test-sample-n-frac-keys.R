@@ -1,11 +1,9 @@
 context("test-sample-n-frac-obs")
 
-l_sample_n_keys <- sample_n_keys(.data = wages, 
-                                 key = id,
+l_sample_n_keys <- sample_n_keys(.data = wages,
                                  size = 10)
 
 l_sample_frac_keys <- sample_frac_keys(.data = wages,
-                                     key = id,
                                      size = 0.11)
 
 test_that("correct number of columns returned",{
