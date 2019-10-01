@@ -269,7 +269,7 @@ observations for each key:
 
 ``` r
 wages %>%
-  features(id, n_obs)
+  features(ln_wages, n_obs)
 #> # A tibble: 888 x 2
 #>       id n_obs
 #>    <int> <int>
@@ -295,7 +295,7 @@ number of observations:
 ``` r
 library(ggplot2)
 wages %>%
-  features(id, n_obs) %>%
+  features(ln_wages, n_obs) %>%
   ggplot(aes(x = n_obs)) + 
     geom_bar()
 ```
@@ -305,7 +305,7 @@ wages %>%
 ``` r
 
 wages %>%
-  features(id, n_obs) %>%
+  features(ln_wages, n_obs) %>%
   summary()
 #>        id            n_obs       
 #>  Min.   :   31   Min.   : 1.000  

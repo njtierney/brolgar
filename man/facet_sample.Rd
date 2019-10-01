@@ -4,12 +4,12 @@
 \alias{facet_sample}
 \title{Facet data into groups to facilitate exploration}
 \usage{
-facet_sample(n_per_facet = 5, n_facets = 12, nrow = NULL,
+facet_sample(n_per_facet = 3, n_facets = 12, nrow = NULL,
   ncol = NULL, scales = "fixed", shrink = TRUE,
   strip.position = "top")
 }
 \arguments{
-\item{n_per_facet}{Number of keys per facet you want to plot. Default is 5.}
+\item{n_per_facet}{Number of keys per facet you want to plot. Default is 3.}
 
 \item{n_facets}{Number of facets to create. Default is 12}
 
@@ -52,6 +52,6 @@ ggplot(heights,
            y = height_cm,
            group = country)) +
   geom_line() +
-  facet_sample(n_per_facet = 3,
+  facet_sample(n_per_facet = 1,
                n_facets = 12)
 }

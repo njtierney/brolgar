@@ -4,7 +4,7 @@
 #'   `tsibble::as_tsibble()`. Under the hood, `facet_strata` is powered by 
 #'   [stratify_keys()] and [sample_n_keys()].
 #'   
-#' @param n_per_facet Number of keys per facet you want to plot. Default is 5.
+#' @param n_per_facet Number of keys per facet you want to plot. Default is 3.
 #' @param n_facets Number of facets to create. Default is 12
 #' @inheritParams ggplot2::facet_wrap
 #' @import ggplot2
@@ -26,9 +26,9 @@
 #'            y = height_cm,
 #'            group = country)) +
 #'   geom_line() +
-#'   facet_sample(n_per_facet = 3,
+#'   facet_sample(n_per_facet = 1,
 #'                n_facets = 12)
-facet_sample <- function(n_per_facet = 5,
+facet_sample <- function(n_per_facet = 3,
                          n_facets = 12,
                          nrow = NULL, 
                          ncol = NULL, 

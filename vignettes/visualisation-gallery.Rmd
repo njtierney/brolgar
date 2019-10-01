@@ -116,7 +116,7 @@ ggplot(wages,
 
 ## Clever facets: `facet_sample`
 
-`facet_sample()` allows you to specify a number of samples per plot with, "n per plot" and the number of facets to show with "n facets". By default it splits the data into 12 facets with 5 per group:
+`facet_sample()` allows you to specify a number of samples per plot with, "n per plot" and the number of facets to show with "n facets". By default it splits the data into 12 facets with 3 per group:
 
 ```{r facet-sample}
 set.seed(2019-07-23-1937)

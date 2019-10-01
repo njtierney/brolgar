@@ -209,7 +209,7 @@ You can also use `n_obs()` inside features to return the number of observations 
 
 ```{r n-obs-features}
 wages %>%
-  features(id, n_obs)
+  features(ln_wages, n_obs)
 ```
 
 This returns a dataframe, with one row per key, and the number of observations for each key.
@@ -219,12 +219,12 @@ This could be further summarised to get a sense of the patterns of the number of
 ```{r summarise-n-obs}
 library(ggplot2)
 wages %>%
-  features(id, n_obs) %>%
+  features(ln_wages, n_obs) %>%
   ggplot(aes(x = n_obs)) + 
     geom_bar()
 
 wages %>%
-  features(id, n_obs) %>%
+  features(ln_wages, n_obs) %>%
   summary()
 ```
 

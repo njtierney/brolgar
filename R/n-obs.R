@@ -7,15 +7,18 @@
 #' @param names logical; If TRUE the result is a named vector named "n_obs", else
 #'   it is just the number of observations. 
 #'
+#' @note You cannot use `n_obs` with `features` counting the key variable like
+#'   so - `features(wages, id, n_obs)`. Instead, use any other variable.
+#'
 #' @return number of observations
 #' @export
 #'
 #' @examples
 #' n_obs(iris)
 #' n_obs(1:10)
-#' # return the number of observations
-#' wages %>% 
-#'   features(id, n_obs)
+#' add_n_obs(wages)
+#' wages %>%
+#'   features(ln_wages, n_obs) # can be any variable except id, the key.
 n_obs <- function(x, names = TRUE){
   if (names) {
     size <- c(n_obs = vctrs::vec_size(x))

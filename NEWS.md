@@ -1,3 +1,8 @@
+# brolgar 0.0.5.9000
+
+* `facet_sample()` now has a default of 3 per plot
+* resolve features(data ,.key, n_obs) error (#71) 
+
 # brolgar 0.0.4.9000
 
 * remove `feasts` from dependencies as the functions required in `brolgar` are

@@ -19,10 +19,14 @@ number of observations
 Returns the number of observations of a vector or data.frame. It uses
 \code{vctrs::vec_size()} under the hood.
 }
+\note{
+You cannot use \code{n_obs} with \code{features} counting the key variable like
+so - \code{features(wages, id, n_obs)}. Instead, use any other variable.
+}
 \examples{
 n_obs(iris)
 n_obs(1:10)
-# return the number of observations
-wages \%>\% 
-  features(id, n_obs)
+add_n_obs(wages)
+wages \%>\%
+  features(ln_wages, n_obs) # can be any variable except id, the key.
 }

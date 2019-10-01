@@ -55,6 +55,8 @@ reflect_right <- function(x){
   x[c(lhs, middle, rhs)]
 }
 
+classes <- function(x) purrr::map_chr(x, class)
+
 vec <- 1:5
 middle(vec)
 left(vec)

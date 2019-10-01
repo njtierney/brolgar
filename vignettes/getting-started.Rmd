@@ -47,11 +47,11 @@ n_keys(wages)
 
 Note that this is a single number, in this case, we have `r n_keys(wages)` observations.
 
-However, we might want to know how many observations we have for each individual. If we want the number of observations in each key (id), then we can use `n_obs()` with `features()`
+However, we might want to know how many observations we have for each individual. If we want the number of observations in each variable, then we can use `n_obs()` with `features()`.
 
 ```{r n-key-obs}
 wages %>%
-  features(id, n_obs)
+  features(ln_wages, n_obs)
 ```
 
 A plot of this can help provide better understanding of the distribution of observations.
@@ -59,7 +59,7 @@ A plot of this can help provide better understanding of the distribution of obse
 ```{r plot-nobs}
 library(ggplot2)
 wages %>%
-  features(id, n_obs) %>%
+  features(ln_wages, n_obs) %>%
   ggplot(aes(x = n_obs)) + 
   geom_bar()
 ```
@@ -152,7 +152,7 @@ And what if you want to show only a few samples per facet?
 
 ## Clever facets: `facet_sample`
 
-`facet_sample()` allows you to specify the number of keys per facet, and the number of facets with `n_per_facet` and `n_facets`. It splits the data into 12 facets with 5 per facet by default:
+`facet_sample()` allows you to specify the number of keys per facet, and the number of facets with `n_per_facet` and `n_facets`. It splits the data into 12 facets with 3 per facet by default:
 
 ```{r facet-sample}
 set.seed(2019-07-23-1937)
