@@ -89,6 +89,8 @@ navbar:
         href: articles/finding-features.html
       - text: Identify Interesting Observations
         href: articles/id-interesting-obs.html
+      - text: Exploring Mixed Effects Models
+        href: articles/mixed-effects-models
   - text: Reference
     href: reference/index.html
   - text: News
