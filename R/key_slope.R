@@ -42,7 +42,7 @@ key_slope.tbl_ts <- function(.data, formula, ...){
           )
         )
     ) %>%
-    tidyr::unnest() %>%
+    tidyr::unnest(cols = c(coef_tbl)) %>%
     rlang::set_names(coef_tbl_vars)
   
     
