@@ -4,7 +4,7 @@
 \alias{near_quantile}
 \title{Which values are nearest to any given quantiles}
 \usage{
-near_quantile(x, probs, tol)
+near_quantile(x, probs, tol = 0.01)
 }
 \arguments{
 \item{x}{vector}
@@ -12,7 +12,7 @@ near_quantile(x, probs, tol)
 \item{probs}{quantiles to calculate}
 
 \item{tol}{tolerance in terms of x that you will accept near to the
-quantile}
+quantile. Default is 0.01.}
 }
 \value{
 logical vector of TRUE/FALSE if number is close to a quantile

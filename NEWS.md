@@ -1,7 +1,9 @@
-# brolgar 0.0.5.9000
+# brolgar 0.0.5.9100
 
 * `facet_sample()` now has a default of 3 per plot
 * resolve features(data ,.key, n_obs) error (#71) 
+* For `near_quantile()`, the `tol` argument now defaults to 0.01.
+
 
 # brolgar 0.0.4.9000
 

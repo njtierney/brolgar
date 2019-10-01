@@ -87,7 +87,7 @@ near_between <- function(x,
 #' @param x vector
 #' @param probs quantiles to calculate
 #' @param tol tolerance in terms of x that you will accept near to the 
-#'   quantile
+#'   quantile. Default is 0.01.
 #'
 #' @return logical vector of TRUE/FALSE if number is close to a quantile
 #' @examples
@@ -106,7 +106,7 @@ near_between <- function(x,
 #'   filter(min_near_q3)
 #' @export
 
-near_quantile <- function(x, probs, tol){
+near_quantile <- function(x, probs, tol = 0.01){
   
   quant <- qtl(x, probs = probs)
   upper <- purrr::map_dbl(quant, sum, tol)
