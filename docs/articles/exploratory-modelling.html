@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Exploratory Modelling • brolgar</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Exploratory Modelling">
@@ -32,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5.9100</span>
       </span>
     </div>
 
@@ -63,6 +64,9 @@
     <li>
       <a href="../articles/id-interesting-obs.html">Identify Interesting Observations</a>
     </li>
+    <li>
+      <a href="../articles/mixed-effects-models">Exploring Mixed Effects Models</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -73,7 +77,7 @@
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
-<form class="navbar-form navbar-right" role="search">
+<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
@@ -87,6 +91,7 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -100,7 +105,7 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(brolgar)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(brolgar)</span></code></pre></div>
 <p>It can be useful to fit a model to explore your data. One technique is to fit a linear model for each group in a dataset. For example, you could fit a linear model for each key in the data.</p>
 <p><code>brolgar</code> provides a helper function to help with this, called <code><a href="../reference/key_slope.html">key_slope()</a></code>.</p>
 <p><code><a href="../reference/key_slope.html">key_slope()</a></code> returns the intercept and slope estimate for each key, given a linear model formula. We can get the number of observations, and slope information for each individual to identify those that are decreasing over time.</p>
@@ -120,7 +125,7 @@
 <span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt; 10   207       1.62    0.0884</span></span>
 <span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt; # … with 878 more rows</span></span></code></pre></div>
 <p>We can then join these summaries back to the data:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt; </span></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
@@ -149,23 +154,23 @@
 <span id="cb3-27"><a href="#cb3-27"></a><span class="co">#&gt; # … with 6,392 more rows, and 3 more variables: hispanic &lt;int&gt;,</span></span>
 <span id="cb3-28"><a href="#cb3-28"></a><span class="co">#&gt; #   high_grade &lt;int&gt;, unemploy_rate &lt;dbl&gt;</span></span></code></pre></div>
 <p>And highlight those individuals with a negative slope using <code>gghighlight</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gghighlight)</span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gghighlight)</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; Loading required package: ggplot2</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a></span>
 <span id="cb4-4"><a href="#cb4-4"></a>wages_slope <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># workaround for gghighlight + tsibble</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/reexports">aes</a></span>(<span class="dt">x =</span> xp, </span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/reexports.html">aes</a></span>(<span class="dt">x =</span> xp, </span>
 <span id="cb4-7"><a href="#cb4-7"></a>             <span class="dt">y =</span> ln_wages, </span>
 <span id="cb4-8"><a href="#cb4-8"></a>             <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb4-9"><a href="#cb4-9"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/gghighlight">gghighlight</a></span>(.slope_xp <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/gghighlight.html">gghighlight</a></span>(.slope_xp <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
 <p><img src="exploratory-modelling_files/figure-html/use-gg-highlight-1.png" width="700"></p>
 <div id="find-keys-near-other-summaries-with-keys_near" class="section level1">
 <h1 class="hasAnchor">
-<a href="#find-keys-near-other-summaries-with-keys_near" class="anchor"></a>Find keys near other summaries with <code><a href="../reference/keys_near.html">keys_near()</a></code>
+<a href="#find-keys-near-other-summaries-with-keys_near" class="anchor"></a>Find keys near other summaries with <code>keys_near()</code>
 </h1>
 <p>We might want to further summarise our exploratory modelling by finding those slopes that are near a five number summary values:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(wages_slope<span class="op">$</span>.slope_xp)</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(wages_slope<span class="op">$</span>.slope_xp)</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt;     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's </span></span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="co">#&gt; -4.57692 -0.00189  0.04519  0.04490  0.08458 13.21569       38</span></span></code></pre></div>
 <p>Finding those groups that are near these values can be surprisingly challenging!</p>
@@ -173,19 +178,19 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>wages_slope <span class="op">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw"><a href="../reference/keys_near.html">keys_near</a></span>(<span class="dt">key =</span> id,</span>
 <span id="cb6-3"><a href="#cb6-3"></a>            <span class="dt">var =</span> .slope_xp)</span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; # A tibble: 31 x 5</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; # Groups:   stat [5]</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; # A tibble: 31 x 5</span></span>
 <span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt;       id .slope_xp stat  stat_value stat_diff</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
 <span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt;  1  7918  -4.58    min     -4.58            0</span></span>
 <span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt;  2  7918  -4.58    min     -4.58            0</span></span>
 <span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt;  3  7918  -4.58    min     -4.58            0</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt;  4  2092  -0.00189 q25     -0.00189         0</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt;  5  2092  -0.00189 q25     -0.00189         0</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt;  6  2092  -0.00189 q25     -0.00189         0</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;  7  2092  -0.00189 q25     -0.00189         0</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt;  8  2092  -0.00189 q25     -0.00189         0</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt;  9  2092  -0.00189 q25     -0.00189         0</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt;  4  2092  -0.00189 q_25    -0.00189         0</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt;  5  2092  -0.00189 q_25    -0.00189         0</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt;  6  2092  -0.00189 q_25    -0.00189         0</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;  7  2092  -0.00189 q_25    -0.00189         0</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt;  8  2092  -0.00189 q_25    -0.00189         0</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt;  9  2092  -0.00189 q_25    -0.00189         0</span></span>
 <span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; 10  6863   0.0452  med      0.0452          0</span></span>
 <span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt; # … with 21 more rows</span></span></code></pre></div>
 <p>Here it returns the <code>id</code>, the <code>.slope_xp</code>, and the statistic that it was closest to, and what the difference between the slope_xp and the statistic.</p>
@@ -194,22 +199,24 @@
 <span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw"><a href="../reference/keys_near.html">keys_near</a></span>(<span class="dt">key =</span> id,</span>
 <span id="cb7-3"><a href="#cb7-3"></a>            <span class="dt">var =</span> .slope_xp) <span class="op">%&gt;%</span></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(wages, <span class="dt">by =</span> <span class="st">"id"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/reexports">aes</a></span>(<span class="dt">x =</span> xp,</span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/reexports.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
 <span id="cb7-6"><a href="#cb7-6"></a>             <span class="dt">y =</span> ln_wages,</span>
 <span id="cb7-7"><a href="#cb7-7"></a>             <span class="dt">group =</span> id,</span>
 <span id="cb7-8"><a href="#cb7-8"></a>             <span class="dt">colour =</span> stat)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="st">  </span><span class="kw">geom_line</span>()</span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt; Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></span></code></pre></div>
 <p><img src="exploratory-modelling_files/figure-html/keys-near-plot-1.png" width="700"></p>
 <p>You can read more about <code><a href="../reference/keys_near.html">keys_near()</a></code> in the <a href="http://brolgar.njtierney.com/articles/id-interesting-obs.html">Identifying interesting observations</a> vignette.</p>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#find-keys-near-other-summaries-with-keys_near">Find keys near other summaries with <code><a href="--/reference/keys_near-html">keys_near()</a></code></a></li>
+<li><a href="#find-keys-near-other-summaries-with-keys_near">Find keys near other summaries with <code>keys_near()</code></a></li>
       </ul>
 </div>
       </div>
@@ -217,13 +224,15 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Nicholas Tierney, Di Cook, Tania Prvan.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 

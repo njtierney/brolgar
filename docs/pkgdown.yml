@@ -1,5 +1,5 @@
 pandoc: 2.7.3
-pkgdown: 1.3.0
+pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
   exploratory-modelling: exploratory-modelling.html
@@ -7,6 +7,7 @@ articles:
   getting-started: getting-started.html
   id-interesting-obs: id-interesting-obs.html
   longitudinal-data-structures: longitudinal-data-structures.html
+  mixed-effects-models: mixed-effects-models.html
   visualisation-gallery: visualisation-gallery.html
 urls:
   reference: http://brolgar.njtierney.com//reference

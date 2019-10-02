@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Getting Started • brolgar</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Getting Started">
@@ -32,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5.9100</span>
       </span>
     </div>
 
@@ -63,6 +64,9 @@
     <li>
       <a href="../articles/id-interesting-obs.html">Identify Interesting Observations</a>
     </li>
+    <li>
+      <a href="../articles/mixed-effects-models">Exploring Mixed Effects Models</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -73,7 +77,7 @@
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
-<form class="navbar-form navbar-right" role="search">
+<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
@@ -87,6 +91,7 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -100,7 +105,7 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(brolgar)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(brolgar)</span></code></pre></div>
 <p>When we first get a longitudinal dataset, you need to understand some of its structure. This vignette demonstrates part of the process of understanding your new longitudinal data.</p>
 <div id="setting-up-your-data" class="section level1">
 <h1 class="hasAnchor">
@@ -123,9 +128,9 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://tsibble.tidyverts.org/reference/key-data.html">n_keys</a></span>(wages)</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt; [1] 888</span></span></code></pre></div>
 <p>Note that this is a single number, in this case, we have 888 observations.</p>
-<p>However, we might want to know how many observations we have for each individual. If we want the number of observations in each key (id), then we can use <code><a href="../reference/n_obs.html">n_obs()</a></code> with <code><a href="https://fabletools.tidyverts.org/reference/features.html">features()</a></code></p>
+<p>However, we might want to know how many observations we have for each individual. If we want the number of observations in each variable, then we can use <code><a href="../reference/n_obs.html">n_obs()</a></code> with <code><a href="https://fabletools.tidyverts.org/reference/features.html">features()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>wages <span class="op">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(id, n_obs)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(ln_wages, n_obs)</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt; # A tibble: 888 x 2</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt;       id n_obs</span></span>
 <span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt;    &lt;int&gt; &lt;int&gt;</span></span>
@@ -141,15 +146,15 @@
 <span id="cb4-15"><a href="#cb4-15"></a><span class="co">#&gt; 10   207    11</span></span>
 <span id="cb4-16"><a href="#cb4-16"></a><span class="co">#&gt; # … with 878 more rows</span></span></code></pre></div>
 <p>A plot of this can help provide better understanding of the distribution of observations.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</span>
 <span id="cb5-2"><a href="#cb5-2"></a>wages <span class="op">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="st">  </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(id, n_obs) <span class="op">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="st">  </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(ln_wages, n_obs) <span class="op">%&gt;%</span></span>
 <span id="cb5-4"><a href="#cb5-4"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> n_obs)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb5-5"><a href="#cb5-5"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span>()</span></code></pre></div>
 <p><img src="getting-started_files/figure-html/plot-nobs-1.png" width="700"></p>
 <div id="add_n_obs" class="section level3">
 <h3 class="hasAnchor">
-<a href="#add_n_obs" class="anchor"></a><code><a href="../reference/add_n_obs.html">add_n_obs()</a></code>
+<a href="#add_n_obs" class="anchor"></a><code>add_n_obs()</code>
 </h3>
 <p>You can add information about the number of observations for each key with <code><a href="../reference/add_n_obs.html">add_n_obs()</a></code>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>wages <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/add_n_obs.html">add_n_obs</a></span>()</span>
@@ -169,7 +174,7 @@
 <span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; 10    36 0.983    10     1.80     1        0.983     0        0          9</span></span>
 <span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; # … with 6,392 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span></code></pre></div>
 <p>Which you can then use to <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> observations:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&gt; </span></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
@@ -204,10 +209,10 @@
 <p>To avoid staring at a plate of spaghetti, you can look at a random subset of the data. Brolgar provides some intuitive functions to help with this.</p>
 <div id="sample_n_keys" class="section level3">
 <h3 class="hasAnchor">
-<a href="#sample_n_keys" class="anchor"></a><code><a href="../reference/sample-n-frac-keys.html">sample_n_keys()</a></code>
+<a href="#sample_n_keys" class="anchor"></a><code>sample_n_keys()</code>
 </h3>
 <p>In <code>dplyr</code>, you can use <code><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_n()</a></code> to sample <code>n</code> observations. Similarly, with <code>brolgar</code>, you can take a random sample of <code>n</code> keys using <code><a href="../reference/sample-n-frac-keys.html">sample_n_keys()</a></code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">2019-7-15-1300</span>)</span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">2019-7-15-1300</span>)</span>
 <span id="cb8-2"><a href="#cb8-2"></a>wages <span class="op">%&gt;%</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">10</span>) <span class="op">%&gt;%</span></span>
 <span id="cb8-4"><a href="#cb8-4"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
@@ -221,7 +226,7 @@
 <h2 class="hasAnchor">
 <a href="#filtering-observations" class="anchor"></a>Filtering observations</h2>
 <p>You can combine <code><a href="../reference/sample-n-frac-keys.html">sample_n_keys()</a></code> with <code><a href="../reference/add_n_obs.html">add_n_obs()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> to only show keys with many observations:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</span>
 <span id="cb9-2"><a href="#cb9-2"></a>wages <span class="op">%&gt;%</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="st">  </span><span class="kw"><a href="../reference/add_n_obs.html">add_n_obs</a></span>() <span class="op">%&gt;%</span></span>
 <span id="cb9-4"><a href="#cb9-4"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n_obs <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span></span>
@@ -239,8 +244,8 @@
 <a href="#clever-facets-facet_strata" class="anchor"></a>Clever facets: <code>facet_strata</code>
 </h2>
 <p><code>brolgar</code> provides some clever facets to help make it easier to explore your data. <code><a href="../reference/facet_strata.html">facet_strata()</a></code> splits the data into 12 groups by default:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">2019-07-23-1936</span>)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">2019-07-23-1936</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</span>
 <span id="cb10-3"><a href="#cb10-3"></a><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(wages,</span>
 <span id="cb10-4"><a href="#cb10-4"></a>       <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
 <span id="cb10-5"><a href="#cb10-5"></a>           <span class="dt">y =</span> ln_wages,</span>
@@ -249,8 +254,8 @@
 <span id="cb10-8"><a href="#cb10-8"></a><span class="st">  </span><span class="kw"><a href="../reference/facet_strata.html">facet_strata</a></span>()</span></code></pre></div>
 <p><img src="getting-started_files/figure-html/facet-strata-1.png" width="700"></p>
 <p>But you could ask it to split the data into a more groups</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">2019-07-25-1450</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">2019-07-25-1450</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(wages,</span>
 <span id="cb11-4"><a href="#cb11-4"></a>       <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
 <span id="cb11-5"><a href="#cb11-5"></a>           <span class="dt">y =</span> ln_wages,</span>
@@ -264,8 +269,8 @@
 <h2 class="hasAnchor">
 <a href="#clever-facets-facet_sample" class="anchor"></a>Clever facets: <code>facet_sample</code>
 </h2>
-<p><code><a href="../reference/facet_sample.html">facet_sample()</a></code> allows you to specify the number of keys per facet, and the number of facets with <code>n_per_facet</code> and <code>n_facets</code>. It splits the data into 12 facets with 5 per facet by default:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">2019-07-23-1937</span>)</span>
+<p><code><a href="../reference/facet_sample.html">facet_sample()</a></code> allows you to specify the number of keys per facet, and the number of facets with <code>n_per_facet</code> and <code>n_facets</code>. It splits the data into 12 facets with 3 per facet by default:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">2019-07-23-1937</span>)</span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(wages,</span>
 <span id="cb12-3"><a href="#cb12-3"></a>       <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
 <span id="cb12-4"><a href="#cb12-4"></a>           <span class="dt">y =</span> ln_wages,</span>
@@ -274,7 +279,7 @@
 <span id="cb12-7"><a href="#cb12-7"></a><span class="st">  </span><span class="kw"><a href="../reference/facet_sample.html">facet_sample</a></span>()</span></code></pre></div>
 <p><img src="getting-started_files/figure-html/facet-sample-1.png" width="700"></p>
 <p>But you can specify your own number:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">2019-07-25-1533</span>)</span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">2019-07-25-1533</span>)</span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(wages,</span>
 <span id="cb13-3"><a href="#cb13-3"></a>       <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
 <span id="cb13-4"><a href="#cb13-4"></a>           <span class="dt">y =</span> ln_wages,</span>
@@ -305,7 +310,7 @@
 <span id="cb14-14"><a href="#cb14-14"></a><span class="co">#&gt; 10   207       1.62    0.0884</span></span>
 <span id="cb14-15"><a href="#cb14-15"></a><span class="co">#&gt; # … with 878 more rows</span></span></code></pre></div>
 <p>We can then join these summaries back to the data:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</span>
 <span id="cb15-2"><a href="#cb15-2"></a>wages_slope &lt;-<span class="st"> </span><span class="kw"><a href="../reference/key_slope.html">key_slope</a></span>(wages,ln_wages <span class="op">~</span><span class="st"> </span>xp) <span class="op">%&gt;%</span></span>
 <span id="cb15-3"><a href="#cb15-3"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(wages, <span class="dt">by =</span> <span class="st">"id"</span>) </span>
 <span id="cb15-4"><a href="#cb15-4"></a></span>
@@ -326,15 +331,15 @@
 <span id="cb15-19"><a href="#cb15-19"></a><span class="co">#&gt; # … with 6,392 more rows, and 3 more variables: hispanic &lt;int&gt;,</span></span>
 <span id="cb15-20"><a href="#cb15-20"></a><span class="co">#&gt; #   high_grade &lt;int&gt;, unemploy_rate &lt;dbl&gt;</span></span></code></pre></div>
 <p>And highlight those individuals with a negative slope using <code>gghighlight</code>:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gghighlight)</span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gghighlight)</span>
 <span id="cb16-2"><a href="#cb16-2"></a></span>
 <span id="cb16-3"><a href="#cb16-3"></a>wages_slope <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb16-4"><a href="#cb16-4"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># workaround for gghighlight + tsibble</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/reexports">aes</a></span>(<span class="dt">x =</span> xp, </span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/reexports.html">aes</a></span>(<span class="dt">x =</span> xp, </span>
 <span id="cb16-6"><a href="#cb16-6"></a>             <span class="dt">y =</span> ln_wages, </span>
 <span id="cb16-7"><a href="#cb16-7"></a>             <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb16-8"><a href="#cb16-8"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/gghighlight">gghighlight</a></span>(.slope_xp <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/gghighlight.html">gghighlight</a></span>(.slope_xp <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
 <p><img src="getting-started_files/figure-html/use-gg-highlight-1.png" width="700"></p>
 <div id="find-keys-near-other-summaries-with-keys_near" class="section level3">
 <h3 class="hasAnchor">
@@ -345,10 +350,10 @@
 <span id="cb17-2"><a href="#cb17-2"></a><span class="st">  </span><span class="kw"><a href="../reference/keys_near.html">keys_near</a></span>(<span class="dt">key =</span> id,</span>
 <span id="cb17-3"><a href="#cb17-3"></a>            <span class="dt">var =</span> .slope_xp,</span>
 <span id="cb17-4"><a href="#cb17-4"></a>            <span class="dt">funs =</span> l_three_num)</span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="co">#&gt; # A tibble: 13 x 5</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a><span class="co">#&gt; # Groups:   stat [3]</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="co">#&gt; Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="co">#&gt; # A tibble: 13 x 5</span></span>
 <span id="cb17-7"><a href="#cb17-7"></a><span class="co">#&gt;       id .slope_xp stat  stat_value stat_diff</span></span>
-<span id="cb17-8"><a href="#cb17-8"></a><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
 <span id="cb17-9"><a href="#cb17-9"></a><span class="co">#&gt;  1  7918   -4.58   min      -4.58           0</span></span>
 <span id="cb17-10"><a href="#cb17-10"></a><span class="co">#&gt;  2  7918   -4.58   min      -4.58           0</span></span>
 <span id="cb17-11"><a href="#cb17-11"></a><span class="co">#&gt;  3  7918   -4.58   min      -4.58           0</span></span>
@@ -367,11 +372,12 @@
 <span id="cb18-3"><a href="#cb18-3"></a>            <span class="dt">var =</span> .slope_xp,</span>
 <span id="cb18-4"><a href="#cb18-4"></a>            <span class="dt">funs =</span> l_three_num) <span class="op">%&gt;%</span></span>
 <span id="cb18-5"><a href="#cb18-5"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(wages, <span class="dt">by =</span> <span class="st">"id"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/reexports">aes</a></span>(<span class="dt">x =</span> xp,</span>
+<span id="cb18-6"><a href="#cb18-6"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/reexports.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
 <span id="cb18-7"><a href="#cb18-7"></a>             <span class="dt">y =</span> ln_wages,</span>
 <span id="cb18-8"><a href="#cb18-8"></a>             <span class="dt">group =</span> id,</span>
 <span id="cb18-9"><a href="#cb18-9"></a>             <span class="dt">colour =</span> stat)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb18-10"><a href="#cb18-10"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</span></code></pre></div>
+<span id="cb18-10"><a href="#cb18-10"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</span>
+<span id="cb18-11"><a href="#cb18-11"></a><span class="co">#&gt; Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></span></code></pre></div>
 <p><img src="getting-started_files/figure-html/keys-near-plot-1.png" width="700"></p>
 </div>
 </div>
@@ -381,7 +387,7 @@
 <p>You can extract <code>features</code> of longitudinal data using the <code>features</code> function, from <code>fabletools</code>. You can, for example, calculate the minimum of a given variable for each key by providing a named list like so:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>wages <span class="op">%&gt;%</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a><span class="st">  </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(ln_wages, </span>
-<span id="cb19-3"><a href="#cb19-3"></a>           <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">min =</span> min))</span>
+<span id="cb19-3"><a href="#cb19-3"></a>           <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">min =</span> min))</span>
 <span id="cb19-4"><a href="#cb19-4"></a><span class="co">#&gt; # A tibble: 888 x 2</span></span>
 <span id="cb19-5"><a href="#cb19-5"></a><span class="co">#&gt;       id   min</span></span>
 <span id="cb19-6"><a href="#cb19-6"></a><span class="co">#&gt;    &lt;int&gt; &lt;dbl&gt;</span></span>
@@ -439,17 +445,18 @@
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>wages <span class="op">%&gt;%</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a><span class="st">  </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(ln_wages, feat_monotonic) <span class="op">%&gt;%</span></span>
 <span id="cb22-3"><a href="#cb22-3"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(wages, <span class="dt">by =</span> <span class="st">"id"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/reexports">aes</a></span>(<span class="dt">x =</span> xp,</span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/reexports.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
 <span id="cb22-5"><a href="#cb22-5"></a>             <span class="dt">y =</span> ln_wages,</span>
 <span id="cb22-6"><a href="#cb22-6"></a>             <span class="dt">group =</span> id)) <span class="op">+</span></span>
 <span id="cb22-7"><a href="#cb22-7"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb22-8"><a href="#cb22-8"></a><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/gghighlight/topics/gghighlight">gghighlight</a></span>(increase)</span></code></pre></div>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/gghighlight.html">gghighlight</a></span>(increase)</span></code></pre></div>
 <p><img src="getting-started_files/figure-html/features-left-join-1.png" width="700"></p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -474,13 +481,15 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Nicholas Tierney, Di Cook, Tania Prvan.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
