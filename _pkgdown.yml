@@ -90,7 +90,7 @@ navbar:
       - text: Identify Interesting Observations
         href: articles/id-interesting-obs.html
       - text: Exploring Mixed Effects Models
-        href: articles/mixed-effects-models
+        href: articles/mixed-effects-models.html
   - text: Reference
     href: reference/index.html
   - text: News

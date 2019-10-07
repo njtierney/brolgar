@@ -65,7 +65,7 @@
       <a href="../articles/id-interesting-obs.html">Identify Interesting Observations</a>
     </li>
     <li>
-      <a href="../articles/mixed-effects-models">Exploring Mixed Effects Models</a>
+      <a href="../articles/mixed-effects-models.html">Exploring Mixed Effects Models</a>
     </li>
   </ul>
 </li>
@@ -120,21 +120,21 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2"></a>wages <span class="op">%&gt;%</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">20</span>)</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; # A tsibble: 146 x 9 [!]</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; # A tsibble: 173 x 9 [!]</span></span>
 <span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; # Key:       id [20]</span></span>
 <span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade</span></span>
 <span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt;    &lt;int&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt;  1   155     1.78 0.985     0            0     0        0          9</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt;  2   155     2.08 2.02      0            0     0        0          9</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt;  3   155     1.54 2.97      0            0     0        0          9</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt;  4   155     2.16 3.83      0            0     0        0          9</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt;  5   155     2.32 4.56      0            0     0        0          9</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt;  6   155     1.73 5.72      0            0     0        0          9</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt;  7   155     2.22 7.14      0            0     0        0          9</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt;  8   155     2.46 7.97      0            0     0        0          9</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt;  9   155     2.33 8.94      0            0     0        0          9</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#&gt; 10   155     2.61 9.71      0            0     0        0          9</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co">#&gt; # … with 136 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt;  1   394     2.38 1.89      0            0     1        0         10</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt;  2   394     1.93 2.77      0            0     1        0         10</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt;  3   394     1.61 3.01      0            0     1        0         10</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt;  4   767     1.70 0.173     0            0     0        0          9</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt;  5   767     1.60 0.892     0            0     0        0          9</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt;  6   767     1.71 1.45      0            0     0        0          9</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt;  7   767     1.74 1.73      0            0     0        0          9</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt;  8   767     1.26 2.29      0            0     0        0          9</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt;  9   767     1.68 2.71      0            0     0        0          9</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#&gt; 10   767     1.57 3.38      0            0     0        0          9</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co">#&gt; # … with 163 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span>
 <span id="cb2-19"><a href="#cb2-19"></a></span>
 <span id="cb2-20"><a href="#cb2-20"></a>wages <span class="op">%&gt;%</span></span>
 <span id="cb2-21"><a href="#cb2-21"></a><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">20</span>) <span class="op">%&gt;%</span></span>
