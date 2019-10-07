@@ -23,43 +23,4 @@ test_if_null <- function(x, message = "Input must not be NULL"){
   }
 }
 
-#- Palette helper functions
-
-middle <- function(x){
-  floor(stats::median(seq_along(x)))
-}
-
-
-left <- function(x){
-  1:middle(x)
-}
-
-
-right <- function(x){
-  middle(x):length(x)
-}
-
-
-reflect_left <- function(x){
-  middle <- middle(x)
-  lhs <- left(x)[-middle]
-  rhs <- rev(lhs)
-  x[c(lhs, middle, rhs)]
-}
-
-
-reflect_right <- function(x){
-  middle <- middle(x)
-  rhs <- right(x)[-1]
-  lhs <- rev(rhs)
-  x[c(lhs, middle, rhs)]
-}
-
 classes <- function(x) purrr::map_chr(x, class)
-
-vec <- 1:5
-middle(vec)
-left(vec)
-right(vec)
-reflect_left(vec)
-reflect_right(vec)
