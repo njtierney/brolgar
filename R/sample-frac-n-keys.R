@@ -19,22 +19,10 @@
 sample_n_keys <- function(.data, size){
   test_if_tsibble(.data)
   test_if_null(.data)
-  UseMethod("sample_n_keys")
-}
 
-#' @export
-sample_n_keys.tbl_ts <- function(.data, size){
-  
-  key_chr <- tsibble::key_vars(.data)
-
-  unique_keys <- unique(.data[[key_chr]])
-  
-  sample_unique_keys <- sample(unique_keys, size)
-
-  the_matches <- .data[[key_chr]] %in% sample_unique_keys
-  
-  dplyr::slice(.data, which(the_matches))
-  
+  key_indices <- tsibble::key_rows(.data)
+  sample_unique_keys <- sample(key_indices, size)
+  dplyr::slice(.data, vctrs::vec_c(!!!sample_unique_keys))
 }
   
 #' @name sample-n-frac-keys
@@ -48,25 +36,5 @@ sample_n_keys.tbl_ts <- function(.data, size){
 #'   geom_line()
 #' @export
 sample_frac_keys <- function(.data, size){
-  test_if_tsibble(.data)
-  test_if_null(.data)
-  UseMethod("sample_frac_keys")
-}
-
-#' @inheritParams sample-n-frac-keys
-#' @export
-sample_frac_keys.tbl_ts <- function(.data, size){
-  
-  key_chr <- tsibble::key_vars(.data)
-  
-  unique_keys <- unique(.data[[key_chr]])
-  
-  
-  sample_unique_keys <- sample(unique_keys, 
-                               round(size * tsibble::n_keys(.data)))
-  
-  the_matches <- .data[[key_chr]] %in% sample_unique_keys
-  
-  dplyr::slice(.data, which(the_matches))
-  
+  sample_n_keys(.data, size = round(size * tsibble::n_keys(.data)))
 }
