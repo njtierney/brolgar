@@ -4,9 +4,16 @@
 \alias{facet_strata}
 \title{Facet data into groups to facilitate exploration}
 \usage{
-facet_strata(n_strata = 12, along = NULL, fun = mean, nrow = NULL,
-  ncol = NULL, scales = "fixed", shrink = TRUE,
-  strip.position = "top")
+facet_strata(
+  n_strata = 12,
+  along = NULL,
+  fun = mean,
+  nrow = NULL,
+  ncol = NULL,
+  scales = "fixed",
+  shrink = TRUE,
+  strip.position = "top"
+)
 }
 \arguments{
 \item{n_strata}{number of groups to create}

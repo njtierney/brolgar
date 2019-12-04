@@ -41,6 +41,14 @@ n_obs <- function(x, names = TRUE){
 #'
 #' @return dataframe with `n_obs`, the number of observations per key added.
 #' @export
+#' 
+#' @examples
+#' library(dplyr)
+#' # you can explore the data to see those cases that have exactly one 
+#'   observation
+#' heights %>% 
+#'   add_n_obs() %>% 
+#'   filter(n_obs == 1)
 add_n_obs <- function(.data, ...){
   test_if_null(.data)
   test_if_tsibble(.data)

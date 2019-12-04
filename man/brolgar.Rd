@@ -3,7 +3,6 @@
 \docType{package}
 \name{brolgar}
 \alias{brolgar}
-\alias{brolgar-package}
 \title{brolgar}
 \description{
 \code{brolgar} stands for: \strong{BR}owse over \strong{L}ongitudinal data \strong{G}raphically

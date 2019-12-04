@@ -4,9 +4,15 @@
 \alias{facet_sample}
 \title{Facet data into groups to facilitate exploration}
 \usage{
-facet_sample(n_per_facet = 3, n_facets = 12, nrow = NULL,
-  ncol = NULL, scales = "fixed", shrink = TRUE,
-  strip.position = "top")
+facet_sample(
+  n_per_facet = 3,
+  n_facets = 12,
+  nrow = NULL,
+  ncol = NULL,
+  scales = "fixed",
+  shrink = TRUE,
+  strip.position = "top"
+)
 }
 \arguments{
 \item{n_per_facet}{Number of keys per facet you want to plot. Default is 3.}
