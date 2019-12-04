@@ -51,10 +51,10 @@ add_key_slope <- function(.data, formula){
   test_if_null(formula)
   test_if_null(.data)
   
-  str_key <- purrr::map_chr(tsibble::key(.data), rlang::as_label)
+  str_key <- tsibble::key_vars(.data)
   
   key_slope(.data = .data,
-            formula = {{ formula }}) %>%
+            formula = formula) %>%
     dplyr::left_join(.data,
                      .,
                       by = str_key) %>%
