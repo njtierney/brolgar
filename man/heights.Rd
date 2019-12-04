@@ -4,13 +4,14 @@
 \name{heights}
 \alias{heights}
 \title{World Height Data}
-\format{An object of class \code{tbl_ts} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 1499 rows and 4 columns.}
+\format{An object of class \code{tbl_ts} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 1490 rows and 4 columns.}
 \usage{
 heights
 }
 \description{
-Average male heights in 165 countries from 1810-1989, with a
-smaller number of countries from 1500-1800.
+Average male heights in 144 countries from 1810-1989, with a
+smaller number of countries from 1500-1800. Data has been filtered to
+only include countries with more than one observation.
 }
 \details{
 \code{heights} is stored as a time series \code{tsibble} object. It contains

@@ -1,9 +1,8 @@
 repos:
 -   repo: https://github.com/lorenzwalthert/pre-commit-hooks
-    rev: v0.0.0.9014
+    rev: v0.0.0.9024
     hooks: 
     -   id: parsable-R
     -   id: no-browser-statement
     -   id: readme-rmd-rendered
-    -   id: roxygenize
     -   id: use-tidy-description

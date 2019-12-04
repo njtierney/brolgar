@@ -3,8 +3,10 @@ library(here)
 library(dplyr)
 library(tsibble)
 library(countrycode)
+library(brolgar)
 
-heights <- read_excel(here("data-raw",
+heights <- 
+  read_excel(here("data-raw",
                            "Height_Compact.xlsx"),
                       sheet = 2) %>%
   rename(country = country.name,
@@ -16,6 +18,11 @@ heights <- read_excel(here("data-raw",
                                  destination = "continent")) %>%
   as_tsibble(key = country,
              index = year,
-             regular = FALSE)
+             regular = FALSE) %>% 
+  add_n_obs() %>% 
+  filter(n_obs > 1) %>% 
+  select(country, continent, year, height_cm)
+
+heights
 
 usethis::use_data(heights, overwrite = TRUE)

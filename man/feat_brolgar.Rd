@@ -2,11 +2,8 @@
 % Please edit documentation in R/features.R
 \name{feat_brolgar}
 \alias{feat_brolgar}
-\alias{feat_three_num}
-\title{Feature: Three number summary}
+\title{Feature: All from brolgar}
 \usage{
-feat_three_num(x, ...)
-
 feat_brolgar(x, ...)
 }
 \arguments{
@@ -15,7 +12,5 @@ feat_brolgar(x, ...)
 \item{...}{Further arguments passed to other functions.}
 }
 \description{
-This feature returns the three number summary - min, median, and maximum
-
 This feature returns all features in brolgar.
 }

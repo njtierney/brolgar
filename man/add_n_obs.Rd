@@ -18,3 +18,11 @@ dataframe with \code{n_obs}, the number of observations per key added.
 Here, we are not counting the number of rows in the dataset, but rather
 we are counting the number observations for each keys in the data.
 }
+\examples{
+library(dplyr)
+# you can explore the data to see those cases that have exactly one 
+  observation
+heights \%>\% 
+  add_n_obs() \%>\% 
+  filter(n_obs == 1)
+}
