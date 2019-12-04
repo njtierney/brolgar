@@ -81,6 +81,28 @@ wages %>%
   filter(n_obs > 3)
 ```
 
+We can also look at the distance between experience, to understand what the distribution of experience is
+
+```{r wages-xp}
+wages_xp_range <- wages %>% 
+  features(xp,
+           feat_ranges)
+
+ggplot(wages_xp_range,
+       aes(x = range_diff)) + 
+  geom_histogram()
+```
+
+We can then explore the range of experience to see what the most common experience is
+
+```{r wages-xp-prop}
+wages_xp_range %>% 
+  count(range_diff) %>% 
+  mutate(prop = n / sum(n)) 
+
+```
+
+
 
 ## Efficiently exploring longitudinal data
 
