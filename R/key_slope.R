@@ -20,31 +20,25 @@ key_slope <- function(.data, formula, ...) {
 key_slope.tbl_ts <- function(.data, formula, ...){
 
   quo_formula <- rlang::enquo(formula)
-  f_rhs_vars <- all.vars(
-    rlang::f_rhs(
-      stats::as.formula(
-        rlang::as_label(quo_formula)
-      )
-    )
-  )
-  coef_tbl_vars <- c(tsibble::key_vars(.data), ".intercept", 
-                     paste0(".slope_", f_rhs_vars))
+  f_rhs_vars <- all.vars(rlang::f_rhs(formula))
+  
+  coef_tbl_vars <- c(
+    tsibble::key_vars(.data), 
+    ".intercept", 
+    glue::glue(".slope_{f_rhs_vars}")
+)
   .data %>%
     tibble::as_tibble() %>%
     dplyr::group_by(!!!tsibble::key(.data)) %>% 
     dplyr::summarise(
       coef_tbl = list(
         as.data.frame(
-          t(stats::coef(stats::lm(
-            stats::as.formula(
-              rlang::as_label(quo_formula)
-              ))))
+          t(stats::coef(stats::lm(!!quo_formula)))
+              )
           )
-        )
-    ) %>%
+        ) %>%
     tidyr::unnest(cols = c(coef_tbl)) %>%
     rlang::set_names(coef_tbl_vars)
-  
     
   
 }
@@ -56,12 +50,11 @@ add_key_slope <- function(.data, formula){
   test_if_tsibble(.data)
   test_if_null(formula)
   test_if_null(.data)
-  quo_formula <- rlang::enquo(formula)
   
   str_key <- purrr::map_chr(tsibble::key(.data), rlang::as_label)
   
   key_slope(.data = .data,
-            formula = !!quo_formula) %>%
+            formula = {{ formula }}) %>%
     dplyr::left_join(.data,
                      .,
                       by = str_key) %>%
