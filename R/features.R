@@ -3,7 +3,6 @@
 #' This feature returns the three number summary - min, median, and maximum
 #' @param x A vector to extract features from.
 #' @param ... Further arguments passed to other functions.
-#' @name feat_brolgar
 #' @export
 feat_three_num <- function(x, ...) {
   c(min = b_min(x, ...),
@@ -17,7 +16,7 @@ feat_three_num <- function(x, ...) {
 #' This feature returns the five number summary: minimum, q25, median, q75,
 #'   and maximum.
 #' 
-#' @inheritParams feat_brolgar
+#' @inheritParams feat_three_num
 #' @export
 feat_five_num <- function(x, ...) {
   list(
@@ -34,7 +33,7 @@ feat_five_num <- function(x, ...) {
 #' This feature returns the ranges - the minimum, maximum, range difference, 
 #'   and interquartile range.
 #'   
-#' @inheritParams feat_brolgar
+#' @inheritParams feat_three_num
 #' @export
 feat_ranges <- function(x, ...){
   c(
@@ -50,7 +49,7 @@ feat_ranges <- function(x, ...){
 #' This feature returns measurements of spread: variance, standard deviation,
 #'   median absolute distance, and interquartile range
 #'   
-#' @inheritParams feat_brolgar
+#' @inheritParams feat_three_num
 #'   
 #' @export
 feat_spread <- function(x, ...){
@@ -67,7 +66,7 @@ feat_spread <- function(x, ...){
 #' This feature returns monotonic information - does it always increase,
 #'   decrease, or is it unvarying?
 #'   
-#' @inheritParams feat_brolgar
+#' @inheritParams feat_three_num
 #'   
 #' @export
 feat_monotonic <- function(x, ...) {
@@ -81,7 +80,7 @@ feat_monotonic <- function(x, ...) {
 #' 
 #' This feature returns all features in brolgar.
 #' 
-#' @inheritParams feat_brolgar
+#' @inheritParams feat_three_num
 #' @export
 feat_brolgar <- function(x, ...){
   c(
