@@ -1,7 +1,8 @@
 #' World Height Data
 #' 
-#' Average male heights in 165 countries from 1810-1989, with a
-#'   smaller number of countries from 1500-1800. 
+#' Average male heights in 144 countries from 1810-1989, with a
+#'   smaller number of countries from 1500-1800. Data has been filtered to 
+#'   only include countries with more than one observation.
 #' 
 #' `heights` is stored as a time series `tsibble` object. It contains 
 #'   the variables:
