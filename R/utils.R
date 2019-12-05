@@ -24,3 +24,15 @@ test_if_null <- function(x, message = "Input must not be NULL"){
 }
 
 classes <- function(x) purrr::map_chr(x, class)
+
+possible_strata <- function(.data, n_strata){
+  sample(rep(seq_len(n_strata),
+             length.out = tsibble::n_keys(.data)))
+}
+
+full_strata <- function(.data, n_strata){
+  
+  possible_strata(.data, n_strata) %>% 
+  rep.int(times = lengths(tsibble::key_rows(.data)))
+  
+}
