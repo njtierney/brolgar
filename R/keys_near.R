@@ -34,6 +34,53 @@
 #'               funs = l_ranges)
 #' @export
 keys_near <- function(.data,
+                      var,
+                      top_n = 1,
+                      funs = l_five_num,
+                      ...){
+  
+  UseMethod("keys_near")
+  
+}
+
+#' @inheritParams keys_near
+#' @export
+keys_near.tbl_ts <- function(.data,
+                      var,
+                      top_n = 1,
+                      funs = l_five_num,
+                      ...){
+
+  q_var <- rlang::enquo(var)
+  key <- tsibble::key_vars(.data)
+  
+  .data %>%
+    tibble::as_tibble() %>%
+    dplyr::mutate_at(
+      .vars = dplyr::vars(!!q_var),
+      .funs = funs,
+      ...) %>%
+    dplyr::select(key,
+                  !!q_var,
+                  dplyr::one_of(names(funs))) %>%
+    tidyr::gather(key = "stat",
+                  value = "stat_value",
+                  -key,
+                  -!!q_var) %>%
+    dplyr::mutate(stat_diff = abs(!!q_var - stat_value)) %>%
+    dplyr::group_by(stat) %>%
+    dplyr::top_n(-top_n,
+                 wt = stat_diff) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(stat = forcats::fct_relevel(.f = stat,
+                                              levels = names(funs)))
+  
+  
+}
+
+#' @inheritParams keys_near
+#' @export
+keys_near.default <- function(.data,
                       key,
                       var,
                       top_n = 1,

@@ -3,7 +3,7 @@
 * `facet_sample()` now has a default of 3 per plot
 * resolve features(data ,.key, n_obs) error (#71) 
 * For `near_quantile()`, the `tol` argument now defaults to 0.01.
-
+* provide an S3 generic for `tbl_ts` objects for `keys_near()` - #76
 
 # brolgar 0.0.4.9000
 

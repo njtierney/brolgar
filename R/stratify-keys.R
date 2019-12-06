@@ -69,11 +69,9 @@ stratify_keys.tbl_ts <- function(.data,
   
   q_along <- rlang::enquo(along)
   
-  possible_strata <- possible_strata(.data, n_strata)
-  
-  full_strata <- full_strata(.data, n_strata)
-
   if (rlang::quo_is_null(q_along)) {
+  
+    full_strata <- full_strata(.data, n_strata)
     
     data_strata <- .data %>%
       dplyr::mutate(.strata = full_strata)
@@ -83,6 +81,8 @@ stratify_keys.tbl_ts <- function(.data,
   
   if (!rlang::quo_is_null(q_along)) {
     
+  possible_strata <- possible_strata(.data, n_strata)
+  
     data_strata <- .data %>%
       tibble::as_tibble() %>%
       dplyr::group_by(!!!tsibble::key(.data)) %>%
