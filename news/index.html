@@ -117,7 +117,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/njtierney/brolgar">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
       <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
@@ -138,7 +143,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1>Changelog <small></small></h1>
-      
+      <small>Source: <a href='https://github.com/njtierney/brolgar/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
     <div id="brolgar-0059100" class="section level1">
@@ -147,9 +152,9 @@
 <ul>
 <li>
 <code><a href="../reference/facet_sample.html">facet_sample()</a></code> now has a default of 3 per plot</li>
-<li>resolve features(data ,.key, n_obs) error (#71)</li>
+<li>resolve features(data ,.key, n_obs) error (<a href='https://github.com/njtierney/brolgar/issues/71'>#71</a>)</li>
 <li>For <code><a href="../reference/near_quantile.html">near_quantile()</a></code>, the <code>tol</code> argument now defaults to 0.01.</li>
-<li>provide an S3 generic for <code>tbl_ts</code> objects for <code><a href="../reference/keys_near.html">keys_near()</a></code> - #76</li>
+<li>provide an S3 generic for <code>tbl_ts</code> objects for <code><a href="../reference/keys_near.html">keys_near()</a></code> - <a href='https://github.com/njtierney/brolgar/issues/76'>#76</a></li>
 </ul>
 </div>
     <div id="brolgar-0049000" class="section level1">
@@ -178,16 +183,16 @@
 <li>add <code>monotonic</code> function, which returns TRUE if increasing or decreasing, and false otherwise.</li>
 <li>re export <code><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble()</a></code> and <code><a href="https://tsibble.tidyverts.org/reference/key-data.html">n_keys()</a></code> from `tsibble</li>
 <li>Data <code>world_heights</code> gains a continent column</li>
-<li>Implement <code><a href="../reference/facet_strata.html">facet_strata()</a></code> to create a random group of size <code>n_strata</code> to put the data into (#32). Add support for <code>along</code>, and <code>fun</code>.</li>
-<li>Implement <code><a href="../reference/facet_sample.html">facet_sample()</a></code> to create facetted plots with a set number of keys inside each facet. (#32).</li>
+<li>Implement <code><a href="../reference/facet_strata.html">facet_strata()</a></code> to create a random group of size <code>n_strata</code> to put the data into (<a href='https://github.com/njtierney/brolgar/issues/32'>#32</a>). Add support for <code>along</code>, and <code>fun</code>.</li>
+<li>Implement <code><a href="../reference/facet_sample.html">facet_sample()</a></code> to create facetted plots with a set number of keys inside each facet. (<a href='https://github.com/njtierney/brolgar/issues/32'>#32</a>).</li>
 <li>
-<code>add_</code> functions now return a <code>tsibble()</code> (#49).</li>
-<li>Fixed bug where <code><a href="../reference/stratify_keys.html">stratify_keys()</a></code> didn’t assign an equal number of keys per strata (#55)</li>
-<li>Update <code>wages_ts</code> dataset to now just be <code>wages</code> data, and remove previous <code>tibble()</code> version of <code>wages</code> (#39).</li>
+<code>add_</code> functions now return a <code>tsibble()</code> (<a href='https://github.com/njtierney/brolgar/issues/49'>#49</a>).</li>
+<li>Fixed bug where <code><a href="../reference/stratify_keys.html">stratify_keys()</a></code> didn’t assign an equal number of keys per strata (<a href='https://github.com/njtierney/brolgar/issues/55'>#55</a>)</li>
+<li>Update <code>wages_ts</code> dataset to now just be <code>wages</code> data, and remove previous <code>tibble()</code> version of <code>wages</code> (<a href='https://github.com/njtierney/brolgar/issues/39'>#39</a>).</li>
 <li>Add <code>top_n</code> argument to <code>keys_near</code> to provide control over the number of observations near a stat that are returned.</li>
 <li>change <code>world_heights</code> to <code>heights</code>.</li>
-<li>remove function <code>n_key_obs()</code> in favour of using <code><a href="../reference/n_obs.html">n_obs()</a></code> (#62)</li>
-<li>remove function <code>filter_n_obs()</code> in favour of cleaner workflow with <code><a href="../reference/add_n_obs.html">add_n_obs()</a></code> (#63)</li>
+<li>remove function <code>n_key_obs()</code> in favour of using <code><a href="../reference/n_obs.html">n_obs()</a></code> (<a href='https://github.com/njtierney/brolgar/issues/62'>#62</a>)</li>
+<li>remove function <code>filter_n_obs()</code> in favour of cleaner workflow with <code><a href="../reference/add_n_obs.html">add_n_obs()</a></code> (<a href='https://github.com/njtierney/brolgar/issues/63'>#63</a>)</li>
 </ul>
 </div>
     <div id="brolgar-0019000" class="section level1">
@@ -201,8 +206,8 @@
 <h1 class="page-header">
 <a href="#brolgar-0009990" class="anchor"></a>brolgar 0.0.0.9990</h1>
 <ul>
-<li>Added the <code>world_heights</code> dataset, which contains average male height in centimetres for many countries. #28</li>
-<li>created <code>near_</code> family of functions to find values near to a quantile or percentile. So far there are <code><a href="../reference/near_quantile.html">near_quantile()</a></code>, <code><a href="../reference/near_middle.html">near_middle()</a></code>, and <code><a href="../reference/near_between.html">near_between()</a></code> (#11).
+<li>Added the <code>world_heights</code> dataset, which contains average male height in centimetres for many countries. <a href='https://github.com/njtierney/brolgar/issues/28'>#28</a></li>
+<li>created <code>near_</code> family of functions to find values near to a quantile or percentile. So far there are <code><a href="../reference/near_quantile.html">near_quantile()</a></code>, <code><a href="../reference/near_middle.html">near_middle()</a></code>, and <code><a href="../reference/near_between.html">near_between()</a></code> (<a href='https://github.com/njtierney/brolgar/issues/11'>#11</a>).
 <ul>
 <li>
 <code><a href="../reference/near_quantile.html">near_quantile()</a></code> Specify some quantile and then find those values around it (within some specified tolerance).</li>
@@ -212,12 +217,12 @@
 <code><a href="../reference/near_between.html">near_between()</a></code> Extract percentile values from a given percentile to another percentile.</li>
 </ul>
 </li>
-<li>Create <code>add_k_groups()</code> (#20) to randomly split the data into groups to explore the data.</li>
-<li>Add <code>sample_n_obs()</code> and <code>sample_frac_obs()</code> (#19) to select a random group of ids.</li>
-<li>Add <code>filter_n_obs()</code> to filter the data by the number of observations #15</li>
+<li>Create <code>add_k_groups()</code> (<a href='https://github.com/njtierney/brolgar/issues/20'>#20</a>) to randomly split the data into groups to explore the data.</li>
+<li>Add <code>sample_n_obs()</code> and <code>sample_frac_obs()</code> (<a href='https://github.com/njtierney/brolgar/issues/19'>#19</a>) to select a random group of ids.</li>
+<li>Add <code>filter_n_obs()</code> to filter the data by the number of observations <a href='https://github.com/njtierney/brolgar/issues/15'>#15</a></li>
 <li>Remove unnecessary use of <code>var</code>, in <code>l_n_obs()</code>, since it only needs information on the <code>id</code>. Also gets a nice 5x speedup with simpler code</li>
-<li>calculate all longnostics (#4)</li>
-<li>use the word <code>longnostic</code> instead of <code>lognostic</code> (#9)</li>
+<li>calculate all longnostics (<a href='https://github.com/njtierney/brolgar/issues/4'>#4</a>)</li>
+<li>use the word <code>longnostic</code> instead of <code>lognostic</code> (<a href='https://github.com/njtierney/brolgar/issues/9'>#9</a>)</li>
 <li>
 <code>l_slope</code> now returns <code>l_intercept</code> and <code>l_slope</code> instead of <code>intercept</code> and <code>slope</code>.</li>
 <li>
