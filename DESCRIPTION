@@ -23,6 +23,8 @@ Authors@R:
 Description: Provides a framework of tools to summarise,
     visualise, and explore longitudinal data.
 License: MIT + file LICENSE
+URL: https://github.com/njtierney/brolgar
+BugReports: https://github.com/njtierney/brolgar/issues
 Depends: 
     R (>= 3.5.0)
 Imports:
