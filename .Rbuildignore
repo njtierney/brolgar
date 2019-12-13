@@ -12,3 +12,4 @@
 ^\.pre-commit-config\.yaml$
 ^\.github$
 ^\.covrignore$
+^\.github/workflows/pkgdown\.yaml$
