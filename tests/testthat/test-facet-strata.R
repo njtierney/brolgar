@@ -22,6 +22,7 @@ gg_facet_strata_along <- wages %>%
 
 test_that("facet_strata works without along",{
   skip_on_cran()
+  skip_on_travis()
   skip_on_appveyor()
   skip_on_gh_actions()
   vdiffr::expect_doppelganger("gg_facet_strata",
@@ -31,6 +32,7 @@ test_that("facet_strata works without along",{
 
 test_that("facet_strata works with along",{
   skip_on_cran()
+  skip_on_travis()
   skip_on_appveyor()
   skip_on_gh_actions()
   vdiffr::expect_doppelganger("gg_facet_strata_along",
