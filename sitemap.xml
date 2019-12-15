@@ -10,6 +10,9 @@
     <loc>http://brolgar.njtierney.com//reference/b_summaries.html</loc>
   </url>
   <url>
+    <loc>http://brolgar.njtierney.com//reference/brolgar-features.html</loc>
+  </url>
+  <url>
     <loc>http://brolgar.njtierney.com//reference/brolgar.html</loc>
   </url>
   <url>
@@ -17,21 +20,6 @@
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//reference/facet_strata.html</loc>
-  </url>
-  <url>
-    <loc>http://brolgar.njtierney.com//reference/feat_brolgar.html</loc>
-  </url>
-  <url>
-    <loc>http://brolgar.njtierney.com//reference/feat_five_num.html</loc>
-  </url>
-  <url>
-    <loc>http://brolgar.njtierney.com//reference/feat_monotonic.html</loc>
-  </url>
-  <url>
-    <loc>http://brolgar.njtierney.com//reference/feat_ranges.html</loc>
-  </url>
-  <url>
-    <loc>http://brolgar.njtierney.com//reference/feat_spread.html</loc>
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//reference/heights.html</loc>
