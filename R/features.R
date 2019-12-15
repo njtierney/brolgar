@@ -1,8 +1,31 @@
-#' Feature: Three number summary
+#' Calculate features of a `tsibble` object in conjunction with [features()]
 #' 
-#' This feature returns the three number summary - min, median, and maximum
+#' You can calculate a series of summary statistics (features) of a given 
+#'   variable for a dataset. For example, a three number summary, the minimum, 
+#'   median, and maximum, can be calculated for a given variable. This is 
+#'   designed to work with the [features()] function shown in the examples.
+#'   Other available features in `brolgar` include:
+#'   
+#'   - [feat_three_num()] - minimum, median, maximum
+#'   - [feat_five_num()] - minimum, q25, median, q75, maximum.
+#'   - [feat_ranges()] - min, max, range difference, interquartile range.
+#'   - [feat_spread()]  - variance, standard deviation, median absolute distance,
+#'    and interquartile range
+#'   - [feat_monotonic()]  is it always increasing, decreasing, or unvarying?
+#'   - [feat_brolgar()]  all features in brolgar.
+#' 
 #' @param x A vector to extract features from.
 #' @param ... Further arguments passed to other functions.
+#' @name brolgar-features
+#' @examples
+#' 
+#' # You can use any of the features `feat_*` in conjunction with `features` 
+#'   like so:
+#' heights %>%
+#'   features(height_cm, # variable you want to explore
+#'            feat_three_num) # the feature summarisation you want to perform
+
+#' @rdname brolgar-features
 #' @export
 feat_three_num <- function(x, ...) {
   c(min = b_min(x, ...),
@@ -10,13 +33,7 @@ feat_three_num <- function(x, ...) {
     max = b_max(x, ...))
 }
 
-
-#' Feature: Five number summary
-#' 
-#' This feature returns the five number summary: minimum, q25, median, q75,
-#'   and maximum.
-#' 
-#' @inheritParams feat_three_num
+#' @rdname brolgar-features
 #' @export
 feat_five_num <- function(x, ...) {
   list(
@@ -28,12 +45,7 @@ feat_five_num <- function(x, ...) {
   )
 }
 
-#' Feature: Ranges
-#' 
-#' This feature returns the ranges - the minimum, maximum, range difference, 
-#'   and interquartile range.
-#'   
-#' @inheritParams feat_three_num
+#' @rdname brolgar-features
 #' @export
 feat_ranges <- function(x, ...){
   c(
@@ -44,13 +56,7 @@ feat_ranges <- function(x, ...){
   )
 }
 
-#' Feature: Spread
-#' 
-#' This feature returns measurements of spread: variance, standard deviation,
-#'   median absolute distance, and interquartile range
-#'   
-#' @inheritParams feat_three_num
-#'   
+#' @rdname brolgar-features
 #' @export
 feat_spread <- function(x, ...){
   c(
@@ -61,13 +67,7 @@ feat_spread <- function(x, ...){
   )
 }
 
-#' Feature: Monotonics
-#' 
-#' This feature returns monotonic information - does it always increase,
-#'   decrease, or is it unvarying?
-#'   
-#' @inheritParams feat_three_num
-#'   
+#' @rdname brolgar-features
 #' @export
 feat_monotonic <- function(x, ...) {
   c(increase = increasing(x, ...),
@@ -76,11 +76,7 @@ feat_monotonic <- function(x, ...) {
     monotonic = monotonic(x, ...))
 }
 
-#' Feature: All from brolgar
-#' 
-#' This feature returns all features in brolgar.
-#' 
-#' @inheritParams feat_three_num
+#' @rdname brolgar-features
 #' @export
 feat_brolgar <- function(x, ...){
   c(
