@@ -17,7 +17,7 @@ coverage](https://codecov.io/gh/njtierney/brolgar/branch/master/graph/badge.svg)
 **g**raphically and **a**nalytically in **R**, by providing tools to:
 
   - Efficiently explore raw longitudinal data
-  - Calculate features (summaries) for individual series
+  - Calculate features (summaries) for individuals
   - Evaluate diagnostics of statistical models
 
 This helps you go from the “plate of spaghetti” plot on the left, to
@@ -36,25 +36,36 @@ remotes::install_github("njtierney/brolgar")
 
 # Using `brolgar`: We need to talk about data
 
-The tools and workflows in `brolgar` are designed to work with a special
-tidy time series data frame called a `tsibble`. This handles a lot of
-the details of the data, making it **very efficient** to explore your
-data. This section discusses the details of what this means.
+There are many ways to describe longitudinal data - from panel data,
+cross-sectional data, and time series. We define longitudinal data as:
 
-To efficiently look at your longitudinal data, we assume it **is a time
-series**, with **irregular** time periods between measurements. This
-might seem strange, (that’s OK\!), so **remember these two things**:
+> individuals repeatedly measured through time.
+
+The tools and workflows in `brolgar` are designed to work with a special
+tidy time series data frame called a `tsibble`. We can define our
+longitudinal data in terms of a time series to gain access to some
+really useful tools. To do so, we need to identify three components:
 
 1.  The **key** variable in your data is the **identifier** of your
-    individuals or series.
+    individual.
 2.  The **index** variable is the **time** component of your data.
+3.  The **regularity** of the time interval (index). Longitudinal data
+    typically has irregular time periods between measurements, but can
+    have regular measurements.
 
-Together, the **index** and **key** uniquely identify an observation.
+Together, time **index** and **key** uniquely identify an observation.
 
 The term `key` is used a lot in brolgar, so it is an important idea to
 internalise:
 
 > **The key is the identifier of your individuals or series**
+
+Identifying the key, index, and regularity of the data can be a
+challenge. You can learn more about specifying this in the vignette,
+[“Longitudinal Data
+Structures”](http://brolgar.njtierney.com/articles/longitudinal-data-structures.html).
+
+## The wages data
 
 The `wages` data is an example dataset provided with brolgar. It looks
 like this:
@@ -97,11 +108,7 @@ Wang](https://earo.me/), if you would like to learn more about
 documentation](https://tsibble.tidyverts.org/) or read [the
 paper](http://pdf.earo.me/tsibble.pdf).
 
-If you want to learn more about what longitudinal data as a time series,
-you can [read more in the vignette, “Longitudinal Data
-Structures”](http://brolgar.njtierney.com/articles/longitudinal-data-structures.html).
-
-## Efficiently exploring longitudinal data
+# Efficiently exploring longitudinal data
 
 Exploring longitudinal data can be challenging when there are many
 individuals. It is difficult to look at all of them\!
@@ -110,7 +117,7 @@ You often get a “plate of spaghetti” plot, with many lines plotted on
 top of each other. You can avoid the spaghetti by looking at a random
 subset of the data using tools in `brolgar`.
 
-### `sample_n_keys()`
+## `sample_n_keys()`
 
 In `dplyr`, you can use `sample_n()` to sample `n` observations, or
 `sample_frac()` to look at a `frac`tion of observations.
