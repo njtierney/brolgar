@@ -44,11 +44,11 @@ n_obs <- function(x, names = TRUE){
 #' 
 #' @examples
 #' library(dplyr)
-#' # you can explore the data to see those cases that have exactly one 
-#'   observation
+#' # you can explore the data to see those cases that have exactly two 
+#'  # observations:
 #' heights %>% 
 #'   add_n_obs() %>% 
-#'   filter(n_obs == 1)
+#'   filter(n_obs == 2)
 add_n_obs <- function(.data, ...){
   test_if_null(.data)
   test_if_tsibble(.data)

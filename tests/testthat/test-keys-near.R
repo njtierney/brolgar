@@ -1,7 +1,6 @@
 # Return observations closest to the five number summary of ln_wages
 summarise_ln_wages <- wages %>%
-  keys_near(key = id,
-            var = ln_wages)
+  keys_near(var = ln_wages)
 
 # Specify your own list of summaries
 l_ranges <- list(min = b_min,

@@ -46,7 +46,7 @@ and interquartile range
 \examples{
 
 # You can use any of the features `feat_*` in conjunction with `features` 
-  like so:
+# like so:
 heights \%>\%
   features(height_cm, # variable you want to explore
            feat_three_num) # the feature summarisation you want to perform

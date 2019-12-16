@@ -4,49 +4,17 @@
 \alias{keys_near}
 \title{Return keys nearest to a given statistics or summary.}
 \usage{
-keys_near(.data, var, top_n = 1, funs = l_five_num, ...)
+keys_near(.data, ...)
 }
 \arguments{
 \item{.data}{data.frame}
 
-\item{var}{variable to summarise}
-
-\item{top_n}{top number of closest observations to return - default is 1, which will also return ties.}
-
-\item{funs}{named list of functions to summarise by. Default is a given
-list of the five number summary, \code{l_five_num}.}
-
 \item{...}{extra arguments to pass to \code{mutate_at} when performing the summary
 as given by \code{funs}.}
-
-\item{key}{key, which identifies unique observations.}
 }
 \value{
 data.frame containing keys closest to a given statistic.
 }
 \description{
 Return keys nearest to a given statistics or summary.
-}
-\examples{
-wages \%>\%
-  key_slope(ln_wages ~ xp) \%>\%
-  keys_near(key = id,
-            var = .slope_xp)
-               
-# Return observations closest to the five number summary of ln_wages
-wages \%>\%
-  keys_near(key = id,
-            var = ln_wages)
-               
-# Specify your own list of summaries
-l_ranges <- list(min = b_min,
-                 range_diff = b_range_diff,
-                 max = b_max,
-                 iqr = b_iqr)
-
-wages \%>\%
-  key_slope(formula = ln_wages ~ xp) \%>\%
-  keys_near(key = id,
-              var = .slope_xp,
-              funs = l_ranges)
 }
