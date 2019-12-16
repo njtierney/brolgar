@@ -113,7 +113,7 @@
 <p><code>brolgar</code> helps you <strong>br</strong>owse <strong>o</strong>ver <strong>l</strong>ongitudinal <strong>d</strong>ata <strong>g</strong>raphically and <strong>a</strong>nalytically in <strong>R</strong>, by providing tools to:</p>
 <ul>
 <li>Efficiently explore raw longitudinal data</li>
-<li>Calculate features (summaries) for individual series</li>
+<li>Calculate features (summaries) for individuals</li>
 <li>Evaluate diagnostics of statistical models</li>
 </ul>
 <p>This helps you go from the “plate of spaghetti” plot on the left, to “interesting observations” plot on the right.</p>
@@ -129,17 +129,25 @@
 <div id="using-brolgar-we-need-to-talk-about-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#using-brolgar-we-need-to-talk-about-data" class="anchor"></a>Using <code>brolgar</code>: We need to talk about data</h1>
-<p>The tools and workflows in <code>brolgar</code> are designed to work with a special tidy time series data frame called a <code>tsibble</code>. This handles a lot of the details of the data, making it <strong>very efficient</strong> to explore your data. This section discusses the details of what this means.</p>
-<p>To efficiently look at your longitudinal data, we assume it <strong>is a time series</strong>, with <strong>irregular</strong> time periods between measurements. This might seem strange, (that’s OK!), so <strong>remember these two things</strong>:</p>
+<p>There are many ways to describe longitudinal data - from panel data, cross-sectional data, and time series. We define longitudinal data as:</p>
+<blockquote>
+<p>individuals repeatedly measured through time.</p>
+</blockquote>
+<p>The tools and workflows in <code>brolgar</code> are designed to work with a special tidy time series data frame called a <code>tsibble</code>. We can define our longitudinal data in terms of a time series to gain access to some really useful tools. To do so, we need to identify three components:</p>
 <ol>
-<li>The <strong>key</strong> variable in your data is the <strong>identifier</strong> of your individuals or series.</li>
+<li>The <strong>key</strong> variable in your data is the <strong>identifier</strong> of your individual.</li>
 <li>The <strong>index</strong> variable is the <strong>time</strong> component of your data.</li>
+<li>The <strong>regularity</strong> of the time interval (index). Longitudinal data typically has irregular time periods between measurements, but can have regular measurements.</li>
 </ol>
-<p>Together, the <strong>index</strong> and <strong>key</strong> uniquely identify an observation.</p>
+<p>Together, time <strong>index</strong> and <strong>key</strong> uniquely identify an observation.</p>
 <p>The term <code>key</code> is used a lot in brolgar, so it is an important idea to internalise:</p>
 <blockquote>
 <p><strong>The key is the identifier of your individuals or series</strong></p>
 </blockquote>
+<p>Identifying the key, index, and regularity of the data can be a challenge. You can learn more about specifying this in the vignette, <a href="http://brolgar.njtierney.com/articles/longitudinal-data-structures.html">“Longitudinal Data Structures”</a>.</p>
+<div id="the-wages-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#the-wages-data" class="anchor"></a>The wages data</h2>
 <p>The <code>wages</code> data is an example dataset provided with brolgar. It looks like this:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>wages</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="co">#&gt; # A tsibble: 6,402 x 9 [!]</span></span>
@@ -163,16 +171,17 @@
 <span id="cb3-3"><a href="#cb3-3"></a>                    <span class="dt">index =</span> xp,</span>
 <span id="cb3-4"><a href="#cb3-4"></a>                    <span class="dt">regular =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>Here <code><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble()</a></code> takes wages, and a <code>key</code>, and <code>index</code>, and we state the <code>regular = FALSE</code> (since there are not regular time periods between measurements). This turns the data into a <code>tsibble</code> object - a powerful data abstraction made available in the <a href="https://tsibble.tidyverts.org/"><code>tsibble</code></a> package by <a href="https://earo.me/">Earo Wang</a>, if you would like to learn more about <code>tsibble</code>, see the <a href="https://tsibble.tidyverts.org/">official package documentation</a> or read <a href="http://pdf.earo.me/tsibble.pdf">the paper</a>.</p>
-<p>If you want to learn more about what longitudinal data as a time series, you can <a href="http://brolgar.njtierney.com/articles/longitudinal-data-structures.html">read more in the vignette, “Longitudinal Data Structures”</a>.</p>
-<div id="efficiently-exploring-longitudinal-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#efficiently-exploring-longitudinal-data" class="anchor"></a>Efficiently exploring longitudinal data</h2>
+</div>
+</div>
+<div id="efficiently-exploring-longitudinal-data" class="section level1">
+<h1 class="hasAnchor">
+<a href="#efficiently-exploring-longitudinal-data" class="anchor"></a>Efficiently exploring longitudinal data</h1>
 <p>Exploring longitudinal data can be challenging when there are many individuals. It is difficult to look at all of them!</p>
 <p>You often get a “plate of spaghetti” plot, with many lines plotted on top of each other. You can avoid the spaghetti by looking at a random subset of the data using tools in <code>brolgar</code>.</p>
-<div id="sample_n_keys" class="section level3">
-<h3 class="hasAnchor">
+<div id="sample_n_keys" class="section level2">
+<h2 class="hasAnchor">
 <a href="#sample_n_keys" class="anchor"></a><code>sample_n_keys()</code>
-</h3>
+</h2>
 <p>In <code>dplyr</code>, you can use <code>sample_n()</code> to sample <code>n</code> observations, or <code>sample_frac()</code> to look at a <code>frac</code>tion of observations.</p>
 <p><code>brolgar</code> builds on this providing <code><a href="reference/sample-n-frac-keys.html">sample_n_keys()</a></code> and <code><a href="reference/sample-n-frac-keys.html">sample_frac_keys()</a></code>. This allows you to take a random sample of <code>n</code> keys using <code><a href="reference/sample-n-frac-keys.html">sample_n_keys()</a></code>. For example:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">2019-7-15-1300</span>)</span>
@@ -184,7 +193,6 @@
 <span id="cb4-7"><a href="#cb4-7"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
 <p><img src="reference/figures/README-plot-sample-n-keys-1.png" width="75%" style="display: block; margin: auto;"></p>
 <p>And what if you want to create many of these plots?</p>
-</div>
 </div>
 <div id="clever-facets-facet_sample" class="section level2">
 <h2 class="hasAnchor">
