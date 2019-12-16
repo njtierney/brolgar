@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add the number of observations for each key in a <code>tsibble</code> — add_n_obs • brolgar</title>
+<title>Return keys nearest to a given statistics or summary. — keys_near.tbl_ts • brolgar</title>
 
 
 <!-- jquery -->
@@ -41,9 +41,8 @@
 
 
 
-<meta property="og:title" content="Add the number of observations for each key in a <code>tsibble</code> — add_n_obs" />
-<meta property="og:description" content="Here, we are not counting the number of rows in the dataset, but rather
-we are counting the number observations for each keys in the data." />
+<meta property="og:title" content="Return keys nearest to a given statistics or summary. — keys_near.tbl_ts" />
+<meta property="og:description" content="Return keys nearest to a given statistics or summary." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -145,17 +144,17 @@ we are counting the number observations for each keys in the data." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add the number of observations for each key in a <code>tsibble</code></h1>
-    <small class="dont-index">Source: <a href='https://github.com/njtierney/brolgar/blob/master/R/n-obs.R'><code>R/n-obs.R</code></a></small>
-    <div class="hidden name"><code>add_n_obs.Rd</code></div>
+    <h1>Return keys nearest to a given statistics or summary.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/njtierney/brolgar/blob/master/R/keys_near.R'><code>R/keys_near.R</code></a></small>
+    <div class="hidden name"><code>keys_near.tbl_ts.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Here, we are not counting the number of rows in the dataset, but rather
-we are counting the number observations for each keys in the data.</p>
+    <p>Return keys nearest to a given statistics or summary.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>add_n_obs</span>(<span class='no'>.data</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for tbl_ts</span>
+<span class='fu'><a href='keys_near.html'>keys_near</a></span>(<span class='no'>.data</span>, <span class='no'>var</span>, <span class='kw'>top_n</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>funs</span> <span class='kw'>=</span> <span class='no'>l_five_num</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,51 +164,50 @@ we are counting the number observations for each keys in the data.</p>
       <td><p>data.frame</p></td>
     </tr>
     <tr>
+      <th>var</th>
+      <td><p>variable to summarise</p></td>
+    </tr>
+    <tr>
+      <th>top_n</th>
+      <td><p>top number of closest observations to return - default is 1, which will also return ties.</p></td>
+    </tr>
+    <tr>
+      <th>funs</th>
+      <td><p>named list of functions to summarise by. Default is a given
+list of the five number summary, <code>l_five_num</code>.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>extra arguments</p></td>
+      <td><p>extra arguments to pass to <code>mutate_at</code> when performing the summary
+as given by <code>funs</code>.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>dataframe with <code>n_obs</code>, the number of observations per key added.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='co'># you can explore the data to see those cases that have exactly two </span>
- <span class='co'># observations:</span>
-<span class='no'>heights</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>add_n_obs</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>n_obs</span> <span class='kw'>==</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tsibble: 16 x 5 [!]</span><span>
-#&gt; </span><span style='color: #555555;'># Key:       country [8]</span><span>
-#&gt;    country              year n_obs continent height_cm
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Botswana             </span><span style='text-decoration: underline;'>1</span><span>910     2 Africa         165.
-#&gt; </span><span style='color: #555555;'> 2</span><span> Botswana             </span><span style='text-decoration: underline;'>1</span><span>980     2 Africa         167.
-#&gt; </span><span style='color: #555555;'> 3</span><span> Burundi              </span><span style='text-decoration: underline;'>1</span><span>920     2 Africa         166.
-#&gt; </span><span style='color: #555555;'> 4</span><span> Burundi              </span><span style='text-decoration: underline;'>1</span><span>930     2 Africa         169.
-#&gt; </span><span style='color: #555555;'> 5</span><span> Costa Rica           </span><span style='text-decoration: underline;'>1</span><span>940     2 Americas       166.
-#&gt; </span><span style='color: #555555;'> 6</span><span> Costa Rica           </span><span style='text-decoration: underline;'>1</span><span>980     2 Americas       174.
-#&gt; </span><span style='color: #555555;'> 7</span><span> El Salvador          </span><span style='text-decoration: underline;'>1</span><span>990     2 Americas       169.
-#&gt; </span><span style='color: #555555;'> 8</span><span> El Salvador          </span><span style='text-decoration: underline;'>2</span><span>000     2 Americas       171.
-#&gt; </span><span style='color: #555555;'> 9</span><span> Libya                </span><span style='text-decoration: underline;'>1</span><span>890     2 Africa         166.
-#&gt; </span><span style='color: #555555;'>10</span><span> Libya                </span><span style='text-decoration: underline;'>1</span><span>920     2 Africa         165.
-#&gt; </span><span style='color: #555555;'>11</span><span> Mongolia             </span><span style='text-decoration: underline;'>1</span><span>910     2 Asia           163.
-#&gt; </span><span style='color: #555555;'>12</span><span> Mongolia             </span><span style='text-decoration: underline;'>1</span><span>930     2 Asia           165.
-#&gt; </span><span style='color: #555555;'>13</span><span> Singapore            </span><span style='text-decoration: underline;'>1</span><span>970     2 Asia           172.
-#&gt; </span><span style='color: #555555;'>14</span><span> Singapore            </span><span style='text-decoration: underline;'>2</span><span>000     2 Asia           175.
-#&gt; </span><span style='color: #555555;'>15</span><span> Trinidad and Tobago  </span><span style='text-decoration: underline;'>1</span><span>980     2 Americas       174.
-#&gt; </span><span style='color: #555555;'>16</span><span> Trinidad and Tobago  </span><span style='text-decoration: underline;'>2</span><span>000     2 Americas       174.</div></span></pre>
+    <pre class="examples"><div class='input'>
+<span class='co'># Return observations closest to the five number summary of ln_wages</span>
+<span class='no'>wages</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='keys_near.html'>keys_near</a></span>(<span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>ln_wages</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 71 x 5</span><span>
+#&gt;       id ln_wages stat  stat_value stat_diff
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>  </span><span style='text-decoration: underline;'>4</span><span>385    0.708 min        0.708         0
+#&gt; </span><span style='color: #555555;'> 2</span><span>   700    1.59  q_25       1.59          0
+#&gt; </span><span style='color: #555555;'> 3</span><span>  </span><span style='text-decoration: underline;'>4</span><span>025    1.59  q_25       1.59          0
+#&gt; </span><span style='color: #555555;'> 4</span><span>  </span><span style='text-decoration: underline;'>4</span><span>072    1.59  q_25       1.59          0
+#&gt; </span><span style='color: #555555;'> 5</span><span>  </span><span style='text-decoration: underline;'>4</span><span>221    1.59  q_25       1.59          0
+#&gt; </span><span style='color: #555555;'> 6</span><span>  </span><span style='text-decoration: underline;'>6</span><span>035    1.59  q_25       1.59          0
+#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>6</span><span>746    1.59  q_25       1.59          0
+#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>7</span><span>963    1.59  q_25       1.59          0
+#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>8</span><span>979    1.59  q_25       1.59          0
+#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>9</span><span>316    1.59  q_25       1.59          0
+#&gt; </span><span style='color: #555555;'># … with 61 more rows</span><span></div><div class='input'>               
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
