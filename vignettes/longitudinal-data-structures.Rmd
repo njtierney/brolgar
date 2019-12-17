@@ -14,28 +14,58 @@ knitr::opts_chunk$set(
 )
 ```
 
-All data has structure. There are ways that we can specify some permanent structure to the data, which gives some useful features later on, for free. This vignette discusses how to structure your longitudinal data as a time series, and what that means.
+There are many ways to describe longitudinal data - from panel data,
+cross-sectional data, and time series. We define longitudinal data as:
 
-This idea, that **longitudinal data is a time series**, is _Big Idea #1_ behind the `brolgar` package.
+> individuals repeatedly measured through time.
 
-> Anything that is observed sequentially over time is a time series. -- [Professors Rob Hyndman and George Athanasopolous](https://otexts.com/fpp2/data-methods.html)
+To explore and model longitudinal data, It is important to understand what
+variables represent the individual components, and the time components, and how
+these identify an individual moving through time. Identifying the individual and
+time components can sometimes be a challenge, so this vignette walks through how
+to do this.
 
-Longitudinal data has a few other names, such as "panel data". I used to always think that "time series" was defined as something that was by definition "regular" - with equal spacings between observations. This is actually not the case - you can have both "regular", and "irregular" time series. 
+The tools and workflows in `brolgar` are designed to work with a special tidy
+time series data frame called a `tsibble`. We can define our longitudinal data
+in terms of a time series to gain access to some really useful tools. To do so,
+we need to identify three components:
 
-Why care about using a time series? Once we account for this time series structure inherent in longitudinal data, we gain access to a suite of nice tools that simplify and accelerate how we work with time series data. `brolgar` is built on top of the powerful [`tsibble`](https://tsibble.tidyverts.org/) package by [Earo Wang](https://earo.me/), if you would like to learn more, see the [official package documentation](https://tsibble.tidyverts.org/) or read [the paper](https://arxiv.org/abs/1901.10257).
+1.  The **key** variable in your data is the **identifier** of your individual.
+2.  The **index** variable is the **time** component of your data.
+3.  The **regularity** of the time interval (index). Longitudinal data typically
+    has irregular time periods between measurements, but can have regular
+    measurements.
+
+Together, time **index** and **key** uniquely identify an observation.
+
+The term `key` is used a lot in brolgar, so it is an important idea to
+internalise:
+
+> **The key is the identifier of your individuals or series**
+
+Why care about defining longitudinal data as a time series? Once we account for this time series
+structure inherent in longitudinal data, we gain access to a suite of nice tools
+that simplify and accelerate how we work with time series data. `brolgar` is
+built on top of the powerful [`tsibble`](https://tsibble.tidyverts.org/) package
+by [Earo Wang](https://earo.me/), if you would like to learn more, see the
+[official package documentation](https://tsibble.tidyverts.org/) or read [the
+paper](https://arxiv.org/abs/1901.10257).
 
 ## Converting your longitudinal data to a time series
 
-To convert longitudinal data into a "**t**ime **s**eries tibble", a [`tsibble`](https://tsibble.tidyverts.org/), we need to consider:
+To convert longitudinal data into a "**t**ime **s**eries tibble", a
+[`tsibble`](https://tsibble.tidyverts.org/), we need to consider:
 
-* What identifies the **time** component of the data? This is the **index**
-* What is the **unique identifier** of an individual/series? This is the **key**
+  - What identifies the **time** component of the data? This is the **index**
+  - What is the **unique identifier** of an individual/series? This is the
+    **key**
 
 Together, the **index** and **key** uniquely identify an observation.
 
-What do we mean by this? Let's look at the first section of the wages, **wages** data analysed in Singer & Willett (2003):
+What do we mean by this? Let's look at the first section of the wages, **wages**
+data analysed in Singer & Willett (2003):
 
-```{r slice-wages}
+``` {r slice-wages}
 library(brolgar)
 suppressPackageStartupMessages(library(dplyr))
 slice(wages, 1:10)
@@ -47,12 +77,15 @@ We also have the `xp` column, which identifies the experience an individual has.
 
 So:
 
-* key: `id`
-* index: `xp`
+  - key: `id`
+  - index: `xp`
 
-We could create a `tsibble` of this data by using the `as_tsibble` function from `tsibble`, also stating, `regular = FALSE`, since we have an `irregular` time series (the measurements are not regularly measured, and have a varying distance between each measurement):
+We could create a `tsibble` of this data by using the `as_tsibble` function from
+`tsibble`, also stating, `regular = FALSE`, since we have an `irregular` time
+series (the measurements are not regularly measured, and have a varying distance
+between each measurement):
 
-```{r create-tsibble, eval = FALSE}
+``` {r create-tsibble, eval = FALSE}
 library(tsibble)
 as_tsibble(x = wages,
            key = id,
@@ -60,23 +93,21 @@ as_tsibble(x = wages,
            regular = FALSE)
 ```
 
-```{r print-wages-tsibble, echo = FALSE}
+``` {r print-wages-tsibble, echo = FALSE}
 wages
 ```
 
 
 Note the following information printed at the top of `wages`
 
-```
-# A tsibble: 6,402 x 9 [!]
-# Key:       id [888]
-...
-```
+    # A tsibble: 6,402 x 9 [!]
+    # Key:       id [888]
+    ...
 
 This says:
 
-- We have `r nrow(wages)` rows, 
-- with `r ncol(wages)` columns. 
+  - We have `r nrow(wages)` rows,
+  - with `r ncol(wages)` columns.
 
 The `!` at the top means that there is no regular spacing between series
 
@@ -84,5 +115,6 @@ The "key" variable is then listed - `id`, of which there `r n_keys(wages)`.
 
 # Using time series data in `brolgar`
 
-This idea of longitudinal data is core to brolgar. Other vignettes in the package will further show why the time series `tsibble` is useful.
+This idea of longitudinal data is core to brolgar. Other vignettes in the
+package will further show why the time series `tsibble` is useful.
 
