@@ -72,7 +72,7 @@ Let's look at the **wages**
 data analysed in Singer & Willett (2003). This data contains measurements on
 hourly wages by years in the workforce, with education and race as covariates.
 The population measured was male high-school dropouts, aged between 14 and 17
-years when first measured. 
+years when first measured. Below is the first 10 rows of the data.
  
 
 ``` {r slice-wages}
@@ -81,7 +81,7 @@ suppressPackageStartupMessages(library(dplyr))
 slice(wages, 1:10) %>% knitr::kable()
 ```
 
-To create a
+To create a `tsibble` of the data we ask, "which variables identify...": 
 
 1.  The individual, who would have repeated measurements. This is the **key** 
 2.  The time component, this is the **index** .
@@ -89,20 +89,13 @@ To create a
 
 Together, time **index** and **key** uniquely identify an observation with repeated measurements
 
-We have the `id` column, which identifies an individual.
+From this, we can say that:
 
+1. The **key** is the variable `id` - the subject id, from 1-888.
+2. The **index** is the variable `xp` the experience in years an individual has.
+3. The data is **irregular** since the experience is a fraction of year that is not an integer.
 
-We also have the `xp` column, which identifies the experience an individual has.
-
-So:
-
-  - key: `id`
-  - index: `xp`
-
-We could create a `tsibble` of this data by using the `as_tsibble` function from
-`tsibble`, also stating, `regular = FALSE`, since we have an `irregular` time
-series (the measurements are not regularly measured, and have a varying distance
-between each measurement):
+We can use this information to create a `tsibble` of this data using `as_tsibble`
 
 ``` {r create-tsibble, eval = FALSE}
 library(tsibble)
@@ -116,6 +109,8 @@ as_tsibble(x = wages,
 wages
 ```
 
+Note that `regular = FALSE`, since we have an `irregular` time
+series 
 
 Note the following information printed at the top of `wages`
 
@@ -134,6 +129,8 @@ The "key" variable is then listed - `id`, of which there `r n_keys(wages)`.
 
 # example: heights data
 
+The heights data is a little simpler than the wages data,
+and 
 
 # example: PISA data
 
