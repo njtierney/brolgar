@@ -129,8 +129,48 @@ The "key" variable is then listed - `id`, of which there `r n_keys(wages)`.
 
 # example: heights data
 
-The heights data is a little simpler than the wages data,
-and 
+The heights data is a little simpler than the wages data, and contains the
+average male heights in 144 countries from 1810-1989, with a smaller number of
+countries from 1500-1800. 
+
+It contains four variables:
+
+- country
+- continent
+- year
+- height_cm
+
+To create a `tsibble` of the data we ask, "which variables identify...": 
+
+1.  The individual, who would have repeated measurements. This is the **key** 
+2.  The time component, this is the **index** .
+3.  The **regularity** of the time interval (index). 
+
+In this case:
+
+- The individual is not a person, but a country
+- The time is year
+- The year is not regular because there are not measurements at a fixed year point.
+
+This data is already a `tsibble` object, we can create a `tsibble` with the following code:
+
+```{r heights-tsibble}
+as_tsibble(x = heights,
+           key = country,
+           index = year,
+           regular = FALSE)
+```
+
+
+# example: gapminder
+
+The gapminder R package contains a dataset of a subset of the gapminder study (link). This contains data on life expectancy, GDP per capita, and population by country.
+
+```{r}
+gapminder
+```
+
+
 
 # example: PISA data
 
