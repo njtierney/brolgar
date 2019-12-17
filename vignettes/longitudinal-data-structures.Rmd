@@ -25,6 +25,9 @@ these identify an individual moving through time. Identifying the individual and
 time components can sometimes be a challenge, so this vignette walks through how
 to do this.
 
+
+# Defining longitudinal data as a `tsibble`
+
 The tools and workflows in `brolgar` are designed to work with a special tidy
 time series data frame called a `tsibble`. We can define our longitudinal data
 in terms of a time series to gain access to some really useful tools. To do so,
@@ -36,16 +39,14 @@ we need to identify three components:
     has irregular time periods between measurements, but can have regular
     measurements.
 
-Together, time **index** and **key** uniquely identify an observation.
+Together, time **index** and **key** uniquely identify an observation with repeated measurements
 
-The term `key` is used a lot in brolgar, so it is an important idea to
-internalise:
-
-> **The key is the identifier of your individuals or series**
 
 Why care about defining longitudinal data as a time series? Once we account for this time series
 structure inherent in longitudinal data, we gain access to a suite of nice tools
-that simplify and accelerate how we work with time series data. `brolgar` is
+that simplify and accelerate how we work with time series data. 
+
+`brolgar` is
 built on top of the powerful [`tsibble`](https://tsibble.tidyverts.org/) package
 by [Earo Wang](https://earo.me/), if you would like to learn more, see the
 [official package documentation](https://tsibble.tidyverts.org/) or read [the
@@ -54,24 +55,42 @@ paper](https://arxiv.org/abs/1901.10257).
 ## Converting your longitudinal data to a time series
 
 To convert longitudinal data into a "**t**ime **s**eries tibble", a
-[`tsibble`](https://tsibble.tidyverts.org/), we need to consider:
+[`tsibble`](https://tsibble.tidyverts.org/), we need to consider which variables
+identify:
 
-  - What identifies the **time** component of the data? This is the **index**
-  - What is the **unique identifier** of an individual/series? This is the
-    **key**
+1.  The individual, who would have repeated measurements. This is the **key** 
+2.  The time component, this is the **index** .
+3.  The **regularity** of the time interval (index). 
 
-Together, the **index** and **key** uniquely identify an observation.
+Together, time **index** and **key** uniquely identify an observation with repeated measurements
 
-What do we mean by this? Let's look at the first section of the wages, **wages**
-data analysed in Singer & Willett (2003):
+The vignette now walks through some examples of converting longitudinal data into a `tsibble`.
+
+# example data: wages
+
+Let's look at the **wages** 
+data analysed in Singer & Willett (2003). This data contains measurements on
+hourly wages by years in the workforce, with education and race as covariates.
+The population measured was male high-school dropouts, aged between 14 and 17
+years when first measured. 
+ 
 
 ``` {r slice-wages}
 library(brolgar)
 suppressPackageStartupMessages(library(dplyr))
-slice(wages, 1:10)
+slice(wages, 1:10) %>% knitr::kable()
 ```
 
+To create a
+
+1.  The individual, who would have repeated measurements. This is the **key** 
+2.  The time component, this is the **index** .
+3.  The **regularity** of the time interval (index). 
+
+Together, time **index** and **key** uniquely identify an observation with repeated measurements
+
 We have the `id` column, which identifies an individual.
+
 
 We also have the `xp` column, which identifies the experience an individual has.
 
@@ -113,8 +132,19 @@ The `!` at the top means that there is no regular spacing between series
 
 The "key" variable is then listed - `id`, of which there `r n_keys(wages)`.
 
+# example: heights data
+
+
+# example: PISA data
+
 # Using time series data in `brolgar`
 
 This idea of longitudinal data is core to brolgar. Other vignettes in the
 package will further show why the time series `tsibble` is useful.
 
+# Morgue
+
+The term `key` is used a lot in brolgar, so it is an important idea to
+internalise:
+
+> **The key is the identifier of your individuals or series**
