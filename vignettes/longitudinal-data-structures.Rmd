@@ -242,11 +242,17 @@ duplicates(pisa, key = c(country, school_id, student_id), index = year)
 
 One thing to keep in mind here is that individual students are not measured repeatedly, but schools are. This means that we really shouldn't include `student_id` in the `tsibble`, since they have no repeated measurements.
 
-We can reduce data down to the school level, within each country - and in doing so, it is important that we provide some summary statistics of each of the scores - we want to include
+Understanding a bit more about the PISA data, the `school_id` and `student_id` are not unique across time. The id codes represent unique schools and students for a given year in a country and school. This is still interesting information, but illustrates the importance of understanding what is the longitudinal element in the data.
+
+In this case, the longitudinal element is the country within a given year.
+
+We can cast this as a `tsibble`, but we need to aggregate the data to each year and country. In doing so, it is important that we provide some summary statistics of each of the scores - we want to include the mean, and minimum and maximum of the math, reading, and science scores, so that we do not lose the information of the individuals.
+
+The code below does this, first grouping by year and country, and then calculating the weighted mean for math, reading, and science. This can be done using the student weight variable `stu_wgt`, to get the survey weighted mean. The minimum and maximum are then calculated.
 
 ```{r pisa-reduce}
-pisa_school <- pisa %>% 
-  group_by(year, country, school_id) %>%
+pisa_country <- pisa %>% 
+  group_by(year, country) %>%
   summarise(math_mean = weighted.mean(math, stu_wgt, na.rm=TRUE),
             read_mean = weighted.mean(read, stu_wgt, na.rm=TRUE),
             science_mean = weighted.mean(science, stu_wgt, na.rm=TRUE),
@@ -258,7 +264,7 @@ pisa_school <- pisa %>%
             science_min = min(science, na.rm=TRUE)) %>% 
   ungroup() 
 
-pisa_school
+pisa_country
 ```
 
 We can assess the regularity of the year like so:
@@ -272,8 +278,8 @@ We can now convert this into a `tsibble`:
 
 
 ```{r pisa-as-tsibble}
-as_tsibble(pisa_school,
-           key = c(country, school_id),
+as_tsibble(pisa_country,
+           key = country,
            index = year,
            regular = TRUE)
 ```

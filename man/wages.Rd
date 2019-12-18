@@ -44,5 +44,11 @@ wages \%>\%
              y = ln_wages,
              group = id)) + 
   geom_line()
+  
+  ggplot(wages, aes(x = xp,
+             y = ln_wages,
+             group = id)) + 
+  geom_line() + 
+  facet_sample()
 }
 \keyword{datasets}
