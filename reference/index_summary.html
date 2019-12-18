@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Brolgar summaries (b_summaries) — b_min • brolgar</title>
+<title>Index helper - summarise the distance between each index — index_summary • brolgar</title>
 
 
 <!-- jquery -->
@@ -41,23 +41,8 @@
 
 
 
-<meta property="og:title" content="Brolgar summaries (b_summaries) — b_min" />
-<meta property="og:description" content="Customised summaries of vectors with appropriate defaults for longitudinal
-data. The functions are prefixed with b_ to assist with autocomplete.
-The defaults are to use na.rm = TRUE for all, and for calculations
-involving quantiles, type = 8 and names = FALSE. Summaries include:
-* b_min: The minimum
-* b_max: The maximum
-* b_median: The median
-* b_mean: The mean
-* b_q25: The 25th quantile
-* b_q75: The 75th quantile
-* b_range: The range
-* b_range_diff: difference in range (max - min)
-* b_sd: The standard deviation
-* b_var: The variance
-* b_mad: The mean absolute deviation
-* b_iqr: The Inter-quartile range" />
+<meta property="og:title" content="Index helper - summarise the distance between each index — index_summary" />
+<meta property="og:description" content="Index helper - summarise the distance between each index" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -159,77 +144,44 @@ involving quantiles, type = 8 and names = FALSE. Summaries include:
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Brolgar summaries (b_summaries)</h1>
-    <small class="dont-index">Source: <a href='https://github.com/njtierney/brolgar/blob/master/R/b_summaries.R'><code>R/b_summaries.R</code></a></small>
-    <div class="hidden name"><code>b_summaries.Rd</code></div>
+    <h1>Index helper - summarise the distance between each index</h1>
+    <small class="dont-index">Source: <a href='https://github.com/njtierney/brolgar/blob/master/R/index-helpers.R'><code>R/index-helpers.R</code></a></small>
+    <div class="hidden name"><code>index_summary.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Customised summaries of vectors with appropriate defaults for longitudinal
-data. The functions are prefixed with <code>b_</code> to assist with autocomplete.
-The defaults are to use <code>na.rm = TRUE</code> for all, and for calculations
-involving quantiles, <code>type = 8</code> and <code>names = FALSE</code>. Summaries include:
-* b_min: The minimum
-* b_max: The maximum
-* b_median: The median
-* b_mean: The mean
-* b_q25: The 25th quantile
-* b_q75: The 75th quantile
-* b_range: The range
-* b_range_diff: difference in range (max - min)
-* b_sd: The standard deviation
-* b_var: The variance
-* b_mad: The mean absolute deviation
-* b_iqr: The Inter-quartile range</p>
+    <p>Index helper - summarise the distance between each index</p>
     </div>
 
-    <pre class="usage"><span class='fu'>b_min</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_max</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_median</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_mean</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_q25</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_q75</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_range</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_range_diff</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_sd</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_var</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_mad</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_iqr</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>index_summary</span>(<span class='no'>data</span>, <span class='no'>index</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a vector</p></td>
+      <th>data</th>
+      <td><p>data.frame</p></td>
     </tr>
     <tr>
-      <th>na.rm</th>
-      <td><p>whether to remove NA values. Default is TRUE</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>other arguments to pass</p></td>
+      <th>index</th>
+      <td><p>proposed index column</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>summary of difference between each index</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>index_summary</span>(<span class='no'>pisa</span>, <span class='no'>year</span>)</div><div class='output co'>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#&gt;       3       3       3       3       3       3 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

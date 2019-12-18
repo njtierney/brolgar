@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Brolgar summaries (b_summaries) — b_min • brolgar</title>
+<title>Student data from 2000-2018 PISA OECD data — pisa • brolgar</title>
 
 
 <!-- jquery -->
@@ -41,23 +41,12 @@
 
 
 
-<meta property="og:title" content="Brolgar summaries (b_summaries) — b_min" />
-<meta property="og:description" content="Customised summaries of vectors with appropriate defaults for longitudinal
-data. The functions are prefixed with b_ to assist with autocomplete.
-The defaults are to use na.rm = TRUE for all, and for calculations
-involving quantiles, type = 8 and names = FALSE. Summaries include:
-* b_min: The minimum
-* b_max: The maximum
-* b_median: The median
-* b_mean: The mean
-* b_q25: The 25th quantile
-* b_q75: The 75th quantile
-* b_range: The range
-* b_range_diff: difference in range (max - min)
-* b_sd: The standard deviation
-* b_var: The variance
-* b_mad: The mean absolute deviation
-* b_iqr: The Inter-quartile range" />
+<meta property="og:title" content="Student data from 2000-2018 PISA OECD data — pisa" />
+<meta property="og:description" content="A subset of PISA data, containing scores and other information
+from the triennial testing of 15 year olds around
+the globe. Original data available from
+https://www.oecd.org/pisa/data/. Data derived from
+https://github.com/ropenscilabs/learningtower." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -159,77 +148,57 @@ involving quantiles, type = 8 and names = FALSE. Summaries include:
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Brolgar summaries (b_summaries)</h1>
-    <small class="dont-index">Source: <a href='https://github.com/njtierney/brolgar/blob/master/R/b_summaries.R'><code>R/b_summaries.R</code></a></small>
-    <div class="hidden name"><code>b_summaries.Rd</code></div>
+    <h1>Student data from 2000-2018 PISA OECD data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/njtierney/brolgar/blob/master/R/data-pisa.R'><code>R/data-pisa.R</code></a></small>
+    <div class="hidden name"><code>pisa.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Customised summaries of vectors with appropriate defaults for longitudinal
-data. The functions are prefixed with <code>b_</code> to assist with autocomplete.
-The defaults are to use <code>na.rm = TRUE</code> for all, and for calculations
-involving quantiles, <code>type = 8</code> and <code>names = FALSE</code>. Summaries include:
-* b_min: The minimum
-* b_max: The maximum
-* b_median: The median
-* b_mean: The mean
-* b_q25: The 25th quantile
-* b_q75: The 75th quantile
-* b_range: The range
-* b_range_diff: difference in range (max - min)
-* b_sd: The standard deviation
-* b_var: The variance
-* b_mad: The mean absolute deviation
-* b_iqr: The Inter-quartile range</p>
+    <p>A subset of PISA data, containing scores and other information
+from the triennial testing of 15 year olds around
+the globe. Original data available from
+<a href='https://www.oecd.org/pisa/data/'>https://www.oecd.org/pisa/data/</a>. Data derived from
+<a href='https://github.com/ropenscilabs/learningtower'>https://github.com/ropenscilabs/learningtower</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>b_min</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_max</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_median</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_mean</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_q25</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_q75</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_range</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_range_diff</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_sd</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_var</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_mad</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='fu'>b_iqr</span>(<span class='no'>x</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>a vector</p></td>
-    </tr>
-    <tr>
-      <th>na.rm</th>
-      <td><p>whether to remove NA values. Default is TRUE</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>other arguments to pass</p></td>
-    </tr>
-    </table>
+    <pre class="usage"><span class='no'>pisa</span></pre>
 
 
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A tibble of the following variables</p><ul>
+<li><p>year the year of measurement</p></li>
+<li><p>country the three letter country code</p></li>
+<li><p>school_id The unique school identification number</p></li>
+<li><p>student_id The student identification number</p></li>
+<li><p>gender recorded gender - 1 female or 2 male or missing</p></li>
+<li><p>math Simulated score in mathematics</p></li>
+<li><p>read Simulated score in reading</p></li>
+<li><p>science Simulated score in science</p></li>
+<li><p>stu_wgt The final survey weight score for the student score</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>pisa</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 405,571 x 9</span><span>
+#&gt;     year country school_id student_id gender  math science  read stu_wgt
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006          1      1   </span><span style='color: #BB0000;'>NA</span><span>     469.  526     5.60
+#&gt; </span><span style='color: #555555;'> 2</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006          2      2   </span><span style='color: #BB0000;'>NA</span><span>     607.  559.    5.60
+#&gt; </span><span style='color: #555555;'> 3</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006          3      2   </span><span style='color: #BB0000;'>NA</span><span>     335.  383.    5.60
+#&gt; </span><span style='color: #555555;'> 4</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006          4      1   </span><span style='color: #BB0000;'>NA</span><span>     576   595     5.60
+#&gt; </span><span style='color: #555555;'> 5</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006          7      2  550.    585.  497.    5.60
+#&gt; </span><span style='color: #555555;'> 6</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006          9      2   </span><span style='color: #BB0000;'>NA</span><span>     516.  532.    5.60
+#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006         10      2   </span><span style='color: #BB0000;'>NA</span><span>     514.  575.    5.60
+#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006         12      2  377     384.  325.    5.60
+#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006         13      2   </span><span style='color: #BB0000;'>NA</span><span>     458.  452.    5.60
+#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006         14      2  588.    499   507.    5.60
+#&gt; </span><span style='color: #555555;'># … with 405,561 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#format">Format</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

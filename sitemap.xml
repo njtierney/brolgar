@@ -25,6 +25,12 @@
     <loc>http://brolgar.njtierney.com//reference/heights.html</loc>
   </url>
   <url>
+    <loc>http://brolgar.njtierney.com//reference/index_regular.html</loc>
+  </url>
+  <url>
+    <loc>http://brolgar.njtierney.com//reference/index_summary.html</loc>
+  </url>
+  <url>
     <loc>http://brolgar.njtierney.com//reference/key_slope.html</loc>
   </url>
   <url>
@@ -59,6 +65,9 @@
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>http://brolgar.njtierney.com//reference/pisa.html</loc>
   </url>
   <url>
     <loc>http://brolgar.njtierney.com//reference/reexports.html</loc>
