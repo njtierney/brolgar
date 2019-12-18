@@ -7,52 +7,98 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 ```
 
-All data has structure. There are ways that we can specify some permanent structure to the data, which gives some useful features later on, for free. This vignette discusses how to structure your longitudinal data as a time series, and what that means.
+There are many ways to describe longitudinal data - from panel data,
+cross-sectional data, and time series. We define longitudinal data as:
 
-This idea, that **longitudinal data is a time series**, is _Big Idea #1_ behind the `brolgar` package.
+> Information from the same individuals, recorded at multiple points in time.
 
-> Anything that is observed sequentially over time is a time series. -- [Professors Rob Hyndman and George Athanasopolous](https://otexts.com/fpp2/data-methods.html)
+To explore and model longitudinal data, It is important to understand what
+variables represent the individual components, and the time components, and how
+these identify an individual moving through time. Identifying the individual and
+time components can sometimes be a challenge, so this vignette walks through how
+to do this.
 
-Longitudinal data has a few other names, such as "panel data". I used to always think that "time series" was defined as something that was by definition "regular" - with equal spacings between observations. This is actually not the case - you can have both "regular", and "irregular" time series. 
 
-Why care about using a time series? Once we account for this time series structure inherent in longitudinal data, we gain access to a suite of nice tools that simplify and accelerate how we work with time series data. `brolgar` is built on top of the powerful [`tsibble`](https://tsibble.tidyverts.org/) package by [Earo Wang](https://earo.me/), if you would like to learn more, see the [official package documentation](https://tsibble.tidyverts.org/) or read [the paper](https://arxiv.org/abs/1901.10257).
+# Defining longitudinal data as a `tsibble`
+
+The tools and workflows in `brolgar` are designed to work with a special tidy
+time series data frame called a `tsibble`. We can define our longitudinal data
+in terms of a time series to gain access to some really useful tools. To do so,
+we need to identify three components:
+
+1.  The **key** variable in your data is the **identifier** of your individual.
+2.  The **index** variable is the **time** component of your data.
+3.  The **regularity** of the time interval (index). Longitudinal data typically
+    has irregular time periods between measurements, but can have regular
+    measurements.
+
+Together, time **index** and **key** uniquely identify an observation with repeated measurements
+
+
+Why care about defining longitudinal data as a time series? Once we account for this time series
+structure inherent in longitudinal data, we gain access to a suite of nice tools
+that simplify and accelerate how we work with time series data. 
+
+`brolgar` is
+built on top of the powerful [`tsibble`](https://tsibble.tidyverts.org/) package
+by [Earo Wang](https://earo.me/), if you would like to learn more, see the
+[official package documentation](https://tsibble.tidyverts.org/) or read [the
+paper](https://arxiv.org/abs/1901.10257).
 
 ## Converting your longitudinal data to a time series
 
-To convert longitudinal data into a "**t**ime **s**eries tibble", a [`tsibble`](https://tsibble.tidyverts.org/), we need to consider:
+To convert longitudinal data into a "**t**ime **s**eries tibble", a
+[`tsibble`](https://tsibble.tidyverts.org/), we need to consider which variables
+identify:
 
-* What identifies the **time** component of the data? This is the **index**
-* What is the **unique identifier** of an individual/series? This is the **key**
+1.  The individual, who would have repeated measurements. This is the **key** 
+2.  The time component, this is the **index** .
+3.  The **regularity** of the time interval (index). 
 
-Together, the **index** and **key** uniquely identify an observation.
+Together, time **index** and **key** uniquely identify an observation with repeated measurements
 
-What do we mean by this? Let's look at the first section of the wages, **wages** data analysed in Singer & Willett (2003):
+The vignette now walks through some examples of converting longitudinal data into a `tsibble`.
 
-```{r slice-wages}
+# example data: wages
+
+Let's look at the **wages** 
+data analysed in Singer & Willett (2003). This data contains measurements on
+hourly wages by years in the workforce, with education and race as covariates.
+The population measured was male high-school dropouts, aged between 14 and 17
+years when first measured. Below is the first 10 rows of the data.
+ 
+
+``` {r slice-wages}
 library(brolgar)
 suppressPackageStartupMessages(library(dplyr))
-slice(wages, 1:10)
+slice(wages, 1:10) %>% knitr::kable()
 ```
 
-We have the `id` column, which identifies an individual.
+To create a `tsibble` of the data we ask, "which variables identify...": 
 
-We also have the `xp` column, which identifies the experience an individual has.
+1.  The **key**, the individual, who would have repeated measurements. 
+2.  The **index**, the time component.
+3.  The **regularity** of the time interval (index). 
 
-So:
 
-* key: `id`
-* index: `xp`
+Together, time **index** and **key** uniquely identify an observation with repeated measurements
 
-We could create a `tsibble` of this data by using the `as_tsibble` function from `tsibble`, also stating, `regular = FALSE`, since we have an `irregular` time series (the measurements are not regularly measured, and have a varying distance between each measurement):
+From this, we can say that:
 
-```{r create-tsibble, eval = FALSE}
+1. The **key** is the variable `id` - the subject id, from 1-888.
+2. The **index** is the variable `xp` the experience in years an individual has.
+3. The data is **irregular** since the experience is a fraction of year that is not an integer.
+
+We can use this information to create a `tsibble` of this data using `as_tsibble`
+
+``` {r create-tsibble, eval = FALSE}
 library(tsibble)
 as_tsibble(x = wages,
            key = id,
@@ -60,29 +106,200 @@ as_tsibble(x = wages,
            regular = FALSE)
 ```
 
-```{r print-wages-tsibble, echo = FALSE}
+``` {r print-wages-tsibble, echo = FALSE}
 wages
 ```
 
+Note that `regular = FALSE`, since we have an `irregular` time
+series 
 
 Note the following information printed at the top of `wages`
 
-```
-# A tsibble: 6,402 x 9 [!]
-# Key:       id [888]
-...
-```
+    # A tsibble: 6,402 x 9 [!]
+    # Key:       id [888]
+    ...
 
 This says:
 
-- We have `r nrow(wages)` rows, 
-- with `r ncol(wages)` columns. 
+  - We have `r nrow(wages)` rows,
+  - with `r ncol(wages)` columns.
 
 The `!` at the top means that there is no regular spacing between series
 
 The "key" variable is then listed - `id`, of which there `r n_keys(wages)`.
 
-# Using time series data in `brolgar`
+# example: heights data
 
-This idea of longitudinal data is core to brolgar. Other vignettes in the package will further show why the time series `tsibble` is useful.
+The heights data is a little simpler than the wages data, and contains the
+average male heights in 144 countries from 1810-1989, with a smaller number of
+countries from 1500-1800. 
 
+It contains four variables:
+
+- country
+- continent
+- year
+- height_cm
+
+To create a `tsibble` of the data we ask, "which variables identify...": 
+
+1.  The **key**, the individual, who would have repeated measurements. 
+2.  The **index**, the time component.
+3.  The **regularity** of the time interval (index). 
+
+
+In this case:
+
+- The individual is not a person, but a country
+- The time is year
+- The year is not regular because there are not measurements at a fixed year point.
+
+This data is already a `tsibble` object, we can create a `tsibble` with the following code:
+
+```{r heights-tsibble}
+as_tsibble(x = heights,
+           key = country,
+           index = year,
+           regular = FALSE)
+```
+
+
+# example: gapminder
+
+The gapminder R package contains a dataset of a subset of the gapminder study (link). This contains data on life expectancy, GDP per capita, and population by country.
+
+```{r show-gapminder}
+library(gapminder)
+gapminder
+```
+
+Let's identify
+
+1.  The **key**, the individual, who would have repeated measurements. 
+2.  The **index**, the time component.
+3.  The **regularity** of the time interval (index). 
+
+This is in fact very similar to the `heights` dataset:
+
+1. The **key** is the country
+2. The **index** is the year
+
+To identify if the year is regular, we can do a bit of data exploration using `index_summary()`
+
+```{r gap-summarise-index}
+gapminder %>% 
+  group_by(country) %>% 
+  index_summary(year)
+```
+
+This shows us that the year is every five - so now we know that this is a regular longitudinal dataset, and can be encoded like so:
+
+```{r tsibble-gapminder}
+as_tsibble(gapminder,
+           key = country,
+           index = year,
+           regular = TRUE)
+```
+
+# example: PISA data
+
+The PISA study measures school students around the world on a series of math, reading, and science scores. A subset of the data looks like so:
+
+```{r pisa-show}
+pisa
+```
+
+Let's identify
+
+1.  The **key**, the individual, who would have repeated measurements. 
+2.  The **index**, the time component.
+3.  The **regularity** of the time interval (index). 
+
+Here it looks like the key is the student_id, which is nested within school_id and country,
+
+And the index is year, so we would write the following
+
+```r
+as_tsibble(pisa, 
+           key = c(country, school_id, student_id),
+           index = year)
+```
+
+Unfortunately, we get this error:
+
+```
+Error: A valid tsibble must have distinct rows identified by key and index.
+Please use `duplicates()` to check the duplicated rows.
+Run `rlang::last_error()` to see where the error occurred.
+```
+
+This is a somewhat confusing error - we can check duplicates like so:
+
+```{r pisa-duplicates}
+library(tsibble)
+duplicates(pisa, key = c(country, school_id, student_id), index = year)
+```
+
+One thing to keep in mind here is that individual students are not measured repeatedly, but schools are. This means that we really shouldn't include `student_id` in the `tsibble`, since they have no repeated measurements.
+
+We can reduce data down to the school level, within each country - and in doing so, it is important that we provide some summary statistics of each of the scores - we want to include
+
+```{r pisa-reduce}
+pisa_school <- pisa %>% 
+  group_by(year, country, school_id) %>%
+  summarise(math_mean = weighted.mean(math, stu_wgt, na.rm=TRUE),
+            read_mean = weighted.mean(read, stu_wgt, na.rm=TRUE),
+            science_mean = weighted.mean(science, stu_wgt, na.rm=TRUE),
+            math_max = max(math, na.rm=TRUE), 
+            read_max = max(read, na.rm=TRUE),
+            science_max = max(science, na.rm=TRUE),
+            math_min = min(math, na.rm=TRUE), 
+            read_min = min(read, na.rm=TRUE),
+            science_min = min(science, na.rm=TRUE)) %>% 
+  ungroup() 
+
+pisa_school
+```
+
+We can assess the regularity of the year like so:
+
+```{r index-check}
+index_regular(pisa, year)
+index_summary(pisa, year)
+```
+
+We can now convert this into a `tsibble`:
+
+
+```{r pisa-as-tsibble}
+as_tsibble(pisa_school,
+           key = c(country, school_id),
+           index = year,
+           regular = TRUE)
+```
+
+
+# Conclusion
+
+This idea of longitudinal data is core to brolgar. Other vignettes in the
+package will further show why the time series `tsibble` is useful.
+
+# Extras
+
+The term `key` is used a lot in brolgar, so it is an important idea to
+internalise:
+
+> **The key is the identifier of your individuals or series**
+
+
+## Note re duplicated `pisa` data:
+And from what we can see, it looks like `student_id` is not duplicated - let's try arranging it.
+
+```{r extra-pisa-duplicates}
+duplicates(pisa, 
+           key = c(country, 
+                   school_id, 
+                   student_id), 
+           index = year) %>% 
+  arrange(year, student_id)
+```

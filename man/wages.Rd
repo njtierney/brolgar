@@ -35,6 +35,7 @@ Oxford University Press, Oxford, UK, 2003.
 http://gseacademic.harvard.edu/alda/
 }
 \examples{
+wages
 set.seed(2019-7-15-1300)
 library(ggplot2)
 wages \%>\%

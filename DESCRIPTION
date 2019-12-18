@@ -43,6 +43,7 @@ Imports:
     vctrs
 Suggests: 
     covr,
+    gapminder,
     gghighlight (>= 0.1.0),
     knitr (>= 1.23),
     lme4,
