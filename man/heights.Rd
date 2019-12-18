@@ -31,9 +31,10 @@ History 18 (2014), 144–165. Data available from
 \url{http://hdl.handle.net/10622/IAEKLA}, accessed via the Clio Infra website.
 }
 \examples{
-\dontrun{
+# show the data
 heights
 
+# show the spaghetti plot (ugh!)
 library(ggplot2)
 ggplot(heights, 
        aes(x = year, 
@@ -41,6 +42,7 @@ ggplot(heights,
            group = country)) + 
     geom_line()
     
+# Explore all samples with `facet_strata()`
 ggplot(heights,
        aes(x = year,
            y = height_cm,
@@ -48,13 +50,17 @@ ggplot(heights,
   geom_line() +
   facet_strata()
 
+# Explore the heights over each continent
 ggplot(heights,
        aes(x = year,
            y = height_cm,
            group = country)) +
   geom_line() +
   facet_wrap(~continent)
-
-}
+  
+# explore the five number summary of height_cm with `features`
+heights \%>\% 
+  features(height_cm, feat_five_num)
+  
 }
 \keyword{datasets}

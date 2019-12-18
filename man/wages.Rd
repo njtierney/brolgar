@@ -35,20 +35,30 @@ Oxford University Press, Oxford, UK, 2003.
 http://gseacademic.harvard.edu/alda/
 }
 \examples{
+# show the data
 wages
-set.seed(2019-7-15-1300)
 library(ggplot2)
+# set seed so that the plots stay the same
+set.seed(2019-7-15-1300)
+# explore a sample of five individuals
 wages \%>\%
   sample_n_keys(size = 5) \%>\%
   ggplot(aes(x = xp,
              y = ln_wages,
              group = id)) + 
   geom_line()
-  
-  ggplot(wages, aes(x = xp,
+
+# Explore many samples with `facet_sample()`
+  ggplot(wages, 
+         aes(x = xp,
              y = ln_wages,
              group = id)) + 
   geom_line() + 
   facet_sample()
+
+# explore the five number summary of ln_wages with `features`
+wages \%>\% 
+  features(ln_wages, feat_five_num)
+  
 }
 \keyword{datasets}

@@ -21,9 +21,10 @@
 #' 
 #' @keywords datasets
 #' @examples
-#' \dontrun{
+#' # show the data
 #' heights
 #' 
+#' # show the spaghetti plot (ugh!)
 #' library(ggplot2)
 #' ggplot(heights, 
 #'        aes(x = year, 
@@ -31,6 +32,7 @@
 #'            group = country)) + 
 #'     geom_line()
 #'     
+#' # Explore all samples with `facet_strata()`
 #' ggplot(heights,
 #'        aes(x = year,
 #'            y = height_cm,
@@ -38,12 +40,16 @@
 #'   geom_line() +
 #'   facet_strata()
 #' 
+#' # Explore the heights over each continent
 #' ggplot(heights,
 #'        aes(x = year,
 #'            y = height_cm,
 #'            group = country)) +
 #'   geom_line() +
 #'   facet_wrap(~continent)
-#' 
-#' }
+#'   
+#' # explore the five number summary of height_cm with `features`
+#' heights %>% 
+#'   features(height_cm, feat_five_num)
+#'   
 "heights"

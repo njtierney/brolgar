@@ -11,17 +11,17 @@ pisa <- student %>%
          math:stu_wgt) %>% 
   filter(country %in% c(
     "AUS", # Australia
-    "BRA", # Brazil
-    "CHL", # Chile
-    "DNK", # Denmark
-    "FRA", # France
-    "GRC", # Greece
-    "HKG", # Hong Kong
-    "IDN" # Indonesia
+    "IDN", # Indonesia
+    "NZL" # New Zealand
+    # "BRA", # Brazil
+    # "CHL", # Chile
+    # "DNK", # Denmark
+    # "FRA", # France
+    # "GRC", # Greece
+    # "HKG", # Hong Kong
     # "JPN", # Japan
     # "LBY", # Libya
     # "MEX", # Mexico,
-    # "NZL", # New Zealand
     # "RUS", # Russia
     # "THA", # Thailand
     # "USA" # United states of America
