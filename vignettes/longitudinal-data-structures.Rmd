@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 There are many ways to describe longitudinal data - from panel data,
 cross-sectional data, and time series. We define longitudinal data as:
 
-> individuals repeatedly measured through time.
+> Information from the same individuals, recorded at multiple points in time.
 
 To explore and model longitudinal data, It is important to understand what
 variables represent the individual components, and the time components, and how
@@ -83,9 +83,10 @@ slice(wages, 1:10) %>% knitr::kable()
 
 To create a `tsibble` of the data we ask, "which variables identify...": 
 
-1.  The individual, who would have repeated measurements. This is the **key** 
-2.  The time component, this is the **index** .
+1.  The **key**, the individual, who would have repeated measurements. 
+2.  The **index**, the time component.
 3.  The **regularity** of the time interval (index). 
+
 
 Together, time **index** and **key** uniquely identify an observation with repeated measurements
 
@@ -142,9 +143,10 @@ It contains four variables:
 
 To create a `tsibble` of the data we ask, "which variables identify...": 
 
-1.  The individual, who would have repeated measurements. This is the **key** 
-2.  The time component, this is the **index** .
+1.  The **key**, the individual, who would have repeated measurements. 
+2.  The **index**, the time component.
 3.  The **regularity** of the time interval (index). 
+
 
 In this case:
 
@@ -166,22 +168,138 @@ as_tsibble(x = heights,
 
 The gapminder R package contains a dataset of a subset of the gapminder study (link). This contains data on life expectancy, GDP per capita, and population by country.
 
-```{r}
+```{r show-gapminder}
+library(gapminder)
 gapminder
 ```
 
+Let's identify
 
+1.  The **key**, the individual, who would have repeated measurements. 
+2.  The **index**, the time component.
+3.  The **regularity** of the time interval (index). 
+
+This is in fact very similar to the `heights` dataset:
+
+1. The **key** is the country
+2. The **index** is the year
+
+To identify if the year is regular, we can do a bit of data exploration using `index_summary()`
+
+```{r gap-summarise-index}
+gapminder %>% 
+  group_by(country) %>% 
+  index_summary(year)
+```
+
+This shows us that the year is every five - so now we know that this is a regular longitudinal dataset, and can be encoded like so:
+
+```{r tsibble-gapminder}
+as_tsibble(gapminder,
+           key = country,
+           index = year,
+           regular = TRUE)
+```
 
 # example: PISA data
 
-# Using time series data in `brolgar`
+The PISA study measures school students around the world on a series of math, reading, and science scores. A subset of the data looks like so:
+
+```{r pisa-show}
+pisa
+```
+
+Let's identify
+
+1.  The **key**, the individual, who would have repeated measurements. 
+2.  The **index**, the time component.
+3.  The **regularity** of the time interval (index). 
+
+Here it looks like the key is the student_id, which is nested within school_id and country,
+
+And the index is year, so we would write the following
+
+```r
+as_tsibble(pisa, 
+           key = c(country, school_id, student_id),
+           index = year)
+```
+
+Unfortunately, we get this error:
+
+```
+Error: A valid tsibble must have distinct rows identified by key and index.
+Please use `duplicates()` to check the duplicated rows.
+Run `rlang::last_error()` to see where the error occurred.
+```
+
+This is a somewhat confusing error - we can check duplicates like so:
+
+```{r pisa-duplicates}
+library(tsibble)
+duplicates(pisa, key = c(country, school_id, student_id), index = year)
+```
+
+One thing to keep in mind here is that individual students are not measured repeatedly, but schools are. This means that we really shouldn't include `student_id` in the `tsibble`, since they have no repeated measurements.
+
+We can reduce data down to the school level, within each country - and in doing so, it is important that we provide some summary statistics of each of the scores - we want to include
+
+```{r pisa-reduce}
+pisa_school <- pisa %>% 
+  group_by(year, country, school_id) %>%
+  summarise(math_mean = weighted.mean(math, stu_wgt, na.rm=TRUE),
+            read_mean = weighted.mean(read, stu_wgt, na.rm=TRUE),
+            science_mean = weighted.mean(science, stu_wgt, na.rm=TRUE),
+            math_max = max(math, na.rm=TRUE), 
+            read_max = max(read, na.rm=TRUE),
+            science_max = max(science, na.rm=TRUE),
+            math_min = min(math, na.rm=TRUE), 
+            read_min = min(read, na.rm=TRUE),
+            science_min = min(science, na.rm=TRUE)) %>% 
+  ungroup() 
+
+pisa_school
+```
+
+We can assess the regularity of the year like so:
+
+```{r index-check}
+index_regular(pisa, year)
+index_summary(pisa, year)
+```
+
+We can now convert this into a `tsibble`:
+
+
+```{r pisa-as-tsibble}
+as_tsibble(pisa_school,
+           key = c(country, school_id),
+           index = year,
+           regular = TRUE)
+```
+
+
+# Conclusion
 
 This idea of longitudinal data is core to brolgar. Other vignettes in the
 package will further show why the time series `tsibble` is useful.
 
-# Morgue
+# Extras
 
 The term `key` is used a lot in brolgar, so it is an important idea to
 internalise:
 
 > **The key is the identifier of your individuals or series**
+
+
+## Note re duplicated `pisa` data:
+And from what we can see, it looks like `student_id` is not duplicated - let's try arranging it.
+
+```{r extra-pisa-duplicates}
+duplicates(pisa, 
+           key = c(country, 
+                   school_id, 
+                   student_id), 
+           index = year) %>% 
+  arrange(year, student_id)
+```
