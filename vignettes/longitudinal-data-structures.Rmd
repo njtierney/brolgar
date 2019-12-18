@@ -41,6 +41,10 @@ we need to identify three components:
 
 Together, time **index** and **key** uniquely identify an observation with repeated measurements
 
+The term `key` is used a lot in brolgar, so it is an important idea to
+internalise:
+
+> **The key is the identifier of your individuals or series**
 
 Why care about defining longitudinal data as a time series? Once we account for this time series
 structure inherent in longitudinal data, we gain access to a suite of nice tools
@@ -51,6 +55,7 @@ built on top of the powerful [`tsibble`](https://tsibble.tidyverts.org/) package
 by [Earo Wang](https://earo.me/), if you would like to learn more, see the
 [official package documentation](https://tsibble.tidyverts.org/) or read [the
 paper](https://arxiv.org/abs/1901.10257).
+
 
 ## Converting your longitudinal data to a time series
 
@@ -278,34 +283,16 @@ We can now convert this into a `tsibble`:
 
 
 ```{r pisa-as-tsibble}
+pisa_ts <- 
 as_tsibble(pisa_country,
            key = country,
            index = year,
            regular = TRUE)
-```
 
+pisa_ts
+```
 
 # Conclusion
 
-This idea of longitudinal data is core to brolgar. Other vignettes in the
+This idea of longitudinal data is core to brolgar. Understanding what longitudinal data is, and how this can be linked to a time series representation of data helps us understand our data structure, and gives us access to more flexible tools. Other vignettes in the
 package will further show why the time series `tsibble` is useful.
-
-# Extras
-
-The term `key` is used a lot in brolgar, so it is an important idea to
-internalise:
-
-> **The key is the identifier of your individuals or series**
-
-
-## Note re duplicated `pisa` data:
-And from what we can see, it looks like `student_id` is not duplicated - let's try arranging it.
-
-```{r extra-pisa-duplicates}
-duplicates(pisa, 
-           key = c(country, 
-                   school_id, 
-                   student_id), 
-           index = year) %>% 
-  arrange(year, student_id)
-```
