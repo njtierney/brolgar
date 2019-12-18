@@ -185,20 +185,20 @@
 #&gt; [13]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='no'>wages</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>near_between</span>(<span class='no'>min</span>, <span class='fl'>0.1</span>, <span class='fl'>0.9</span>))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 710 x 2</span><span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>near_between</span>(<span class='no'>min</span>, <span class='fl'>0.1</span>, <span class='fl'>0.9</span>))</div><div class='output co'>#&gt; # A tibble: 710 x 2
 #&gt;       id   min
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>    31  1.43
-#&gt; </span><span style='color: #555555;'> 2</span><span>    36  1.80
-#&gt; </span><span style='color: #555555;'> 3</span><span>    53  1.54
-#&gt; </span><span style='color: #555555;'> 4</span><span>   145  1.48
-#&gt; </span><span style='color: #555555;'> 5</span><span>   155  1.54
-#&gt; </span><span style='color: #555555;'> 6</span><span>   173  1.56
-#&gt; </span><span style='color: #555555;'> 7</span><span>   207  1.58
-#&gt; </span><span style='color: #555555;'> 8</span><span>   222  1.31
-#&gt; </span><span style='color: #555555;'> 9</span><span>   223  1.51
-#&gt; </span><span style='color: #555555;'>10</span><span>   234  1.54
-#&gt; </span><span style='color: #555555;'># … with 700 more rows</span><span></div><div class='input'>
+#&gt;    &lt;int&gt; &lt;dbl&gt;
+#&gt;  1    31  1.43
+#&gt;  2    36  1.80
+#&gt;  3    53  1.54
+#&gt;  4   145  1.48
+#&gt;  5   155  1.54
+#&gt;  6   173  1.56
+#&gt;  7   207  1.58
+#&gt;  8   222  1.31
+#&gt;  9   223  1.51
+#&gt; 10   234  1.54
+#&gt; # … with 700 more rows</div><div class='input'>
 <span class='fu'><a href='near_quantile.html'>near_quantile</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>,
               <span class='kw'>probs</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
               <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>0.01</span>)</div><div class='output co'>#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
@@ -211,69 +211,69 @@
             <span class='kw'>.funs</span> <span class='kw'>=</span> <span class='no'>near_quantile</span>,
             <span class='fl'>0.5</span>,
             <span class='fl'>0.01</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>min</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 30 x 6</span><span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>min</span>)</div><div class='output co'>#&gt; # A tibble: 30 x 6
 #&gt;       id min   q_25  med   q_75  max  
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>   145 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'> 2</span><span>  </span><span style='text-decoration: underline;'>1</span><span>417 TRUE  FALSE TRUE  TRUE  FALSE
-#&gt; </span><span style='color: #555555;'> 3</span><span>  </span><span style='text-decoration: underline;'>1</span><span>515 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'> 4</span><span>  </span><span style='text-decoration: underline;'>1</span><span>535 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'> 5</span><span>  </span><span style='text-decoration: underline;'>1</span><span>731 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'> 6</span><span>  </span><span style='text-decoration: underline;'>1</span><span>772 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>2</span><span>213 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>3</span><span>272 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>6</span><span>860 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>6</span><span>918 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'># … with 20 more rows</span><span></div><div class='input'>
+#&gt;    &lt;int&gt; &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt;
+#&gt;  1   145 TRUE  FALSE FALSE FALSE FALSE
+#&gt;  2  1417 TRUE  FALSE TRUE  TRUE  FALSE
+#&gt;  3  1515 TRUE  FALSE FALSE FALSE FALSE
+#&gt;  4  1535 TRUE  FALSE FALSE FALSE FALSE
+#&gt;  5  1731 TRUE  FALSE FALSE FALSE FALSE
+#&gt;  6  1772 TRUE  FALSE FALSE FALSE FALSE
+#&gt;  7  2213 TRUE  FALSE FALSE FALSE FALSE
+#&gt;  8  3272 TRUE  FALSE FALSE FALSE FALSE
+#&gt;  9  6860 TRUE  FALSE FALSE FALSE FALSE
+#&gt; 10  6918 TRUE  FALSE FALSE FALSE FALSE
+#&gt; # … with 20 more rows</div><div class='input'>
 <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>min_near_q3</span> <span class='kw'>=</span> <span class='fu'><a href='near_quantile.html'>near_quantile</a></span>(<span class='no'>min</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.25</span>, <span class='fl'>0.5</span>, <span class='fl'>0.75</span>), <span class='fl'>0.01</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>min_near_q3</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 66 x 3</span><span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>min_near_q3</span>)</div><div class='output co'>#&gt; # A tibble: 66 x 3
 #&gt;       id   min min_near_q3
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>      
-#&gt; </span><span style='color: #555555;'> 1</span><span>   145  1.48 TRUE       
-#&gt; </span><span style='color: #555555;'> 2</span><span>  </span><span style='text-decoration: underline;'>1</span><span>417  1.48 TRUE       
-#&gt; </span><span style='color: #555555;'> 3</span><span>  </span><span style='text-decoration: underline;'>1</span><span>515  1.48 TRUE       
-#&gt; </span><span style='color: #555555;'> 4</span><span>  </span><span style='text-decoration: underline;'>1</span><span>535  1.48 TRUE       
-#&gt; </span><span style='color: #555555;'> 5</span><span>  </span><span style='text-decoration: underline;'>1</span><span>580  1.64 TRUE       
-#&gt; </span><span style='color: #555555;'> 6</span><span>  </span><span style='text-decoration: underline;'>1</span><span>595  1.63 TRUE       
-#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>1</span><span>672  1.63 TRUE       
-#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>1</span><span>731  1.48 TRUE       
-#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>1</span><span>772  1.48 TRUE       
-#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>1</span><span>811  1.64 TRUE       
-#&gt; </span><span style='color: #555555;'># … with 56 more rows</span><span></div><div class='input'>
+#&gt;    &lt;int&gt; &lt;dbl&gt; &lt;lgl&gt;      
+#&gt;  1   145  1.48 TRUE       
+#&gt;  2  1417  1.48 TRUE       
+#&gt;  3  1515  1.48 TRUE       
+#&gt;  4  1535  1.48 TRUE       
+#&gt;  5  1580  1.64 TRUE       
+#&gt;  6  1595  1.63 TRUE       
+#&gt;  7  1672  1.63 TRUE       
+#&gt;  8  1731  1.48 TRUE       
+#&gt;  9  1772  1.48 TRUE       
+#&gt; 10  1811  1.64 TRUE       
+#&gt; # … with 56 more rows</div><div class='input'>
 <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>near_between</span>(<span class='no'>min</span>, <span class='fl'>0.1</span>, <span class='fl'>0.9</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 710 x 2</span><span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>near_between</span>(<span class='no'>min</span>, <span class='fl'>0.1</span>, <span class='fl'>0.9</span>))</div><div class='output co'>#&gt; # A tibble: 710 x 2
 #&gt;       id   min
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>    31  1.43
-#&gt; </span><span style='color: #555555;'> 2</span><span>    36  1.80
-#&gt; </span><span style='color: #555555;'> 3</span><span>    53  1.54
-#&gt; </span><span style='color: #555555;'> 4</span><span>   145  1.48
-#&gt; </span><span style='color: #555555;'> 5</span><span>   155  1.54
-#&gt; </span><span style='color: #555555;'> 6</span><span>   173  1.56
-#&gt; </span><span style='color: #555555;'> 7</span><span>   207  1.58
-#&gt; </span><span style='color: #555555;'> 8</span><span>   222  1.31
-#&gt; </span><span style='color: #555555;'> 9</span><span>   223  1.51
-#&gt; </span><span style='color: #555555;'>10</span><span>   234  1.54
-#&gt; </span><span style='color: #555555;'># … with 700 more rows</span><span></div><div class='input'>
+#&gt;    &lt;int&gt; &lt;dbl&gt;
+#&gt;  1    31  1.43
+#&gt;  2    36  1.80
+#&gt;  3    53  1.54
+#&gt;  4   145  1.48
+#&gt;  5   155  1.54
+#&gt;  6   173  1.56
+#&gt;  7   207  1.58
+#&gt;  8   222  1.31
+#&gt;  9   223  1.51
+#&gt; 10   234  1.54
+#&gt; # … with 700 more rows</div><div class='input'>
 <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='near_middle.html'>near_middle</a></span>(<span class='no'>min</span>, <span class='fl'>0.5</span>, <span class='fl'>0.1</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 88 x 2</span><span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='near_middle.html'>near_middle</a></span>(<span class='no'>min</span>, <span class='fl'>0.5</span>, <span class='fl'>0.1</span>))</div><div class='output co'>#&gt; # A tibble: 88 x 2
 #&gt;       id   min
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>   145  1.48
-#&gt; </span><span style='color: #555555;'> 2</span><span>   316  1.46
-#&gt; </span><span style='color: #555555;'> 3</span><span>   324  1.49
-#&gt; </span><span style='color: #555555;'> 4</span><span>   356  1.49
-#&gt; </span><span style='color: #555555;'> 5</span><span>   517  1.49
-#&gt; </span><span style='color: #555555;'> 6</span><span>   735  1.46
-#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>1</span><span>300  1.49
-#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>1</span><span>417  1.48
-#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>1</span><span>515  1.48
-#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>1</span><span>535  1.48
-#&gt; </span><span style='color: #555555;'># … with 78 more rows</span><span></div></span></pre>
+#&gt;    &lt;int&gt; &lt;dbl&gt;
+#&gt;  1   145  1.48
+#&gt;  2   316  1.46
+#&gt;  3   324  1.49
+#&gt;  4   356  1.49
+#&gt;  5   517  1.49
+#&gt;  6   735  1.46
+#&gt;  7  1300  1.49
+#&gt;  8  1417  1.48
+#&gt;  9  1515  1.48
+#&gt; 10  1535  1.48
+#&gt; # … with 78 more rows</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -293,7 +293,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>
