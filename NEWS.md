@@ -4,6 +4,10 @@
 * resolve features(data ,.key, n_obs) error (#71) 
 * For `near_quantile()`, the `tol` argument now defaults to 0.01.
 * provide an S3 generic for `tbl_ts` objects for `keys_near()` - #76
+* Add new dataset, `pisa` containing a short summary of the PISA dataset from
+ https://github.com/ropenscilabs/learningtower
+* add helper functions `index_regular()` and `index_summary()` to help identify
+index variables
 
 # brolgar 0.0.4.9000
 
