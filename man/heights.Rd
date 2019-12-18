@@ -32,6 +32,8 @@ History 18 (2014), 144–165. Data available from
 }
 \examples{
 \dontrun{
+heights
+
 library(ggplot2)
 ggplot(heights, 
        aes(x = year, 

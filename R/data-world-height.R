@@ -19,8 +19,11 @@
 #'   History 18 (2014), 144–165. Data available from 
 #'   <http://hdl.handle.net/10622/IAEKLA>, accessed via the Clio Infra website.
 #' 
+#' @keywords datasets
 #' @examples
 #' \dontrun{
+#' heights
+#' 
 #' library(ggplot2)
 #' ggplot(heights, 
 #'        aes(x = year, 

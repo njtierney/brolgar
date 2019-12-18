@@ -31,6 +31,7 @@
 #' @name wages
 #' @keywords datasets
 #' @examples 
+#' wages
 #' set.seed(2019-7-15-1300)
 #' library(ggplot2)
 #' wages %>%
