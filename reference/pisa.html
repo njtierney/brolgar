@@ -168,7 +168,9 @@ the globe. Original data available from
 
     <p>A tibble of the following variables</p><ul>
 <li><p>year the year of measurement</p></li>
-<li><p>country the three letter country code</p></li>
+<li><p>country the three letter country code. This data contains Australia,
+New Zealand, and Indonesia. The full data from learningtower contains
+99 countries.</p></li>
 <li><p>school_id The unique school identification number</p></li>
 <li><p>student_id The student identification number</p></li>
 <li><p>gender recorded gender - 1 female or 2 male or missing</p></li>
@@ -178,21 +180,85 @@ the globe. Original data available from
 <li><p>stu_wgt The final survey weight score for the student score</p></li>
 </ul>
 
+<p>Understanding a bit more about the PISA data, the <code>school_id</code> and
+<code>student_id</code> are not unique across time. This means the longitudinal element
+is the country within a given year.</p>
+<p>We can cast <code>pisa</code> as a <code>tsibble</code>, but we need to aggregate the data to each
+year and country. In doing so, it is important that we provide some summary
+statistics of each of the scores - we want to include the mean, and minimum
+and maximum of the math, reading, and science scores, so that we do not lose
+the information of the individuals.</p>
+<p>The example code below does this, first grouping by year and country, then
+calculating the weighted mean for math, reading, and science. This can be
+done using the student weight variable <code>stu_wgt</code>, to get the survey weighted
+mean. The minimum and maximum are then calculated.</p>
+
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>pisa</span></div><div class='output co'>#&gt; # A tibble: 405,571 x 9
+    <pre class="examples"><div class='input'><span class='no'>pisa</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 172,959 x 9</span><span>
 #&gt;     year country school_id student_id gender  math science  read stu_wgt
-#&gt;    &lt;int&gt; &lt;fct&gt;       &lt;int&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-#&gt;  1  2000 AUS          1006          1      1   NA     469.  526     5.60
-#&gt;  2  2000 AUS          1006          2      2   NA     607.  559.    5.60
-#&gt;  3  2000 AUS          1006          3      2   NA     335.  383.    5.60
-#&gt;  4  2000 AUS          1006          4      1   NA     576   595     5.60
-#&gt;  5  2000 AUS          1006          7      2  550.    585.  497.    5.60
-#&gt;  6  2000 AUS          1006          9      2   NA     516.  532.    5.60
-#&gt;  7  2000 AUS          1006         10      2   NA     514.  575.    5.60
-#&gt;  8  2000 AUS          1006         12      2  377     384.  325.    5.60
-#&gt;  9  2000 AUS          1006         13      2   NA     458.  452.    5.60
-#&gt; 10  2000 AUS          1006         14      2  588.    499   507.    5.60
-#&gt; # … with 405,561 more rows</div></pre>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006          1      1   </span><span style='color: #BB0000;'>NA</span><span>     469.  526     5.60
+#&gt; </span><span style='color: #555555;'> 2</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006          2      2   </span><span style='color: #BB0000;'>NA</span><span>     607.  559.    5.60
+#&gt; </span><span style='color: #555555;'> 3</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006          3      2   </span><span style='color: #BB0000;'>NA</span><span>     335.  383.    5.60
+#&gt; </span><span style='color: #555555;'> 4</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006          4      1   </span><span style='color: #BB0000;'>NA</span><span>     576   595     5.60
+#&gt; </span><span style='color: #555555;'> 5</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006          7      2  550.    585.  497.    5.60
+#&gt; </span><span style='color: #555555;'> 6</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006          9      2   </span><span style='color: #BB0000;'>NA</span><span>     516.  532.    5.60
+#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006         10      2   </span><span style='color: #BB0000;'>NA</span><span>     514.  575.    5.60
+#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006         12      2  377     384.  325.    5.60
+#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006         13      2   </span><span style='color: #BB0000;'>NA</span><span>     458.  452.    5.60
+#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          </span><span style='text-decoration: underline;'>1</span><span>006         14      2  588.    499   507.    5.60
+#&gt; </span><span style='color: #555555;'># … with 172,949 more rows</span><span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='no'>pisa_country</span> <span class='kw'>&lt;-</span> <span class='no'>pisa</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>year</span>, <span class='no'>country</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(<span class='kw'>math_mean</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/weighted.mean.html'>weighted.mean</a></span>(<span class='no'>math</span>, <span class='no'>stu_wgt</span>, <span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>),
+            <span class='kw'>read_mean</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/weighted.mean.html'>weighted.mean</a></span>(<span class='no'>read</span>, <span class='no'>stu_wgt</span>, <span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>),
+            <span class='kw'>science_mean</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/weighted.mean.html'>weighted.mean</a></span>(<span class='no'>science</span>, <span class='no'>stu_wgt</span>, <span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>),
+            <span class='kw'>math_max</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='no'>math</span>, <span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>),
+            <span class='kw'>read_max</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='no'>read</span>, <span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>),
+            <span class='kw'>science_max</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span>(<span class='no'>science</span>, <span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>),
+            <span class='kw'>math_min</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span>(<span class='no'>math</span>, <span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>),
+            <span class='kw'>read_min</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span>(<span class='no'>read</span>, <span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>),
+            <span class='kw'>science_min</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span>(<span class='no'>science</span>, <span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span>()
+
+<span class='no'>pisa_country</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 21 x 11</span><span>
+#&gt;     year country math_mean read_mean science_mean math_max read_max science_max
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 AUS          530.      529.         527.     784.     828.        800.
+#&gt; </span><span style='color: #555555;'> 2</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 IDN          371.      376.         394.     646.     610.        680.
+#&gt; </span><span style='color: #555555;'> 3</span><span>  </span><span style='text-decoration: underline;'>2</span><span>000 NZL          537.      529.         528.     796      834.        830.
+#&gt; </span><span style='color: #555555;'> 4</span><span>  </span><span style='text-decoration: underline;'>2</span><span>003 AUS          524.      525.         526.     833.     868.        848.
+#&gt; </span><span style='color: #555555;'> 5</span><span>  </span><span style='text-decoration: underline;'>2</span><span>003 IDN          360.      395.         381.     674.     666.        671.
+#&gt; </span><span style='color: #555555;'> 6</span><span>  </span><span style='text-decoration: underline;'>2</span><span>003 NZL          524.      522.         522.     844.     857.        868.
+#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>2</span><span>006 AUS          520.      527.         512.     814.     869         808.
+#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>2</span><span>006 IDN          391.      393.         393.     720.     671.        641 
+#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>2</span><span>006 NZL          521.      530.         521.     831.     887.        890.
+#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>2</span><span>009 AUS          515.      528.         515.     890.     884.        803.
+#&gt; </span><span style='color: #555555;'># … with 11 more rows, and 3 more variables: math_min </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, read_min </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   science_min </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='no'>pisa_ts</span> <span class='kw'>&lt;-</span>
+<span class='fu'><a href='https://tsibble.tidyverts.org/reference/as-tsibble.html'>as_tsibble</a></span>(<span class='no'>pisa_country</span>,
+           <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>country</span>,
+           <span class='kw'>index</span> <span class='kw'>=</span> <span class='no'>year</span>,
+           <span class='kw'>regular</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># pisa data</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
+<span class='no'>gg_pisa</span> <span class='kw'>&lt;-</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>pisa_ts</span>,
+       <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>year</span>,
+           <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>math_mean</span>,
+           <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>country</span>)) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_ribbon.html'>geom_ribbon</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>ymin</span> <span class='kw'>=</span> <span class='no'>math_min</span>,
+                  <span class='kw'>ymax</span> <span class='kw'>=</span> <span class='no'>math_max</span>),
+              <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"grey70"</span>) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/lims.html'>lims</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1000</span>)) +
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"math"</span>)
+
+<span class='no'>gg_pisa</span> +
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(~<span class='no'>country</span>)</div><div class='img'><img src='pisa-1.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -211,7 +277,7 @@ the globe. Original data available from
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
 
       </footer>

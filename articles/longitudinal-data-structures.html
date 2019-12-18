@@ -128,6 +128,10 @@
 <li>The <strong>regularity</strong> of the time interval (index). Longitudinal data typically has irregular time periods between measurements, but can have regular measurements.</li>
 </ol>
 <p>Together, time <strong>index</strong> and <strong>key</strong> uniquely identify an observation with repeated measurements</p>
+<p>The term <code>key</code> is used a lot in brolgar, so it is an important idea to internalise:</p>
+<blockquote>
+<p><strong>The key is the identifier of your individuals or series</strong></p>
+</blockquote>
 <p>Why care about defining longitudinal data as a time series? Once we account for this time series structure inherent in longitudinal data, we gain access to a suite of nice tools that simplify and accelerate how we work with time series data.</p>
 <p><code>brolgar</code> is built on top of the powerful <a href="https://tsibble.tidyverts.org/"><code>tsibble</code></a> package by <a href="https://earo.me/">Earo Wang</a>, if you would like to learn more, see the <a href="https://tsibble.tidyverts.org/">official package documentation</a> or read <a href="https://arxiv.org/abs/1901.10257">the paper</a>.</p>
 <div id="converting-your-longitudinal-data-to-a-time-series" class="section level2">
@@ -148,9 +152,9 @@
 <h1 class="hasAnchor">
 <a href="#example-data-wages" class="anchor"></a>example data: wages</h1>
 <p>Let’s look at the <strong>wages</strong> data analysed in Singer &amp; Willett (2003). This data contains measurements on hourly wages by years in the workforce, with education and race as covariates. The population measured was male high-school dropouts, aged between 14 and 17 years when first measured. Below is the first 10 rows of the data.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(brolgar)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr))</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span>(wages, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(brolgar)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr))</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span>(wages, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>()</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">id</th>
@@ -290,11 +294,11 @@
 <li>The data is <strong>irregular</strong> since the experience is a fraction of year that is not an integer.</li>
 </ol>
 <p>We can use this information to create a <code>tsibble</code> of this data using <code>as_tsibble</code></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tsibble)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(<span class="dt">x =</span> wages,</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">           <span class="dt">key =</span> id,</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">           <span class="dt">index =</span> xp,</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">           <span class="dt">regular =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tsibble)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(<span class="dt">x =</span> wages,</span>
+<span id="cb2-3"><a href="#cb2-3"></a>           <span class="dt">key =</span> id,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>           <span class="dt">index =</span> xp,</span>
+<span id="cb2-5"><a href="#cb2-5"></a>           <span class="dt">regular =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>#&gt; # A tsibble: 6,402 x 9 [!]
 #&gt; # Key:       id [888]
 #&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade
@@ -347,46 +351,46 @@
 <li>The year is not regular because there are not measurements at a fixed year point.</li>
 </ul>
 <p>This data is already a <code>tsibble</code> object, we can create a <code>tsibble</code> with the following code:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(<span class="dt">x =</span> heights,</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">           <span class="dt">key =</span> country,</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">           <span class="dt">index =</span> year,</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">           <span class="dt">regular =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; # A tsibble: 1,490 x 4 [!]</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; # Key:       country [144]</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;    country     continent  year height_cm</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt;  1 Afghanistan Asia       1870      168.</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt;  2 Afghanistan Asia       1880      166.</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt;  3 Afghanistan Asia       1930      167.</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;  4 Afghanistan Asia       1990      167.</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt;  5 Afghanistan Asia       2000      161.</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt;  6 Albania     Europe     1880      170.</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt;  7 Albania     Europe     1890      170.</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt;  8 Albania     Europe     1900      169.</span></a>
-<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt;  9 Albania     Europe     2000      168.</span></a>
-<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt; 10 Algeria     Africa     1910      169.</span></a>
-<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; # … with 1,480 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(<span class="dt">x =</span> heights,</span>
+<span id="cb5-2"><a href="#cb5-2"></a>           <span class="dt">key =</span> country,</span>
+<span id="cb5-3"><a href="#cb5-3"></a>           <span class="dt">index =</span> year,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>           <span class="dt">regular =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt; # A tsibble: 1,490 x 4 [!]</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; # Key:       country [144]</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt;    country     continent  year height_cm</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt;  1 Afghanistan Asia       1870      168.</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt;  2 Afghanistan Asia       1880      166.</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt;  3 Afghanistan Asia       1930      167.</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt;  4 Afghanistan Asia       1990      167.</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt;  5 Afghanistan Asia       2000      161.</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt;  6 Albania     Europe     1880      170.</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt;  7 Albania     Europe     1890      170.</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt;  8 Albania     Europe     1900      169.</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt;  9 Albania     Europe     2000      168.</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="co">#&gt; 10 Algeria     Africa     1910      169.</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="co">#&gt; # … with 1,480 more rows</span></span></code></pre></div>
 </div>
 <div id="example-gapminder" class="section level1">
 <h1 class="hasAnchor">
 <a href="#example-gapminder" class="anchor"></a>example: gapminder</h1>
 <p>The gapminder R package contains a dataset of a subset of the gapminder study (link). This contains data on life expectancy, GDP per capita, and population by country.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gapminder)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">gapminder</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; # A tibble: 1,704 x 6</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;    country     continent  year lifeExp      pop gdpPercap</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;  1 Afghanistan Asia       1952    28.8  8425333      779.</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt;  2 Afghanistan Asia       1957    30.3  9240934      821.</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt;  3 Afghanistan Asia       1962    32.0 10267083      853.</span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt;  4 Afghanistan Asia       1967    34.0 11537966      836.</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt;  5 Afghanistan Asia       1972    36.1 13079460      740.</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt;  6 Afghanistan Asia       1977    38.4 14880372      786.</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt;  7 Afghanistan Asia       1982    39.9 12881816      978.</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt;  8 Afghanistan Asia       1987    40.8 13867957      852.</span></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt;  9 Afghanistan Asia       1992    41.7 16317921      649.</span></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; 10 Afghanistan Asia       1997    41.8 22227415      635.</span></a>
-<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt; # … with 1,694 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gapminder)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>gapminder</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#&gt; # A tibble: 1,704 x 6</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt;    country     continent  year lifeExp      pop gdpPercap</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt;    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt;  1 Afghanistan Asia       1952    28.8  8425333      779.</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt;  2 Afghanistan Asia       1957    30.3  9240934      821.</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt;  3 Afghanistan Asia       1962    32.0 10267083      853.</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt;  4 Afghanistan Asia       1967    34.0 11537966      836.</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt;  5 Afghanistan Asia       1972    36.1 13079460      740.</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt;  6 Afghanistan Asia       1977    38.4 14880372      786.</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt;  7 Afghanistan Asia       1982    39.9 12881816      978.</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt;  8 Afghanistan Asia       1987    40.8 13867957      852.</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;  9 Afghanistan Asia       1992    41.7 16317921      649.</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; 10 Afghanistan Asia       1997    41.8 22227415      635.</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; # … with 1,694 more rows</span></span></code></pre></div>
 <p>Let’s identify</p>
 <ol style="list-style-type: decimal">
 <li>The <strong>key</strong>, the individual, who would have repeated measurements.</li>
@@ -399,51 +403,51 @@
 <li>The <strong>index</strong> is the year</li>
 </ol>
 <p>To identify if the year is regular, we can do a bit of data exploration using <code><a href="../reference/index_summary.html">index_summary()</a></code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(country) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/index_summary.html">index_summary</a></span>(year)</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt;     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. </span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt; -55.0000   5.0000   5.0000   0.0323   5.0000   5.0000</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(country) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span><span class="kw"><a href="../reference/index_summary.html">index_summary</a></span>(year)</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt;     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. </span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; -55.0000   5.0000   5.0000   0.0323   5.0000   5.0000</span></span></code></pre></div>
 <p>This shows us that the year is every five - so now we know that this is a regular longitudinal dataset, and can be encoded like so:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(gapminder,</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">           <span class="dt">key =</span> country,</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">           <span class="dt">index =</span> year,</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">           <span class="dt">regular =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co">#&gt; # A tsibble: 1,704 x 6 [5Y]</span></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt; # Key:       country [142]</span></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt;    country     continent  year lifeExp      pop gdpPercap</span></a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt;    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt;  1 Afghanistan Asia       1952    28.8  8425333      779.</span></a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt;  2 Afghanistan Asia       1957    30.3  9240934      821.</span></a>
-<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt;  3 Afghanistan Asia       1962    32.0 10267083      853.</span></a>
-<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt;  4 Afghanistan Asia       1967    34.0 11537966      836.</span></a>
-<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;  5 Afghanistan Asia       1972    36.1 13079460      740.</span></a>
-<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#&gt;  6 Afghanistan Asia       1977    38.4 14880372      786.</span></a>
-<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt;  7 Afghanistan Asia       1982    39.9 12881816      978.</span></a>
-<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co">#&gt;  8 Afghanistan Asia       1987    40.8 13867957      852.</span></a>
-<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="co">#&gt;  9 Afghanistan Asia       1992    41.7 16317921      649.</span></a>
-<a class="sourceLine" id="cb8-18" data-line-number="18"><span class="co">#&gt; 10 Afghanistan Asia       1997    41.8 22227415      635.</span></a>
-<a class="sourceLine" id="cb8-19" data-line-number="19"><span class="co">#&gt; # … with 1,694 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(gapminder,</span>
+<span id="cb8-2"><a href="#cb8-2"></a>           <span class="dt">key =</span> country,</span>
+<span id="cb8-3"><a href="#cb8-3"></a>           <span class="dt">index =</span> year,</span>
+<span id="cb8-4"><a href="#cb8-4"></a>           <span class="dt">regular =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="co">#&gt; # A tsibble: 1,704 x 6 [5Y]</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">#&gt; # Key:       country [142]</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">#&gt;    country     continent  year lifeExp      pop gdpPercap</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt;    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co">#&gt;  1 Afghanistan Asia       1952    28.8  8425333      779.</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="co">#&gt;  2 Afghanistan Asia       1957    30.3  9240934      821.</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co">#&gt;  3 Afghanistan Asia       1962    32.0 10267083      853.</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="co">#&gt;  4 Afghanistan Asia       1967    34.0 11537966      836.</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="co">#&gt;  5 Afghanistan Asia       1972    36.1 13079460      740.</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co">#&gt;  6 Afghanistan Asia       1977    38.4 14880372      786.</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a><span class="co">#&gt;  7 Afghanistan Asia       1982    39.9 12881816      978.</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a><span class="co">#&gt;  8 Afghanistan Asia       1987    40.8 13867957      852.</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a><span class="co">#&gt;  9 Afghanistan Asia       1992    41.7 16317921      649.</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a><span class="co">#&gt; 10 Afghanistan Asia       1997    41.8 22227415      635.</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a><span class="co">#&gt; # … with 1,694 more rows</span></span></code></pre></div>
 </div>
 <div id="example-pisa-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#example-pisa-data" class="anchor"></a>example: PISA data</h1>
 <p>The PISA study measures school students around the world on a series of math, reading, and science scores. A subset of the data looks like so:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">pisa</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co">#&gt; # A tibble: 405,571 x 9</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt;     year country school_id student_id gender  math science  read stu_wgt</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt;    &lt;int&gt; &lt;fct&gt;       &lt;int&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt;  1  2000 AUS          1006          1      1   NA     469.  526     5.60</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt;  2  2000 AUS          1006          2      2   NA     607.  559.    5.60</span></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co">#&gt;  3  2000 AUS          1006          3      2   NA     335.  383.    5.60</span></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="co">#&gt;  4  2000 AUS          1006          4      1   NA     576   595     5.60</span></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#&gt;  5  2000 AUS          1006          7      2  550.    585.  497.    5.60</span></a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co">#&gt;  6  2000 AUS          1006          9      2   NA     516.  532.    5.60</span></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="co">#&gt;  7  2000 AUS          1006         10      2   NA     514.  575.    5.60</span></a>
-<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co">#&gt;  8  2000 AUS          1006         12      2  377     384.  325.    5.60</span></a>
-<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#&gt;  9  2000 AUS          1006         13      2   NA     458.  452.    5.60</span></a>
-<a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co">#&gt; 10  2000 AUS          1006         14      2  588.    499   507.    5.60</span></a>
-<a class="sourceLine" id="cb9-15" data-line-number="15"><span class="co">#&gt; # … with 405,561 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>pisa</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="co">#&gt; # A tibble: 172,959 x 9</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt;     year country school_id student_id gender  math science  read stu_wgt</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt;    &lt;int&gt; &lt;fct&gt;       &lt;int&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt;  1  2000 AUS          1006          1      1   NA     469.  526     5.60</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt;  2  2000 AUS          1006          2      2   NA     607.  559.    5.60</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt;  3  2000 AUS          1006          3      2   NA     335.  383.    5.60</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt;  4  2000 AUS          1006          4      1   NA     576   595     5.60</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt;  5  2000 AUS          1006          7      2  550.    585.  497.    5.60</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="co">#&gt;  6  2000 AUS          1006          9      2   NA     516.  532.    5.60</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="co">#&gt;  7  2000 AUS          1006         10      2   NA     514.  575.    5.60</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt;  8  2000 AUS          1006         12      2  377     384.  325.    5.60</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="co">#&gt;  9  2000 AUS          1006         13      2   NA     458.  452.    5.60</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="co">#&gt; 10  2000 AUS          1006         14      2  588.    499   507.    5.60</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a><span class="co">#&gt; # … with 172,949 more rows</span></span></code></pre></div>
 <p>Let’s identify</p>
 <ol style="list-style-type: decimal">
 <li>The <strong>key</strong>, the individual, who would have repeated measurements.</li>
@@ -452,134 +456,104 @@
 </ol>
 <p>Here it looks like the key is the student_id, which is nested within school_id and country,</p>
 <p>And the index is year, so we would write the following</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(pisa, </a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">           <span class="dt">key =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(country, school_id, student_id),</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">           <span class="dt">index =</span> year)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(pisa, </span>
+<span id="cb10-2"><a href="#cb10-2"></a>           <span class="dt">key =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(country, school_id, student_id),</span>
+<span id="cb10-3"><a href="#cb10-3"></a>           <span class="dt">index =</span> year)</span></code></pre></div>
 <p>Unfortunately, we get this error:</p>
 <pre><code>Error: A valid tsibble must have distinct rows identified by key and index.
 Please use `duplicates()` to check the duplicated rows.
 Run `rlang::last_error()` to see where the error occurred.</code></pre>
 <p>This is a somewhat confusing error - we can check duplicates like so:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tsibble)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt; Attaching package: 'tsibble'</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt; The following object is masked from 'package:dplyr':</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt;     id</span></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="kw"><a href="https://tsibble.tidyverts.org/reference/duplicates.html">duplicates</a></span>(pisa, <span class="dt">key =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(country, school_id, student_id), <span class="dt">index =</span> year)</a>
-<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt; # A tibble: 146,485 x 9</span></a>
-<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt;     year country school_id student_id gender  math science  read stu_wgt</span></a>
-<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt;    &lt;int&gt; &lt;fct&gt;       &lt;int&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt;  1  2015 AUS       3600000    3611000      3  548.    567.  584.    28.2</span></a>
-<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co">#&gt;  2  2015 AUS       3600000    3612000      1  533.    557.  551.    28.2</span></a>
-<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">#&gt;  3  2015 AUS       3600000    3602000      2  501.    494.  549.    28.2</span></a>
-<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="co">#&gt;  4  2015 AUS       3600000    3606000      1  504.    503   531.    28.2</span></a>
-<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="co">#&gt;  5  2015 AUS       3600000    3608000      1  519.    497.  488.    33.4</span></a>
-<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co">#&gt;  6  2015 AUS       3600000    3610000      1  389.    434.  454.    33.4</span></a>
-<a class="sourceLine" id="cb12-17" data-line-number="17"><span class="co">#&gt;  7  2015 AUS       3600000    3605000     NA  415.    465.  482     33.4</span></a>
-<a class="sourceLine" id="cb12-18" data-line-number="18"><span class="co">#&gt;  8  2015 AUS       3600000    3606000     NA  314.    299.  358.    33.4</span></a>
-<a class="sourceLine" id="cb12-19" data-line-number="19"><span class="co">#&gt;  9  2015 AUS       3600000    3607000      3  546.    594.  574.    42.5</span></a>
-<a class="sourceLine" id="cb12-20" data-line-number="20"><span class="co">#&gt; 10  2015 AUS       3600000    3606000      1  574.    659.  642.    42.5</span></a>
-<a class="sourceLine" id="cb12-21" data-line-number="21"><span class="co">#&gt; # … with 146,475 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tsibble)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; </span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="co">#&gt; Attaching package: 'tsibble'</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co">#&gt; The following object is masked from 'package:dplyr':</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="co">#&gt; </span></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="co">#&gt;     id</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="kw"><a href="https://tsibble.tidyverts.org/reference/duplicates.html">duplicates</a></span>(pisa, <span class="dt">key =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(country, school_id, student_id), <span class="dt">index =</span> year)</span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="co">#&gt; # A tibble: 58,107 x 9</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="co">#&gt;     year country school_id student_id gender  math science  read stu_wgt</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="co">#&gt;    &lt;int&gt; &lt;fct&gt;       &lt;int&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="co">#&gt;  1  2015 AUS       3600000    3611000      3  548.    567.  584.    28.2</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="co">#&gt;  2  2015 AUS       3600000    3612000      1  533.    557.  551.    28.2</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="co">#&gt;  3  2015 AUS       3600000    3602000      2  501.    494.  549.    28.2</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a><span class="co">#&gt;  4  2015 AUS       3600000    3606000      1  504.    503   531.    28.2</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="co">#&gt;  5  2015 AUS       3600000    3608000      1  519.    497.  488.    33.4</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a><span class="co">#&gt;  6  2015 AUS       3600000    3610000      1  389.    434.  454.    33.4</span></span>
+<span id="cb12-17"><a href="#cb12-17"></a><span class="co">#&gt;  7  2015 AUS       3600000    3605000     NA  415.    465.  482     33.4</span></span>
+<span id="cb12-18"><a href="#cb12-18"></a><span class="co">#&gt;  8  2015 AUS       3600000    3606000     NA  314.    299.  358.    33.4</span></span>
+<span id="cb12-19"><a href="#cb12-19"></a><span class="co">#&gt;  9  2015 AUS       3600000    3607000      3  546.    594.  574.    42.5</span></span>
+<span id="cb12-20"><a href="#cb12-20"></a><span class="co">#&gt; 10  2015 AUS       3600000    3606000      1  574.    659.  642.    42.5</span></span>
+<span id="cb12-21"><a href="#cb12-21"></a><span class="co">#&gt; # … with 58,097 more rows</span></span></code></pre></div>
 <p>One thing to keep in mind here is that individual students are not measured repeatedly, but schools are. This means that we really shouldn’t include <code>student_id</code> in the <code>tsibble</code>, since they have no repeated measurements.</p>
 <p>Understanding a bit more about the PISA data, the <code>school_id</code> and <code>student_id</code> are not unique across time. The id codes represent unique schools and students for a given year in a country and school. This is still interesting information, but illustrates the importance of understanding what is the longitudinal element in the data.</p>
 <p>In this case, the longitudinal element is the country within a given year.</p>
 <p>We can cast this as a <code>tsibble</code>, but we need to aggregate the data to each year and country. In doing so, it is important that we provide some summary statistics of each of the scores - we want to include the mean, and minimum and maximum of the math, reading, and science scores, so that we do not lose the information of the individuals.</p>
 <p>The code below does this, first grouping by year and country, and then calculating the weighted mean for math, reading, and science. This can be done using the student weight variable <code>stu_wgt</code>, to get the survey weighted mean. The minimum and maximum are then calculated.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">pisa_country &lt;-<span class="st"> </span>pisa <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(year, country) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">math_mean =</span> <span class="kw"><a href="https://rdrr.io/r/stats/weighted.mean.html">weighted.mean</a></span>(math, stu_wgt, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb13-4" data-line-number="4">            <span class="dt">read_mean =</span> <span class="kw"><a href="https://rdrr.io/r/stats/weighted.mean.html">weighted.mean</a></span>(read, stu_wgt, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb13-5" data-line-number="5">            <span class="dt">science_mean =</span> <span class="kw"><a href="https://rdrr.io/r/stats/weighted.mean.html">weighted.mean</a></span>(science, stu_wgt, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb13-6" data-line-number="6">            <span class="dt">math_max =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(math, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </a>
-<a class="sourceLine" id="cb13-7" data-line-number="7">            <span class="dt">read_max =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(read, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb13-8" data-line-number="8">            <span class="dt">science_max =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(science, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb13-9" data-line-number="9">            <span class="dt">math_min =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(math, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </a>
-<a class="sourceLine" id="cb13-10" data-line-number="10">            <span class="dt">read_min =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(read, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb13-11" data-line-number="11">            <span class="dt">science_min =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(science, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>() </a>
-<a class="sourceLine" id="cb13-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb13-14" data-line-number="14">pisa_country</a>
-<a class="sourceLine" id="cb13-15" data-line-number="15"><span class="co">#&gt; # A tibble: 55 x 11</span></a>
-<a class="sourceLine" id="cb13-16" data-line-number="16"><span class="co">#&gt;     year country math_mean read_mean science_mean math_max read_max science_max</span></a>
-<a class="sourceLine" id="cb13-17" data-line-number="17"><span class="co">#&gt;    &lt;int&gt; &lt;fct&gt;       &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb13-18" data-line-number="18"><span class="co">#&gt;  1  2000 AUS          530.      529.         527.     784.     828.        800.</span></a>
-<a class="sourceLine" id="cb13-19" data-line-number="19"><span class="co">#&gt;  2  2000 BRA          346.      396.         373.     666.     722.        730.</span></a>
-<a class="sourceLine" id="cb13-20" data-line-number="20"><span class="co">#&gt;  3  2000 CHL          379.      413.         415.     628.     674.        767.</span></a>
-<a class="sourceLine" id="cb13-21" data-line-number="21"><span class="co">#&gt;  4  2000 DNK          512.      494.         481.     797.     778.        797.</span></a>
-<a class="sourceLine" id="cb13-22" data-line-number="22"><span class="co">#&gt;  5  2000 FRA          516.      510.         501.     755.     808.        790 </span></a>
-<a class="sourceLine" id="cb13-23" data-line-number="23"><span class="co">#&gt;  6  2000 GRC          453.      469.         460.     742.     747.        769.</span></a>
-<a class="sourceLine" id="cb13-24" data-line-number="24"><span class="co">#&gt;  7  2000 HKG          563.      525.         541.     789.     764.        791.</span></a>
-<a class="sourceLine" id="cb13-25" data-line-number="25"><span class="co">#&gt;  8  2000 IDN          371.      376.         394.     646.     610.        680.</span></a>
-<a class="sourceLine" id="cb13-26" data-line-number="26"><span class="co">#&gt;  9  2003 AUS          524.      525.         526.     833.     868.        848.</span></a>
-<a class="sourceLine" id="cb13-27" data-line-number="27"><span class="co">#&gt; 10  2003 BRA          356.      392.         404.     796.     761.        749.</span></a>
-<a class="sourceLine" id="cb13-28" data-line-number="28"><span class="co">#&gt; # … with 45 more rows, and 3 more variables: math_min &lt;dbl&gt;, read_min &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb13-29" data-line-number="29"><span class="co">#&gt; #   science_min &lt;dbl&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>pisa_country &lt;-<span class="st"> </span>pisa <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(year, country) <span class="op">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">math_mean =</span> <span class="kw"><a href="https://rdrr.io/r/stats/weighted.mean.html">weighted.mean</a></span>(math, stu_wgt, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</span>
+<span id="cb13-4"><a href="#cb13-4"></a>            <span class="dt">read_mean =</span> <span class="kw"><a href="https://rdrr.io/r/stats/weighted.mean.html">weighted.mean</a></span>(read, stu_wgt, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</span>
+<span id="cb13-5"><a href="#cb13-5"></a>            <span class="dt">science_mean =</span> <span class="kw"><a href="https://rdrr.io/r/stats/weighted.mean.html">weighted.mean</a></span>(science, stu_wgt, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</span>
+<span id="cb13-6"><a href="#cb13-6"></a>            <span class="dt">math_max =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(math, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </span>
+<span id="cb13-7"><a href="#cb13-7"></a>            <span class="dt">read_max =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(read, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</span>
+<span id="cb13-8"><a href="#cb13-8"></a>            <span class="dt">science_max =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(science, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</span>
+<span id="cb13-9"><a href="#cb13-9"></a>            <span class="dt">math_min =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(math, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </span>
+<span id="cb13-10"><a href="#cb13-10"></a>            <span class="dt">read_min =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(read, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</span>
+<span id="cb13-11"><a href="#cb13-11"></a>            <span class="dt">science_min =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(science, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-12"><a href="#cb13-12"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>() </span>
+<span id="cb13-13"><a href="#cb13-13"></a></span>
+<span id="cb13-14"><a href="#cb13-14"></a>pisa_country</span>
+<span id="cb13-15"><a href="#cb13-15"></a><span class="co">#&gt; # A tibble: 21 x 11</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a><span class="co">#&gt;     year country math_mean read_mean science_mean math_max read_max science_max</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a><span class="co">#&gt;    &lt;int&gt; &lt;fct&gt;       &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;</span></span>
+<span id="cb13-18"><a href="#cb13-18"></a><span class="co">#&gt;  1  2000 AUS          530.      529.         527.     784.     828.        800.</span></span>
+<span id="cb13-19"><a href="#cb13-19"></a><span class="co">#&gt;  2  2000 IDN          371.      376.         394.     646.     610.        680.</span></span>
+<span id="cb13-20"><a href="#cb13-20"></a><span class="co">#&gt;  3  2000 NZL          537.      529.         528.     796      834.        830.</span></span>
+<span id="cb13-21"><a href="#cb13-21"></a><span class="co">#&gt;  4  2003 AUS          524.      525.         526.     833.     868.        848.</span></span>
+<span id="cb13-22"><a href="#cb13-22"></a><span class="co">#&gt;  5  2003 IDN          360.      395.         381.     674.     666.        671.</span></span>
+<span id="cb13-23"><a href="#cb13-23"></a><span class="co">#&gt;  6  2003 NZL          524.      522.         522.     844.     857.        868.</span></span>
+<span id="cb13-24"><a href="#cb13-24"></a><span class="co">#&gt;  7  2006 AUS          520.      527.         512.     814.     869         808.</span></span>
+<span id="cb13-25"><a href="#cb13-25"></a><span class="co">#&gt;  8  2006 IDN          391.      393.         393.     720.     671.        641 </span></span>
+<span id="cb13-26"><a href="#cb13-26"></a><span class="co">#&gt;  9  2006 NZL          521.      530.         521.     831.     887.        890.</span></span>
+<span id="cb13-27"><a href="#cb13-27"></a><span class="co">#&gt; 10  2009 AUS          515.      528.         515.     890.     884.        803.</span></span>
+<span id="cb13-28"><a href="#cb13-28"></a><span class="co">#&gt; # … with 11 more rows, and 3 more variables: math_min &lt;dbl&gt;, read_min &lt;dbl&gt;,</span></span>
+<span id="cb13-29"><a href="#cb13-29"></a><span class="co">#&gt; #   science_min &lt;dbl&gt;</span></span></code></pre></div>
 <p>We can assess the regularity of the year like so:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="../reference/index_regular.html">index_regular</a></span>(pisa, year)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw"><a href="../reference/index_summary.html">index_summary</a></span>(pisa, year)</a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt;       3       3       3       3       3       3</span></a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw"><a href="../reference/index_regular.html">index_regular</a></span>(pisa, year)</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="kw"><a href="../reference/index_summary.html">index_summary</a></span>(pisa, year)</span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="co">#&gt;       3       3       3       3       3       3</span></span></code></pre></div>
 <p>We can now convert this into a <code>tsibble</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(pisa_country,</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">           <span class="dt">key =</span> country,</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3">           <span class="dt">index =</span> year,</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4">           <span class="dt">regular =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="co">#&gt; # A tsibble: 55 x 11 [3Y]</span></a>
-<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="co">#&gt; # Key:       country [8]</span></a>
-<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="co">#&gt;     year country math_mean read_mean science_mean math_max read_max science_max</span></a>
-<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="co">#&gt;    &lt;int&gt; &lt;fct&gt;       &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb15-9" data-line-number="9"><span class="co">#&gt;  1  2000 AUS          530.      529.         527.     784.     828.        800.</span></a>
-<a class="sourceLine" id="cb15-10" data-line-number="10"><span class="co">#&gt;  2  2003 AUS          524.      525.         526.     833.     868.        848.</span></a>
-<a class="sourceLine" id="cb15-11" data-line-number="11"><span class="co">#&gt;  3  2006 AUS          520.      527.         512.     814.     869         808.</span></a>
-<a class="sourceLine" id="cb15-12" data-line-number="12"><span class="co">#&gt;  4  2009 AUS          515.      528.         515.     890.     884.        803.</span></a>
-<a class="sourceLine" id="cb15-13" data-line-number="13"><span class="co">#&gt;  5  2012 AUS          504.      521.         512.     849      843.        818.</span></a>
-<a class="sourceLine" id="cb15-14" data-line-number="14"><span class="co">#&gt;  6  2015 AUS          494.      510.         503.     808.     877.        851.</span></a>
-<a class="sourceLine" id="cb15-15" data-line-number="15"><span class="co">#&gt;  7  2018 AUS          492.      502.         502.     863.     879.        888.</span></a>
-<a class="sourceLine" id="cb15-16" data-line-number="16"><span class="co">#&gt;  8  2000 BRA          346.      396.         373.     666.     722.        730.</span></a>
-<a class="sourceLine" id="cb15-17" data-line-number="17"><span class="co">#&gt;  9  2003 BRA          356.      392.         404.     796.     761.        749.</span></a>
-<a class="sourceLine" id="cb15-18" data-line-number="18"><span class="co">#&gt; 10  2006 BRA          370.      391.         393.     779.     725.        757.</span></a>
-<a class="sourceLine" id="cb15-19" data-line-number="19"><span class="co">#&gt; # … with 45 more rows, and 3 more variables: math_min &lt;dbl&gt;, read_min &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb15-20" data-line-number="20"><span class="co">#&gt; #   science_min &lt;dbl&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>pisa_ts &lt;-<span class="st"> </span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="kw"><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble</a></span>(pisa_country,</span>
+<span id="cb15-3"><a href="#cb15-3"></a>           <span class="dt">key =</span> country,</span>
+<span id="cb15-4"><a href="#cb15-4"></a>           <span class="dt">index =</span> year,</span>
+<span id="cb15-5"><a href="#cb15-5"></a>           <span class="dt">regular =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb15-6"><a href="#cb15-6"></a></span>
+<span id="cb15-7"><a href="#cb15-7"></a>pisa_ts</span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="co">#&gt; # A tsibble: 21 x 11 [3Y]</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="co">#&gt; # Key:       country [3]</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="co">#&gt;     year country math_mean read_mean science_mean math_max read_max science_max</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="co">#&gt;    &lt;int&gt; &lt;fct&gt;       &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a><span class="co">#&gt;  1  2000 AUS          530.      529.         527.     784.     828.        800.</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a><span class="co">#&gt;  2  2003 AUS          524.      525.         526.     833.     868.        848.</span></span>
+<span id="cb15-14"><a href="#cb15-14"></a><span class="co">#&gt;  3  2006 AUS          520.      527.         512.     814.     869         808.</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a><span class="co">#&gt;  4  2009 AUS          515.      528.         515.     890.     884.        803.</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a><span class="co">#&gt;  5  2012 AUS          504.      521.         512.     849      843.        818.</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a><span class="co">#&gt;  6  2015 AUS          494.      510.         503.     808.     877.        851.</span></span>
+<span id="cb15-18"><a href="#cb15-18"></a><span class="co">#&gt;  7  2018 AUS          492.      502.         502.     863.     879.        888.</span></span>
+<span id="cb15-19"><a href="#cb15-19"></a><span class="co">#&gt;  8  2000 IDN          371.      376.         394.     646.     610.        680.</span></span>
+<span id="cb15-20"><a href="#cb15-20"></a><span class="co">#&gt;  9  2003 IDN          360.      395.         381.     674.     666.        671.</span></span>
+<span id="cb15-21"><a href="#cb15-21"></a><span class="co">#&gt; 10  2006 IDN          391.      393.         393.     720.     671.        641 </span></span>
+<span id="cb15-22"><a href="#cb15-22"></a><span class="co">#&gt; # … with 11 more rows, and 3 more variables: math_min &lt;dbl&gt;, read_min &lt;dbl&gt;,</span></span>
+<span id="cb15-23"><a href="#cb15-23"></a><span class="co">#&gt; #   science_min &lt;dbl&gt;</span></span></code></pre></div>
 </div>
 <div id="conclusion" class="section level1">
 <h1 class="hasAnchor">
 <a href="#conclusion" class="anchor"></a>Conclusion</h1>
-<p>This idea of longitudinal data is core to brolgar. Other vignettes in the package will further show why the time series <code>tsibble</code> is useful.</p>
-</div>
-<div id="extras" class="section level1">
-<h1 class="hasAnchor">
-<a href="#extras" class="anchor"></a>Extras</h1>
-<p>The term <code>key</code> is used a lot in brolgar, so it is an important idea to internalise:</p>
-<blockquote>
-<p><strong>The key is the identifier of your individuals or series</strong></p>
-</blockquote>
-<div id="note-re-duplicated-pisa-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#note-re-duplicated-pisa-data" class="anchor"></a>Note re duplicated <code>pisa</code> data:</h2>
-<p>And from what we can see, it looks like <code>student_id</code> is not duplicated - let’s try arranging it.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="https://tsibble.tidyverts.org/reference/duplicates.html">duplicates</a></span>(pisa, </a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">           <span class="dt">key =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(country, </a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">                   school_id, </a>
-<a class="sourceLine" id="cb16-4" data-line-number="4">                   student_id), </a>
-<a class="sourceLine" id="cb16-5" data-line-number="5">           <span class="dt">index =</span> year) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(year, student_id)</a>
-<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="co">#&gt; # A tibble: 146,485 x 9</span></a>
-<a class="sourceLine" id="cb16-8" data-line-number="8"><span class="co">#&gt;     year country school_id student_id gender  math science  read stu_wgt</span></a>
-<a class="sourceLine" id="cb16-9" data-line-number="9"><span class="co">#&gt;    &lt;int&gt; &lt;fct&gt;       &lt;int&gt;      &lt;int&gt;  &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb16-10" data-line-number="10"><span class="co">#&gt;  1  2015 AUS       3600000    3600000     NA  556.    631.  612     3.03</span></a>
-<a class="sourceLine" id="cb16-11" data-line-number="11"><span class="co">#&gt;  2  2015 AUS       3600000    3600000      3  376     317.  348.    3.03</span></a>
-<a class="sourceLine" id="cb16-12" data-line-number="12"><span class="co">#&gt;  3  2015 AUS       3600000    3600000      1  546.    600.  572.   16.8 </span></a>
-<a class="sourceLine" id="cb16-13" data-line-number="13"><span class="co">#&gt;  4  2015 AUS       3600000    3600000      2  594.    562.  575.   28.0 </span></a>
-<a class="sourceLine" id="cb16-14" data-line-number="14"><span class="co">#&gt;  5  2015 AUS       3600000    3600000      1  544.    586.  601    28.0 </span></a>
-<a class="sourceLine" id="cb16-15" data-line-number="15"><span class="co">#&gt;  6  2015 AUS       3600000    3600000      1  578.    555.  640.   24.4 </span></a>
-<a class="sourceLine" id="cb16-16" data-line-number="16"><span class="co">#&gt;  7  2015 AUS       3600000    3600000      3  543.    605.  579.   28.6 </span></a>
-<a class="sourceLine" id="cb16-17" data-line-number="17"><span class="co">#&gt;  8  2015 AUS       3600000    3600000      3  493.    619   609.    2.32</span></a>
-<a class="sourceLine" id="cb16-18" data-line-number="18"><span class="co">#&gt;  9  2015 AUS       3600000    3600000      1  567     474   603.   13.3 </span></a>
-<a class="sourceLine" id="cb16-19" data-line-number="19"><span class="co">#&gt; 10  2015 AUS       3600000    3600000      2  421.    504.  514.   26.5 </span></a>
-<a class="sourceLine" id="cb16-20" data-line-number="20"><span class="co">#&gt; # … with 146,475 more rows</span></a></code></pre></div>
-</div>
+<p>This idea of longitudinal data is core to brolgar. Understanding what longitudinal data is, and how this can be linked to a time series representation of data helps us understand our data structure, and gives us access to more flexible tools. Other vignettes in the package will further show why the time series <code>tsibble</code> is useful.</p>
 </div>
   </div>
 
@@ -599,11 +573,6 @@ Run `rlang::last_error()` to see where the error occurred.</code></pre>
       <li><a href="#example-gapminder">example: gapminder</a></li>
       <li><a href="#example-pisa-data">example: PISA data</a></li>
       <li><a href="#conclusion">Conclusion</a></li>
-      <li>
-<a href="#extras">Extras</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#note-re-duplicated-pisa-data">Note re duplicated <code>pisa</code> data:</a></li>
-      </ul>
-</li>
       </ul>
 </div>
       </div>
@@ -617,7 +586,7 @@ Run `rlang::last_error()` to see where the error occurred.</code></pre>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
 
       </footer>
