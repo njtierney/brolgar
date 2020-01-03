@@ -68,31 +68,43 @@ stratify_keys.tbl_ts <- function(.data,
                                  ...){
   
   q_along <- rlang::enquo(along)
+  q_keys <- tsibble::key(.data)
+  keys_chr <- tsibble::key_vars(.data)
   
   if (rlang::quo_is_null(q_along)) {
   
+  # stratify(.data, n_strata)
+  # could just return some vector of numbers?
+  # perhaps that is the difference btn strata and stratify
+  # strata returns a vector, stratify adds this to the data?
     full_strata <- full_strata(.data, n_strata)
     
     data_strata <- .data %>%
       dplyr::mutate(.strata = full_strata)
+    # .strata = stratify(n_strata)
     
     return(data_strata)
   } 
   
   if (!rlang::quo_is_null(q_along)) {
     
+  # stratify_along(.data, 
+                 # n_strata, 
+                 # along, - aka q_along
+                 # keys) - aka q_keys (can we generate keys_chr from q_keys?)
+                  
   possible_strata <- possible_strata(.data, n_strata)
   
     data_strata <- .data %>%
       tibble::as_tibble() %>%
-      dplyr::group_by(!!!tsibble::key(.data)) %>%
+      dplyr::group_by(!!!q_keys) %>%
       dplyr::summarise(stat = fun(!!q_along, na.rm = TRUE)) %>%
       dplyr::arrange(-stat) %>%
       dplyr::mutate(.strata = sort(possible_strata)) %>%
       dplyr::select(-stat) %>%
       dplyr::right_join(.data,
                         .,
-                        by = tsibble::key_vars(.data))
+                        by = keys_chr)
     
     return(data_strata)
   
