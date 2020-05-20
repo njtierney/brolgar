@@ -4,7 +4,8 @@
 \name{wages}
 \alias{wages}
 \title{Wages data from National Longitudinal Survey of Youth (NLSY)}
-\format{A \code{tsibble} data frame with 6402 rows and 8 variables:
+\format{
+A \code{tsibble} data frame with 6402 rows and 8 variables:
 \describe{
 \item{id}{1–888, for each subject. This forms the \code{key} of the data}
 \item{ln_wages}{natural log of wages, adjusted for inflation,
@@ -20,7 +21,8 @@ points for each subject can differ. This forms the \code{index} of the data}
 \item{high_grade}{highest grade completed}
 \item{unemploy_rate}{unemployment rates in the local geographic region
 at each measurement time}
-}}
+}
+}
 \usage{
 wages
 }
@@ -32,7 +34,7 @@ when first measured. \code{wages} is a time series \code{tsibble}.
 It comes from J. D. Singer and J. B. Willett.
 Applied Longitudinal Data Analysis.
 Oxford University Press, Oxford, UK, 2003.
-http://gseacademic.harvard.edu/alda/
+https://stats.idre.ucla.edu/stat/r/examples/alda/data/wages_pp.txt
 }
 \examples{
 # show the data

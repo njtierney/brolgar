@@ -4,7 +4,9 @@
 \name{heights}
 \alias{heights}
 \title{World Height Data}
-\format{An object of class \code{tbl_ts} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 1490 rows and 4 columns.}
+\format{
+An object of class \code{tbl_ts} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 1490 rows and 4 columns.
+}
 \usage{
 heights
 }

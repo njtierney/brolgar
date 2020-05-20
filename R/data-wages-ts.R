@@ -7,7 +7,7 @@
 #' It comes from J. D. Singer and J. B. Willett. 
 #' Applied Longitudinal Data Analysis. 
 #' Oxford University Press, Oxford, UK, 2003.
-#' http://gseacademic.harvard.edu/alda/
+#' https://stats.idre.ucla.edu/stat/r/examples/alda/data/wages_pp.txt
 #' 
 #' @format A `tsibble` data frame with 6402 rows and 8 variables:
 #' \describe{

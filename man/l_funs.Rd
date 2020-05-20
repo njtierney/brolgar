@@ -6,7 +6,11 @@
 \alias{l_five_num}
 \alias{l_three_num}
 \title{A named list of the five number summary}
-\format{An object of class \code{list} of length 5.}
+\format{
+An object of class \code{list} of length 5.
+
+An object of class \code{list} of length 3.
+}
 \usage{
 l_five_num
 

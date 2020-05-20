@@ -4,7 +4,8 @@
 \name{pisa}
 \alias{pisa}
 \title{Student data from 2000-2018 PISA OECD data}
-\format{A tibble of the following variables
+\format{
+A tibble of the following variables
 \itemize{
 \item year the year of measurement
 \item country the three letter country code. This data contains Australia,
@@ -32,7 +33,8 @@ the information of the individuals.
 The example code below does this, first grouping by year and country, then
 calculating the weighted mean for math, reading, and science. This can be
 done using the student weight variable \code{stu_wgt}, to get the survey weighted
-mean. The minimum and maximum are then calculated.}
+mean. The minimum and maximum are then calculated.
+}
 \usage{
 pisa
 }
