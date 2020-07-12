@@ -199,20 +199,22 @@ differences, so if you like you can pass extra arguments to <code>diff</code>.</
 
 <span class='no'>wages_mono</span> <span class='kw'>&lt;-</span> <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='no'>feat_monotonic</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/join.html'>left_join</a></span>(<span class='no'>wages</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"id"</span>)
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span>(<span class='no'>wages</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"id"</span>)
 
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>wages_mono</span>,
          <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>xp</span>,
              <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>ln_wages</span>,
              <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>id</span>)) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>() +
-  <span class='fu'><a href='https://rdrr.io/pkg/gghighlight/man/gghighlight.html'>gghighlight</a></span>(<span class='no'>increase</span>)</div><div class='img'><img src='monotonic-1.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='fu'><a href='https://rdrr.io/pkg/gghighlight/man/gghighlight.html'>gghighlight</a></span>(<span class='no'>increase</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Tried to calculate with group_by(), but the calculation failed.</span>
+#&gt; <span class='warning'>Falling back to ungrouped filter operation...</span></div><div class='output co'>#&gt; <span class='message'>label_key: id</span></div><div class='output co'>#&gt; <span class='message'>Too many data series, skip labeling</span></div><div class='img'><img src='monotonic-1.png' alt='' width='700' height='433' /></div><div class='input'>
  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>wages_mono</span>,
         <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>xp</span>,
             <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>ln_wages</span>,
              <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>id</span>)) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>() +
-  <span class='fu'><a href='https://rdrr.io/pkg/gghighlight/man/gghighlight.html'>gghighlight</a></span>(<span class='no'>decrease</span>)</div><div class='img'><img src='monotonic-2.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='fu'><a href='https://rdrr.io/pkg/gghighlight/man/gghighlight.html'>gghighlight</a></span>(<span class='no'>decrease</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Tried to calculate with group_by(), but the calculation failed.</span>
+#&gt; <span class='warning'>Falling back to ungrouped filter operation...</span></div><div class='output co'>#&gt; <span class='message'>label_key: id</span></div><div class='output co'>#&gt; <span class='message'>Too many data series, skip labeling</span></div><div class='img'><img src='monotonic-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='no'>wages_mono</span> <span class='kw'>%&gt;%</span>
 <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>monotonic</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>xp</span>,
@@ -245,7 +247,7 @@ differences, so if you like you can pass extra arguments to <code>diff</code>.</
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
 
       </footer>
