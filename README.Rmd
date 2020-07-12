@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
   out.width = "75%"
 )
 ```
+
 # brolgar
 
 <!-- badges: start -->
@@ -67,7 +68,6 @@ remotes::install_github("njtierney/brolgar")
 ```
 
 # Using `brolgar`: We need to talk about data
-
 
 There are many ways to describe longitudinal data - from panel data, cross-sectional data, and time series. We define longitudinal data as:
 

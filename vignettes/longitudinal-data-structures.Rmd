@@ -8,6 +8,7 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -238,11 +239,14 @@ Please use `duplicates()` to check the duplicated rows.
 Run `rlang::last_error()` to see where the error occurred.
 ```
 
-This is a somewhat confusing error - we can check duplicates like so:
+This is a somewhat confusing error - we can check duplicates like so -
 
 ```{r pisa-duplicates}
 library(tsibble)
-duplicates(pisa, key = c(country, school_id, student_id), index = year)
+pisa %>% 
+  mutate(country = as.character(country),
+         year = as.integer(year)) %>% 
+  duplicates(key = c(country, school_id, student_id), index = year)
 ```
 
 One thing to keep in mind here is that individual students are not measured repeatedly, but schools are. This means that we really shouldn't include `student_id` in the `tsibble`, since they have no repeated measurements.
@@ -267,7 +271,9 @@ pisa_country <- pisa %>%
             math_min = min(math, na.rm=TRUE), 
             read_min = min(read, na.rm=TRUE),
             science_min = min(science, na.rm=TRUE)) %>% 
-  ungroup() 
+  ungroup()  %>% 
+  mutate(country = as.character(country),
+         year = as.integer(year))
 
 pisa_country
 ```

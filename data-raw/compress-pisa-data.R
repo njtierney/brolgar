@@ -43,7 +43,6 @@ arrange(pisa, n_obs)
 
 barplot(table(pisa$country))
 
-
 plot(table(pisa$year))
 
 usethis::use_data(pisa, compress = "xz", overwrite = TRUE)

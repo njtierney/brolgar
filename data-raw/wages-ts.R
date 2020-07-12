@@ -3,8 +3,11 @@ library(brolgar)
 library(tsibble)
 
 # The original `wages` data from ggobi: http://ggobi.org/book/index.html
+# but downloaded from https://github.com/tprvan/brolgar/tree/master/data
+# and converted to `rds` object
+wages_og <- readr::read_rds("data-raw/wages-original.rds")
 
-wages_og <- wages
+wages_og
 
 wages <- wages_og %>%
   dplyr::select(-hgc.9,

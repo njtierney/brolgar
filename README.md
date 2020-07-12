@@ -23,6 +23,11 @@ coverage](https://codecov.io/gh/njtierney/brolgar/branch/master/graph/badge.svg)
 This helps you go from the “plate of spaghetti” plot on the left, to
 “interesting observations” plot on the right.
 
+    #> Warning: Tried to calculate with group_by(), but the calculation failed.
+    #> Falling back to ungrouped filter operation...
+    #> label_key: id
+    #> Too many data series, skip labeling
+
 <img src="man/figures/README-show-spaghetti-1.png" width="75%" style="display: block; margin: auto;" />
 
 ## Installation
@@ -183,18 +188,18 @@ wages %>%
   features(ln_wages,
            feat_five_num)
 #> # A tibble: 888 x 6
-#>       id   min   q25   med   q75   max
-#>    <int> <dbl> <dbl> <dbl> <dbl> <dbl>
-#>  1    31 1.43   1.48  1.73  2.02  2.13
-#>  2    36 1.80   1.97  2.32  2.59  2.93
-#>  3    53 1.54   1.58  1.71  1.89  3.24
-#>  4   122 0.763  2.10  2.19  2.46  2.92
-#>  5   134 2.00   2.28  2.36  2.79  2.93
-#>  6   145 1.48   1.58  1.77  1.89  2.04
-#>  7   155 1.54   1.83  2.22  2.44  2.64
-#>  8   173 1.56   1.68  2.00  2.05  2.34
-#>  9   206 2.03   2.07  2.30  2.45  2.48
-#> 10   207 1.58   1.87  2.15  2.26  2.66
+#>       id min       q25       med       q75       max      
+#>    <int> <list>    <list>    <list>    <list>    <list>   
+#>  1    31 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
+#>  2    36 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
+#>  3    53 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
+#>  4   122 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
+#>  5   134 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
+#>  6   145 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
+#>  7   155 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
+#>  8   173 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
+#>  9   206 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
+#> 10   207 <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]> <dbl [1]>
 #> # … with 878 more rows
 ```
 
@@ -242,6 +247,10 @@ wages %>%
              group = id)) +
   geom_line() + 
   gghighlight(increase)
+#> Warning: Tried to calculate with group_by(), but the calculation failed.
+#> Falling back to ungrouped filter operation...
+#> label_key: id
+#> Too many data series, skip labeling
 ```
 
 <img src="man/figures/README-features-left-join-1.png" width="75%" style="display: block; margin: auto;" />
@@ -330,6 +339,10 @@ and [Identify Interesting
 Observations](http://brolgar.njtierney.com/articles/id-interesting-obs.html)
 vignettes. As a taster, here are some of the figures you can produce:
 
+    #> Warning: Tried to calculate with group_by(), but the calculation failed.
+    #> Falling back to ungrouped filter operation...
+    #> label_key: id
+    #> Too many data series, skip labeling
     #> Warning: Outer names are only allowed for unnamed scalar atomic inputs
 
 <img src="man/figures/README-show-wages-lg-1.png" width="75%" style="display: block; margin: auto;" />
@@ -366,7 +379,7 @@ implementation of brolgar, as it was heavily inspired by the
 Prvan](https://researchers.mq.edu.au/en/persons/tania-prvan) for her
 valuable early contributions to the project, as well as [Stuart
 Lee](https://stuartlee.org/) for helpful discussions. Thanks also to
-[Urusla Laa](https://research.monash.edu/en/persons/ursula-laa) for her
+[Ursula Laa](https://research.monash.edu/en/persons/ursula-laa) for her
 feedback on the package structure and documentation.
 
 <!-- These are referred to as a **longnostics**, a portmanteau of **long**itudinal and **cognostic**. These **longnostics** make it straightforward to extract subjects with certain properties to gain some insight into the data.  -->
