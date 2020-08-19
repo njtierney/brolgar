@@ -189,21 +189,24 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>wages_slope <span class="op">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw"><a href="../reference/keys_near.html">keys_near</a></span>(<span class="dt">key =</span> id,</span>
 <span id="cb6-3"><a href="#cb6-3"></a>            <span class="dt">var =</span> .slope_xp)</span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; # A tibble: 31 x 5</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt;       id .slope_xp stat  stat_value stat_diff</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt;  1  7918  -4.58    min     -4.58            0</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt;  2  7918  -4.58    min     -4.58            0</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt;  3  7918  -4.58    min     -4.58            0</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt;  4  2092  -0.00189 q_25    -0.00189         0</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt;  5  2092  -0.00189 q_25    -0.00189         0</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt;  6  2092  -0.00189 q_25    -0.00189         0</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;  7  2092  -0.00189 q_25    -0.00189         0</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt;  8  2092  -0.00189 q_25    -0.00189         0</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt;  9  2092  -0.00189 q_25    -0.00189         0</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; 10  6863   0.0452  med      0.0452          0</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt; # … with 21 more rows</span></span></code></pre></div>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; Warning: Problem with `mutate()` input `stat`.</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; ℹ Outer names are only allowed for unnamed scalar atomic inputs</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt; ℹ Input `stat` is `forcats::fct_relevel(.f = stat, levels = names(funs))`.</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt; Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; # A tibble: 31 x 5</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt;       id .slope_xp stat  stat_value stat_diff</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt;  1  7918  -4.58    min     -4.58            0</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt;  2  7918  -4.58    min     -4.58            0</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt;  3  7918  -4.58    min     -4.58            0</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;  4  2092  -0.00189 q_25    -0.00189         0</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt;  5  2092  -0.00189 q_25    -0.00189         0</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt;  6  2092  -0.00189 q_25    -0.00189         0</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt;  7  2092  -0.00189 q_25    -0.00189         0</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt;  8  2092  -0.00189 q_25    -0.00189         0</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="co">#&gt;  9  2092  -0.00189 q_25    -0.00189         0</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="co">#&gt; 10  6863   0.0452  med      0.0452          0</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="co">#&gt; # … with 21 more rows</span></span></code></pre></div>
 <p>Here it returns the <code>id</code>, the <code>.slope_xp</code>, and the statistic that it was closest to, and what the difference between the slope_xp and the statistic.</p>
 <p>You can visualise these summary keys by joining them back to the data:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>wages_slope <span class="op">%&gt;%</span></span>
@@ -215,7 +218,10 @@
 <span id="cb7-7"><a href="#cb7-7"></a>             <span class="dt">group =</span> id,</span>
 <span id="cb7-8"><a href="#cb7-8"></a>             <span class="dt">colour =</span> stat)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb7-9"><a href="#cb7-9"></a><span class="st">  </span><span class="kw">geom_line</span>()</span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt; Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></span></code></pre></div>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt; Warning: Problem with `mutate()` input `stat`.</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt; ℹ Outer names are only allowed for unnamed scalar atomic inputs</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt; ℹ Input `stat` is `forcats::fct_relevel(.f = stat, levels = names(funs))`.</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt; Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></span></code></pre></div>
 <p><img src="exploratory-modelling_files/figure-html/keys-near-plot-1.png" width="700"></p>
 <p>You can read more about <code><a href="../reference/keys_near.html">keys_near()</a></code> in the <a href="http://brolgar.njtierney.com/articles/id-interesting-obs.html">Identifying interesting observations</a> vignette.</p>
 </div>

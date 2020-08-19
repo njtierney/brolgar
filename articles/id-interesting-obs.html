@@ -141,18 +141,21 @@
 <span id="cb3-2"><a href="#cb3-2"></a>wages_slope_near &lt;-<span class="st"> </span>wages_slope <span class="op">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="st">  </span><span class="kw"><a href="../reference/keys_near.html">keys_near</a></span>(<span class="dt">key =</span> id,</span>
 <span id="cb3-4"><a href="#cb3-4"></a>            <span class="dt">var =</span> .slope_xp)</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a>wages_slope_near</span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; # A tibble: 6 x 5</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt;      id .slope_xp stat  stat_value stat_diff</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt;   &lt;int&gt;     &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; 1  7918  -4.58    min     -4.58    0        </span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt; 2  2594  -0.00768 q_25    -0.00769 0.0000127</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; 3  2305   0.0480  med      0.0480  0.0000498</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; 4 10380   0.0479  med      0.0480  0.0000498</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; 5 12178   0.0946  q_75     0.0947  0.0000579</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; 6 12455  13.2     max     13.2     0</span></span></code></pre></div>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; Warning: Problem with `mutate()` input `stat`.</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; ℹ Outer names are only allowed for unnamed scalar atomic inputs</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; ℹ Input `stat` is `forcats::fct_relevel(.f = stat, levels = names(funs))`.</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a>wages_slope_near</span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; # A tibble: 6 x 5</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt;      id .slope_xp stat  stat_value stat_diff</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt;   &lt;int&gt;     &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; 1  7918  -4.58    min     -4.58    0        </span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; 2  2594  -0.00768 q_25    -0.00769 0.0000127</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; 3  2305   0.0480  med      0.0480  0.0000498</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; 4 10380   0.0479  med      0.0480  0.0000498</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; 5 12178   0.0946  q_75     0.0947  0.0000579</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; 6 12455  13.2     max     13.2     0</span></span></code></pre></div>
 <p>We can then join this information back against the data and plot those interesting individuals:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a></span>
 <span id="cb4-2"><a href="#cb4-2"></a>wages_slope_near <span class="op">%&gt;%</span></span>
@@ -193,14 +196,17 @@
 <span id="cb6-8"><a href="#cb6-8"></a><span class="st"> </span><span class="kw"><a href="../reference/keys_near.html">keys_near</a></span>(<span class="dt">key =</span> id,</span>
 <span id="cb6-9"><a href="#cb6-9"></a>           <span class="dt">var =</span> .slope_xp,</span>
 <span id="cb6-10"><a href="#cb6-10"></a>           <span class="dt">funs =</span> l_ranges)</span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt; Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; # A tibble: 4 x 5</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt;      id .slope_xp stat       stat_value stat_diff</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;   &lt;int&gt;     &lt;dbl&gt; &lt;fct&gt;           &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; 1  7918    -4.58  min            -4.58   0       </span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; 2 12455    13.2   range_diff     17.8    4.58    </span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; 3 12455    13.2   max            13.2    0       </span></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt; 4  9357     0.103 iqr             0.102  0.000139</span></span></code></pre></div>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt; Warning: Problem with `mutate()` input `stat`.</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; ℹ Outer names are only allowed for unnamed scalar atomic inputs</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt; ℹ Input `stat` is `forcats::fct_relevel(.f = stat, levels = names(funs))`.</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt; Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; # A tibble: 4 x 5</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt;      id .slope_xp stat       stat_value stat_diff</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt;   &lt;int&gt;     &lt;dbl&gt; &lt;fct&gt;           &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt; 1  7918    -4.58  min            -4.58   0       </span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="co">#&gt; 2 12455    13.2   range_diff     17.8    4.58    </span></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="co">#&gt; 3 12455    13.2   max            13.2    0       </span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="co">#&gt; 4  9357     0.103 iqr             0.102  0.000139</span></span></code></pre></div>
 </div>
 <div id="implementation-of-keys_near" class="section level1">
 <h1 class="hasAnchor">
@@ -333,7 +339,10 @@
 <span id="cb13-8"><a href="#cb13-8"></a>             <span class="dt">group =</span> id,</span>
 <span id="cb13-9"><a href="#cb13-9"></a>             <span class="dt">colour =</span> stat)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb13-10"><a href="#cb13-10"></a><span class="st">  </span><span class="kw">geom_line</span>()</span>
-<span id="cb13-11"><a href="#cb13-11"></a><span class="co">#&gt; Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></span></code></pre></div>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="co">#&gt; Warning: Problem with `mutate()` input `stat`.</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a><span class="co">#&gt; ℹ Outer names are only allowed for unnamed scalar atomic inputs</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="co">#&gt; ℹ Input `stat` is `forcats::fct_relevel(.f = stat, levels = names(funs))`.</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a><span class="co">#&gt; Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></span></code></pre></div>
 <p><img src="id-interesting-obs_files/figure-html/show-same-1.png" width="700"></p>
 </div>
   </div>

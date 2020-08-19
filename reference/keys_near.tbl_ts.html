@@ -188,7 +188,9 @@ as given by <code>funs</code>.</p></td>
     <pre class="examples"><div class='input'>
 <span class='co'># Return observations closest to the five number summary of ln_wages</span>
 <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='keys_near.html'>keys_near</a></span>(<span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>ln_wages</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 71 x 5</span><span>
+  <span class='fu'><a href='keys_near.html'>keys_near</a></span>(<span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>ln_wages</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Problem with `mutate()` input `stat`.</span>
+#&gt; <span class='warning'><span style='color: #0000BB;'>ℹ</span><span> Outer names are only allowed for unnamed scalar atomic inputs</span>
+#&gt; <span class='warning'></span><span style='color: #0000BB;'>ℹ</span><span> Input `stat` is `forcats::fct_relevel(.f = stat, levels = names(funs))`.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Outer names are only allowed for unnamed scalar atomic inputs</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 71 x 5</span><span>
 #&gt;       id ln_wages stat  stat_value stat_diff
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span>  </span><span style='text-decoration: underline;'>4</span><span>385    0.708 min        0.708         0
