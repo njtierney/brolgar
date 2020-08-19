@@ -1,7 +1,7 @@
 context("test-longnostic")
 wages_test <- sample_frac_keys(wages, 0.05)
 
-df_l_diff_1 <- features(wages_test, ln_wages, diff)
+df_l_range_1 <- features(wages_test, ln_wages, range)
 df_l_max <- features(wages_test, ln_wages, c(max = b_max))
 df_l_mean <- features(wages_test, ln_wages, c(mean = b_mean))
 df_l_median <- features(wages_test, ln_wages, c(median = b_median))
@@ -15,7 +15,7 @@ df_l_slope_multi <- key_slope(wages_test, ln_wages ~ xp + ged)
 new_dims <- c(n_keys(wages_test), 2)
 
 test_that("longnostics returns the right dimensions", {
-  expect_equal(dim(df_l_diff_1), new_dims)
+  expect_equal(dim(df_l_range_1), c(new_dims[1], new_dims[2] + 1))
   expect_equal(dim(df_l_max), new_dims)
   expect_equal(dim(df_l_mean), new_dims)
   expect_equal(dim(df_l_median), new_dims)
@@ -28,7 +28,7 @@ test_that("longnostics returns the right dimensions", {
 })
 
 test_that("longnostic returns the right names", {
-  expect_equal(names(df_l_diff_1), c("id", "V1"))
+  expect_equal(names(df_l_range_1), c("id", ".?...2", ".?...3"))
   expect_equal(names(df_l_max), c("id", "max"))
   expect_equal(names(df_l_mean), c("id", "mean"))
   expect_equal(names(df_l_median), c("id", "median"))
@@ -46,7 +46,7 @@ test_that("longnostic returns the right names", {
 })
 
 test_that("longnostic returns a tbl_df", {
-  expect_is(df_l_diff_1, class = c("tbl"))
+  expect_is(df_l_range_1, class = c("tbl"))
   expect_is(df_l_max, class = c("tbl"))
   expect_is(df_l_mean, class = c("tbl"))
   expect_is(df_l_median, class = c("tbl"))
@@ -61,8 +61,10 @@ test_that("longnostic returns a tbl_df", {
 classes <- function(x) purrr::map_chr(x, class)
 
 test_that("longnostic returns correct classes", {
-  expect_equal(classes(df_l_diff_1), 
-               c(id = "integer", V1 = "numeric"))
+  expect_equal(classes(df_l_range_1), 
+               c(id = "integer", 
+                 `.?...2` = "numeric",
+                 `.?...3` = "numeric"))
   expect_equal(classes(df_l_max),
                c(id = "integer", max = "numeric"))
   expect_equal(classes(df_l_mean),

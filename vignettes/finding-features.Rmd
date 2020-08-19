@@ -115,7 +115,7 @@ ggplot(wages_mono_join,
   geom_line()
 ```
 
-To get a sense of the data and where ti came from, we could create a plot with `gghighlight` to highlight those that only increase, by using `gghighlight(increase)` - since `increase` is a logical, this tells `gghighlight` to highlight those that are TRUE. 
+To get a sense of the data and where it came from, we could create a plot with `gghighlight` to highlight those that only increase, by using `gghighlight(increase)` - since `increase` is a logical, this tells `gghighlight` to highlight those that are TRUE. 
 
 ```{r gg-high-mono}
 library(gghighlight)

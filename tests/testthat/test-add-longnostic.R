@@ -11,9 +11,9 @@ add_new_names <- function(data, x){
 
 wages_test <- sample_frac_keys(wages, 0.05)
 
-df_add_l_diff_1 <- wages_test %>%
+df_add_l_mean_1 <- wages_test %>%
                     features(ln_wages, 
-                             diff) %>% 
+                             list(mean = mean)) %>% 
                      left_join(wages_test, by = "id")
 df_add_n_obs <- add_n_obs(wages_test)
 df_add_key_slope <- add_key_slope(wages_test, ln_wages ~ xp)
@@ -29,7 +29,7 @@ test_that("add_* funs return a tsibble", {
 
 
 test_that("longnostics returns the right dimensions", {
-  expect_equal(dim(df_add_l_diff_1), updated_dim)
+  expect_equal(dim(df_add_l_mean_1), updated_dim)
   expect_equal(dim(df_add_n_obs), updated_dim)
   expect_equal(dim(df_add_key_slope), c(nrow(wages_test), 
                                         ncol(wages_test) + 2))
@@ -38,9 +38,9 @@ test_that("longnostics returns the right dimensions", {
 })
 
 test_that("longnostic returns the right names", {
-  expect_equal(names(df_add_l_diff_1), 
+  expect_equal(names(df_add_l_mean_1), 
                c(names(wages_test)[1],
-                 "V1",
+                 "mean",
                  names(wages_test)[2:length(names(wages_test))])
   )
   expect_equal(names(df_add_n_obs), 
@@ -56,8 +56,8 @@ test_that("longnostic returns the right names", {
                                ".slope_ged")))
 })
 
-test_that("longnostic returns a tbl_df", {
-  expect_is(df_add_l_diff_1, class = c("tbl"))
+test_that("longnostic returns a tibble", {
+  expect_is(df_add_l_mean_1, class = c("tbl"))
   expect_is(df_add_n_obs, class = c("tbl"))
   expect_is(df_add_key_slope, class = c("tbl"))
   expect_is(df_add_key_slope_multi, class = c("tbl"))
@@ -66,7 +66,7 @@ test_that("longnostic returns a tbl_df", {
 classes <- function(x) purrr::map_chr(x, class)
 
 test_that("longnostic returns correct classes", {
-  expect_equal(classes(df_add_l_diff_1)[["V1"]], "numeric")
+  expect_equal(classes(df_add_l_mean_1)[["mean"]], "numeric")
   expect_equal(classes(df_add_n_obs)[["n_obs"]], "integer")
   expect_equal(classes(df_add_key_slope)[[".intercept"]], "numeric")
   expect_equal(classes(df_add_key_slope)[[".slope_xp"]], "numeric")
