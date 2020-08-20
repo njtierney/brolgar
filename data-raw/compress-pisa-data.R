@@ -9,37 +9,29 @@ pisa <- student %>%
   select(year:student_id,
          gender,
          math:stu_wgt) %>% 
-  filter(country %in% c(
-    "AUS", # Australia
-    "IDN", # Indonesia
-    "NZL" # New Zealand
-    # "BRA", # Brazil
-    # "CHL", # Chile
-    # "DNK", # Denmark
-    # "FRA", # France
-    # "GRC", # Greece
-    # "HKG", # Hong Kong
-    # "JPN", # Japan
-    # "LBY", # Libya
-    # "MEX", # Mexico,
-    # "RUS", # Russia
-    # "THA", # Thailand
-    # "USA" # United states of America
-    )) %>%
-  mutate_at(vars(school_id, student_id),
-            as.integer) %>%
-  mutate(country = fct_drop(country))
+  group_by(country,
+           year) %>% 
+  summarise(math_mean = weighted.mean(math, stu_wgt, na.rm=TRUE),
+            read_mean = weighted.mean(read, stu_wgt, na.rm=TRUE),
+            science_mean = weighted.mean(science, stu_wgt, na.rm=TRUE),
+            math_max = max(math, na.rm=TRUE), 
+            read_max = max(read, na.rm=TRUE),
+            science_max = max(science, na.rm=TRUE),
+            math_min = min(math, na.rm=TRUE), 
+            read_min = min(read, na.rm=TRUE),
+            science_min = min(science, na.rm=TRUE)) %>% 
+  ungroup() %>%
+  mutate(country = fct_drop(country),
+         year = as.integer(as.character(year))) %>% 
+  relocate(math_min, math_max, .after = math_mean) %>% 
+  relocate(read_min, read_max, .after = read_mean) %>% 
+  relocate(science_min, science_max, .after = science_mean) 
+
+pisa
 
 pryr::object_size(pisa)
 
-duplicates(pisa,
-           key = c(country, school_id, student_id),
-           index = year) %>% 
-  arrange(year, school_id, student_id) %>% pull(student_id)
-
 unique(pisa$country)
-
-arrange(pisa, n_obs)
 
 barplot(table(pisa$country))
 

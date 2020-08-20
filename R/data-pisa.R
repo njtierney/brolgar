@@ -43,41 +43,47 @@
 #' pisa
 #' 
 #' library(dplyr)
-#' pisa_country <- pisa %>% 
-#'   group_by(year, country) %>%
-#'   summarise(math_mean = weighted.mean(math, stu_wgt, na.rm=TRUE),
-#'             read_mean = weighted.mean(read, stu_wgt, na.rm=TRUE),
-#'             science_mean = weighted.mean(science, stu_wgt, na.rm=TRUE),
-#'             math_max = max(math, na.rm=TRUE), 
-#'             read_max = max(read, na.rm=TRUE),
-#'             science_max = max(science, na.rm=TRUE),
-#'             math_min = min(math, na.rm=TRUE), 
-#'             read_min = min(read, na.rm=TRUE),
-#'             science_min = min(science, na.rm=TRUE)) %>% 
-#'   ungroup() 
+#' # Let's identify
 #' 
-#' pisa_country
+#' #1.  The **key**, the individual, who would have repeated measurements. 
+#' #2.  The **index**, the time component.
+#' #3.  The **regularity** of the time interval (index). 
 #' 
-#' pisa_ts <-
-#' as_tsibble(pisa_country,
+#' # Here it looks like the key is the student_id, which is nested within
+#' # school_id #' and country,
+#' 
+#' # And the index is year, so we would write the following
+#' 
+#' as_tsibble(pisa, 
+#'            key = country,
+#'            index = year)
+#' 
+#' # We can assess the regularity of the year like so:
+#' 
+#' index_regular(pisa, year)
+#' index_summary(pisa, year)
+#' 
+#' # We can now convert this into a `tsibble`:
+#' 
+#' pisa_ts <- as_tsibble(pisa,
 #'            key = country,
 #'            index = year,
 #'            regular = TRUE)
-#' # pisa data
+#' 
+#' pisa_ts
+#' pisa_ts_au_nz <- pisa_ts %>% filter(country %in% c("AUS", "NZL", "QAT"))
 #' 
 #' library(ggplot2)
-#' gg_pisa <- 
-#' ggplot(pisa_ts, 
+#' ggplot(pisa_ts_au_nz, 
 #'        aes(x = year, 
 #'            y = math_mean,
-#'            group = country)) +
+#'            group = country,
+#'            colour = country)) +
 #'   geom_ribbon(aes(ymin = math_min, 
 #'                   ymax = math_max), 
 #'               fill = "grey70") +
 #'   geom_line(size = 1) +
 #'   lims(y = c(0, 1000)) +
-#'   labs(y = "math")
-#'   
-#' gg_pisa +
+#'   labs(y = "math") +
 #' facet_wrap(~country)
 "pisa"

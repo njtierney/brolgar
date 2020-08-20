@@ -12,6 +12,7 @@
 index_regular <- function(data, index){
   data %>% 
     dplyr::distinct( {{ index }} ) %>% 
+    dplyr::arrange( {{index }} ) %>% 
     dplyr::pull( {{index }} ) %>% 
     diff() %>% 
     unvarying() 
@@ -29,6 +30,7 @@ index_regular <- function(data, index){
 index_summary <- function(data, index){
   data %>% 
     dplyr::distinct( {{index}} ) %>% 
+    dplyr::arrange( {{index}} ) %>% 
     dplyr::pull( {{index}} ) %>% 
     diff() %>% 
     summary()
