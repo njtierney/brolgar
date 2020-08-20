@@ -80,7 +80,6 @@ pisa_ts
 pisa_ts_au_nz <- pisa_ts \%>\% filter(country \%in\% c("AUS", "NZL", "QAT"))
 
 library(ggplot2)
-gg_pisa <- 
 ggplot(pisa_ts_au_nz, 
        aes(x = year, 
            y = math_mean,
@@ -91,9 +90,7 @@ ggplot(pisa_ts_au_nz,
               fill = "grey70") +
   geom_line(size = 1) +
   lims(y = c(0, 1000)) +
-  labs(y = "math")
-  
-gg_pisa +
+  labs(y = "math") +
 facet_wrap(~country)
 }
 \keyword{datasets}
