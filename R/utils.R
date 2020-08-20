@@ -33,8 +33,21 @@ possible_strata <- function(.data, n_strata){
 full_strata <- function(.data, n_strata){
   
   possible_strata(.data, n_strata) %>% 
-  rep.int(times = lengths(tsibble::key_rows(.data)))
+  rep.int(times = lengths(my_key_rows(.data)))
   
+}
+
+my_key_data <- function(.data){
+  .data %>% 
+    dplyr::left_join(tsibble::key_data(.data),
+                     by = tsibble::key_vars(.data)) %>% 
+    tibble::as_tibble() %>% 
+    dplyr::select(tsibble::key_vars(.data), .rows) %>% 
+    dplyr::distinct()
+}
+
+my_key_rows <- function(.data){
+  my_key_data(.data)[[".rows"]]
 }
 
 skip_on_gh_actions <- function() {

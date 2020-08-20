@@ -1,5 +1,6 @@
-# brolgar 0.0.5.9100
+# brolgar 0.0.6.9000
 
+* sample functions now work with multiple keys (#85, #89) (Thanks to @earowang and @deanmarchiori for their help with this.)
 * `facet_sample()` now has a default of 3 per plot
 * resolve features(data ,.key, n_obs) error (#71) 
 * For `near_quantile()`, the `tol` argument now defaults to 0.01.
