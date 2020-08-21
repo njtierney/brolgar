@@ -1,7 +1,8 @@
 context("test-longnostic")
 wages_test <- sample_frac_keys(wages, 0.05)
 
-df_l_range_1 <- features(wages_test, ln_wages, range)
+df_l_range_1 <- features(wages_test, ln_wages, 
+                         list(range = ~ setNames(b_range(.), c("min", "max"))))
 df_l_max <- features(wages_test, ln_wages, c(max = b_max))
 df_l_mean <- features(wages_test, ln_wages, c(mean = b_mean))
 df_l_median <- features(wages_test, ln_wages, c(median = b_median))
@@ -28,7 +29,7 @@ test_that("longnostics returns the right dimensions", {
 })
 
 test_that("longnostic returns the right names", {
-  expect_equal(names(df_l_range_1), c("id", ".?...2", ".?...3"))
+  expect_equal(names(df_l_range_1), c("id", "range_min", "range_max"))
   expect_equal(names(df_l_max), c("id", "max"))
   expect_equal(names(df_l_mean), c("id", "mean"))
   expect_equal(names(df_l_median), c("id", "median"))
@@ -63,8 +64,8 @@ classes <- function(x) purrr::map_chr(x, class)
 test_that("longnostic returns correct classes", {
   expect_equal(classes(df_l_range_1), 
                c(id = "integer", 
-                 `.?...2` = "numeric",
-                 `.?...3` = "numeric"))
+                 range_min = "numeric",
+                 range_max = "numeric"))
   expect_equal(classes(df_l_max),
                c(id = "integer", max = "numeric"))
   expect_equal(classes(df_l_mean),

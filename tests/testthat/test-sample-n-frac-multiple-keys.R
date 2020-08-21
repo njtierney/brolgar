@@ -1,5 +1,6 @@
 library(tsibble)
 library(brolgar)
+library(dplyr)
 library(tsibbledata)
 
 context("multiple keys supported")

@@ -1,4 +1,5 @@
 # Return observations closest to the five number summary of ln_wages
+context("keys near")
 summarise_ln_wages <- wages %>%
   keys_near(var = ln_wages)
 

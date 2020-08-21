@@ -1,5 +1,5 @@
 pct <- function(x){
-  glue::glue("q_{scales::percent(x, accuracy = 1, suffix = '')}")
+  as.character(glue::glue("q_{scales::percent(x, accuracy = 1, suffix = '')}"))
 }
 
 qtl <- function(x, probs){
