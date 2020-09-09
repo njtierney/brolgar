@@ -17,20 +17,18 @@ knitr::opts_chunk$set(
 # brolgar
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![R build status](https://github.com/njtierney/brolgar/workflows/R-CMD-check/badge.svg)](https://github.com/njtierney/brolgar)
-[![Codecov test coverage](https://codecov.io/gh/njtierney/brolgar/branch/master/graph/badge.svg)](https://codecov.io/gh/njtierney/brolgar?branch=master)
-<!-- badges: end -->
+
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![R build status](https://github.com/njtierney/brolgar/workflows/R-CMD-check/badge.svg)](https://github.com/njtierney/brolgar) [![Codecov test coverage](https://codecov.io/gh/njtierney/brolgar/branch/master/graph/badge.svg)](https://codecov.io/gh/njtierney/brolgar?branch=master) <!-- badges: end -->
 
 `brolgar` helps you **br**owse **o**ver **l**ongitudinal **d**ata **g**raphically and **a**nalytically in **R**, by providing tools to:
 
-* Efficiently explore raw longitudinal data
-* Calculate features (summaries) for individuals
-* Evaluate diagnostics of statistical models
+-   Efficiently explore raw longitudinal data
+-   Calculate features (summaries) for individuals
+-   Evaluate diagnostics of statistical models
 
 This helps you go from the "plate of spaghetti" plot on the left, to "interesting observations" plot on the right.
 
-```{r show-spaghetti, echo = FALSE, fig.height = 3, fig.width = 6}
+```{r show-spaghetti, echo = FALSE, warning = FALSE, message = FALSE, fig.height = 3, fig.width = 6}
 library(brolgar)
 library(ggplot2)
 library(patchwork)
@@ -62,7 +60,7 @@ p1 + p2
 
 Install from [GitHub](https://github.com/) with:
 
-``` r
+``` {.r}
 # install.packages("remotes")
 remotes::install_github("njtierney/brolgar")
 ```
@@ -75,11 +73,11 @@ There are many ways to describe longitudinal data - from panel data, cross-secti
 
 The tools and workflows in `brolgar` are designed to work with a special tidy time series data frame called a `tsibble`. We can define our longitudinal data in terms of a time series to gain access to some really useful tools. To do so, we need to identify three components:
 
-1. The **key** variable in your data is the **identifier** of your individual.
-2. The **index** variable is the **time** component of your data.
-3. The **regularity** of the time interval (index). Longitudinal data typically has irregular time periods between measurements, but can have regular measurements.
+1.  The **key** variable in your data is the **identifier** of your individual.
+2.  The **index** variable is the **time** component of your data.
+3.  The **regularity** of the time interval (index). Longitudinal data typically has irregular time periods between measurements, but can have regular measurements.
 
-Together, time **index** and **key** uniquely identify an observation. 
+Together, time **index** and **key** uniquely identify an observation.
 
 The term `key` is used a lot in brolgar, so it is an important idea to internalise:
 
@@ -106,7 +104,6 @@ wages <- as_tsibble(x = wages,
 
 Here `as_tsibble()` takes wages, and a `key`, and `index`, and we state the `regular = FALSE` (since there are not regular time periods between measurements). This turns the data into a `tsibble` object - a powerful data abstraction made available in the [`tsibble`](https://tsibble.tidyverts.org/) package by [Earo Wang](https://earo.me/), if you would like to learn more about `tsibble`, see the [official package documentation](https://tsibble.tidyverts.org/) or read [the paper](http://pdf.earo.me/tsibble.pdf).
 
-
 # Efficiently exploring longitudinal data
 
 Exploring longitudinal data can be challenging when there are many individuals. It is difficult to look at all of them!
@@ -115,7 +112,7 @@ You often get a "plate of spaghetti" plot, with many lines plotted on top of eac
 
 ## `sample_n_keys()`
 
-In `dplyr`, you can use `sample_n()` to sample `n` observations, or `sample_frac()` to look at a `frac`tion of observations. 
+In `dplyr`, you can use `sample_n()` to sample `n` observations, or `sample_frac()` to look at a `frac`tion of observations.
 
 `brolgar` builds on this providing `sample_n_keys()` and `sample_frac_keys()`. This allows you to take a random sample of `n` keys using `sample_n_keys()`. For example:
 
@@ -148,15 +145,15 @@ ggplot(wages,
 
 ```
 
-Under the hood, `facet_sample()` is powered by `sample_n_keys()` and `stratify_keys()`. 
+Under the hood, `facet_sample()` is powered by `sample_n_keys()` and `stratify_keys()`.
 
 You can see more facets (e.g., `facet_strata()`) and data visualisations you can make in brolgar in the [Visualisation Gallery](http://brolgar.njtierney.com/articles/visualisation-gallery.html).
 
 ## Finding features in longitudinal data
 
-Sometimes you want to know what the range or a summary of a variable for each individual. We call these summaries `features` of the data, and they can be extracted using the `features` function, from [`fabletools`](http://fabletools.tidyverts.org/). 
+Sometimes you want to know what the range or a summary of a variable for each individual. We call these summaries `features` of the data, and they can be extracted using the `features` function, from [`fabletools`](http://fabletools.tidyverts.org/).
 
-For example, if you want to answer the question "What is the summary of wages for each individual?".  You can use `features()` to find the five number summary (min, max, q1, q3, and median) of `ln_wages` with `feat_five_num`:
+For example, if you want to answer the question "What is the summary of wages for each individual?". You can use `features()` to find the five number summary (min, max, q1, q3, and median) of `ln_wages` with `feat_five_num`:
 
 ```{r features-five-num}
 wages %>%
@@ -273,9 +270,7 @@ For even more expansive time series summarisation, make sure you check out the [
 
 # Contributing
 
-Please note that the `brolgar` project is released with a
-[Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md).
-By contributing to this project, you agree to abide by its terms.
+Please note that the `brolgar` project is released with a [Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
 
 # A Note on the API
 
@@ -287,6 +282,4 @@ Thank you to [Mitchell O'Hara-Wild](https://mitchelloharawild.com/) and [Earo Wa
 
 <!-- These are referred to as a **longnostics**, a portmanteau of **long**itudinal and **cognostic**. These **longnostics** make it straightforward to extract subjects with certain properties to gain some insight into the data.  -->
 
-
 <!-- But calculating this for individuals draws you away from your analysis, and instead you are now wrangling with a different problem: summarising key information about each individual and incorporating that back into the data.  -->
-
