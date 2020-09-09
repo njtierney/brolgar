@@ -43,7 +43,7 @@ wages \%>\%
  facet_wrap(~.strata)
  
  # now facet along some feature
- 
+ \dontrun{
 library(dplyr)
  wages \%>\%
 key_slope(ln_wages ~ xp) \%>\%
@@ -66,4 +66,5 @@ wages \%>\%
              group = id)) + 
   geom_line() + 
   facet_wrap(~.strata)
+}
 }

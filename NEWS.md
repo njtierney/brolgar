@@ -1,5 +1,6 @@
 # brolgar 0.0.6.9000
 
+* Add `feat_diff_summary()` functions to help summarise diff(). Useful for exploring the time gaps in the `index`. (#100)
 * sample functions now work with multiple keys (#85, #89) (Thanks to @earowang and @deanmarchiori for their help with this.)
 * `facet_sample()` now has a default of 3 per plot
 * resolve features(data ,.key, n_obs) error (#71) 

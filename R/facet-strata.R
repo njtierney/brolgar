@@ -19,6 +19,8 @@
 #'            group = country)) +
 #'   geom_line() +
 #'   facet_strata()
+#'   
+#' \dontrun{
 #' 
 #' ggplot(heights,
 #'        aes(x = year,
@@ -43,6 +45,7 @@
 #'   geom_line(aes(group = id)) +
 #'   geom_smooth(method = "lm") + 
 #'   facet_strata(along = .slope_xp)
+#' }
 
 facet_strata <- function(n_strata = 12,
                          along = NULL,

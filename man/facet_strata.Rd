@@ -57,6 +57,8 @@ ggplot(heights,
            group = country)) +
   geom_line() +
   facet_strata()
+  
+\dontrun{
 
 ggplot(heights,
        aes(x = year,
@@ -81,4 +83,5 @@ wages \%>\%
   geom_line(aes(group = id)) +
   geom_smooth(method = "lm") + 
   facet_strata(along = .slope_xp)
+}
 }

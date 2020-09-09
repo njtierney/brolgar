@@ -7,8 +7,6 @@ context("multiple keys supported")
 
 data("aus_retail")
 
-aus_retail
-
 # will fail
 test_that("multiple keys doesn't fail",{
   expect_equal(ncol(sample_n_keys(aus_retail, size = 10)), 5)
@@ -37,7 +35,6 @@ sample_n_keys_retail_nkeys <- sample_n_keys(aus_retail, size = 10)
 sample_frac_keys_retail_nkeys <- sample_frac_keys(aus_retail, size = 0.11)
 n_keys(sample_frac_keys_retail_nkeys)
 
-aus_retail
 
 test_that("correct number of columns returned",{
   expect_equal(ncol(sample_n_keys_retail_nkeys), ncol(aus_retail))

@@ -8,6 +8,7 @@
 \alias{feat_spread}
 \alias{feat_monotonic}
 \alias{feat_brolgar}
+\alias{feat_diff_summary}
 \title{Calculate features of a \code{tsibble} object in conjunction with \code{\link[=features]{features()}}}
 \usage{
 feat_three_num(x, ...)
@@ -21,6 +22,8 @@ feat_spread(x, ...)
 feat_monotonic(x, ...)
 
 feat_brolgar(x, ...)
+
+feat_diff_summary(x, ...)
 }
 \arguments{
 \item{x}{A vector to extract features from.}

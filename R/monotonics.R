@@ -33,6 +33,7 @@
 #' unvarying(vec_ran)
 #' unvarying(vec_flat)
 #' 
+#' \dontrun{
 #' library(ggplot2)
 #' library(gghighlight)
 #' library(dplyr)
@@ -68,6 +69,7 @@
 #'              y = ln_wages,
 #'              group = id)) + 
 #'   geom_line()
+#' }
 #'   
 increasing <- function(x, ...){
   
