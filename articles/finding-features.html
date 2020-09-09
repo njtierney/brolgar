@@ -288,7 +288,7 @@
 <span id="cb12-10"><a href="#cb12-10"></a><span class="co">#&gt; $med</span></span>
 <span id="cb12-11"><a href="#cb12-11"></a><span class="co">#&gt; function (x, na.rm = FALSE, ...) </span></span>
 <span id="cb12-12"><a href="#cb12-12"></a><span class="co">#&gt; UseMethod("median")</span></span>
-<span id="cb12-13"><a href="#cb12-13"></a><span class="co">#&gt; &lt;bytecode: 0x7fcec7c07ad0&gt;</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="co">#&gt; &lt;bytecode: 0x7fd2134f62d0&gt;</span></span>
 <span id="cb12-14"><a href="#cb12-14"></a><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span>
 <span id="cb12-15"><a href="#cb12-15"></a><span class="co">#&gt; </span></span>
 <span id="cb12-16"><a href="#cb12-16"></a><span class="co">#&gt; $max</span></span>
@@ -357,34 +357,27 @@
 <span id="cb16-7"><a href="#cb16-7"></a><span class="co">#&gt; * min -&gt; min...4</span></span>
 <span id="cb16-8"><a href="#cb16-8"></a><span class="co">#&gt; * q25 -&gt; q25...5</span></span>
 <span id="cb16-9"><a href="#cb16-9"></a><span class="co">#&gt; * ...</span></span>
-<span id="cb16-10"><a href="#cb16-10"></a><span class="co">#&gt; New names:</span></span>
-<span id="cb16-11"><a href="#cb16-11"></a><span class="co">#&gt; * min...1 -&gt; min...2</span></span>
-<span id="cb16-12"><a href="#cb16-12"></a><span class="co">#&gt; * med...2 -&gt; med...3</span></span>
-<span id="cb16-13"><a href="#cb16-13"></a><span class="co">#&gt; * max...3 -&gt; max...4</span></span>
-<span id="cb16-14"><a href="#cb16-14"></a><span class="co">#&gt; * min...4 -&gt; min...5</span></span>
-<span id="cb16-15"><a href="#cb16-15"></a><span class="co">#&gt; * q25...5 -&gt; q25...6</span></span>
-<span id="cb16-16"><a href="#cb16-16"></a><span class="co">#&gt; * ...</span></span>
-<span id="cb16-17"><a href="#cb16-17"></a><span class="co">#&gt; # A tibble: 888 x 37</span></span>
-<span id="cb16-18"><a href="#cb16-18"></a><span class="co">#&gt;       id min...2 med...3 max...4 min...5 q25...6 med...7 q75...8 max...9</span></span>
-<span id="cb16-19"><a href="#cb16-19"></a><span class="co">#&gt;    &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;list&gt;  &lt;list&gt;  &lt;list&gt;  &lt;list&gt;  &lt;list&gt; </span></span>
-<span id="cb16-20"><a href="#cb16-20"></a><span class="co">#&gt;  1    31   1.43     1.73    2.13 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […</span></span>
-<span id="cb16-21"><a href="#cb16-21"></a><span class="co">#&gt;  2    36   1.80     2.32    2.93 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […</span></span>
-<span id="cb16-22"><a href="#cb16-22"></a><span class="co">#&gt;  3    53   1.54     1.71    3.24 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […</span></span>
-<span id="cb16-23"><a href="#cb16-23"></a><span class="co">#&gt;  4   122   0.763    2.19    2.92 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […</span></span>
-<span id="cb16-24"><a href="#cb16-24"></a><span class="co">#&gt;  5   134   2.00     2.36    2.93 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […</span></span>
-<span id="cb16-25"><a href="#cb16-25"></a><span class="co">#&gt;  6   145   1.48     1.77    2.04 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […</span></span>
-<span id="cb16-26"><a href="#cb16-26"></a><span class="co">#&gt;  7   155   1.54     2.22    2.64 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […</span></span>
-<span id="cb16-27"><a href="#cb16-27"></a><span class="co">#&gt;  8   173   1.56     2.00    2.34 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […</span></span>
-<span id="cb16-28"><a href="#cb16-28"></a><span class="co">#&gt;  9   206   2.03     2.30    2.48 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […</span></span>
-<span id="cb16-29"><a href="#cb16-29"></a><span class="co">#&gt; 10   207   1.58     2.15    2.66 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […</span></span>
-<span id="cb16-30"><a href="#cb16-30"></a><span class="co">#&gt; # … with 878 more rows, and 28 more variables: min...10 &lt;dbl&gt;, max...11 &lt;dbl&gt;,</span></span>
-<span id="cb16-31"><a href="#cb16-31"></a><span class="co">#&gt; #   range_diff...12 &lt;dbl&gt;, iqr...13 &lt;dbl&gt;, var...14 &lt;dbl&gt;, sd...15 &lt;dbl&gt;,</span></span>
-<span id="cb16-32"><a href="#cb16-32"></a><span class="co">#&gt; #   mad...16 &lt;dbl&gt;, iqr...17 &lt;dbl&gt;, min...18 &lt;dbl&gt;, max...19 &lt;dbl&gt;,</span></span>
-<span id="cb16-33"><a href="#cb16-33"></a><span class="co">#&gt; #   median &lt;dbl&gt;, mean &lt;dbl&gt;, q25...22 &lt;dbl&gt;, q75...23 &lt;dbl&gt;, range1 &lt;dbl&gt;,</span></span>
-<span id="cb16-34"><a href="#cb16-34"></a><span class="co">#&gt; #   range2 &lt;dbl&gt;, range_diff...26 &lt;dbl&gt;, sd...27 &lt;dbl&gt;, var...28 &lt;dbl&gt;,</span></span>
-<span id="cb16-35"><a href="#cb16-35"></a><span class="co">#&gt; #   mad...29 &lt;dbl&gt;, iqr...30 &lt;dbl&gt;, increase...31 &lt;dbl&gt;, decrease...32 &lt;dbl&gt;,</span></span>
-<span id="cb16-36"><a href="#cb16-36"></a><span class="co">#&gt; #   unvary...33 &lt;dbl&gt;, increase...34 &lt;lgl&gt;, decrease...35 &lt;lgl&gt;,</span></span>
-<span id="cb16-37"><a href="#cb16-37"></a><span class="co">#&gt; #   unvary...36 &lt;lgl&gt;, monotonic &lt;lgl&gt;</span></span></code></pre></div>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="co">#&gt; # A tibble: 888 x 37</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="co">#&gt;       id min...1 med...2 max...3 min...4 q25...5 med...6 q75...7 max...8 min...9</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="co">#&gt;    &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;list&gt;  &lt;list&gt;  &lt;list&gt;  &lt;list&gt;  &lt;list&gt;    &lt;dbl&gt;</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="co">#&gt;  1    31   1.43     1.73    2.13 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   1.43 </span></span>
+<span id="cb16-14"><a href="#cb16-14"></a><span class="co">#&gt;  2    36   1.80     2.32    2.93 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   1.80 </span></span>
+<span id="cb16-15"><a href="#cb16-15"></a><span class="co">#&gt;  3    53   1.54     1.71    3.24 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   1.54 </span></span>
+<span id="cb16-16"><a href="#cb16-16"></a><span class="co">#&gt;  4   122   0.763    2.19    2.92 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   0.763</span></span>
+<span id="cb16-17"><a href="#cb16-17"></a><span class="co">#&gt;  5   134   2.00     2.36    2.93 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   2.00 </span></span>
+<span id="cb16-18"><a href="#cb16-18"></a><span class="co">#&gt;  6   145   1.48     1.77    2.04 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   1.48 </span></span>
+<span id="cb16-19"><a href="#cb16-19"></a><span class="co">#&gt;  7   155   1.54     2.22    2.64 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   1.54 </span></span>
+<span id="cb16-20"><a href="#cb16-20"></a><span class="co">#&gt;  8   173   1.56     2.00    2.34 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   1.56 </span></span>
+<span id="cb16-21"><a href="#cb16-21"></a><span class="co">#&gt;  9   206   2.03     2.30    2.48 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   2.03 </span></span>
+<span id="cb16-22"><a href="#cb16-22"></a><span class="co">#&gt; 10   207   1.58     2.15    2.66 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   1.58 </span></span>
+<span id="cb16-23"><a href="#cb16-23"></a><span class="co">#&gt; # … with 878 more rows, and 27 more variables: max...10 &lt;dbl&gt;,</span></span>
+<span id="cb16-24"><a href="#cb16-24"></a><span class="co">#&gt; #   range_diff...11 &lt;dbl&gt;, iqr...12 &lt;dbl&gt;, var...13 &lt;dbl&gt;, sd...14 &lt;dbl&gt;,</span></span>
+<span id="cb16-25"><a href="#cb16-25"></a><span class="co">#&gt; #   mad...15 &lt;dbl&gt;, iqr...16 &lt;dbl&gt;, min...17 &lt;dbl&gt;, max...18 &lt;dbl&gt;,</span></span>
+<span id="cb16-26"><a href="#cb16-26"></a><span class="co">#&gt; #   median &lt;dbl&gt;, mean &lt;dbl&gt;, q25...21 &lt;dbl&gt;, q75...22 &lt;dbl&gt;, range1 &lt;dbl&gt;,</span></span>
+<span id="cb16-27"><a href="#cb16-27"></a><span class="co">#&gt; #   range2 &lt;dbl&gt;, range_diff...25 &lt;dbl&gt;, sd...26 &lt;dbl&gt;, var...27 &lt;dbl&gt;,</span></span>
+<span id="cb16-28"><a href="#cb16-28"></a><span class="co">#&gt; #   mad...28 &lt;dbl&gt;, iqr...29 &lt;dbl&gt;, increase...30 &lt;dbl&gt;, decrease...31 &lt;dbl&gt;,</span></span>
+<span id="cb16-29"><a href="#cb16-29"></a><span class="co">#&gt; #   unvary...32 &lt;dbl&gt;, increase...33 &lt;lgl&gt;, decrease...34 &lt;lgl&gt;,</span></span>
+<span id="cb16-30"><a href="#cb16-30"></a><span class="co">#&gt; #   unvary...35 &lt;lgl&gt;, monotonic &lt;lgl&gt;</span></span></code></pre></div>
 <p>For more information see <code><a href="https://fabletools.tidyverts.org/reference/feature_set.html">?fabletools::feature_set</a></code></p>
 </div>
 <div id="registering-a-feature-in-a-package" class="section level1">
