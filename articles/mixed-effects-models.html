@@ -229,11 +229,11 @@
 <span id="cb16-6"><a href="#cb16-6"></a><span class="co">#&gt;      id  res_int stat  stat_value  stat_diff</span></span>
 <span id="cb16-7"><a href="#cb16-7"></a><span class="co">#&gt;   &lt;int&gt;    &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;      &lt;dbl&gt;</span></span>
 <span id="cb16-8"><a href="#cb16-8"></a><span class="co">#&gt; 1   122 -1.31    min     -1.31    0         </span></span>
-<span id="cb16-9"><a href="#cb16-9"></a><span class="co">#&gt; 2  5778 -0.160   q_25    -0.160   0.0000117 </span></span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="co">#&gt; 2   735  2.15    max      2.15    0         </span></span>
 <span id="cb16-10"><a href="#cb16-10"></a><span class="co">#&gt; 3  2026 -0.00956 med     -0.00944 0.000112  </span></span>
 <span id="cb16-11"><a href="#cb16-11"></a><span class="co">#&gt; 4  3961 -0.00933 med     -0.00944 0.000112  </span></span>
-<span id="cb16-12"><a href="#cb16-12"></a><span class="co">#&gt; 5  8246  0.136   q_75     0.136   0.00000353</span></span>
-<span id="cb16-13"><a href="#cb16-13"></a><span class="co">#&gt; 6   735  2.15    max      2.15    0</span></span></code></pre></div>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="co">#&gt; 5  5778 -0.160   q_25    -0.160   0.0000117 </span></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="co">#&gt; 6  8246  0.136   q_75     0.136   0.00000353</span></span></code></pre></div>
 <p>This shows us the keys where we the residuals match closest to the five number summary.</p>
 <p>We can plot this data by joining it back to the wages data with predictions, to see what the spread of predictions is like.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</span>
