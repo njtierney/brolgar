@@ -35,24 +35,21 @@ keys_near.tbl_ts <- function(.data,
                       stat_as_factor = TRUE,
                       ...){
 
-  q_var <- rlang::enquo(var)
   key <- tsibble::key_vars(.data)
   
   data_keys_near <- .data %>%
     tibble::as_tibble() %>%
     dplyr::mutate_at(
-      .vars = dplyr::vars(!!q_var),
+      .vars = dplyr::vars( {{ var }} ),
       .funs = funs,
       ...) %>%
     dplyr::select(key,
-                  !!q_var,
+                  {{ var }},
                   dplyr::one_of(names(funs))) %>%
-    # replace with pivot_longer
-    tidyr::gather(key = "stat",
-                  value = "stat_value",
-                  -key,
-                  -!!q_var) %>%
-    dplyr::mutate(stat_diff = abs(!!q_var - stat_value)) %>%
+    tidyr::pivot_longer(cols = -c(key, {{ var }}),
+                        names_to = "stat",
+                        values_to = "stat_value") %>% 
+    dplyr::mutate(stat_diff = abs({{ var }} - stat_value)) %>%
     dplyr::group_by(stat) %>%
     dplyr::top_n(-top_n,
                  wt = stat_diff) %>% 
@@ -66,7 +63,6 @@ keys_near.tbl_ts <- function(.data,
   } else if (! stat_as_factor) {
     return(data_keys_near)
   }
-  
   
 }
 
@@ -101,27 +97,23 @@ keys_near.default <- function(.data,
                       funs = l_five_num,
                       ...){
   
-  q_var <- rlang::enquo(var)
-  q_key <- rlang::enquo(key)
-  
   .data %>%
     tibble::as_tibble() %>%
     dplyr::mutate_at(
-      .vars = dplyr::vars(!!q_var),
+      .vars = dplyr::vars( {{ var }} ),
       .funs = funs,
       ...) %>%
-    dplyr::select(!!q_key,
-                  !!q_var,
+    dplyr::select( {{ key }},
+                   {{ var }},
                   dplyr::one_of(names(funs))) %>%
-    tidyr::gather(key = "stat",
-                  value = "stat_value",
-           -!!q_key,
-           -!!q_var) %>%
-    dplyr::mutate(stat_diff = abs(!!q_var - stat_value)) %>%
+    tidyr::pivot_longer(cols = -c( {{ key }}, {{ var }}),
+                        names_to = "stat",
+                        values_to = "stat_value") %>% 
+    dplyr::mutate(stat_diff = abs( {{ var }} - stat_value)) %>%
     dplyr::group_by(stat) %>%
     dplyr::top_n(-top_n,
                  wt = stat_diff) %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(stat = forcats::fct_relevel(.f = stat,
-                                              levels = names(funs)))
+    dplyr::mutate(stat = factor(x = stat,
+                                 levels = names(funs)))
 }
