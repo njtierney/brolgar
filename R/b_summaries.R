@@ -16,7 +16,12 @@
 #'     * b_var: The variance
 #'     * b_mad: The mean absolute deviation
 #'     * b_iqr: The Inter-quartile range
-#' 
+#'     * b_diff_var: The variance diff()
+#'     * b_diff_sd: The standard deviation of diff()
+#'     * b_diff_mean: The mean of diff()
+#'     * b_diff_median: The median of diff()
+#'     * b_diff_q25: The q25 of diff()
+#'     * b_diff_q75: The q75 of diff()
 #' 
 #' @param x a vector
 #' @param na.rm whether to remove NA values. Default is TRUE
@@ -103,6 +108,54 @@ b_mad <- function(x, na.rm = TRUE, ... ){
 #' @export
 b_iqr <- function(x, na.rm = TRUE, ... ){
   stats::IQR(x, na.rm = na.rm, type = 8, ...)
+}
+
+#' @name b_summaries
+#' @export
+b_diff_var <- function(x, na.rm = TRUE, ...){
+  stats::var(diff(x, na.rm = na.rm, ...))
+}
+
+#' @name b_summaries
+#' @export
+b_diff_sd <- function(x, na.rm = TRUE, ...){
+  stats::sd(diff(x, na.rm = na.rm, ...))
+}
+
+#' @name b_summaries
+#' @export
+b_diff_mean <- function(x, na.rm = TRUE, ...){
+  mean(diff(x, na.rm = na.rm, ...))
+}
+
+#' @name b_summaries
+#' @export
+b_diff_median <- function(x, na.rm = TRUE, ...){
+  stats::median(diff(x, na.rm = na.rm, ...))
+}
+
+#' @name b_summaries
+#' @export
+b_diff_q25 <- function(x, na.rm = TRUE, ...){
+  b_q25(diff(x, na.rm = na.rm, ...))
+}
+
+#' @name b_summaries
+#' @export
+b_diff_q75 <- function(x, na.rm = TRUE, ...){
+  b_q75(diff(x, na.rm = na.rm, ...))
+}
+
+#' @name b_summaries
+#' @export
+b_diff_max <- function(x, na.rm = TRUE, ...){
+  b_max(diff(x, na.rm = na.rm, ...))
+}
+
+#' @name b_summaries
+#' @export
+b_diff_min <- function(x, na.rm = TRUE, ...){
+  b_min(diff(x, na.rm = na.rm, ...))
 }
 
 #  * `l_n_obs()` Number of observations

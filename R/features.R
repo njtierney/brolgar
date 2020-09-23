@@ -98,3 +98,17 @@ feat_brolgar <- function(x, ...){
   )
 }
 
+#' @rdname brolgar-features
+#' @export
+feat_diff_summary <- function(x, ...){
+  c(
+  diff_var = b_diff_var(x, ...),
+  diff_sd = b_diff_sd(x, ...),
+  diff_min = b_diff_min(x, ...),
+  diff_q25 = b_diff_q25(x, ...),
+  diff_mean = b_diff_mean(x, ...),
+  diff_median = b_diff_median(x, ...),
+  diff_q75 = b_diff_q75(x, ...),
+  diff_max = b_diff_max(x, ...)
+  )
+}

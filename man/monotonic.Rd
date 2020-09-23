@@ -50,6 +50,7 @@ unvarying(vec_dec)
 unvarying(vec_ran)
 unvarying(vec_flat)
 
+\dontrun{
 library(ggplot2)
 library(gghighlight)
 library(dplyr)
@@ -85,5 +86,6 @@ wages_mono \%>\%
              y = ln_wages,
              group = id)) + 
   geom_line()
+}
   
 }

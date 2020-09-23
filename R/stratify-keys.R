@@ -30,7 +30,7 @@
 #'  facet_wrap(~.strata)
 #'  
 #'  # now facet along some feature
-#'  
+#'  \dontrun{
 #' library(dplyr)
 #'  wages %>%
 #' key_slope(ln_wages ~ xp) %>%
@@ -53,6 +53,7 @@
 #'              group = id)) + 
 #'   geom_line() + 
 #'   facet_wrap(~.strata)
+#' }
 stratify_keys <- function(.data, n_strata, along = NULL, fun = mean, ...){
   test_if_tsibble(.data)
   test_if_null(.data)
