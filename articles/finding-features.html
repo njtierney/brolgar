@@ -168,18 +168,18 @@
 <span id="cb6-3"><a href="#cb6-3"></a></span>
 <span id="cb6-4"><a href="#cb6-4"></a>wages_five</span>
 <span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; # A tibble: 888 x 6</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt;       id min       q25       med       q75       max      </span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt;    &lt;int&gt; &lt;list&gt;    &lt;list&gt;    &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   </span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt;  1    31 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt;  2    36 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt;  3    53 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt;  4   122 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt;  5   134 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt;  6   145 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;  7   155 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt;  8   173 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt;  9   206 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; 10   207 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt;       id   min   q25   med   q75   max</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt;  1    31 1.43   1.48  1.73  2.02  2.13</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt;  2    36 1.80   1.97  2.32  2.59  2.93</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt;  3    53 1.54   1.58  1.71  1.89  3.24</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt;  4   122 0.763  2.10  2.19  2.46  2.92</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt;  5   134 2.00   2.28  2.36  2.79  2.93</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt;  6   145 1.48   1.58  1.77  1.89  2.04</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt;  7   155 1.54   1.83  2.22  2.44  2.64</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt;  8   173 1.56   1.68  2.00  2.05  2.34</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt;  9   206 2.03   2.07  2.30  2.45  2.48</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; 10   207 1.58   1.87  2.15  2.26  2.66</span></span>
 <span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt; # … with 878 more rows</span></span></code></pre></div>
 <p>Here we are taking the <code>wages</code> data, piping it to <code>features</code>, and then telling it to summarise the <code>ln_wages</code> variable, using <code>feat_five_num</code>.</p>
 <p>There are several handy functions for calculating features of the data that <code>brolgar</code> provides. These all start with <code>feat_</code>.</p>
@@ -288,7 +288,7 @@
 <span id="cb12-10"><a href="#cb12-10"></a><span class="co">#&gt; $med</span></span>
 <span id="cb12-11"><a href="#cb12-11"></a><span class="co">#&gt; function (x, na.rm = FALSE, ...) </span></span>
 <span id="cb12-12"><a href="#cb12-12"></a><span class="co">#&gt; UseMethod("median")</span></span>
-<span id="cb12-13"><a href="#cb12-13"></a><span class="co">#&gt; &lt;bytecode: 0x7feee81eb0d0&gt;</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="co">#&gt; &lt;bytecode: 0x7fcfd26610d0&gt;</span></span>
 <span id="cb12-14"><a href="#cb12-14"></a><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span>
 <span id="cb12-15"><a href="#cb12-15"></a><span class="co">#&gt; </span></span>
 <span id="cb12-16"><a href="#cb12-16"></a><span class="co">#&gt; $max</span></span>
@@ -359,17 +359,17 @@
 <span id="cb16-9"><a href="#cb16-9"></a><span class="co">#&gt; * ...</span></span>
 <span id="cb16-10"><a href="#cb16-10"></a><span class="co">#&gt; # A tibble: 888 x 37</span></span>
 <span id="cb16-11"><a href="#cb16-11"></a><span class="co">#&gt;       id min...1 med...2 max...3 min...4 q25...5 med...6 q75...7 max...8 min...9</span></span>
-<span id="cb16-12"><a href="#cb16-12"></a><span class="co">#&gt;    &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;list&gt;  &lt;list&gt;  &lt;list&gt;  &lt;list&gt;  &lt;list&gt;    &lt;dbl&gt;</span></span>
-<span id="cb16-13"><a href="#cb16-13"></a><span class="co">#&gt;  1    31   1.43     1.73    2.13 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   1.43 </span></span>
-<span id="cb16-14"><a href="#cb16-14"></a><span class="co">#&gt;  2    36   1.80     2.32    2.93 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   1.80 </span></span>
-<span id="cb16-15"><a href="#cb16-15"></a><span class="co">#&gt;  3    53   1.54     1.71    3.24 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   1.54 </span></span>
-<span id="cb16-16"><a href="#cb16-16"></a><span class="co">#&gt;  4   122   0.763    2.19    2.92 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   0.763</span></span>
-<span id="cb16-17"><a href="#cb16-17"></a><span class="co">#&gt;  5   134   2.00     2.36    2.93 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   2.00 </span></span>
-<span id="cb16-18"><a href="#cb16-18"></a><span class="co">#&gt;  6   145   1.48     1.77    2.04 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   1.48 </span></span>
-<span id="cb16-19"><a href="#cb16-19"></a><span class="co">#&gt;  7   155   1.54     2.22    2.64 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   1.54 </span></span>
-<span id="cb16-20"><a href="#cb16-20"></a><span class="co">#&gt;  8   173   1.56     2.00    2.34 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   1.56 </span></span>
-<span id="cb16-21"><a href="#cb16-21"></a><span class="co">#&gt;  9   206   2.03     2.30    2.48 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   2.03 </span></span>
-<span id="cb16-22"><a href="#cb16-22"></a><span class="co">#&gt; 10   207   1.58     2.15    2.66 &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl [… &lt;dbl […   1.58 </span></span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="co">#&gt;    &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="co">#&gt;  1    31   1.43     1.73    2.13   1.43     1.48    1.73    2.02    2.13   1.43 </span></span>
+<span id="cb16-14"><a href="#cb16-14"></a><span class="co">#&gt;  2    36   1.80     2.32    2.93   1.80     1.97    2.32    2.59    2.93   1.80 </span></span>
+<span id="cb16-15"><a href="#cb16-15"></a><span class="co">#&gt;  3    53   1.54     1.71    3.24   1.54     1.58    1.71    1.89    3.24   1.54 </span></span>
+<span id="cb16-16"><a href="#cb16-16"></a><span class="co">#&gt;  4   122   0.763    2.19    2.92   0.763    2.10    2.19    2.46    2.92   0.763</span></span>
+<span id="cb16-17"><a href="#cb16-17"></a><span class="co">#&gt;  5   134   2.00     2.36    2.93   2.00     2.28    2.36    2.79    2.93   2.00 </span></span>
+<span id="cb16-18"><a href="#cb16-18"></a><span class="co">#&gt;  6   145   1.48     1.77    2.04   1.48     1.58    1.77    1.89    2.04   1.48 </span></span>
+<span id="cb16-19"><a href="#cb16-19"></a><span class="co">#&gt;  7   155   1.54     2.22    2.64   1.54     1.83    2.22    2.44    2.64   1.54 </span></span>
+<span id="cb16-20"><a href="#cb16-20"></a><span class="co">#&gt;  8   173   1.56     2.00    2.34   1.56     1.68    2.00    2.05    2.34   1.56 </span></span>
+<span id="cb16-21"><a href="#cb16-21"></a><span class="co">#&gt;  9   206   2.03     2.30    2.48   2.03     2.07    2.30    2.45    2.48   2.03 </span></span>
+<span id="cb16-22"><a href="#cb16-22"></a><span class="co">#&gt; 10   207   1.58     2.15    2.66   1.58     1.87    2.15    2.26    2.66   1.58 </span></span>
 <span id="cb16-23"><a href="#cb16-23"></a><span class="co">#&gt; # … with 878 more rows, and 27 more variables: max...10 &lt;dbl&gt;,</span></span>
 <span id="cb16-24"><a href="#cb16-24"></a><span class="co">#&gt; #   range_diff...11 &lt;dbl&gt;, iqr...12 &lt;dbl&gt;, var...13 &lt;dbl&gt;, sd...14 &lt;dbl&gt;,</span></span>
 <span id="cb16-25"><a href="#cb16-25"></a><span class="co">#&gt; #   mad...15 &lt;dbl&gt;, iqr...16 &lt;dbl&gt;, min...17 &lt;dbl&gt;, max...18 &lt;dbl&gt;,</span></span>

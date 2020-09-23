@@ -444,18 +444,18 @@
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>wages <span class="op">%&gt;%</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a><span class="st">  </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(ln_wages, feat_five_num)</span>
 <span id="cb22-3"><a href="#cb22-3"></a><span class="co">#&gt; # A tibble: 888 x 6</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="co">#&gt;       id min       q25       med       q75       max      </span></span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="co">#&gt;    &lt;int&gt; &lt;list&gt;    &lt;list&gt;    &lt;list&gt;    &lt;list&gt;    &lt;list&gt;   </span></span>
-<span id="cb22-6"><a href="#cb22-6"></a><span class="co">#&gt;  1    31 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb22-7"><a href="#cb22-7"></a><span class="co">#&gt;  2    36 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb22-8"><a href="#cb22-8"></a><span class="co">#&gt;  3    53 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb22-9"><a href="#cb22-9"></a><span class="co">#&gt;  4   122 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb22-10"><a href="#cb22-10"></a><span class="co">#&gt;  5   134 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb22-11"><a href="#cb22-11"></a><span class="co">#&gt;  6   145 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb22-12"><a href="#cb22-12"></a><span class="co">#&gt;  7   155 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb22-13"><a href="#cb22-13"></a><span class="co">#&gt;  8   173 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb22-14"><a href="#cb22-14"></a><span class="co">#&gt;  9   206 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
-<span id="cb22-15"><a href="#cb22-15"></a><span class="co">#&gt; 10   207 &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt; &lt;dbl [1]&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="co">#&gt;       id   min   q25   med   q75   max</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="co">#&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="co">#&gt;  1    31 1.43   1.48  1.73  2.02  2.13</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a><span class="co">#&gt;  2    36 1.80   1.97  2.32  2.59  2.93</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="co">#&gt;  3    53 1.54   1.58  1.71  1.89  3.24</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a><span class="co">#&gt;  4   122 0.763  2.10  2.19  2.46  2.92</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a><span class="co">#&gt;  5   134 2.00   2.28  2.36  2.79  2.93</span></span>
+<span id="cb22-11"><a href="#cb22-11"></a><span class="co">#&gt;  6   145 1.48   1.58  1.77  1.89  2.04</span></span>
+<span id="cb22-12"><a href="#cb22-12"></a><span class="co">#&gt;  7   155 1.54   1.83  2.22  2.44  2.64</span></span>
+<span id="cb22-13"><a href="#cb22-13"></a><span class="co">#&gt;  8   173 1.56   1.68  2.00  2.05  2.34</span></span>
+<span id="cb22-14"><a href="#cb22-14"></a><span class="co">#&gt;  9   206 2.03   2.07  2.30  2.45  2.48</span></span>
+<span id="cb22-15"><a href="#cb22-15"></a><span class="co">#&gt; 10   207 1.58   1.87  2.15  2.26  2.66</span></span>
 <span id="cb22-16"><a href="#cb22-16"></a><span class="co">#&gt; # … with 878 more rows</span></span></code></pre></div>
 <p>Or finding those whose values only increase or decrease with <code>feat_monotonic</code></p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>wages <span class="op">%&gt;%</span></span>
