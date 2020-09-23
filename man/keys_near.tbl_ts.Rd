@@ -4,7 +4,7 @@
 \alias{keys_near.tbl_ts}
 \title{Return keys nearest to a given statistics or summary.}
 \usage{
-\method{keys_near}{tbl_ts}(.data, var, top_n = 1, funs = l_five_num, ...)
+\method{keys_near}{tbl_ts}(.data, var, top_n = 1, funs = l_five_num, stat_as_factor = TRUE, ...)
 }
 \arguments{
 \item{.data}{data.frame}
@@ -15,6 +15,8 @@
 
 \item{funs}{named list of functions to summarise by. Default is a given
 list of the five number summary, \code{l_five_num}.}
+
+\item{stat_as_factor}{coerce \code{stat} variable into a factor? Default is TRUE.}
 
 \item{...}{extra arguments to pass to \code{mutate_at} when performing the summary
 as given by \code{funs}.}
