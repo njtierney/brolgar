@@ -36,7 +36,7 @@ feat_three_num <- function(x, ...) {
 #' @rdname brolgar-features
 #' @export
 feat_five_num <- function(x, ...) {
-  list(
+  c(
     min = b_min(x, ...),
     q25 = b_q25(x, ...),
     med = b_median(x, ...),
