@@ -181,8 +181,8 @@
 
 <span class='fu'><a href='near_middle.html'>near_middle</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>,
             <span class='kw'>middle</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-            <span class='kw'>within</span> <span class='kw'>=</span> <span class='fl'>0.2</span>)</div><div class='output co'>#&gt;  [1]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-#&gt; [13] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE</div><div class='input'>
+            <span class='kw'>within</span> <span class='kw'>=</span> <span class='fl'>0.2</span>)</div><div class='output co'>#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+#&gt; [13] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE</div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='no'>wages</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>near_between</span>(<span class='no'>min</span>, <span class='fl'>0.1</span>, <span class='fl'>0.9</span>))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 710 x 2</span><span>
@@ -203,8 +203,8 @@
               <span class='kw'>probs</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
               <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>0.01</span>)</div><div class='output co'>#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 #&gt; [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</div><div class='input'>
-<span class='fu'><a href='near_quantile.html'>near_quantile</a></span>(<span class='no'>x</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.25</span>, <span class='fl'>0.5</span>, <span class='fl'>0.75</span>), <span class='fl'>0.05</span>)</div><div class='output co'>#&gt;  [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE
-#&gt; [13] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE</div><div class='input'>
+<span class='fu'><a href='near_quantile.html'>near_quantile</a></span>(<span class='no'>x</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.25</span>, <span class='fl'>0.5</span>, <span class='fl'>0.75</span>), <span class='fl'>0.05</span>)</div><div class='output co'>#&gt;  [1]  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE
+#&gt; [13]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</div><div class='input'>
 <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='no'>l_five_num</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate_all.html'>mutate_at</a></span>(<span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span>(<span class='no'>min</span>:<span class='no'>max</span>),

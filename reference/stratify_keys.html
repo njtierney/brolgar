@@ -207,7 +207,7 @@ mean value for each <code>key</code> and assigns the <code>n_strata</code> group
  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>() +
  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(~<span class='no'>.strata</span>)</div><div class='img'><img src='stratify_keys-1.png' alt='' width='700' height='433' /></div><div class='input'>
  <span class='co'># now facet along some feature</span>
-
+ <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
  <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
 <span class='fu'><a href='key_slope.html'>key_slope</a></span>(<span class='no'>ln_wages</span> ~ <span class='no'>xp</span>) <span class='kw'>%&gt;%</span>
@@ -219,7 +219,8 @@ mean value for each <code>key</code> and assigns the <code>n_strata</code> group
              <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>ln_wages</span>,
              <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>id</span>)) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>() +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(~<span class='no'>.strata</span>)</div><div class='img'><img src='stratify_keys-2.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(~<span class='no'>.strata</span>)
+
 
 <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>stratify_keys</span>(<span class='kw'>n_strata</span> <span class='kw'>=</span> <span class='fl'>12</span>,
@@ -228,7 +229,8 @@ mean value for each <code>key</code> and assigns the <code>n_strata</code> group
              <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>ln_wages</span>,
              <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>id</span>)) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>() +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(~<span class='no'>.strata</span>)</div><div class='img'><img src='stratify_keys-3.png' alt='' width='700' height='433' /></div></pre>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(~<span class='no'>.strata</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
