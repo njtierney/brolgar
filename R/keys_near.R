@@ -5,7 +5,10 @@
 #'   as given by `funs`.
 #'
 #' @return data.frame containing keys closest to a given statistic.
-
+#' 
+#' @examples 
+#' keys_near(heights, height_cm)
+#' 
 #' @export
 keys_near <- function(.data, ...){
   

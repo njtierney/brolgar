@@ -11,6 +11,10 @@
 #' @return data.frame with coefficient information
 #' 
 #' @name key_slope
+#' 
+#' @examples 
+#' key_slope(heights, height_cm ~ year)
+#' 
 #' @export
 key_slope <- function(.data, formula, ...) {
   UseMethod("key_slope")

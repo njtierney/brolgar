@@ -24,3 +24,7 @@ Using \code{key_slope} you can fit a linear model to each key in the \code{tsibb
 \code{add_key_slope} adds this slope information back to the data, and returns
 the full dimension \code{tsibble}.
 }
+\examples{
+key_slope(heights, height_cm ~ year)
+
+}

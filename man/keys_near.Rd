@@ -18,3 +18,7 @@ data.frame containing keys closest to a given statistic.
 \description{
 Return keys nearest to a given statistics or summary.
 }
+\examples{
+keys_near(heights, height_cm)
+
+}
