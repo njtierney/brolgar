@@ -7,7 +7,7 @@
 \method{keys_near}{tbl_ts}(.data, var, top_n = 1, funs = l_five_num, stat_as_factor = TRUE, ...)
 }
 \arguments{
-\item{.data}{data.frame}
+\item{.data}{tsibble}
 
 \item{var}{variable to summarise}
 

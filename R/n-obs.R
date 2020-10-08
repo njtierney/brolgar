@@ -3,7 +3,7 @@
 #' Returns the number of observations of a vector or data.frame. It uses 
 #'   `vctrs::vec_size()` under the hood.
 #'
-#' @param x vector or dataframe
+#' @param x vector or data.frame
 #' @param names logical; If TRUE the result is a named vector named "n_obs", else
 #'   it is just the number of observations. 
 #'
@@ -20,6 +20,11 @@
 #' wages %>%
 #'   features(ln_wages, n_obs) # can be any variable except id, the key.
 n_obs <- function(x, names = TRUE){
+  
+  # assert if thing is either a vector
+  vctrs::vec_assert(names, logical())
+  # not sure how to check if x is a data.frame is a safe way.
+  
   if (names) {
     size <- c(n_obs = vctrs::vec_size(x))
   }
@@ -36,7 +41,7 @@ n_obs <- function(x, names = TRUE){
 #' Here, we are not counting the number of rows in the dataset, but rather
 #'   we are counting the number observations for each keys in the data.
 #'
-#' @param .data data.frame
+#' @param .data tsibble
 #' @param ... extra arguments
 #'
 #' @return dataframe with `n_obs`, the number of observations per key added.

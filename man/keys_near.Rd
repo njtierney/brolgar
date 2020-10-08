@@ -2,12 +2,15 @@
 % Please edit documentation in R/keys_near.R
 \name{keys_near}
 \alias{keys_near}
+\alias{keys_near.default}
 \title{Return keys nearest to a given statistics or summary.}
 \usage{
 keys_near(.data, ...)
+
+\method{keys_near}{default}(.data, ...)
 }
 \arguments{
-\item{.data}{data.frame}
+\item{.data}{tsibble}
 
 \item{...}{extra arguments to pass to \code{mutate_at} when performing the summary
 as given by \code{funs}.}

@@ -1,6 +1,6 @@
 #' Return keys nearest to a given statistics or summary. 
 #'
-#' @param .data data.frame
+#' @param .data tsibble
 #' @param ... extra arguments to pass to `mutate_at` when performing the summary
 #'   as given by `funs`.
 #'
@@ -10,7 +10,7 @@
 #' keys_near(heights, height_cm)
 #' 
 #' @export
-keys_near <- function(.data, ...){
+ keys_near <- function(.data, ...){
   
   UseMethod("keys_near")
   
@@ -70,12 +70,14 @@ keys_near.tbl_ts <- function(.data,
 }
 
 #' @title Return keys nearest to a given statistics or summary. 
-#' @inheritParams keys_near
+#' @param .data data.frame
 #' @param key key, which identifies unique observations.
 #' @param var variable to summarise
 #' @param top_n top number of closest observations to return - default is 1, which will also return ties.
 #' @param funs named list of functions to summarise by. Default is a given
 #'   list of the five number summary, `l_five_num`.
+#' @param ... extra arguments to pass to `mutate_at` when performing the summary
+#'   as given by `funs`.
 #' @examples
 #' wages %>%
 #'   key_slope(ln_wages ~ xp) %>%
@@ -93,7 +95,7 @@ keys_near.tbl_ts <- function(.data,
 #'               var = .slope_xp,
 #'               funs = l_ranges)
 #' @export
-keys_near.default <- function(.data,
+keys_near.data.frame <- function(.data,
                       key,
                       var,
                       top_n = 1,
@@ -119,4 +121,14 @@ keys_near.default <- function(.data,
     dplyr::ungroup() %>%
     dplyr::mutate(stat = factor(x = stat,
                                  levels = names(funs)))
+}
+
+#' @rdname keys_near 
+#' @param ... extra arguments to pass to `mutate_at` when performing the summary
+#'   as given by `funs`.
+#' @export 
+keys_near.default <- function(.data, ...){
+  
+  stop(.data, "must be a data.frame or tsibble, class is ", class(.data))
+  
 }

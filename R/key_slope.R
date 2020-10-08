@@ -4,11 +4,11 @@
 #' `add_key_slope` adds this slope information back to the data, and returns
 #' the full dimension `tsibble`.
 #' 
-#' @param .data data.frame
+#' @param .data tsibble
 #' @param formula formula
 #' @param ... extra arguments
 #' 
-#' @return data.frame with coefficient information
+#' @return tibble with coefficient information
 #' 
 #' @name key_slope
 #' 

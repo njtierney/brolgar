@@ -4,10 +4,10 @@
 \alias{index_regular}
 \title{Index helper - are there regular intervals between each index?}
 \usage{
-index_regular(data, index)
+index_regular(.data, index)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{data.frame or tsibble}
 
 \item{index}{proposed index column}
 }

@@ -10,14 +10,14 @@ key_slope(.data, formula, ...)
 add_key_slope(.data, formula)
 }
 \arguments{
-\item{.data}{data.frame}
+\item{.data}{tsibble}
 
 \item{formula}{formula}
 
 \item{...}{extra arguments}
 }
 \value{
-data.frame with coefficient information
+tibble with coefficient information
 }
 \description{
 Using \code{key_slope} you can fit a linear model to each key in the \code{tsibble}.

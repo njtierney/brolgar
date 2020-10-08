@@ -4,10 +4,10 @@
 \alias{index_summary}
 \title{Index helper - summarise the distance between each index}
 \usage{
-index_summary(data, index)
+index_summary(.data, index)
 }
 \arguments{
-\item{data}{data.frame}
+\item{.data}{tsibble}
 
 \item{index}{proposed index column}
 }

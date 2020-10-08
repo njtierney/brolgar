@@ -7,7 +7,7 @@
 n_obs(x, names = TRUE)
 }
 \arguments{
-\item{x}{vector or dataframe}
+\item{x}{vector or data.frame}
 
 \item{names}{logical; If TRUE the result is a named vector named "n_obs", else
 it is just the number of observations.}

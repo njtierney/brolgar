@@ -17,6 +17,12 @@ test_if_tsibble <- function(x){
   }
 }
 
+test_if_dataframe <- function(x){
+  if (!inherits(x, "data.frame")) {
+    stop("Input must inherit from data.frame", call. = FALSE)
+  }
+}
+
 test_if_null <- function(x, message = "Input must not be NULL"){
   if (is.null(x)) {
     stop(message, call. = FALSE)

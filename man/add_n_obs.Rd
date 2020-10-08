@@ -7,7 +7,7 @@
 add_n_obs(.data, ...)
 }
 \arguments{
-\item{.data}{data.frame}
+\item{.data}{tsibble}
 
 \item{...}{extra arguments}
 }
