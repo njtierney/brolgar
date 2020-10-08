@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Index helper - are there regular intervals between each index? — index_regular • brolgar</title>
+<title>Return keys nearest to a given statistics or summary. — keys_near.data.frame • brolgar</title>
 
 
 <!-- jquery -->
@@ -45,8 +45,8 @@
 
 
 
-<meta property="og:title" content="Index helper - are there regular intervals between each index? — index_regular" />
-<meta property="og:description" content="Index helper - are there regular intervals between each index?" />
+<meta property="og:title" content="Return keys nearest to a given statistics or summary. — keys_near.data.frame" />
+<meta property="og:description" content="Return keys nearest to a given statistics or summary." />
 
 
 
@@ -147,37 +147,81 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Index helper - are there regular intervals between each index?</h1>
-    <small class="dont-index">Source: <a href='https://github.com/njtierney/brolgar/blob/master/R/index-helpers.R'><code>R/index-helpers.R</code></a></small>
-    <div class="hidden name"><code>index_regular.Rd</code></div>
+    <h1>Return keys nearest to a given statistics or summary.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/njtierney/brolgar/blob/master/R/keys_near.R'><code>R/keys_near.R</code></a></small>
+    <div class="hidden name"><code>keys_near.data.frame.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Index helper - are there regular intervals between each index?</p>
+    <p>Return keys nearest to a given statistics or summary.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>index_regular</span>(<span class='kw'>.data</span>, <span class='kw'>index</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for data.frame</span>
+<span class='fu'><a href='keys_near.html'>keys_near</a></span>(<span class='kw'>.data</span>, <span class='kw'>key</span>, <span class='kw'>var</span>, top_n = <span class='fl'>1</span>, funs = <span class='kw'>l_five_num</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>data.frame or tsibble</p></td>
+      <td><p>data.frame</p></td>
     </tr>
     <tr>
-      <th>index</th>
-      <td><p>proposed index column</p></td>
+      <th>key</th>
+      <td><p>key, which identifies unique observations.</p></td>
+    </tr>
+    <tr>
+      <th>var</th>
+      <td><p>variable to summarise</p></td>
+    </tr>
+    <tr>
+      <th>top_n</th>
+      <td><p>top number of closest observations to return - default is 1, which will also return ties.</p></td>
+    </tr>
+    <tr>
+      <th>funs</th>
+      <td><p>named list of functions to summarise by. Default is a given
+list of the five number summary, <code>l_five_num</code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>extra arguments to pass to <code>mutate_at</code> when performing the summary
+as given by <code>funs</code>.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>logical. TRUE means it is regular, FALSE means not</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>index_regular</span>(<span class='kw'>pisa</span>, <span class='kw'>year</span>)
-</div><div class='output co'>#&gt; [1] TRUE</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>wages</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='key_slope.html'>key_slope</a></span>(<span class='kw'>ln_wages</span> <span class='op'>~</span> <span class='kw'>xp</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='keys_near.html'>keys_near</a></span>(key = <span class='kw'>id</span>,
+            var = <span class='kw'>.slope_xp</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 5</span><span>
+#&gt;      id .slope_xp stat  stat_value stat_diff
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>  </span><span style='text-decoration: underline;'>2</span><span>305   0.048</span><span style='text-decoration: underline;'>0</span><span>  med      0.048</span><span style='text-decoration: underline;'>0</span><span>  0.000</span><span style='text-decoration: underline;'>049</span><span>8
+#&gt; </span><span style='color: #555555;'>2</span><span>  </span><span style='text-decoration: underline;'>2</span><span>594  -</span><span style='color: #BB0000;'>0.007</span><span style='color: #BB0000;text-decoration: underline;'>68</span><span> q_25    -</span><span style='color: #BB0000;'>0.007</span><span style='color: #BB0000;text-decoration: underline;'>69</span><span> 0.000</span><span style='text-decoration: underline;'>012</span><span>7
+#&gt; </span><span style='color: #555555;'>3</span><span>  </span><span style='text-decoration: underline;'>7</span><span>918  -</span><span style='color: #BB0000;'>4.58</span><span>    min     -</span><span style='color: #BB0000;'>4.58</span><span>    0        
+#&gt; </span><span style='color: #555555;'>4</span><span> </span><span style='text-decoration: underline;'>10</span><span>380   0.047</span><span style='text-decoration: underline;'>9</span><span>  med      0.048</span><span style='text-decoration: underline;'>0</span><span>  0.000</span><span style='text-decoration: underline;'>049</span><span>8
+#&gt; </span><span style='color: #555555;'>5</span><span> </span><span style='text-decoration: underline;'>12</span><span>178   0.094</span><span style='text-decoration: underline;'>6</span><span>  q_75     0.094</span><span style='text-decoration: underline;'>7</span><span>  0.000</span><span style='text-decoration: underline;'>057</span><span>9
+#&gt; </span><span style='color: #555555;'>6</span><span> </span><span style='text-decoration: underline;'>12</span><span>455  13.2     max     13.2     0        </div><div class='input'><span class='co'># Specify your own list of summaries</span>
+<span class='kw'>l_ranges</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(min = <span class='kw'>b_min</span>,
+                 range_diff = <span class='kw'>b_range_diff</span>,
+                 max = <span class='kw'>b_max</span>,
+                 iqr = <span class='kw'>b_iqr</span>)
+
+<span class='kw'>wages</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='key_slope.html'>key_slope</a></span>(formula = <span class='kw'>ln_wages</span> <span class='op'>~</span> <span class='kw'>xp</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='keys_near.html'>keys_near</a></span>(key = <span class='kw'>id</span>,
+              var = <span class='kw'>.slope_xp</span>,
+              funs = <span class='kw'>l_ranges</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 5</span><span>
+#&gt;      id .slope_xp stat       stat_value stat_diff
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>  </span><span style='text-decoration: underline;'>7</span><span>918    -</span><span style='color: #BB0000;'>4.58</span><span>  min            -</span><span style='color: #BB0000;'>4.58</span><span>   0       
+#&gt; </span><span style='color: #555555;'>2</span><span>  </span><span style='text-decoration: underline;'>9</span><span>357     0.103 iqr             0.102  0.000</span><span style='text-decoration: underline;'>139</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> </span><span style='text-decoration: underline;'>12</span><span>455    13.2   range_diff     17.8    4.58    
+#&gt; </span><span style='color: #555555;'>4</span><span> </span><span style='text-decoration: underline;'>12</span><span>455    13.2   max            13.2    0       </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
