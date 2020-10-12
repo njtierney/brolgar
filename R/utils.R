@@ -29,6 +29,30 @@ test_if_null <- function(x, message = "Input must not be NULL"){
   }
 }
 
+test_if_tilde <- function(x){
+  if (!grepl("~", x)) {
+    stop("Input x must be a formula with a tilde ,`~`, we see, '", 
+         x, 
+         "' of class",
+         class(x),
+         ".",
+         call. = FALSE)
+  }
+}
+
+test_if_formula <- function(x){
+  if (purrr::is_formula(x)) {
+    stop("Input x must be a formula, we see, '", 
+         x, 
+         "' of class",
+         class(x),
+         ".",
+         " Formula should be specified with something on the left hand side of ~ and the right hand side.",
+         " For more details on formula in R, see `?formula`.",
+         call. = FALSE)
+  }
+}
+
 classes <- function(x) purrr::map_chr(x, class)
 
 possible_strata <- function(.data, n_strata){

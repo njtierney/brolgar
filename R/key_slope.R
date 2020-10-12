@@ -17,6 +17,8 @@
 #' 
 #' @export
 key_slope <- function(.data, formula, ...) {
+  test_if_tilde(formula)
+  test_if_formula(formula)
   UseMethod("key_slope")
 }
 
