@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,7 +39,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -47,7 +51,6 @@ from the triennial testing of 15 year olds around
 the globe. Original data available from
 https://www.oecd.org/pisa/data/. Data derived from
 https://github.com/ropenscilabs/learningtower." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -65,7 +68,7 @@ https://github.com/ropenscilabs/learningtower." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -124,7 +127,7 @@ https://github.com/ropenscilabs/learningtower." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/njtierney/brolgar">
+  <a href="https://github.com/njtierney/brolgar/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -161,7 +164,7 @@ the globe. Original data available from
 <a href='https://github.com/ropenscilabs/learningtower'>https://github.com/ropenscilabs/learningtower</a>.</p>
     </div>
 
-    <pre class="usage"><span class='no'>pisa</span></pre>
+    <pre class="usage"><span class='kw'>pisa</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -194,7 +197,8 @@ done using the student weight variable <code>stu_wgt</code>, to get the survey w
 mean. The minimum and maximum are then calculated.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>pisa</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 433 x 11</span><span>
+    <pre class="examples"><div class='input'><span class='kw'>pisa</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 433 x 11</span><span>
 #&gt;    country  year math_mean math_min math_max read_mean read_min read_max
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>000      395.     27.4     722.      354.  59.7        640.
@@ -209,7 +213,7 @@ mean. The minimum and maximum are then calculated.</p>
 #&gt; </span><span style='color: #555555;'>10</span><span> ARG      </span><span style='text-decoration: underline;'>2</span><span>000      385.     16.0     675.      417.  84.2        761.
 #&gt; </span><span style='color: #555555;'># … with 423 more rows, and 3 more variables: science_mean </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   science_min </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, science_max </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://dplyr.tidyverse.org'>dplyr</a></span>)
 <span class='co'># Let's identify</span>
 
 <span class='co'>#1.  The **key**, the individual, who would have repeated measurements. </span>
@@ -221,9 +225,10 @@ mean. The minimum and maximum are then calculated.</p>
 
 <span class='co'># And the index is year, so we would write the following</span>
 
-<span class='fu'><a href='https://tsibble.tidyverts.org/reference/as-tsibble.html'>as_tsibble</a></span>(<span class='no'>pisa</span>,
-           <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>country</span>,
-           <span class='kw'>index</span> <span class='kw'>=</span> <span class='no'>year</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tsibble: 433 x 11 [3Y]</span><span>
+<span class='fu'><a href='https://tsibble.tidyverts.org/reference/as-tsibble.html'>as_tsibble</a></span>(<span class='kw'>pisa</span>, 
+           key = <span class='kw'>country</span>,
+           index = <span class='kw'>year</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tsibble: 433 x 11 [3Y]</span><span>
 #&gt; </span><span style='color: #555555;'># Key:       country [100]</span><span>
 #&gt;    country  year math_mean math_min math_max read_mean read_min read_max
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -241,16 +246,19 @@ mean. The minimum and maximum are then calculated.</p>
 #&gt; </span><span style='color: #555555;'>#   science_min </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, science_max </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># We can assess the regularity of the year like so:</span>
 
-<span class='fu'><a href='index_regular.html'>index_regular</a></span>(<span class='no'>pisa</span>, <span class='no'>year</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='index_summary.html'>index_summary</a></span>(<span class='no'>pisa</span>, <span class='no'>year</span>)</div><div class='output co'>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+<span class='fu'><a href='index_regular.html'>index_regular</a></span>(<span class='kw'>pisa</span>, <span class='kw'>year</span>)
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='index_summary.html'>index_summary</a></span>(<span class='kw'>pisa</span>, <span class='kw'>year</span>)
+</div><div class='output co'>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #&gt;       3       3       3       3       3       3 </div><div class='input'>
 <span class='co'># We can now convert this into a `tsibble`:</span>
 
-<span class='no'>pisa_ts</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://tsibble.tidyverts.org/reference/as-tsibble.html'>as_tsibble</a></span>(<span class='no'>pisa</span>,
-           <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>country</span>,
-           <span class='kw'>index</span> <span class='kw'>=</span> <span class='no'>year</span>,
-           <span class='kw'>regular</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='kw'>pisa_ts</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tsibble.tidyverts.org/reference/as-tsibble.html'>as_tsibble</a></span>(<span class='kw'>pisa</span>,
+           key = <span class='kw'>country</span>,
+           index = <span class='kw'>year</span>,
+           regular = <span class='fl'>TRUE</span>)
 
-<span class='no'>pisa_ts</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tsibble: 433 x 11 [3Y]</span><span>
+<span class='kw'>pisa_ts</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tsibble: 433 x 11 [3Y]</span><span>
 #&gt; </span><span style='color: #555555;'># Key:       country [100]</span><span>
 #&gt;    country  year math_mean math_min math_max read_mean read_min read_max
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -265,29 +273,27 @@ mean. The minimum and maximum are then calculated.</p>
 #&gt; </span><span style='color: #555555;'> 9</span><span> ARE      </span><span style='text-decoration: underline;'>2</span><span>018      437.     87.6     865.      431.  84.0        814.
 #&gt; </span><span style='color: #555555;'>10</span><span> ARG      </span><span style='text-decoration: underline;'>2</span><span>000      385.     16.0     675.      417.  84.2        761.
 #&gt; </span><span style='color: #555555;'># … with 423 more rows, and 3 more variables: science_mean </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   science_min </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, science_max </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='no'>pisa_ts_au_nz</span> <span class='kw'>&lt;-</span> <span class='no'>pisa_ts</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>country</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AUS"</span>, <span class='st'>"NZL"</span>, <span class='st'>"QAT"</span>))
+#&gt; </span><span style='color: #555555;'>#   science_min </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, science_max </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='kw'>pisa_ts_au_nz</span> <span class='op'>&lt;-</span> <span class='kw'>pisa_ts</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>country</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AUS"</span>, <span class='st'>"NZL"</span>, <span class='st'>"QAT"</span>))
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>pisa_ts_au_nz</span>,
-       <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>year</span>,
-           <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>math_mean</span>,
-           <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>country</span>,
-           <span class='kw'>colour</span> <span class='kw'>=</span> <span class='no'>country</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_ribbon.html'>geom_ribbon</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>ymin</span> <span class='kw'>=</span> <span class='no'>math_min</span>,
-                  <span class='kw'>ymax</span> <span class='kw'>=</span> <span class='no'>math_max</span>),
-              <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"grey70"</span>) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/lims.html'>lims</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1000</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"math"</span>) +
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(~<span class='no'>country</span>)</div><div class='img'><img src='pisa-1.png' alt='' width='700' height='433' /></div></span></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span>)
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>pisa_ts_au_nz</span>, 
+       <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(x = <span class='kw'>year</span>, 
+           y = <span class='kw'>math_mean</span>,
+           group = <span class='kw'>country</span>,
+           colour = <span class='kw'>country</span>)) <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_ribbon.html'>geom_ribbon</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(ymin = <span class='kw'>math_min</span>, 
+                  ymax = <span class='kw'>math_max</span>), 
+              fill = <span class='st'>"grey70"</span>) <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>(size = <span class='fl'>1</span>) <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/lims.html'>lims</a></span>(y = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1000</span>)) <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(y = <span class='st'>"math"</span>) <span class='op'>+</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(<span class='op'>~</span><span class='kw'>country</span>)
+</div><div class='img'><img src='pisa-1.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -298,7 +304,7 @@ mean. The minimum and maximum are then calculated.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
