@@ -174,6 +174,8 @@ near_quantile <- function(x, probs, tol = 0.01){
 #'   filter(nearest_qt_lgl(ln_wages, c(0.1, 0.5, 0.9)))
 #' 
 nearest_lgl <- function(x, y){
+  x <- vctrs::vec_cast(x, to = double())
+  y <- vctrs::vec_cast(y, to = double())
   out <- logical(length(y))
   out[purrr::map_dbl(x, function(x) which.min(abs(y - x)))] <- TRUE
   out

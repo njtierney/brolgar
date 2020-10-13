@@ -132,3 +132,37 @@ keys_near.default <- function(.data, ...){
   stop(.data, "must be a data.frame or tsibble, class is ", class(.data))
   
 }
+
+#' A named list of the five number summary
+#' 
+#' Designed for use with the [keys_near()] function.
+#' @name l_funs
+#' @examples 
+#' # Specify your own list of summaries
+#' l_ranges <- list(min = b_min,
+#'                  range_diff = b_range_diff,
+#'                  max = b_max,
+#'                  iqr = b_iqr)
+#'
+#' wages %>%
+#'   key_slope(formula = ln_wages ~ xp) %>%
+#'   keys_near(key = id,
+#'               var = .slope_xp,
+#'               funs = l_ranges)
+
+#' @export
+l_five_num <- list(
+  min = b_min,
+  q_25 = b_q25,
+  med = b_median,
+  q_75 = b_q75,
+  max = b_max
+)
+
+#' @rdname l_funs
+#' @export
+l_three_num <- list(
+  min = b_min,
+  med = b_median,
+  max = b_max
+)

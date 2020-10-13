@@ -5,7 +5,7 @@ test_that("key_slope does not handle character input", {
 })
 
 test_that("key_slope does not fail", {
-  key_slope(heights, height_cm ~ year)
+  expect_s3_class(key_slope(heights, height_cm ~ year), "tbl_df")
 })
 
 test_that("key_slope fails when given non-formula", {
@@ -19,7 +19,7 @@ test_that("add_key_slope does not handle character input", {
 })
 
 test_that("add_key_slope does not fail", {
-  add_key_slope(heights, height_cm ~ year)
+  expect_s3_class(add_key_slope(heights, height_cm ~ year), "tbl_df")
 })
 
 

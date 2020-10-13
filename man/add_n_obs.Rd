@@ -12,7 +12,7 @@ add_n_obs(.data, ...)
 \item{...}{extra arguments}
 }
 \value{
-dataframe with \code{n_obs}, the number of observations per key added.
+tsibble with \code{n_obs}, the number of observations per key added.
 }
 \description{
 Here, we are not counting the number of rows in the dataset, but rather

@@ -44,7 +44,7 @@ n_obs <- function(x, names = TRUE){
 #' @param .data tsibble
 #' @param ... extra arguments
 #'
-#' @return dataframe with `n_obs`, the number of observations per key added.
+#' @return tsibble with `n_obs`, the number of observations per key added.
 #' @export
 #' 
 #' @examples

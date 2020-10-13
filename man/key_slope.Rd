@@ -3,11 +3,14 @@
 \name{key_slope}
 \alias{key_slope}
 \alias{add_key_slope}
+\alias{add_key_slope.default}
 \title{Fit linear model for each key}
 \usage{
 key_slope(.data, formula, ...)
 
 add_key_slope(.data, formula)
+
+add_key_slope.default(.data, formula)
 }
 \arguments{
 \item{.data}{tsibble}

@@ -76,3 +76,12 @@ add_key_slope <- function(.data, formula){
                   dplyr::everything())
   
 }
+
+#' @rdname key_slope
+#' @export
+add_key_slope.default <- function(.data, formula){
+  stop("Currently there is no method to deal with .data, which is of class ",
+       class(.data),
+       ".")
+}
+  

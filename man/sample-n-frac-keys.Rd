@@ -11,14 +11,14 @@ sample_n_keys(.data, size)
 sample_frac_keys(.data, size)
 }
 \arguments{
-\item{.data}{data.frame to explore}
+\item{.data}{tsibble object}
 
 \item{size}{The number or fraction of observations, depending on the
 function used. In \code{sample_n_keys}, it is a number > 0, and in
 \code{sample_frac_keys} it is a fraction, between 0 and 1.}
 }
 \value{
-data.frame with fewer observations of key
+tsibble with fewer observations of key
 }
 \description{
 Sample a number or fraction of keys to explore

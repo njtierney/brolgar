@@ -130,56 +130,56 @@ b_iqr <- function(x, ... ){
 #' @name b_summaries
 #' @export
 b_diff_var <- function(x, ...){
-  x <- na.omit(x)
+  x <- stats::na.omit(x)
   stats::var(diff(x, na.rm = TRUE, ...))
 }
 
 #' @name b_summaries
 #' @export
 b_diff_sd <- function(x, ...){
-  x <- na.omit(x)
+  x <- stats::na.omit(x)
   b_sd(diff(x, ...))
 }
 
 #' @name b_summaries
 #' @export
 b_diff_mean <- function(x, ...){
-  x <- na.omit(x)
+  x <- stats::na.omit(x)
   b_mean(diff(x, ...))
 }
 
 #' @name b_summaries
 #' @export
 b_diff_median <- function(x, ...){
-  x <- na.omit(x)
+  x <- stats::na.omit(x)
   b_median(diff(x, ...))
 }
 
 #' @name b_summaries
 #' @export
 b_diff_q25 <- function(x, ...){
-  x <- na.omit(x)
+  x <- stats::na.omit(x)
   b_q25(diff(x, ...))
 }
 
 #' @name b_summaries
 #' @export
 b_diff_q75 <- function(x, ...){
-  x <- na.omit(x)
+  x <- stats::na.omit(x)
   b_q75(diff(x, ...))
 }
 
 #' @name b_summaries
 #' @export
 b_diff_max <- function(x, ...){
-  x <- na.omit(x)
+  x <- stats::na.omit(x)
   b_max(diff(x, ...))
 }
 
 #' @name b_summaries
 #' @export
 b_diff_min <- function(x, ...){
-  x <- na.omit(x)
+  x <- stats::na.omit(x)
   b_min(diff(x, ...))
 }
 
