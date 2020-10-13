@@ -24,57 +24,55 @@
 \alias{b_diff_min}
 \title{Brolgar summaries (b_summaries)}
 \usage{
-b_min(x, na.rm = TRUE, ...)
+b_min(x, ...)
 
-b_max(x, na.rm = TRUE, ...)
+b_max(x, ...)
 
-b_median(x, na.rm = TRUE, ...)
+b_median(x, ...)
 
-b_mean(x, na.rm = TRUE, ...)
+b_mean(x, ...)
 
-b_q25(x, na.rm = TRUE, ...)
+b_q25(x, ...)
 
-b_q75(x, na.rm = TRUE, ...)
+b_q75(x, ...)
 
-b_range(x, na.rm = TRUE, ...)
+b_range(x, ...)
 
-b_range_diff(x, na.rm = TRUE, ...)
+b_range_diff(x, ...)
 
-b_sd(x, na.rm = TRUE, ...)
+b_sd(x, ...)
 
-b_var(x, na.rm = TRUE, ...)
+b_var(x, ...)
 
-b_mad(x, na.rm = TRUE, ...)
+b_mad(x, ...)
 
-b_iqr(x, na.rm = TRUE, ...)
+b_iqr(x, ...)
 
-b_diff_var(x, na.rm = TRUE, ...)
+b_diff_var(x, ...)
 
-b_diff_sd(x, na.rm = TRUE, ...)
+b_diff_sd(x, ...)
 
-b_diff_mean(x, na.rm = TRUE, ...)
+b_diff_mean(x, ...)
 
-b_diff_median(x, na.rm = TRUE, ...)
+b_diff_median(x, ...)
 
-b_diff_q25(x, na.rm = TRUE, ...)
+b_diff_q25(x, ...)
 
-b_diff_q75(x, na.rm = TRUE, ...)
+b_diff_q75(x, ...)
 
-b_diff_max(x, na.rm = TRUE, ...)
+b_diff_max(x, ...)
 
-b_diff_min(x, na.rm = TRUE, ...)
+b_diff_min(x, ...)
 }
 \arguments{
 \item{x}{a vector}
-
-\item{na.rm}{whether to remove NA values. Default is TRUE}
 
 \item{...}{other arguments to pass}
 }
 \description{
 Customised summaries of vectors with appropriate defaults for longitudinal
 data. The functions are prefixed with \code{b_} to assist with autocomplete.
-The defaults are to use \code{na.rm = TRUE} for all, and for calculations
+It uses \code{na.rm = TRUE} for all, and for calculations
 involving quantiles, \code{type = 8} and \code{names = FALSE}. Summaries include:
 * b_min: The minimum
 * b_max: The maximum
@@ -94,4 +92,23 @@ involving quantiles, \code{type = 8} and \code{names = FALSE}. Summaries include
 * b_diff_median: The median of diff()
 * b_diff_q25: The q25 of diff()
 * b_diff_q75: The q75 of diff()
+}
+\examples{
+
+x <- c(1:5, NA, 5:1)
+min(x)
+b_min(x)
+max(x)
+b_max(x)
+median(x)
+b_median(x)
+mean(x)
+b_mean(x)
+range(x)
+b_range(x)
+var(x)
+b_var(x)
+sd(x)
+b_sd(x)
+
 }
