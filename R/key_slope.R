@@ -59,15 +59,14 @@ key_slope.tbl_ts <- function(.data, formula, ...){
 #' @export
 add_key_slope <- function(.data, formula){
   
-  test_if_tsibble(.data)
-  test_if_null(formula)
   test_if_null(.data)
-  quo_formula <- rlang::enquo(formula)
+  test_if_null(formula)
+  test_if_tsibble(.data)
   
   str_key <- purrr::map_chr(tsibble::key(.data), rlang::as_label)
   
   key_slope(.data = .data,
-            formula = !!quo_formula) %>%
+            formula = {{ formula }}) %>%
     dplyr::left_join(.data,
                      .,
                       by = str_key) %>%

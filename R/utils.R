@@ -29,8 +29,9 @@ test_if_null <- function(x, message = "Input must not be NULL"){
   }
 }
 
-test_if_tilde <- function(x){
-  if (!grepl("~", x)) {
+test_if_tilde <- function(x) {
+  contains_tilde <- grepl("~", x)
+  if (! any(contains_tilde)) {
     stop("Input x must be a formula with a tilde ,`~`, we see, '", 
          x, 
          "' of class",
@@ -41,10 +42,10 @@ test_if_tilde <- function(x){
 }
 
 test_if_formula <- function(x){
-  if (purrr::is_formula(x)) {
+  if (!is(x, "formula")) {
     stop("Input x must be a formula, we see, '", 
          x, 
-         "' of class",
+         "' of class ",
          class(x),
          ".",
          " Formula should be specified with something on the left hand side of ~ and the right hand side.",
