@@ -57,15 +57,15 @@ keys_near.tbl_ts <- function(.data,
     dplyr::top_n(-top_n,
                  wt = stat_diff) %>% 
     dplyr::ungroup()
-  
-  # set factors
-  if (isTRUE(stat_as_factor)) {
-    data_keys_near %>%
-      dplyr::mutate(stat = factor(x = stat,
-                                  levels = names(funs)))
-  } else if (! stat_as_factor) {
-    return(data_keys_near)
-  }
+
+    # set factors
+    if (isTRUE(stat_as_factor)) {
+      data_keys_near %>%
+        dplyr::mutate(stat = factor(x = stat,
+                                    levels = names(funs)))
+    } else if (! stat_as_factor) {
+      return(data_keys_near)
+    }
   
 }
 

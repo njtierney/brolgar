@@ -2,21 +2,52 @@
 % Please edit documentation in R/index-helpers.R
 \name{index_summary}
 \alias{index_summary}
-\title{Index helper - summarise the distance between each index}
+\alias{index_regular}
+\alias{index_regular.tbl_ts}
+\alias{index_regular.data.frame}
+\alias{index_summary.tbl_ts}
+\alias{index_summary.data.frame}
+\title{Index summaries}
 \usage{
-index_summary(.data, index)
+index_regular(.data, ...)
+
+\method{index_regular}{tbl_ts}(.data, ...)
+
+\method{index_regular}{data.frame}(.data, index, ...)
+
+index_summary(.data, ...)
+
+\method{index_summary}{tbl_ts}(.data, ...)
+
+\method{index_summary}{data.frame}(.data, index, ...)
 }
 \arguments{
-\item{.data}{tsibble}
+\item{.data}{data.frame or tsibble}
 
-\item{index}{proposed index column}
+\item{...}{extra arguments}
+
+\item{index}{the proposed index variable}
 }
 \value{
-summary of difference between each index
+logical  TRUE means it is regular, FALSE means not
 }
 \description{
-Index helper - summarise the distance between each index
+These functions check if the index is regular (\code{index_regular()}), and
+summarise the index variable (\code{index_summary()}). This can be useful
+to check your index variables.
 }
 \examples{
+# a tsibble
+index_regular(heights)
+
+# some data frames
+index_regular(pisa, year)
+index_regular(airquality, Month)
+
+# a tsibble
+index_summary(heights)
+# some data frames
 index_summary(pisa, year)
+index_summary(airquality, Month)
+index_summary(airquality, Day)
 }

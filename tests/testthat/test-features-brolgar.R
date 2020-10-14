@@ -19,13 +19,23 @@ test_that("feat_brolgar returns the right names", {
                  "iqr",
                  "increase",
                  "decrease",
-                 "unvary"))
+                 "unvary",
+                 "diff_min",
+                 "diff_q25",
+                 "diff_median",
+                 "diff_mean",
+                 "diff_q75",
+                 "diff_max",
+                 "diff_var",
+                 "diff_sd",
+                 "diff_iqr"
+                 ))
 })
 
 
 test_that("feat_brolgar returns the right dimensions", {
   expect_equal(dim(wages_brolgar),
-               c(888, 17))
+               c(888, 26))
 })
 
 library(dplyr)

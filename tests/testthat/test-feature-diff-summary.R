@@ -6,19 +6,20 @@ heights_diff_summary <- heights %>%
 test_that("feat_diff_summary returns the right names", {
   expect_equal(names(heights_diff_summary),
                c("country", 
-                 "diff_var",
-                 "diff_sd",
                  "diff_min",
                  "diff_q25",
-                 "diff_mean",
                  "diff_median",
+                 "diff_mean",
                  "diff_q75",
-                 "diff_max"))
+                 "diff_max",
+                 "diff_var",
+                 "diff_sd",
+                 "diff_iqr"))
 })
 
 test_that("feat_diff_summary returns the right dimensions", {
   expect_equal(dim(heights_diff_summary),
-               c(144, 9))
+               c(144, 10))
 })
 
 test_that("feat_diff_summary returns all ids", {
