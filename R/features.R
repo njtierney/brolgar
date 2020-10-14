@@ -11,7 +11,9 @@
 #'   - [feat_ranges()] - min, max, range difference, interquartile range.
 #'   - [feat_spread()]  - variance, standard deviation, median absolute distance,
 #'    and interquartile range
-#'   - [feat_monotonic()]  is it always increasing, decreasing, or unvarying?
+#'   - [feat_monotonic()] - is it always increasing, decreasing, or unvarying?
+#'   - [feat_diff_summary()] - the summary statistics of the differences amongst a value, including the five number summary, as well as the standard deviation and variance.
+#'   
 #'   - [feat_brolgar()]  all features in brolgar.
 #' 
 #' @param x A vector to extract features from.
@@ -94,7 +96,8 @@ feat_brolgar <- function(x, ...){
     iqr = b_iqr(x, ...),
     increase = increasing(x, ...),
     decrease = decreasing(x, ...), 
-    unvary = unvarying(x, ...)
+    unvary = unvarying(x, ...),
+    feat_diff_summary(x, ...)
   )
 }
 
@@ -102,13 +105,14 @@ feat_brolgar <- function(x, ...){
 #' @export
 feat_diff_summary <- function(x, ...){
   c(
-  diff_var = b_diff_var(x, ...),
-  diff_sd = b_diff_sd(x, ...),
   diff_min = b_diff_min(x, ...),
   diff_q25 = b_diff_q25(x, ...),
-  diff_mean = b_diff_mean(x, ...),
   diff_median = b_diff_median(x, ...),
+  diff_mean = b_diff_mean(x, ...),
   diff_q75 = b_diff_q75(x, ...),
-  diff_max = b_diff_max(x, ...)
+  diff_max = b_diff_max(x, ...),
+  diff_var = b_diff_var(x, ...),
+  diff_sd = b_diff_sd(x, ...),
+  diff_iqr = b_diff_iqr(x, ...)
   )
 }

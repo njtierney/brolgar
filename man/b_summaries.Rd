@@ -22,6 +22,7 @@
 \alias{b_diff_q75}
 \alias{b_diff_max}
 \alias{b_diff_min}
+\alias{b_diff_iqr}
 \title{Brolgar summaries (b_summaries)}
 \usage{
 b_min(x, ...)
@@ -63,6 +64,8 @@ b_diff_q75(x, ...)
 b_diff_max(x, ...)
 
 b_diff_min(x, ...)
+
+b_diff_iqr(x, ...)
 }
 \arguments{
 \item{x}{a vector}

@@ -183,5 +183,12 @@ b_diff_min <- function(x, ...){
   b_min(diff(x, ...))
 }
 
+#' @name b_summaries
+#' @export
+b_diff_iqr <- function(x, ...){
+  x <- stats::na.omit(x)
+  b_iqr(diff(x, ...))
+}
+
 #  * `l_n_obs()` Number of observations
 #  * `l_slope()` Slope and intercept (given some linear model formula)

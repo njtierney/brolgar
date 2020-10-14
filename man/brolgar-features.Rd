@@ -42,7 +42,8 @@ Other available features in \code{brolgar} include:
 \item \code{\link[=feat_ranges]{feat_ranges()}} - min, max, range difference, interquartile range.
 \item \code{\link[=feat_spread]{feat_spread()}}  - variance, standard deviation, median absolute distance,
 and interquartile range
-\item \code{\link[=feat_monotonic]{feat_monotonic()}}  is it always increasing, decreasing, or unvarying?
+\item \code{\link[=feat_monotonic]{feat_monotonic()}} - is it always increasing, decreasing, or unvarying?
+\item \code{\link[=feat_diff_summary]{feat_diff_summary()}} - the summary statistics of the differences amongst a value, including the five number summary, as well as the standard deviation and variance.
 \item \code{\link[=feat_brolgar]{feat_brolgar()}}  all features in brolgar.
 }
 }
