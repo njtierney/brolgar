@@ -1,6 +1,6 @@
-pandoc: 2.7.3
-pkgdown: 1.4.1.9000
-pkgdown_sha: 732fb5b9ccc0ef87a73dfd0772ae661a4039b2a8
+pandoc: '2.2'
+pkgdown: 1.6.1
+pkgdown_sha: ~
 articles:
   exploratory-modelling: exploratory-modelling.html
   finding-features: finding-features.html
@@ -9,6 +9,7 @@ articles:
   longitudinal-data-structures: longitudinal-data-structures.html
   mixed-effects-models: mixed-effects-models.html
   visualisation-gallery: visualisation-gallery.html
+last_built: 2020-10-14T22:06Z
 urls:
   reference: http://brolgar.njtierney.com//reference
   article: http://brolgar.njtierney.com//articles

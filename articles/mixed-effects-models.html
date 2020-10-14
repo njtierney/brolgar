@@ -6,21 +6,21 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Using brolgar to understand Mixed Effects Models • brolgar</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Using brolgar to understand Mixed Effects Models">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="brolgar">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -78,7 +78,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/njtierney/brolgar">
+  <a href="https://github.com/njtierney/brolgar/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -99,10 +99,10 @@
 
       
 
-      </header><script src="mixed-effects-models_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Using brolgar to understand Mixed Effects Models</h1>
+      <h1 data-toc-skip>Using brolgar to understand Mixed Effects Models</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/njtierney/brolgar/blob/master/vignettes/mixed-effects-models.Rmd"><code>vignettes/mixed-effects-models.Rmd</code></a></small>
@@ -112,179 +112,217 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(brolgar)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(lme4)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#&gt; Loading required package: Matrix</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(modelr)</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#&gt; </span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt; Attaching package: 'modelr'</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt; The following object is masked from 'package:brolgar':</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt; </span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt;     heights</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/njtierney/brolgar">brolgar</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/lme4/lme4">lme4</a></span>)
+<span class="co">#&gt; Loading required package: Matrix</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://modelr.tidyverse.org">modelr</a></span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'modelr'</span>
+<span class="co">#&gt; The following object is masked from 'package:brolgar':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     heights</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span>)
+</pre></div>
 <p>Just as it is important to explore your data before modelling, it is important to explore your data after you fit a model, and during the modelling process.</p>
 <p>Let’s take our wages data</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>wages</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#&gt; # A tsibble: 6,402 x 9 [!]</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; # Key:       id [888]</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt;    &lt;int&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt;  1    31     1.49 0.015     1        0.015     0        1          8</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt;  2    31     1.43 0.715     1        0.715     0        1          8</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt;  3    31     1.47 1.73      1        1.73      0        1          8</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt;  4    31     1.75 2.77      1        2.77      0        1          8</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt;  5    31     1.93 3.93      1        3.93      0        1          8</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt;  6    31     1.71 4.95      1        4.95      0        1          8</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt;  7    31     2.09 5.96      1        5.96      0        1          8</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt;  8    31     2.13 6.98      1        6.98      0        1          8</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt;  9    36     1.98 0.315     1        0.315     0        0          9</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt; 10    36     1.80 0.983     1        0.983     0        0          9</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt; # … with 6,392 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">wages</span>
+<span class="co">#&gt; # A tsibble: 6,402 x 9 [!]</span>
+<span class="co">#&gt; # Key:       id [888]</span>
+<span class="co">#&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade</span>
+<span class="co">#&gt;    &lt;int&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;</span>
+<span class="co">#&gt;  1    31     1.49 0.015     1        0.015     0        1          8</span>
+<span class="co">#&gt;  2    31     1.43 0.715     1        0.715     0        1          8</span>
+<span class="co">#&gt;  3    31     1.47 1.73      1        1.73      0        1          8</span>
+<span class="co">#&gt;  4    31     1.75 2.77      1        2.77      0        1          8</span>
+<span class="co">#&gt;  5    31     1.93 3.93      1        3.93      0        1          8</span>
+<span class="co">#&gt;  6    31     1.71 4.95      1        4.95      0        1          8</span>
+<span class="co">#&gt;  7    31     2.09 5.96      1        5.96      0        1          8</span>
+<span class="co">#&gt;  8    31     2.13 6.98      1        6.98      0        1          8</span>
+<span class="co">#&gt;  9    36     1.98 0.315     1        0.315     0        0          9</span>
+<span class="co">#&gt; 10    36     1.80 0.983     1        0.983     0        0          9</span>
+<span class="co">#&gt; # … with 6,392 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span>
+</pre></div>
 <p>We might explore this by looking at experience against wages, for each individual:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2"></a>gg_wages_all &lt;-<span class="st"> </span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(wages,</span>
-<span id="cb3-4"><a href="#cb3-4"></a>       <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
-<span id="cb3-5"><a href="#cb3-5"></a>           <span class="dt">y =</span> ln_wages,</span>
-<span id="cb3-6"><a href="#cb3-6"></a>           <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>)</span>
-<span id="cb3-8"><a href="#cb3-8"></a></span>
-<span id="cb3-9"><a href="#cb3-9"></a>gg_wages_all</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+
+<span class="kw">gg_wages_all</span> <span class="op">&lt;-</span> 
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">wages</span>,
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">xp</span>,
+           y = <span class="kw">ln_wages</span>,
+           group = <span class="kw">id</span>)) <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(alpha = <span class="fl">0.25</span>)
+
+<span class="kw">gg_wages_all</span>
+</pre></div>
 <p><img src="mixed-effects-models_files/figure-html/wages-ggplot-1.png" width="700"> But - Ugh. Spaghetti plot.</p>
 <p>Let’s look at a random sample of people using <code><a href="../reference/facet_sample.html">facet_sample()</a></code></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>gg_wages_all <span class="op">+</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw"><a href="../reference/facet_sample.html">facet_sample</a></span>()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">gg_wages_all</span> <span class="op">+</span>
+  <span class="fu"><a href="../reference/facet_sample.html">facet_sample</a></span>()
+</pre></div>
 <p><img src="mixed-effects-models_files/figure-html/wages-ggplot-sample-1.png" width="700"></p>
 <p>Now let’s look at all of the data, arranging by <code>unemploy_rate</code>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>gg_wages_all <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/facet_strata.html">facet_strata</a></span>()</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">gg_wages_all</span> <span class="op">+</span> <span class="fu"><a href="../reference/facet_strata.html">facet_strata</a></span>()
+</pre></div>
 <p><img src="mixed-effects-models_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>gg_wages_all <span class="op">+</span><span class="st"> </span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw"><a href="../reference/facet_strata.html">facet_strata</a></span>(<span class="dt">along =</span> unemploy_rate)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="kw">gg_wages_all</span> <span class="op">+</span> 
+  <span class="fu"><a href="../reference/facet_strata.html">facet_strata</a></span>(along = <span class="kw">unemploy_rate</span>)
+</pre></div>
 <p><img src="mixed-effects-models_files/figure-html/unnamed-chunk-1-2.png" width="700"></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a></span>
-<span id="cb7-2"><a href="#cb7-2"></a>gg_wages_all <span class="op">+</span><span class="st"> </span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span><span class="kw"><a href="../reference/facet_strata.html">facet_strata</a></span>(<span class="dt">along =</span> xp_since_ged) </span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+
+<span class="kw">gg_wages_all</span> <span class="op">+</span> 
+  <span class="fu"><a href="../reference/facet_strata.html">facet_strata</a></span>(along = <span class="kw">xp_since_ged</span>) 
+</pre></div>
 <p><img src="mixed-effects-models_files/figure-html/unnamed-chunk-1-3.png" width="700"></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a></span>
-<span id="cb8-2"><a href="#cb8-2"></a>gg_wages_all <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>high_grade)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+
+<span class="kw">gg_wages_all</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span><span class="kw">high_grade</span>)
+</pre></div>
 <p><img src="mixed-effects-models_files/figure-html/unnamed-chunk-1-4.png" width="700"></p>
 <p>So let’s fit a model where we look at the impact of xp, unemployment rate, and fit an intercept for each individual.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(lme4)</span>
-<span id="cb9-2"><a href="#cb9-2"></a>wages_fit_int &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span>(ln_wages <span class="op">~</span><span class="st"> </span>xp <span class="op">+</span><span class="st"> </span>ged <span class="op">+</span><span class="st"> </span>unemploy_rate <span class="op">+</span><span class="st"> </span>(xp <span class="op">|</span>id), </span>
-<span id="cb9-3"><a href="#cb9-3"></a>                      <span class="dt">data =</span> wages)</span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt; Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv, :</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt; Model failed to converge with max|grad| = 0.00672712 (tol = 0.002, component 1)</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/lme4/lme4">lme4</a></span>)
+<span class="kw">wages_fit_int</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span>(<span class="kw">ln_wages</span> <span class="op">~</span> <span class="kw">xp</span> <span class="op">+</span> <span class="kw">ged</span> <span class="op">+</span> <span class="kw">unemploy_rate</span> <span class="op">+</span> (<span class="kw">xp</span> <span class="op">|</span><span class="kw">id</span>), 
+                      data = <span class="kw">wages</span>)
+<span class="co">#&gt; Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv, :</span>
+<span class="co">#&gt; Model failed to converge with max|grad| = 0.00672712 (tol = 0.002, component 1)</span>
+</pre></div>
 <p>We can use the tools from <code>modelr</code> to add predictions and residuals to the data</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(modelr)</span>
-<span id="cb10-2"><a href="#cb10-2"></a>wages_aug &lt;-<span class="st"> </span>wages <span class="op">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="st">  </span><span class="kw"><a href="https://modelr.tidyverse.org/reference/add_predictions.html">add_predictions</a></span>(wages_fit_int, <span class="dt">var =</span> <span class="st">"pred_int"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="st">  </span><span class="kw"><a href="https://modelr.tidyverse.org/reference/add_residuals.html">add_residuals</a></span>(wages_fit_int, <span class="dt">var =</span> <span class="st">"res_int"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://modelr.tidyverse.org">modelr</a></span>)
+<span class="kw">wages_aug</span> <span class="op">&lt;-</span> <span class="kw">wages</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://modelr.tidyverse.org/reference/add_predictions.html">add_predictions</a></span>(<span class="kw">wages_fit_int</span>, var = <span class="st">"pred_int"</span>) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://modelr.tidyverse.org/reference/add_residuals.html">add_residuals</a></span>(<span class="kw">wages_fit_int</span>, var = <span class="st">"res_int"</span>)
+</pre></div>
 <p>Now let’s look at the predictions over xp</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(wages_aug,</span>
-<span id="cb11-2"><a href="#cb11-2"></a>       <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
-<span id="cb11-3"><a href="#cb11-3"></a>           <span class="dt">y =</span> pred_int,</span>
-<span id="cb11-4"><a href="#cb11-4"></a>           <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">wages_aug</span>,
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">xp</span>,
+           y = <span class="kw">pred_int</span>,
+           group = <span class="kw">id</span>)) <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(alpha = <span class="fl">0.4</span>) 
+</pre></div>
 <p><img src="mixed-effects-models_files/figure-html/gg-wages-aug-1.png" width="700"></p>
 <p>Ugh. Straight spaghetti. Let’s sample that.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(wages_aug,</span>
-<span id="cb12-2"><a href="#cb12-2"></a>       <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
-<span id="cb12-3"><a href="#cb12-3"></a>           <span class="dt">y =</span> pred_int,</span>
-<span id="cb12-4"><a href="#cb12-4"></a>           <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="st">  </span><span class="kw"><a href="../reference/facet_sample.html">facet_sample</a></span>()</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">wages_aug</span>,
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">xp</span>,
+           y = <span class="kw">pred_int</span>,
+           group = <span class="kw">id</span>)) <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span> 
+  <span class="fu"><a href="../reference/facet_sample.html">facet_sample</a></span>()
+</pre></div>
 <p><img src="mixed-effects-models_files/figure-html/gg-wages-sample-1.png" width="700"></p>
 <p>And let’s explore these according to residuals.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(wages_aug,</span>
-<span id="cb13-2"><a href="#cb13-2"></a>       <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
-<span id="cb13-3"><a href="#cb13-3"></a>           <span class="dt">y =</span> pred_int,</span>
-<span id="cb13-4"><a href="#cb13-4"></a>           <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="st">  </span><span class="kw"><a href="../reference/facet_strata.html">facet_strata</a></span>(<span class="dt">along =</span> res_int)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">wages_aug</span>,
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">xp</span>,
+           y = <span class="kw">pred_int</span>,
+           group = <span class="kw">id</span>)) <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span> 
+  <span class="fu"><a href="../reference/facet_strata.html">facet_strata</a></span>(along = <span class="kw">res_int</span>)
+</pre></div>
 <p><img src="mixed-effects-models_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <p>Now let’s add in the data to the predictions.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>wages_aug <span class="op">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">9</span>) <span class="op">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
-<span id="cb14-4"><a href="#cb14-4"></a>             <span class="dt">y =</span> pred_int,</span>
-<span id="cb14-5"><a href="#cb14-5"></a>             <span class="dt">group =</span> id,</span>
-<span id="cb14-6"><a href="#cb14-6"></a>             <span class="dt">colour =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(id))) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb14-8"><a href="#cb14-8"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
-<span id="cb14-9"><a href="#cb14-9"></a>                 <span class="dt">y =</span> ln_wages,</span>
-<span id="cb14-10"><a href="#cb14-10"></a>                 <span class="dt">colour =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(id))) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb14-11"><a href="#cb14-11"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>id) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb14-12"><a href="#cb14-12"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="kw">wages_aug</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(size = <span class="fl">9</span>) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">xp</span>,
+             y = <span class="kw">pred_int</span>,
+             group = <span class="kw">id</span>,
+             colour = <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="kw">id</span>))) <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">xp</span>,
+                 y = <span class="kw">ln_wages</span>,
+                 colour = <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="kw">id</span>))) <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span><span class="kw">id</span>) <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(legend.position = <span class="st">"none"</span>)
+</pre></div>
 <p><img src="mixed-effects-models_files/figure-html/gg-wages-predictions-1.png" width="700"></p>
 <p>What if we grabbed a sample of those who have the best, middle, and worst residuals? Those who are closest to these values:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(wages_aug<span class="op">$</span>res_int)</span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="co">#&gt;      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. </span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="co">#&gt; -1.305694 -0.159730 -0.009444  0.000000  0.136409  2.148938</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">wages_aug</span><span class="op">$</span><span class="kw">res_int</span>)
+<span class="co">#&gt;      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. </span>
+<span class="co">#&gt; -1.305694 -0.159730 -0.009444  0.000000  0.136409  2.148938</span>
+</pre></div>
 <p>We can use <code><a href="../reference/keys_near.html">keys_near()</a></code> to return those specified keys that are close to these values. Because this is a <code>tsibble</code> object, we don’t need to specify the <code>key</code> variable here.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>wages_aug_near &lt;-<span class="st"> </span>wages_aug <span class="op">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="st">  </span><span class="kw"><a href="../reference/keys_near.html">keys_near</a></span>(<span class="dt">var =</span> res_int)</span>
-<span id="cb16-3"><a href="#cb16-3"></a></span>
-<span id="cb16-4"><a href="#cb16-4"></a>wages_aug_near</span>
-<span id="cb16-5"><a href="#cb16-5"></a><span class="co">#&gt; # A tibble: 6 x 5</span></span>
-<span id="cb16-6"><a href="#cb16-6"></a><span class="co">#&gt;      id  res_int stat  stat_value  stat_diff</span></span>
-<span id="cb16-7"><a href="#cb16-7"></a><span class="co">#&gt;   &lt;int&gt;    &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb16-8"><a href="#cb16-8"></a><span class="co">#&gt; 1   122 -1.31    min     -1.31    0         </span></span>
-<span id="cb16-9"><a href="#cb16-9"></a><span class="co">#&gt; 2   735  2.15    max      2.15    0         </span></span>
-<span id="cb16-10"><a href="#cb16-10"></a><span class="co">#&gt; 3  2026 -0.00956 med     -0.00944 0.000112  </span></span>
-<span id="cb16-11"><a href="#cb16-11"></a><span class="co">#&gt; 4  3961 -0.00933 med     -0.00944 0.000112  </span></span>
-<span id="cb16-12"><a href="#cb16-12"></a><span class="co">#&gt; 5  5778 -0.160   q_25    -0.160   0.0000117 </span></span>
-<span id="cb16-13"><a href="#cb16-13"></a><span class="co">#&gt; 6  8246  0.136   q_75     0.136   0.00000353</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="kw">wages_aug_near</span> <span class="op">&lt;-</span> <span class="kw">wages_aug</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/keys_near.html">keys_near</a></span>(var = <span class="kw">res_int</span>)
+
+<span class="kw">wages_aug_near</span>
+<span class="co">#&gt; # A tibble: 6 x 5</span>
+<span class="co">#&gt;      id  res_int stat  stat_value  stat_diff</span>
+<span class="co">#&gt;   &lt;int&gt;    &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt; 1   122 -1.31    min     -1.31    0         </span>
+<span class="co">#&gt; 2   735  2.15    max      2.15    0         </span>
+<span class="co">#&gt; 3  2026 -0.00956 med     -0.00944 0.000112  </span>
+<span class="co">#&gt; 4  3961 -0.00933 med     -0.00944 0.000112  </span>
+<span class="co">#&gt; 5  5778 -0.160   q_25    -0.160   0.0000117 </span>
+<span class="co">#&gt; 6  8246  0.136   q_75     0.136   0.00000353</span>
+</pre></div>
 <p>This shows us the keys where we the residuals match closest to the five number summary.</p>
 <p>We can plot this data by joining it back to the wages data with predictions, to see what the spread of predictions is like.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="co">#&gt; </span></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="co">#&gt; </span></span>
-<span id="cb17-6"><a href="#cb17-6"></a><span class="co">#&gt;     filter, lag</span></span>
-<span id="cb17-7"><a href="#cb17-7"></a><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span id="cb17-8"><a href="#cb17-8"></a><span class="co">#&gt; </span></span>
-<span id="cb17-9"><a href="#cb17-9"></a><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a></span>
-<span id="cb17-11"><a href="#cb17-11"></a>wages_aug_near_full &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span>(wages_aug_near,</span>
-<span id="cb17-12"><a href="#cb17-12"></a>                                 wages_aug,</span>
-<span id="cb17-13"><a href="#cb17-13"></a>                                 <span class="dt">by =</span> <span class="st">"id"</span>) </span>
-<span id="cb17-14"><a href="#cb17-14"></a></span>
-<span id="cb17-15"><a href="#cb17-15"></a>gg_wages_near &lt;-<span class="st"> </span></span>
-<span id="cb17-16"><a href="#cb17-16"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(wages_aug_near_full,</span>
-<span id="cb17-17"><a href="#cb17-17"></a>       <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
-<span id="cb17-18"><a href="#cb17-18"></a>           <span class="dt">y =</span> pred_int,</span>
-<span id="cb17-19"><a href="#cb17-19"></a>           <span class="dt">group =</span> id,</span>
-<span id="cb17-20"><a href="#cb17-20"></a>           <span class="dt">colour =</span> stat)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb17-21"><a href="#cb17-21"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb17-22"><a href="#cb17-22"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">y =</span> ln_wages)) </span>
-<span id="cb17-23"><a href="#cb17-23"></a></span>
-<span id="cb17-24"><a href="#cb17-24"></a>gg_wages_near</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org">dplyr</a></span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'dplyr'</span>
+<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     filter, lag</span>
+<span class="co">#&gt; The following objects are masked from 'package:base':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
+
+<span class="kw">wages_aug_near_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span>(<span class="kw">wages_aug_near</span>,
+                                 <span class="kw">wages_aug</span>,
+                                 by = <span class="st">"id"</span>) 
+
+<span class="kw">gg_wages_near</span> <span class="op">&lt;-</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">wages_aug_near_full</span>,
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">xp</span>,
+           y = <span class="kw">pred_int</span>,
+           group = <span class="kw">id</span>,
+           colour = <span class="kw">stat</span>)) <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(y = <span class="kw">ln_wages</span>)) 
+
+<span class="kw">gg_wages_near</span>
+</pre></div>
 <p><img src="mixed-effects-models_files/figure-html/join-wages-near-1.png" width="700"></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a></span>
-<span id="cb18-2"><a href="#cb18-2"></a>gg_wages_near <span class="op">+</span><span class="st"> </span></span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>stat) <span class="op">+</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit">
+
+<span class="kw">gg_wages_near</span> <span class="op">+</span> 
+ <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span><span class="kw">stat</span>) <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(legend.position = <span class="st">"none"</span>)
+</pre></div>
 <p><img src="mixed-effects-models_files/figure-html/join-wages-near-2.png" width="700"></p>
 <p>We can also use <code>stratify_along</code> to group by the worst fits</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>wages_aug <span class="op">%&gt;%</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="st">  </span><span class="kw"><a href="../reference/stratify_keys.html">stratify_keys</a></span>(<span class="dt">n_strata =</span> <span class="dv">12</span>, </span>
-<span id="cb19-3"><a href="#cb19-3"></a>                <span class="dt">along =</span> res_int) <span class="op">%&gt;%</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">9</span>) <span class="op">%&gt;%</span></span>
-<span id="cb19-5"><a href="#cb19-5"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
-<span id="cb19-6"><a href="#cb19-6"></a>             <span class="dt">y =</span> pred_int,</span>
-<span id="cb19-7"><a href="#cb19-7"></a>             <span class="dt">group =</span> id,</span>
-<span id="cb19-8"><a href="#cb19-8"></a>             <span class="dt">colour =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(id))) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb19-9"><a href="#cb19-9"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb19-10"><a href="#cb19-10"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
-<span id="cb19-11"><a href="#cb19-11"></a>                 <span class="dt">y =</span> ln_wages,</span>
-<span id="cb19-12"><a href="#cb19-12"></a>                 <span class="dt">colour =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(id))) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb19-13"><a href="#cb19-13"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>.strata) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb19-14"><a href="#cb19-14"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="kw">wages_aug</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/stratify_keys.html">stratify_keys</a></span>(n_strata = <span class="fl">12</span>, 
+                along = <span class="kw">res_int</span>) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(size = <span class="fl">9</span>) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">xp</span>,
+             y = <span class="kw">pred_int</span>,
+             group = <span class="kw">id</span>,
+             colour = <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="kw">id</span>))) <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">xp</span>,
+                 y = <span class="kw">ln_wages</span>,
+                 colour = <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="kw">id</span>))) <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span><span class="kw">.strata</span>) <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(legend.position = <span class="st">"none"</span>)
+</pre></div>
 <p><img src="mixed-effects-models_files/figure-html/gg-stratify-residuals-1.png" width="700"></p>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
       </div>
 
@@ -297,7 +335,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

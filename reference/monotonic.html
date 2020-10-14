@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,7 +39,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -46,7 +50,6 @@
 increasing, decreasing, or unvarying, with the functions, increasing(),
 decreasing(), or unvarying(). Under the hood it uses diff to find
 differences, so if you like you can pass extra arguments to diff." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -64,7 +67,7 @@ differences, so if you like you can pass extra arguments to diff." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -123,7 +126,7 @@ differences, so if you like you can pass extra arguments to diff." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/njtierney/brolgar">
+  <a href="https://github.com/njtierney/brolgar/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -159,13 +162,13 @@ increasing, decreasing, or unvarying, with the functions, <code>increasing()</co
 differences, so if you like you can pass extra arguments to <code>diff</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>increasing</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>increasing</span>(<span class='kw'>x</span>, <span class='kw'>...</span>)
 
-<span class='fu'>decreasing</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>decreasing</span>(<span class='kw'>x</span>, <span class='kw'>...</span>)
 
-<span class='fu'>unvarying</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>unvarying</span>(<span class='kw'>x</span>, <span class='kw'>...</span>)
 
-<span class='fu'>monotonic</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>monotonic</span>(<span class='kw'>x</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,60 +188,70 @@ differences, so if you like you can pass extra arguments to <code>diff</code>.</
     <p>logical TRUE or FALSE</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>vec_inc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>10</span>)
-<span class='no'>vec_dec</span><span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>:<span class='fl'>1</span>)
-<span class='no'>vec_ran</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>:<span class='fl'>10</span>))
-<span class='no'>vec_flat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep.int</a></span>(<span class='fl'>1</span>,<span class='fl'>10</span>)
+    <pre class="examples"><div class='input'><span class='kw'>vec_inc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>)
+<span class='kw'>vec_dec</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span><span class='op'>:</span><span class='fl'>1</span>)
+<span class='kw'>vec_ran</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>))
+<span class='kw'>vec_flat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep.int</a></span>(<span class='fl'>1</span>,<span class='fl'>10</span>)
 
-<span class='fu'>increasing</span>(<span class='no'>vec_inc</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>increasing</span>(<span class='no'>vec_dec</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>increasing</span>(<span class='no'>vec_ran</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>increasing</span>(<span class='no'>vec_flat</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
-<span class='fu'>decreasing</span>(<span class='no'>vec_inc</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>decreasing</span>(<span class='no'>vec_dec</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>decreasing</span>(<span class='no'>vec_ran</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>decreasing</span>(<span class='no'>vec_flat</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
-<span class='fu'>unvarying</span>(<span class='no'>vec_inc</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>unvarying</span>(<span class='no'>vec_dec</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>unvarying</span>(<span class='no'>vec_ran</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>unvarying</span>(<span class='no'>vec_flat</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>gghighlight</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='fu'>increasing</span>(<span class='kw'>vec_inc</span>)
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>increasing</span>(<span class='kw'>vec_dec</span>)
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>increasing</span>(<span class='kw'>vec_ran</span>)
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>increasing</span>(<span class='kw'>vec_flat</span>)
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
+<span class='fu'>decreasing</span>(<span class='kw'>vec_inc</span>)
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>decreasing</span>(<span class='kw'>vec_dec</span>)
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>decreasing</span>(<span class='kw'>vec_ran</span>)
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>decreasing</span>(<span class='kw'>vec_flat</span>)
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
+<span class='fu'>unvarying</span>(<span class='kw'>vec_inc</span>)
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>unvarying</span>(<span class='kw'>vec_dec</span>)
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>unvarying</span>(<span class='kw'>vec_ran</span>)
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>unvarying</span>(<span class='kw'>vec_flat</span>)
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/yutannihilation/gghighlight'>gghighlight</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://dplyr.tidyverse.org'>dplyr</a></span>)
 
-<span class='no'>wages_mono</span> <span class='kw'>&lt;-</span> <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='no'>feat_monotonic</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span>(<span class='no'>wages</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"id"</span>)
+<span class='kw'>wages_mono</span> <span class='op'>&lt;-</span> <span class='kw'>wages</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='kw'>ln_wages</span>, <span class='kw'>feat_monotonic</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span>(<span class='kw'>wages</span>, by = <span class='st'>"id"</span>)
+  
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>wages_mono</span>,
+         <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(x = <span class='kw'>xp</span>,
+             y = <span class='kw'>ln_wages</span>,
+             group = <span class='kw'>id</span>)) <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>() <span class='op'>+</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/gghighlight/man/gghighlight.html'>gghighlight</a></span>(<span class='kw'>increase</span>)
 
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>wages_mono</span>,
-         <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>xp</span>,
-             <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>ln_wages</span>,
-             <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>id</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>() +
-  <span class='fu'><a href='https://rdrr.io/pkg/gghighlight/man/gghighlight.html'>gghighlight</a></span>(<span class='no'>increase</span>)
+ <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>wages_mono</span>,
+        <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(x = <span class='kw'>xp</span>,
+            y = <span class='kw'>ln_wages</span>,
+             group = <span class='kw'>id</span>)) <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>() <span class='op'>+</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/gghighlight/man/gghighlight.html'>gghighlight</a></span>(<span class='kw'>decrease</span>)
 
- <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>wages_mono</span>,
-        <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>xp</span>,
-            <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>ln_wages</span>,
-             <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>id</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>() +
-  <span class='fu'><a href='https://rdrr.io/pkg/gghighlight/man/gghighlight.html'>gghighlight</a></span>(<span class='no'>decrease</span>)
-
-<span class='no'>wages_mono</span> <span class='kw'>%&gt;%</span>
-<span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>monotonic</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>xp</span>,
-             <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>ln_wages</span>,
-             <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>id</span>)) +
+<span class='kw'>wages_mono</span> <span class='op'>%&gt;%</span>
+<span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>monotonic</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(x = <span class='kw'>xp</span>,
+             y = <span class='kw'>ln_wages</span>,
+             group = <span class='kw'>id</span>)) <span class='op'>+</span> 
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>()
-
-<span class='no'>wages_mono</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>increase</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>xp</span>,
-             <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>ln_wages</span>,
-             <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>id</span>)) +
+  
+<span class='kw'>wages_mono</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='kw'>increase</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(x = <span class='kw'>xp</span>,
+             y = <span class='kw'>ln_wages</span>,
+             group = <span class='kw'>id</span>)) <span class='op'>+</span> 
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>()
-}</div></pre>
+}
+  
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -249,7 +262,7 @@ differences, so if you like you can pass extra arguments to <code>diff</code>.</
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
