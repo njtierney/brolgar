@@ -54,6 +54,12 @@ test_if_formula <- function(x){
   }
 }
 
+test_if_size_0_1 <- function(size) {
+  if (size > 1 & size > 0) {
+    stop("sample size for `sample_frac_keys` must between 0 and 1, the size given was `", size, "`")
+  }
+}
+
 classes <- function(x) purrr::map_chr(x, class)
 
 possible_strata <- function(.data, n_strata){

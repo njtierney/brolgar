@@ -3,12 +3,18 @@
 \name{sample-n-frac-keys}
 \alias{sample-n-frac-keys}
 \alias{sample_n_keys}
+\alias{sample_n_keys.data.frame}
 \alias{sample_frac_keys}
+\alias{sample_frac_keys.data.frame}
 \title{Sample a number or fraction of keys to explore}
 \usage{
-sample_n_keys(.data, size)
+sample_n_keys(.data, size, ...)
 
-sample_frac_keys(.data, size)
+\method{sample_n_keys}{data.frame}(.data, size, key, ...)
+
+sample_frac_keys(.data, size, ...)
+
+\method{sample_frac_keys}{data.frame}(.data, size, key, ...)
 }
 \arguments{
 \item{.data}{tsibble object}
@@ -16,6 +22,10 @@ sample_frac_keys(.data, size)
 \item{size}{The number or fraction of observations, depending on the
 function used. In \code{sample_n_keys}, it is a number > 0, and in
 \code{sample_frac_keys} it is a fraction, between 0 and 1.}
+
+\item{...}{extra arguments}
+
+\item{key}{key to group by}
 }
 \value{
 tsibble with fewer observations of key

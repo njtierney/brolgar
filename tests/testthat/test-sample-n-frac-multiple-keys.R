@@ -7,6 +7,8 @@ context("multiple keys supported")
 
 data("aus_retail")
 
+aus_retail_df <- as_tibble(aus_retail)
+
 # will fail
 test_that("multiple keys doesn't fail",{
   expect_equal(ncol(sample_n_keys(aus_retail, size = 10)), 5)
@@ -14,6 +16,12 @@ test_that("multiple keys doesn't fail",{
   
   expect_equal(ncol(sample_frac_keys(aus_retail, size = 0.11)), 5)
   expect_gt(nrow(sample_frac_keys(aus_retail, size = 0.11)), 1)
+  
+  expect_equal(ncol(sample_n_keys(aus_retail_df, size = 10, key = c(State, Industry))), 5)
+  expect_gt(nrow(sample_n_keys(aus_retail_df, size = 10)), 1)
+  
+  expect_equal(ncol(sample_frac_keys(aus_retail_df, size = 0.11)), 5)
+  expect_gt(nrow(sample_frac_keys(aus_retail_df, size = 0.11)), 1)
 })
 
 test_that("fails when size > 0 given", {

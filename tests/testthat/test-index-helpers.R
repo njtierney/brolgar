@@ -1,5 +1,11 @@
 test_that("index regular returns logical", {
   expect_type(index_regular(pisa, year), "logical")
+  expect_type(index_regular(heights), "logical")
+})
+
+test_that("index regular returns correct logical", {
+  expect_type(index_regular(pisa, year), "logical")
+  expect_type(index_regular(pisa, year), "logical")
 })
 
 test_that("index regular fails when non data.frame provided", {
