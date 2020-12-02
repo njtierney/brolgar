@@ -10,6 +10,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.pre-commit-config\.yaml$
+^inst/review-sh.md
+^inst/review-leo.md
 ^\.github$
 ^\.covrignore$
 ^\.github/workflows/pkgdown\.yaml$
