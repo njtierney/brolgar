@@ -20,9 +20,7 @@ gg_facet_sample_alt <- ggplot(heights,
 
 test_that("facet_sample works",{
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
-  skip_on_gh_actions()
+  skip_on_ci()
   vdiffr::expect_doppelganger("gg_facet_sample",
                               gg_facet_sample)
 })
@@ -30,9 +28,7 @@ test_that("facet_sample works",{
 
 test_that("facet_sample works with different options",{
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
-  skip_on_gh_actions()
+  skip_on_ci()
   vdiffr::expect_doppelganger("gg_facet_sample_alt",
                               gg_facet_sample_alt)
 })
