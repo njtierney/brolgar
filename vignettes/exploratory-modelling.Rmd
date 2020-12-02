@@ -19,15 +19,23 @@ knitr::opts_chunk$set(
 library(brolgar)
 ```
 
-It can be useful to fit a model to explore your data. One technique is to fit a linear model for each group in a dataset. For example, you could fit a linear model for each key in the data.
+A statistical model is typically used to **predict** future observations, or  **explain** and understand data. This vignette focuses on how to apply a statistical model ("fit a model") to explore your data. 
 
-`brolgar` provides a helper function to help with this, called `key_slope()`. 
+A linear model is a common statistical method in data analysis. One approach to understand the many different groups in data is to fit a linear model for each group in a dataset. For example, in a dataset of heights over time for each country:
 
-`key_slope()` returns the intercept and slope estimate for each key, given a linear model formula. We can get the number of observations, and slope information for each individual to identify those that are decreasing over time. 
+```{r show-heights}
+heights
+```
+
+We can fit a separate linear model for each country in the data. As discussed in the vignette, "longitudinal data structures", the country column in this dataset is the "key". `brolgar` provides a helper function to help fit a linear model to each key, called `key_slope()`, which returns the intercept and slope estimate for each key. 
+
+The `key_slope()` function has two arguments, `data`, and `formula`. We specify the data, which needs to be a `tsibble` object (see vignette, "longitudinal data structures" for more information on `tsibble`), and the `formula`, which is written like so: `y ~ x`. Where `y` is the response, and `x` is an explanatory variable. For example, we can fit a linear model to each `key` like so:
 
 ```{r use-gghighlight}
-key_slope(wages,ln_wages ~ xp)
+key_slope(wages, ln_wages ~ xp)
 ```
+
+This fits a `linear` model to each individual (`id`) in the wages group (as they are specified as the `key`), with `ln_wages` as the response, and `xp` as the explanatory variable. This provides the number of observations, and slope information for each individual to identify those that are decreasing over time. 
 
 We can then join these summaries back to the data:
 

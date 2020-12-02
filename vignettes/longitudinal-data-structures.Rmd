@@ -15,8 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-There are many ways to describe longitudinal data - from panel data,
-cross-sectional data, and time series. We define longitudinal data as:
+There are many different terms to describe longitudinal data that you might have seen, such as: "panel data", "cross-sectional data", and "time series". We define longitudinal data as:
 
 > Information from the same individuals, recorded at multiple points in time.
 
