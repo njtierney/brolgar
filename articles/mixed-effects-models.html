@@ -215,9 +215,7 @@
 <span id="cb14-9"><a href="#cb14-9"></a>                 <span class="dt">y =</span> ln_wages,</span>
 <span id="cb14-10"><a href="#cb14-10"></a>                 <span class="dt">colour =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(id))) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb14-11"><a href="#cb14-11"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>id) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb14-12"><a href="#cb14-12"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>)</span>
-<span id="cb14-13"><a href="#cb14-13"></a><span class="co">#&gt; geom_path: Each group consists of only one observation. Do you need to adjust</span></span>
-<span id="cb14-14"><a href="#cb14-14"></a><span class="co">#&gt; the group aesthetic?</span></span></code></pre></div>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div>
 <p><img src="mixed-effects-models_files/figure-html/gg-wages-predictions-1.png" width="700"></p>
 <p>What if we grabbed a sample of those who have the best, middle, and worst residuals? Those who are closest to these values:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(wages_aug<span class="op">$</span>res_int)</span>
@@ -283,9 +281,7 @@
 <span id="cb19-11"><a href="#cb19-11"></a>                 <span class="dt">y =</span> ln_wages,</span>
 <span id="cb19-12"><a href="#cb19-12"></a>                 <span class="dt">colour =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(id))) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb19-13"><a href="#cb19-13"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>.strata) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb19-14"><a href="#cb19-14"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>)</span>
-<span id="cb19-15"><a href="#cb19-15"></a><span class="co">#&gt; geom_path: Each group consists of only one observation. Do you need to adjust</span></span>
-<span id="cb19-16"><a href="#cb19-16"></a><span class="co">#&gt; the group aesthetic?</span></span></code></pre></div>
+<span id="cb19-14"><a href="#cb19-14"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div>
 <p><img src="mixed-effects-models_files/figure-html/gg-stratify-residuals-1.png" width="700"></p>
   </div>
 
