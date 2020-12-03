@@ -1,4 +1,4 @@
-# brolgar 0.0.6.9100
+# brolgar 0.1.0 "Antigone rubicunda"
 
 * fix warning bug in `keys_near` related to factors
 * Add `feat_diff_summary()` functions to help summarise diff(). Useful for exploring the time gaps in the `index`. (#100)

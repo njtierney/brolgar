@@ -151,7 +151,7 @@ These approaches allow you to view large sections of the raw data, but it does n
 
 # Exploring data using features
 
-You can plot the features of the data by first identifying features of interest and then joining them back to the data. For a more details explanation of this, see the vignette, [Finding Features](articles/finding-features.html).
+You can plot the features of the data by first identifying features of interest and then joining them back to the data. For a more details explanation of this, see the vignette, "Finding Features".
 
 ## Plot monotonic individual series
 
@@ -169,11 +169,11 @@ wages %>%
   gghighlight(increase)
 ```
 
-You can explore the available features, see the function [References](http://brolgar.njtierney.com/reference/index.html)
+You can explore the available features, see the function [References](https://brolgar.njtierney.com/reference/index.html)
 
 ## Plot individuals with negative slope
 
-We can find those individuals who have a negative slope using `key_slope`. For more detail on `key_slope`, see the [Exploratory Modelling]() vignette.
+We can find those individuals who have a negative slope using `key_slope`. For more detail on `key_slope`, see the [Exploratory Modelling](https://brolgar.njtierney.com/articles/exploratory-modelling.html) vignette.
 
 ```{r wages-key-slope}
 wages %>% key_slope(ln_wages ~ xp)
