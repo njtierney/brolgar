@@ -278,7 +278,7 @@ This version of brolgar was been forked from [tprvan/brolgar](https://github.com
 
 # Acknowledgements
 
-Thank you to [Mitchell O'Hara-Wild](https://mitchelloharawild.com/) and [Earo Wang](https://earo.me/) for many useful discussions on the implementation of brolgar, as it was heavily inspired by the [`feasts`](https://github.com/tidyverts/feasts) package from the [`tidyverts`](https://tidyverts.org/). I would also like to thank [Tania Prvan](https://researchers.mq.edu.au/en/persons/tania-prvan) for her valuable early contributions to the project, as well as [Stuart Lee](https://stuartlee.org/) for helpful discussions. Thanks also to [Ursula Laa](https://uschilaa.github.io/) for her feedback on the package structure and documentation.
+Thank you to [Mitchell O'Hara-Wild](https://blog.mitchelloharawild.com/) and [Earo Wang](https://earo.me/) for many useful discussions on the implementation of brolgar, as it was heavily inspired by the [`feasts`](https://github.com/tidyverts/feasts) package from the [`tidyverts`](https://tidyverts.org/). I would also like to thank [Tania Prvan](https://researchers.mq.edu.au/en/persons/tania-prvan) for her valuable early contributions to the project, as well as [Stuart Lee](https://stuartlee.org/) for helpful discussions. Thanks also to [Ursula Laa](https://uschilaa.github.io/) for her feedback on the package structure and documentation.
 
 <!-- These are referred to as a **longnostics**, a portmanteau of **long**itudinal and **cognostic**. These **longnostics** make it straightforward to extract subjects with certain properties to gain some insight into the data.  -->
 
