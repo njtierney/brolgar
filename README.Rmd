@@ -83,7 +83,7 @@ The term `key` is used a lot in brolgar, so it is an important idea to internali
 
 > **The key is the identifier of your individuals or series**
 
-Identifying the key, index, and regularity of the data can be a challenge. You can learn more about specifying this in the vignette, ["Longitudinal Data Structures"](http://brolgar.njtierney.com/articles/longitudinal-data-structures.html).
+Identifying the key, index, and regularity of the data can be a challenge. You can learn more about specifying this in the vignette, ["Longitudinal Data Structures"](https://brolgar.njtierney.com/articles/longitudinal-data-structures.html).
 
 ## The wages data
 
@@ -102,7 +102,7 @@ wages <- as_tsibble(x = wages,
                     regular = FALSE)
 ```
 
-Here `as_tsibble()` takes wages, and a `key`, and `index`, and we state the `regular = FALSE` (since there are not regular time periods between measurements). This turns the data into a `tsibble` object - a powerful data abstraction made available in the [`tsibble`](https://tsibble.tidyverts.org/) package by [Earo Wang](https://earo.me/), if you would like to learn more about `tsibble`, see the [official package documentation](https://tsibble.tidyverts.org/) or read [the paper](http://pdf.earo.me/tsibble.pdf).
+Here `as_tsibble()` takes wages, and a `key`, and `index`, and we state the `regular = FALSE` (since there are not regular time periods between measurements). This turns the data into a `tsibble` object - a powerful data abstraction made available in the [`tsibble`](https://tsibble.tidyverts.org/) package by [Earo Wang](https://earo.me/), if you would like to learn more about `tsibble`, see the [official package documentation](https://tsibble.tidyverts.org/) or read [the paper](https://pdf.earo.me/tsibble.pdf).
 
 # Efficiently exploring longitudinal data
 
@@ -147,11 +147,11 @@ ggplot(wages,
 
 Under the hood, `facet_sample()` is powered by `sample_n_keys()` and `stratify_keys()`.
 
-You can see more facets (e.g., `facet_strata()`) and data visualisations you can make in brolgar in the [Visualisation Gallery](http://brolgar.njtierney.com/articles/visualisation-gallery.html).
+You can see more facets (e.g., `facet_strata()`) and data visualisations you can make in brolgar in the [Visualisation Gallery](httsp://brolgar.njtierney.com/articles/visualisation-gallery.html).
 
 ## Finding features in longitudinal data
 
-Sometimes you want to know what the range or a summary of a variable for each individual. We call these summaries `features` of the data, and they can be extracted using the `features` function, from [`fabletools`](http://fabletools.tidyverts.org/).
+Sometimes you want to know what the range or a summary of a variable for each individual. We call these summaries `features` of the data, and they can be extracted using the `features` function, from [`fabletools`](https://fabletools.tidyverts.org/).
 
 For example, if you want to answer the question "What is the summary of wages for each individual?". You can use `features()` to find the five number summary (min, max, q1, q3, and median) of `ln_wages` with `feat_five_num`:
 
@@ -171,7 +171,7 @@ wages %>%
   features(ln_wages, feat_monotonic)
 ```
 
-You can read more about creating and using features in the [Finding Features](http://brolgar.njtierney.com/articles/finding-features.html) vignette. You can also see other features for time series in the [`feasts` package](https://feasts.tidyverts.org).
+You can read more about creating and using features in the [Finding Features](https://brolgar.njtierney.com/articles/finding-features.html) vignette. You can also see other features for time series in the [`feasts` package](https://feasts.tidyverts.org).
 
 ## Linking individuals back to the data
 
@@ -233,7 +233,7 @@ wages %>%
 
 # Further Reading
 
-`brolgar` provides other useful functions to explore your data, which you can read about in the [exploratory modelling](http://brolgar.njtierney.com/articles/exploratory-modelling.html) and [Identify Interesting Observations](http://brolgar.njtierney.com/articles/id-interesting-obs.html) vignettes. As a taster, here are some of the figures you can produce:
+`brolgar` provides other useful functions to explore your data, which you can read about in the [exploratory modelling](https://brolgar.njtierney.com/articles/exploratory-modelling.html) and [Identify Interesting Observations](https://brolgar.njtierney.com/articles/id-interesting-obs.html) vignettes. As a taster, here are some of the figures you can produce:
 
 ```{r show-wages-lg, echo = FALSE,  fig.height = 3, fig.width = 6}
 suppressMessages(library(dplyr))

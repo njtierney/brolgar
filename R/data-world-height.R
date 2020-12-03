@@ -17,7 +17,7 @@
 #'   short? Agricultural production and other proximate determinants of global
 #'   heights",  Joerg Baten and Matthias Blum, European Review of Economic 
 #'   History 18 (2014), 144–165. Data available from 
-#'   <http://hdl.handle.net/10622/IAEKLA>, accessed via the Clio Infra website.
+#'   <https://datasets.iisg.amsterdam/dataset.xhtml?persistentId=hdl:10622/IAEKLA>, accessed via the Clio Infra website.
 #' 
 #' @keywords datasets
 #' @examples

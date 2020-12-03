@@ -85,7 +85,7 @@ wages %>%
 
 # Specify your own summaries for `keys_near`
 
-You can specify your own list of summaries to pass to `keys_near`.  For example, you could create your own summaries to give a sense of range. Note that the functions here start with `b_`, and are `b_summaries` provided by `brolgar` that have sensible defaults. You can [read about them here](http://brolgar.njtierney.com/reference/b_summaries.html), or with `?b_summaries`
+You can specify your own list of summaries to pass to `keys_near`.  For example, you could create your own summaries to give a sense of range. Note that the functions here start with `b_`, and are `b_summaries` provided by `brolgar` that have sensible defaults. You can [read about them here](https://brolgar.njtierney.com/reference/b_summaries.html), or with `?b_summaries`
 
 ```{r create-your-own}
 l_ranges <- list(min = b_min,

@@ -30,7 +30,7 @@ For more information, see the article: "Why are you tall while others are
 short? Agricultural production and other proximate determinants of global
 heights",  Joerg Baten and Matthias Blum, European Review of Economic
 History 18 (2014), 144–165. Data available from
-\url{http://hdl.handle.net/10622/IAEKLA}, accessed via the Clio Infra website.
+\url{https://datasets.iisg.amsterdam/dataset.xhtml?persistentId=hdl:10622/IAEKLA}, accessed via the Clio Infra website.
 }
 \examples{
 # show the data

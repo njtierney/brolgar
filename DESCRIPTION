@@ -33,11 +33,9 @@ Depends:
 Imports:
     dplyr (>= 0.8.3),
     fabletools,
-    forcats,
     ggplot2 (>= 3.2.0),
     glue (>= 1.3.1),
     magrittr (>= 1.5),
-    methods,
     purrr (>= 0.3.2),
     rlang (>= 0.4.0),
     stats,

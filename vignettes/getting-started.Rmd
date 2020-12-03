@@ -31,7 +31,7 @@ wages <- as_tsibble(wages,
                     regular = FALSE)
 ```
 
-To learn more about longitudinal data as time series, see the vignette: [Longitudinal Data Structures](http://brolgar.njtierney.com/articles/longitudinal-data-structures.html).
+To learn more about longitudinal data as time series, see the vignette: [Longitudinal Data Structures](https://brolgar.njtierney.com/articles/longitudinal-data-structures.html).
 
 # Basic summaries of the data
 

@@ -63,7 +63,7 @@ internalise:
 Identifying the key, index, and regularity of the data can be a
 challenge. You can learn more about specifying this in the vignette,
 [“Longitudinal Data
-Structures”](http://brolgar.njtierney.com/articles/longitudinal-data-structures.html).
+Structures”](https://brolgar.njtierney.com/articles/longitudinal-data-structures.html).
 
 ## The wages data
 
@@ -106,7 +106,7 @@ data abstraction made available in the
 Wang](https://earo.me/), if you would like to learn more about
 `tsibble`, see the [official package
 documentation](https://tsibble.tidyverts.org/) or read [the
-paper](http://pdf.earo.me/tsibble.pdf).
+paper](https://pdf.earo.me/tsibble.pdf).
 
 # Efficiently exploring longitudinal data
 
@@ -164,14 +164,14 @@ Under the hood, `facet_sample()` is powered by `sample_n_keys()` and
 
 You can see more facets (e.g., `facet_strata()`) and data visualisations
 you can make in brolgar in the [Visualisation
-Gallery](http://brolgar.njtierney.com/articles/visualisation-gallery.html).
+Gallery](httsp://brolgar.njtierney.com/articles/visualisation-gallery.html).
 
 ## Finding features in longitudinal data
 
 Sometimes you want to know what the range or a summary of a variable for
 each individual. We call these summaries `features` of the data, and
 they can be extracted using the `features` function, from
-[`fabletools`](http://fabletools.tidyverts.org/).
+[`fabletools`](https://fabletools.tidyverts.org/).
 
 For example, if you want to answer the question “What is the summary of
 wages for each individual?”. You can use `features()` to find the five
@@ -224,7 +224,7 @@ wages %>%
 ```
 
 You can read more about creating and using features in the [Finding
-Features](http://brolgar.njtierney.com/articles/finding-features.html)
+Features](https://brolgar.njtierney.com/articles/finding-features.html)
 vignette. You can also see other features for time series in the
 [`feasts` package](https://feasts.tidyverts.org).
 
@@ -328,9 +328,9 @@ wages %>%
 
 `brolgar` provides other useful functions to explore your data, which
 you can read about in the [exploratory
-modelling](http://brolgar.njtierney.com/articles/exploratory-modelling.html)
+modelling](https://brolgar.njtierney.com/articles/exploratory-modelling.html)
 and [Identify Interesting
-Observations](http://brolgar.njtierney.com/articles/id-interesting-obs.html)
+Observations](https://brolgar.njtierney.com/articles/id-interesting-obs.html)
 vignettes. As a taster, here are some of the figures you can produce:
 
     #> Warning: Tried to calculate with group_by(), but the calculation failed.

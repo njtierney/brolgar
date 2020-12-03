@@ -87,4 +87,4 @@ wages_slope %>%
   geom_line()
 ```
 
-You can read more about `keys_near()` in the [Identifying interesting observations](http://brolgar.njtierney.com/articles/id-interesting-obs.html) vignette.
+You can read more about `keys_near()` in the [Identifying interesting observations](https://brolgar.njtierney.com/articles/id-interesting-obs.html) vignette.

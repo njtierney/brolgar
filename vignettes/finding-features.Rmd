@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 ```
 
-When you are presented with longitudinal data, it is useful to summarise the data into a format where you have one row per key. That means one row per unique identifier of the data - if you aren't sure what this means, see the vignette, ["Longitudinal Data Structures"](http://brolgar.njtierney.com/articles/longitudinal-data-structures.html). 
+When you are presented with longitudinal data, it is useful to summarise the data into a format where you have one row per key. That means one row per unique identifier of the data - if you aren't sure what this means, see the vignette, ["Longitudinal Data Structures"](https://brolgar.njtierney.com/articles/longitudinal-data-structures.html). 
 
 So, say for example you wanted to find features in the wages data, which looks like this:
 
@@ -50,7 +50,7 @@ This vignette discusses how to calculate these features of the data.
 
 # Calculating features
 
-We can calculate `features` of longitudinal data using the `features` function (from [`fabletools`](http://fabletools.tidyverts.org/), made available in `brolgar`).
+We can calculate `features` of longitudinal data using the `features` function (from [`fabletools`](https://fabletools.tidyverts.org/), made available in `brolgar`).
 
 `features` works by specifying the data, the variable to summarise, and the feature to calculate:
 
@@ -128,7 +128,7 @@ wages_mono %>%
   gghighlight(increase)
 ```
 
-You can explore the available features, see the function [References](http://brolgar.njtierney.com/reference/index.html)
+You can explore the available features, see the function [References](https://brolgar.njtierney.com/reference/index.html)
 
 # Creating your own Features
 
