@@ -164,7 +164,7 @@ Under the hood, `facet_sample()` is powered by `sample_n_keys()` and
 
 You can see more facets (e.g., `facet_strata()`) and data visualisations
 you can make in brolgar in the [Visualisation
-Gallery](httsp://brolgar.njtierney.com/articles/visualisation-gallery.html).
+Gallery](https://brolgar.njtierney.com/articles/visualisation-gallery.html).
 
 ## Finding features in longitudinal data
 

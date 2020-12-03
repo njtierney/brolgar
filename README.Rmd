@@ -147,7 +147,7 @@ ggplot(wages,
 
 Under the hood, `facet_sample()` is powered by `sample_n_keys()` and `stratify_keys()`.
 
-You can see more facets (e.g., `facet_strata()`) and data visualisations you can make in brolgar in the [Visualisation Gallery](httsp://brolgar.njtierney.com/articles/visualisation-gallery.html).
+You can see more facets (e.g., `facet_strata()`) and data visualisations you can make in brolgar in the [Visualisation Gallery](https://brolgar.njtierney.com/articles/visualisation-gallery.html).
 
 ## Finding features in longitudinal data
 
