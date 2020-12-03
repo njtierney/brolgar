@@ -2,21 +2,21 @@
   "index_name": "brolgar",
   "start_urls": [
     {
-      "url": "http://brolgar.njtierney.com//index.html",
+      "url": "https://brolgar.njtierney.com//index.html",
       "selectors_key": "homepage",
       "tags": [
         "homepage"
       ]
     },
     {
-      "url": "http://brolgar.njtierney.com//reference",
+      "url": "https://brolgar.njtierney.com//reference",
       "selectors_key": "reference",
       "tags": [
         "reference"
       ]
     },
     {
-      "url": "http://brolgar.njtierney.com//articles",
+      "url": "https://brolgar.njtierney.com//articles",
       "selectors_key": "articles",
       "tags": [
         "articles"
@@ -30,7 +30,7 @@
     "/articles/index.html"
   ],
   "sitemap_urls": [
-    "http://brolgar.njtierney.com//sitemap.xml"
+    "https://brolgar.njtierney.com//sitemap.xml"
   ],
   "selectors": {
     "homepage": {

@@ -113,7 +113,7 @@
 
     
     
-<p>When you are presented with longitudinal data, it is useful to summarise the data into a format where you have one row per key. That means one row per unique identifier of the data - if you aren’t sure what this means, see the vignette, <a href="http://brolgar.njtierney.com/articles/longitudinal-data-structures.html">“Longitudinal Data Structures”</a>.</p>
+<p>When you are presented with longitudinal data, it is useful to summarise the data into a format where you have one row per key. That means one row per unique identifier of the data - if you aren’t sure what this means, see the vignette, <a href="https://brolgar.njtierney.com/articles/longitudinal-data-structures.html">“Longitudinal Data Structures”</a>.</p>
 <p>So, say for example you wanted to find features in the wages data, which looks like this:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(brolgar)</span>
 <span id="cb1-2"><a href="#cb1-2"></a>wages</span>
@@ -158,7 +158,7 @@
 <div id="calculating-features" class="section level1">
 <h1 class="hasAnchor">
 <a href="#calculating-features" class="anchor"></a>Calculating features</h1>
-<p>We can calculate <code>features</code> of longitudinal data using the <code>features</code> function (from <a href="http://fabletools.tidyverts.org/"><code>fabletools</code></a>, made available in <code>brolgar</code>).</p>
+<p>We can calculate <code>features</code> of longitudinal data using the <code>features</code> function (from <a href="https://fabletools.tidyverts.org/"><code>fabletools</code></a>, made available in <code>brolgar</code>).</p>
 <p><code>features</code> works by specifying the data, the variable to summarise, and the feature to calculate:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(<span class="op">&lt;</span>DATA<span class="op">&gt;</span>, <span class="op">&lt;</span>VARIABLE<span class="op">&gt;</span>, <span class="op">&lt;</span>FEATURE<span class="op">&gt;</span>)</span></code></pre></div>
 <p>or with the pipe:</p>
@@ -271,7 +271,7 @@
 <span id="cb11-11"><a href="#cb11-11"></a><span class="co">#&gt; label_key: id</span></span>
 <span id="cb11-12"><a href="#cb11-12"></a><span class="co">#&gt; Too many data series, skip labeling</span></span></code></pre></div>
 <p><img src="finding-features_files/figure-html/gg-high-mono-1.png" width="700"></p>
-<p>You can explore the available features, see the function <a href="http://brolgar.njtierney.com/reference/index.html">References</a></p>
+<p>You can explore the available features, see the function <a href="https://brolgar.njtierney.com/reference/index.html">References</a></p>
 </div>
 <div id="creating-your-own-features" class="section level1">
 <h1 class="hasAnchor">
@@ -289,7 +289,7 @@
 <span id="cb12-10"><a href="#cb12-10"></a><span class="co">#&gt; $med</span></span>
 <span id="cb12-11"><a href="#cb12-11"></a><span class="co">#&gt; function (x, na.rm = FALSE, ...) </span></span>
 <span id="cb12-12"><a href="#cb12-12"></a><span class="co">#&gt; UseMethod("median")</span></span>
-<span id="cb12-13"><a href="#cb12-13"></a><span class="co">#&gt; &lt;bytecode: 0x7fde22ebe6f0&gt;</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="co">#&gt; &lt;bytecode: 0x7ffa7b0afaf0&gt;</span></span>
 <span id="cb12-14"><a href="#cb12-14"></a><span class="co">#&gt; &lt;environment: namespace:stats&gt;</span></span>
 <span id="cb12-15"><a href="#cb12-15"></a><span class="co">#&gt; </span></span>
 <span id="cb12-16"><a href="#cb12-16"></a><span class="co">#&gt; $max</span></span>

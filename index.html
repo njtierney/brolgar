@@ -144,7 +144,7 @@
 <blockquote>
 <p><strong>The key is the identifier of your individuals or series</strong></p>
 </blockquote>
-<p>Identifying the key, index, and regularity of the data can be a challenge. You can learn more about specifying this in the vignette, <a href="http://brolgar.njtierney.com/articles/longitudinal-data-structures.html">“Longitudinal Data Structures”</a>.</p>
+<p>Identifying the key, index, and regularity of the data can be a challenge. You can learn more about specifying this in the vignette, <a href="https://brolgar.njtierney.com/articles/longitudinal-data-structures.html">“Longitudinal Data Structures”</a>.</p>
 <div id="the-wages-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-wages-data" class="anchor"></a>The wages data</h2>
@@ -170,7 +170,7 @@
 <span id="cb3-2"><a href="#cb3-2"></a>                    <span class="dt">key =</span> id,</span>
 <span id="cb3-3"><a href="#cb3-3"></a>                    <span class="dt">index =</span> xp,</span>
 <span id="cb3-4"><a href="#cb3-4"></a>                    <span class="dt">regular =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<p>Here <code><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble()</a></code> takes wages, and a <code>key</code>, and <code>index</code>, and we state the <code>regular = FALSE</code> (since there are not regular time periods between measurements). This turns the data into a <code>tsibble</code> object - a powerful data abstraction made available in the <a href="https://tsibble.tidyverts.org/"><code>tsibble</code></a> package by <a href="https://earo.me/">Earo Wang</a>, if you would like to learn more about <code>tsibble</code>, see the <a href="https://tsibble.tidyverts.org/">official package documentation</a> or read <a href="http://pdf.earo.me/tsibble.pdf">the paper</a>.</p>
+<p>Here <code><a href="https://tsibble.tidyverts.org/reference/as-tsibble.html">as_tsibble()</a></code> takes wages, and a <code>key</code>, and <code>index</code>, and we state the <code>regular = FALSE</code> (since there are not regular time periods between measurements). This turns the data into a <code>tsibble</code> object - a powerful data abstraction made available in the <a href="https://tsibble.tidyverts.org/"><code>tsibble</code></a> package by <a href="https://earo.me/">Earo Wang</a>, if you would like to learn more about <code>tsibble</code>, see the <a href="https://tsibble.tidyverts.org/">official package documentation</a> or read <a href="https://pdf.earo.me/tsibble.pdf">the paper</a>.</p>
 </div>
 </div>
 <div id="efficiently-exploring-longitudinal-data" class="section level1">
@@ -209,12 +209,12 @@
 <span id="cb5-7"><a href="#cb5-7"></a><span class="st">  </span><span class="kw"><a href="reference/facet_sample.html">facet_sample</a></span>()</span></code></pre></div>
 <p><img src="reference/figures/README-facet-sample-1.png" width="75%" style="display: block; margin: auto;"></p>
 <p>Under the hood, <code><a href="reference/facet_sample.html">facet_sample()</a></code> is powered by <code><a href="reference/sample-n-frac-keys.html">sample_n_keys()</a></code> and <code><a href="reference/stratify_keys.html">stratify_keys()</a></code>.</p>
-<p>You can see more facets (e.g., <code><a href="reference/facet_strata.html">facet_strata()</a></code>) and data visualisations you can make in brolgar in the <a href="http://brolgar.njtierney.com/articles/visualisation-gallery.html">Visualisation Gallery</a>.</p>
+<p>You can see more facets (e.g., <code><a href="reference/facet_strata.html">facet_strata()</a></code>) and data visualisations you can make in brolgar in the <a href="httsp://brolgar.njtierney.com/articles/visualisation-gallery.html">Visualisation Gallery</a>.</p>
 </div>
 <div id="finding-features-in-longitudinal-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#finding-features-in-longitudinal-data" class="anchor"></a>Finding features in longitudinal data</h2>
-<p>Sometimes you want to know what the range or a summary of a variable for each individual. We call these summaries <code>features</code> of the data, and they can be extracted using the <code>features</code> function, from <a href="http://fabletools.tidyverts.org/"><code>fabletools</code></a>.</p>
+<p>Sometimes you want to know what the range or a summary of a variable for each individual. We call these summaries <code>features</code> of the data, and they can be extracted using the <code>features</code> function, from <a href="https://fabletools.tidyverts.org/"><code>fabletools</code></a>.</p>
 <p>For example, if you want to answer the question “What is the summary of wages for each individual?”. You can use <code><a href="https://fabletools.tidyverts.org/reference/features.html">features()</a></code> to find the five number summary (min, max, q1, q3, and median) of <code>ln_wages</code> with <code>feat_five_num</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>wages <span class="op">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(ln_wages,</span>
@@ -251,7 +251,7 @@
 <span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&gt;  9   206 TRUE     FALSE    FALSE  TRUE     </span></span>
 <span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&gt; 10   207 FALSE    FALSE    FALSE  FALSE    </span></span>
 <span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&gt; # … with 878 more rows</span></span></code></pre></div>
-<p>You can read more about creating and using features in the <a href="http://brolgar.njtierney.com/articles/finding-features.html">Finding Features</a> vignette. You can also see other features for time series in the <a href="https://feasts.tidyverts.org"><code>feasts</code> package</a>.</p>
+<p>You can read more about creating and using features in the <a href="https://brolgar.njtierney.com/articles/finding-features.html">Finding Features</a> vignette. You can also see other features for time series in the <a href="https://feasts.tidyverts.org"><code>feasts</code> package</a>.</p>
 </div>
 <div id="linking-individuals-back-to-the-data" class="section level2">
 <h2 class="hasAnchor">
@@ -335,7 +335,7 @@
 <div id="further-reading" class="section level1">
 <h1 class="hasAnchor">
 <a href="#further-reading" class="anchor"></a>Further Reading</h1>
-<p><code>brolgar</code> provides other useful functions to explore your data, which you can read about in the <a href="http://brolgar.njtierney.com/articles/exploratory-modelling.html">exploratory modelling</a> and <a href="http://brolgar.njtierney.com/articles/id-interesting-obs.html">Identify Interesting Observations</a> vignettes. As a taster, here are some of the figures you can produce:</p>
+<p><code>brolgar</code> provides other useful functions to explore your data, which you can read about in the <a href="https://brolgar.njtierney.com/articles/exploratory-modelling.html">exploratory modelling</a> and <a href="https://brolgar.njtierney.com/articles/id-interesting-obs.html">Identify Interesting Observations</a> vignettes. As a taster, here are some of the figures you can produce:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">#&gt; Warning: Tried to calculate with group_by(), but the calculation failed.</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="co">#&gt; Falling back to ungrouped filter operation...</span></span>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="co">#&gt; label_key: id</span></span>
