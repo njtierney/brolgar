@@ -10,11 +10,11 @@
 #' @export
 #' @examples
 #' library(ggplot2)
-#' sample_n_keys(wages,
+#' sample_n_keys(heights,
 #'              size = 10) %>%
-#'   ggplot(aes(x = xp,
-#'              y = unemploy_rate,
-#'              group = id)) + 
+#'   ggplot(aes(x = year,
+#'              y = height_cm,
+#'              group = country)) + 
 #'   geom_line()
 sample_n_keys <- function(.data, size){
   test_if_tsibble(.data)

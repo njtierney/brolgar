@@ -32,8 +32,6 @@
 #'            group = country)) + 
 #'     geom_line()
 #'     
-#' \dontrun{
-#'     
 #' # Explore all samples with `facet_strata()`
 #' ggplot(heights,
 #'        aes(x = year,
@@ -53,6 +51,4 @@
 #' # explore the five number summary of height_cm with `features`
 #' heights %>% 
 #'   features(height_cm, feat_five_num)
-#' }
-#'   
 "heights"

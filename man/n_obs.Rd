@@ -21,12 +21,12 @@ Returns the number of observations of a vector or data.frame. It uses
 }
 \note{
 You cannot use \code{n_obs} with \code{features} counting the key variable like
-so - \code{features(wages, id, n_obs)}. Instead, use any other variable.
+so - \code{features(heights, country, n_obs)}. Instead, use any other variable.
 }
 \examples{
 n_obs(iris)
 n_obs(1:10)
-add_n_obs(wages)
-wages \%>\%
-  features(ln_wages, n_obs) # can be any variable except id, the key.
+add_n_obs(heights)
+heights \%>\%
+  features(height_cm, n_obs) # can be any variable except id, the key.
 }

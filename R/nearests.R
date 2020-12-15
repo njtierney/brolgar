@@ -13,7 +13,7 @@
 #'             within = 0.2)
 #'             
 #' library(dplyr)
-#' wages %>% features(ln_wages, list(min = min)) %>%
+#' heights %>% features(height_cm, list(min = min)) %>%
 #'   filter(near_middle(min, 0.5, 0.1))
 #'             
 near_middle <- function(x,
@@ -45,7 +45,7 @@ near_middle <- function(x,
 #'             within = 0.2)
 #' 
 #' library(dplyr)
-#' wages %>% features(ln_wages, list(min = min)) %>%
+#' heights %>% features(height_cm, list(min = min)) %>%
 #'   filter(near_between(min, 0.1, 0.9))
 #'
 #' near_quantile(x = x,
@@ -54,25 +54,25 @@ near_middle <- function(x,
 #' 
 #' near_quantile(x, c(0.25, 0.5, 0.75), 0.05)
 #' 
-#' wages %>%
-#'   features(ln_wages, l_five_num) %>%
+#' heights %>%
+#'   features(height_cm, l_five_num) %>%
 #'   mutate_at(vars(min:max),
 #'             .funs = near_quantile,
 #'             0.5, 
 #'             0.01) %>%
 #'   filter(min)
 #' 
-#' wages %>%
-#'   features(ln_wages, list(min = min)) %>%
+#' heights %>%
+#'   features(height_cm, list(min = min)) %>%
 #'   mutate(min_near_q3 = near_quantile(min, c(0.25, 0.5, 0.75), 0.01)) %>%
 #'   filter(min_near_q3)
 #' 
-#' wages %>%
-#'   features(ln_wages, list(min = min)) %>%
+#' heights %>%
+#'   features(height_cm, list(min = min)) %>%
 #'   filter(near_between(min, 0.1, 0.9))
 #' 
-#' wages %>%
-#'   features(ln_wages, list(min = min)) %>%
+#' heights %>%
+#'   features(height_cm, list(min = min)) %>%
 #'   filter(near_middle(min, 0.5, 0.1))
 near_between <- function(x,
                          from,
@@ -96,12 +96,12 @@ near_between <- function(x,
 #' near_quantile(x, c(0.25, 0.5, 0.75), 0.05)
 #' 
 #' library(dplyr)
-#' wages %>% 
-#'   features(ln_wages, list(min = min)) %>% 
+#' heights %>% 
+#'   features(height_cm, list(min = min)) %>% 
 #'   mutate(min_near_median = near_quantile(min, 0.5, 0.01)) %>%
 #'   filter(min_near_median)
-#' wages %>% 
-#'   features(ln_wages, list(min = min)) %>% 
+#' heights %>% 
+#'   features(height_cm, list(min = min)) %>% 
 #'   mutate(min_near_q3 = near_quantile(min, c(0.25, 0.5, 0.75), 0.01)) %>%
 #'   filter(min_near_q3)
 #' @export
@@ -161,17 +161,17 @@ near_quantile <- function(x, probs, tol = 0.01){
 #' nearest_lgl(b, x)
 #' 
 #' library(dplyr)
-#' wages_near_min <- wages %>%
-#'   filter(nearest_lgl(min(ln_wages), ln_wages))
+#' heights_near_min <- heights %>%
+#'   filter(nearest_lgl(min(height_cm), height_cm))
 #'   
-#' wages_near_fivenum <- wages %>%
-#'   filter(nearest_lgl(fivenum(ln_wages), ln_wages))
+#' heights_near_fivenum <- heights %>%
+#'   filter(nearest_lgl(fivenum(height_cm), height_cm))
 #'   
-#' wages_near_qt_1 <- wages %>%
-#'   filter(nearest_qt_lgl(ln_wages, c(0.5)))
+#' heights_near_qt_1 <- heights %>%
+#'   filter(nearest_qt_lgl(height_cm, c(0.5)))
 #'   
-#' wages_near_qt_3 <- wages %>%
-#'   filter(nearest_qt_lgl(ln_wages, c(0.1, 0.5, 0.9)))
+#' heights_near_qt_3 <- heights %>%
+#'   filter(nearest_qt_lgl(height_cm, c(0.1, 0.5, 0.9)))
 #' 
 nearest_lgl <- function(x, y){
   x <- vctrs::vec_cast(x, to = double())

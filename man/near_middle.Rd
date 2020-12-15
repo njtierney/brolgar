@@ -26,7 +26,7 @@ near_middle(x = x,
             within = 0.2)
             
 library(dplyr)
-wages \%>\% features(ln_wages, list(min = min)) \%>\%
+heights \%>\% features(height_cm, list(min = min)) \%>\%
   filter(near_middle(min, 0.5, 0.1))
             
 }

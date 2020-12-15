@@ -26,9 +26,9 @@
 #' @export
 #' @examples
 #'                
-#' # Return observations closest to the five number summary of ln_wages
-#' wages %>%
-#'   keys_near(var = ln_wages)
+#' # Return observations closest to the five number summary of height_cm
+#' heights %>%
+#'   keys_near(var = height_cm)
 #'                
 
 keys_near.tbl_ts <- function(.data,
@@ -79,20 +79,20 @@ keys_near.tbl_ts <- function(.data,
 #' @param ... extra arguments to pass to `mutate_at` when performing the summary
 #'   as given by `funs`.
 #' @examples
-#' wages %>%
-#'   key_slope(ln_wages ~ xp) %>%
-#'   keys_near(key = id,
-#'             var = .slope_xp)
+#' heights %>%
+#'   key_slope(height_cm ~ year) %>%
+#'   keys_near(key = country,
+#'             var = .slope_year)
 #' # Specify your own list of summaries
 #' l_ranges <- list(min = b_min,
 #'                  range_diff = b_range_diff,
 #'                  max = b_max,
 #'                  iqr = b_iqr)
 #'
-#' wages %>%
-#'   key_slope(formula = ln_wages ~ xp) %>%
-#'   keys_near(key = id,
-#'               var = .slope_xp,
+#' heights %>%
+#'   key_slope(formula = height_cm ~ year) %>%
+#'   keys_near(key = country,
+#'               var = .slope_year,
 #'               funs = l_ranges)
 #' @export
 keys_near.data.frame <- function(.data,
@@ -144,10 +144,10 @@ keys_near.default <- function(.data, ...){
 #'                  max = b_max,
 #'                  iqr = b_iqr)
 #'
-#' wages %>%
-#'   key_slope(formula = ln_wages ~ xp) %>%
-#'   keys_near(key = id,
-#'               var = .slope_xp,
+#' heights %>%
+#'   key_slope(formula = height_cm ~ year) %>%
+#'   keys_near(key = country,
+#'               var = .slope_year,
 #'               funs = l_ranges)
 
 #' @export

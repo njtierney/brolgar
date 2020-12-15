@@ -53,7 +53,6 @@ aes(x = year,
   geom_line() +
   facet_sample()
 
-\dontrun{
 ggplot(heights,
        aes(x = year,
            y = height_cm,
@@ -61,5 +60,4 @@ ggplot(heights,
   geom_line() +
   facet_sample(n_per_facet = 1,
                n_facets = 12)
-}
 }

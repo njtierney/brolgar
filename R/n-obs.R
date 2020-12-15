@@ -8,7 +8,7 @@
 #'   it is just the number of observations. 
 #'
 #' @note You cannot use `n_obs` with `features` counting the key variable like
-#'   so - `features(wages, id, n_obs)`. Instead, use any other variable.
+#'   so - `features(heights, country, n_obs)`. Instead, use any other variable.
 #'
 #' @return number of observations
 #' @export
@@ -16,9 +16,9 @@
 #' @examples
 #' n_obs(iris)
 #' n_obs(1:10)
-#' add_n_obs(wages)
-#' wages %>%
-#'   features(ln_wages, n_obs) # can be any variable except id, the key.
+#' add_n_obs(heights)
+#' heights %>%
+#'   features(height_cm, n_obs) # can be any variable except id, the key.
 n_obs <- function(x, names = TRUE){
   
   # assert if thing is either a vector

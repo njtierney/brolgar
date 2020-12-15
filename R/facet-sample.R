@@ -21,7 +21,6 @@
 #'   geom_line() +
 #'   facet_sample()
 #' 
-#' \dontrun{
 #' ggplot(heights,
 #'        aes(x = year,
 #'            y = height_cm,
@@ -29,7 +28,6 @@
 #'   geom_line() +
 #'   facet_sample(n_per_facet = 1,
 #'                n_facets = 12)
-#' }
 facet_sample <- function(n_per_facet = 3,
                          n_facets = 12,
                          nrow = NULL, 

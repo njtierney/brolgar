@@ -50,42 +50,40 @@ unvarying(vec_dec)
 unvarying(vec_ran)
 unvarying(vec_flat)
 
-\dontrun{
 library(ggplot2)
 library(gghighlight)
 library(dplyr)
 
-wages_mono <- wages \%>\%
-  features(ln_wages, feat_monotonic) \%>\%
-  left_join(wages, by = "id")
+heights_mono <- heights \%>\%
+  features(height_cm, feat_monotonic) \%>\%
+  left_join(heights, by = "country")
   
-  ggplot(wages_mono,
-         aes(x = xp,
-             y = ln_wages,
-             group = id)) +
+  ggplot(heights_mono,
+         aes(x = year,
+             y = height_cm,
+             group = country)) +
   geom_line() + 
   gghighlight(increase)
 
- ggplot(wages_mono,
-        aes(x = xp,
-            y = ln_wages,
-             group = id)) +
+ ggplot(heights_mono,
+        aes(x = year,
+            y = height_cm,
+             group = country)) +
   geom_line() + 
   gghighlight(decrease)
 
-wages_mono \%>\%
+heights_mono \%>\%
 filter(monotonic) \%>\%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id)) + 
+  ggplot(aes(x = year,
+             y = height_cm,
+             group = country)) + 
   geom_line()
   
-wages_mono \%>\%
+heights_mono \%>\%
   filter(increase) \%>\%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id)) + 
+  ggplot(aes(x = year,
+             y = height_cm,
+             group = country)) + 
   geom_line()
-}
   
 }

@@ -22,8 +22,17 @@ Authors@R:
       person(given = "Earo",
              family = "Wang",
              role = "ctb"))
-Description: Provides a framework of tools to summarise,
-    visualise, and explore longitudinal data.
+Description: Provides a framework of tools to summarise, visualise, and explore 
+  longitudinal data. It builds upon the tidy time series data frames used in the
+  'tsibble' package, and is designed to integrate within the 'tidyverse', and
+  'tidyverts' (for time series) ecosystems. The methods implemented include 
+  calculating features for understanding longitudinal data, such as 
+  monotonicity, sampling individual series for examination, finding 
+  individual series representative of a group, and extending the facet system 
+  in `ggplot2` to facilitate exploration of samples of data. These methods are
+  fully described in the paper "brolgar: An R package to BRowse Over 
+  Longitudinal Data Graphically and Analytically in R", Nicholas Tierney, 
+  Dianne Cook, Tania Prvan (2020) <arXiv:2012.01619>.
 License: MIT + file LICENSE
 URL: https://github.com/njtierney/brolgar
 BugReports: https://github.com/njtierney/brolgar/issues

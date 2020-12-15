@@ -50,16 +50,16 @@ nearest_lgl(x, b)
 nearest_lgl(b, x)
 
 library(dplyr)
-wages_near_min <- wages \%>\%
-  filter(nearest_lgl(min(ln_wages), ln_wages))
+heights_near_min <- heights \%>\%
+  filter(nearest_lgl(min(height_cm), height_cm))
   
-wages_near_fivenum <- wages \%>\%
-  filter(nearest_lgl(fivenum(ln_wages), ln_wages))
+heights_near_fivenum <- heights \%>\%
+  filter(nearest_lgl(fivenum(height_cm), height_cm))
   
-wages_near_qt_1 <- wages \%>\%
-  filter(nearest_qt_lgl(ln_wages, c(0.5)))
+heights_near_qt_1 <- heights \%>\%
+  filter(nearest_qt_lgl(height_cm, c(0.5)))
   
-wages_near_qt_3 <- wages \%>\%
-  filter(nearest_qt_lgl(ln_wages, c(0.1, 0.5, 0.9)))
+heights_near_qt_3 <- heights \%>\%
+  filter(nearest_qt_lgl(height_cm, c(0.1, 0.5, 0.9)))
 
 }

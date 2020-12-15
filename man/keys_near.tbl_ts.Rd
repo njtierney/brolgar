@@ -26,8 +26,8 @@ Return keys nearest to a given statistics or summary.
 }
 \examples{
                
-# Return observations closest to the five number summary of ln_wages
-wages \%>\%
-  keys_near(var = ln_wages)
+# Return observations closest to the five number summary of height_cm
+heights \%>\%
+  keys_near(var = height_cm)
                
 }

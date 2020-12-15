@@ -7,6 +7,7 @@
 #' @param ... additional arguments for max
 #'
 #' @return either NA or the maximum value
+#' @noRd
 #' @examples
 #' \dontrun{
 #' max_if(numeric(0))

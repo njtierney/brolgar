@@ -33,38 +33,36 @@ of the raw data.
 library(ggplot2)
 library(brolgar)
 
-wages \%>\%
+heights \%>\%
   sample_frac_keys(size = 0.1) \%>\%
   stratify_keys(10) \%>\%
- ggplot(aes(x = ln_wages,
-            y = xp,
-            group = id)) + 
+ ggplot(aes(x = height_cm,
+            y = year,
+            group = country)) + 
  geom_line() + 
  facet_wrap(~.strata)
  
  # now facet along some feature
- \dontrun{
 library(dplyr)
- wages \%>\%
-key_slope(ln_wages ~ xp) \%>\%
-  right_join(wages, ., by = "id") \%>\%
+ heights \%>\%
+key_slope(height_cm ~ year) \%>\%
+  right_join(heights, ., by = "country") \%>\%
   stratify_keys(n_strata = 12,
-                along = .slope_xp,
+                along = .slope_year,
                 fun = median) \%>\%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id)) + 
+  ggplot(aes(x = year,
+             y = height_cm,
+             group = country)) + 
   geom_line() + 
   facet_wrap(~.strata)
 
 
-wages \%>\%
+heights \%>\%
   stratify_keys(n_strata = 12,
-                along = unemploy_rate) \%>\%
-  ggplot(aes(x = xp,
-             y = ln_wages,
-             group = id)) + 
+                along = height_cm) \%>\%
+  ggplot(aes(x = year,
+             y = height_cm,
+             group = country)) + 
   geom_line() + 
   facet_wrap(~.strata)
-}
 }

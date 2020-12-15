@@ -25,19 +25,19 @@ as given by \code{funs}.}
 Return keys nearest to a given statistics or summary.
 }
 \examples{
-wages \%>\%
-  key_slope(ln_wages ~ xp) \%>\%
-  keys_near(key = id,
-            var = .slope_xp)
+heights \%>\%
+  key_slope(height_cm ~ year) \%>\%
+  keys_near(key = country,
+            var = .slope_year)
 # Specify your own list of summaries
 l_ranges <- list(min = b_min,
                  range_diff = b_range_diff,
                  max = b_max,
                  iqr = b_iqr)
 
-wages \%>\%
-  key_slope(formula = ln_wages ~ xp) \%>\%
-  keys_near(key = id,
-              var = .slope_xp,
+heights \%>\%
+  key_slope(formula = height_cm ~ year) \%>\%
+  keys_near(key = country,
+              var = .slope_year,
               funs = l_ranges)
 }

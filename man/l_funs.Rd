@@ -26,10 +26,10 @@ l_ranges <- list(min = b_min,
                  max = b_max,
                  iqr = b_iqr)
 
-wages \%>\%
-  key_slope(formula = ln_wages ~ xp) \%>\%
-  keys_near(key = id,
-              var = .slope_xp,
+heights \%>\%
+  key_slope(formula = height_cm ~ year) \%>\%
+  keys_near(key = country,
+              var = .slope_year,
               funs = l_ranges)
 }
 \keyword{datasets}

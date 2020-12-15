@@ -58,7 +58,6 @@ ggplot(heights,
   geom_line() +
   facet_strata()
   
-\dontrun{
 
 ggplot(heights,
        aes(x = year,
@@ -67,21 +66,22 @@ ggplot(heights,
   geom_line() +
   facet_wrap(~continent)
 
-ggplot(wages,
-       aes(x = xp,
-           y = ln_wages,
-           group = id)) +
+ggplot(heights,
+       aes(x = year,
+           y = height_cm,
+           group = country)) +
   geom_line() +
-  facet_strata(along = xp_since_ged)
+  facet_strata(along = year)
 
+\donttest{
 library(dplyr)
-wages \%>\%
-  key_slope(ln_wages ~ xp) \%>\%
-  right_join(wages, ., by = "id") \%>\%
-  ggplot(aes(x = xp,
-             y = ln_wages)) +
-  geom_line(aes(group = id)) +
+heights \%>\%
+  key_slope(height_cm ~ year) \%>\%
+  right_join(heights, ., by = "country") \%>\%
+  ggplot(aes(x = year,
+             y = height_cm)) +
+  geom_line(aes(group = country)) +
   geom_smooth(method = "lm") + 
-  facet_strata(along = .slope_xp)
+  facet_strata(along = .slope_year)
 }
 }
