@@ -121,7 +121,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/njtierney/brolgar">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -170,17 +170,17 @@
                  <span class='kw'>max</span> <span class='kw'>=</span> <span class='no'>b_max</span>,
                  <span class='kw'>iqr</span> <span class='kw'>=</span> <span class='no'>b_iqr</span>)
 
-<span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='key_slope.html'>key_slope</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>ln_wages</span> ~ <span class='no'>xp</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='keys_near.html'>keys_near</a></span>(<span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>id</span>,
-              <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>.slope_xp</span>,
+<span class='no'>heights</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='key_slope.html'>key_slope</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>height_cm</span> ~ <span class='no'>year</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='keys_near.html'>keys_near</a></span>(<span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>country</span>,
+              <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>.slope_year</span>,
               <span class='kw'>funs</span> <span class='kw'>=</span> <span class='no'>l_ranges</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 5</span><span>
-#&gt;      id .slope_xp stat       stat_value stat_diff
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>  </span><span style='text-decoration: underline;'>7</span><span>918    -</span><span style='color: #BB0000;'>4.58</span><span>  min            -</span><span style='color: #BB0000;'>4.58</span><span>   0       
-#&gt; </span><span style='color: #555555;'>2</span><span>  </span><span style='text-decoration: underline;'>9</span><span>357     0.103 iqr             0.102  0.000</span><span style='text-decoration: underline;'>139</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> </span><span style='text-decoration: underline;'>12</span><span>455    13.2   range_diff     17.8    4.58    
-#&gt; </span><span style='color: #555555;'>4</span><span> </span><span style='text-decoration: underline;'>12</span><span>455    13.2   max            13.2    0       </div></span></pre>
+#&gt;   country     .slope_year stat       stat_value stat_diff
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Burundi          0.321  range_diff     0.424    0.102  
+#&gt; </span><span style='color: #555555;'>2</span><span> Burundi          0.321  max            0.321    0      
+#&gt; </span><span style='color: #555555;'>3</span><span> Eritrea         -</span><span style='color: #BB0000;'>0.102</span><span>  min           -</span><span style='color: #BB0000;'>0.102</span><span>    0      
+#&gt; </span><span style='color: #555555;'>4</span><span> Switzerland      0.049</span><span style='text-decoration: underline;'>6</span><span> iqr            0.048</span><span style='text-decoration: underline;'>5</span><span>   0.001</span><span style='text-decoration: underline;'>16</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

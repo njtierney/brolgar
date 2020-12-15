@@ -127,7 +127,7 @@ detail." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/njtierney/brolgar">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -203,17 +203,17 @@ detail.</p>
 <span class='fu'>nearest_lgl</span>(<span class='no'>x</span>, <span class='no'>a</span>)</div><div class='output co'>#&gt; [1]  TRUE FALSE FALSE FALSE FALSE</div><div class='input'><span class='fu'>nearest_lgl</span>(<span class='no'>a</span>, <span class='no'>x</span>)</div><div class='output co'>#&gt;  [1]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</div><div class='input'>
 <span class='fu'>nearest_lgl</span>(<span class='no'>x</span>, <span class='no'>b</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>nearest_lgl</span>(<span class='no'>b</span>, <span class='no'>x</span>)</div><div class='output co'>#&gt;  [1]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='no'>wages_near_min</span> <span class='kw'>&lt;-</span> <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>nearest_lgl</span>(<span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span>(<span class='no'>ln_wages</span>), <span class='no'>ln_wages</span>))
+<span class='no'>heights_near_min</span> <span class='kw'>&lt;-</span> <span class='no'>heights</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>nearest_lgl</span>(<span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span>(<span class='no'>height_cm</span>), <span class='no'>height_cm</span>))
 
-<span class='no'>wages_near_fivenum</span> <span class='kw'>&lt;-</span> <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>nearest_lgl</span>(<span class='fu'><a href='https://rdrr.io/r/stats/fivenum.html'>fivenum</a></span>(<span class='no'>ln_wages</span>), <span class='no'>ln_wages</span>))
+<span class='no'>heights_near_fivenum</span> <span class='kw'>&lt;-</span> <span class='no'>heights</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>nearest_lgl</span>(<span class='fu'><a href='https://rdrr.io/r/stats/fivenum.html'>fivenum</a></span>(<span class='no'>height_cm</span>), <span class='no'>height_cm</span>))
 
-<span class='no'>wages_near_qt_1</span> <span class='kw'>&lt;-</span> <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>nearest_qt_lgl</span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5</span>)))
+<span class='no'>heights_near_qt_1</span> <span class='kw'>&lt;-</span> <span class='no'>heights</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>nearest_qt_lgl</span>(<span class='no'>height_cm</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5</span>)))
 
-<span class='no'>wages_near_qt_3</span> <span class='kw'>&lt;-</span> <span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>nearest_qt_lgl</span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.1</span>, <span class='fl'>0.5</span>, <span class='fl'>0.9</span>)))</div></pre>
+<span class='no'>heights_near_qt_3</span> <span class='kw'>&lt;-</span> <span class='no'>heights</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>nearest_qt_lgl</span>(<span class='no'>height_cm</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.1</span>, <span class='fl'>0.5</span>, <span class='fl'>0.9</span>)))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

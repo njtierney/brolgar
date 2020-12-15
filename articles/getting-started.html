@@ -79,7 +79,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/njtierney/brolgar">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -99,8 +99,7 @@
 
       
 
-      </header><script src="getting-started_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="getting-started_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="getting-started_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="getting-started_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Getting Started</h1>
@@ -183,32 +182,24 @@
 <span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; # … with 6,392 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span></code></pre></div>
 <p>Which you can then use to <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> observations:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&gt; </span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; </span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt;     filter, lag</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; </span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a>wages <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="st">  </span><span class="kw"><a href="../reference/add_n_obs.html">add_n_obs</a></span>() <span class="op">%&gt;%</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n_obs <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>)</span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt; # A tsibble: 6,145 x 10 [!]</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&gt; # Key:       id [764]</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&gt;       id    xp n_obs ln_wages   ged xp_since_ged black hispanic high_grade</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&gt;    &lt;int&gt; &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="co">#&gt;  1    31 0.015     8     1.49     1        0.015     0        1          8</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="co">#&gt;  2    31 0.715     8     1.43     1        0.715     0        1          8</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a><span class="co">#&gt;  3    31 1.73      8     1.47     1        1.73      0        1          8</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a><span class="co">#&gt;  4    31 2.77      8     1.75     1        2.77      0        1          8</span></span>
-<span id="cb7-21"><a href="#cb7-21"></a><span class="co">#&gt;  5    31 3.93      8     1.93     1        3.93      0        1          8</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a><span class="co">#&gt;  6    31 4.95      8     1.71     1        4.95      0        1          8</span></span>
-<span id="cb7-23"><a href="#cb7-23"></a><span class="co">#&gt;  7    31 5.96      8     2.09     1        5.96      0        1          8</span></span>
-<span id="cb7-24"><a href="#cb7-24"></a><span class="co">#&gt;  8    31 6.98      8     2.13     1        6.98      0        1          8</span></span>
-<span id="cb7-25"><a href="#cb7-25"></a><span class="co">#&gt;  9    36 0.315    10     1.98     1        0.315     0        0          9</span></span>
-<span id="cb7-26"><a href="#cb7-26"></a><span class="co">#&gt; 10    36 0.983    10     1.80     1        0.983     0        0          9</span></span>
-<span id="cb7-27"><a href="#cb7-27"></a><span class="co">#&gt; # … with 6,135 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span></code></pre></div>
+<span id="cb7-2"><a href="#cb7-2"></a>wages <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span><span class="kw"><a href="../reference/add_n_obs.html">add_n_obs</a></span>() <span class="op">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n_obs <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>)</span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; # A tsibble: 6,145 x 10 [!]</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; # Key:       id [764]</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt;       id    xp n_obs ln_wages   ged xp_since_ged black hispanic high_grade</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt;    &lt;int&gt; &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt;  1    31 0.015     8     1.49     1        0.015     0        1          8</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt;  2    31 0.715     8     1.43     1        0.715     0        1          8</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt;  3    31 1.73      8     1.47     1        1.73      0        1          8</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt;  4    31 2.77      8     1.75     1        2.77      0        1          8</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt;  5    31 3.93      8     1.93     1        3.93      0        1          8</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&gt;  6    31 4.95      8     1.71     1        4.95      0        1          8</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&gt;  7    31 5.96      8     2.09     1        5.96      0        1          8</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&gt;  8    31 6.98      8     2.13     1        6.98      0        1          8</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="co">#&gt;  9    36 0.315    10     1.98     1        0.315     0        0          9</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="co">#&gt; 10    36 0.983    10     1.80     1        0.983     0        0          9</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="co">#&gt; # … with 6,135 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span></code></pre></div>
 <p>We can also look at the distance between experience, to understand what the distribution of experience is</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>wages_xp_range &lt;-<span class="st"> </span>wages <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw"><a href="https://fabletools.tidyverts.org/reference/features.html">features</a></span>(xp,</span>
@@ -216,8 +207,7 @@
 <span id="cb8-4"><a href="#cb8-4"></a></span>
 <span id="cb8-5"><a href="#cb8-5"></a><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(wages_xp_range,</span>
 <span id="cb8-6"><a href="#cb8-6"></a>       <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> range_diff)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>()</span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span></code></pre></div>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>()</span></code></pre></div>
 <p><img src="getting-started_files/figure-html/wages-xp-1.png" width="700"></p>
 <p>We can then explore the range of experience to see what the most common experience is</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>wages_xp_range <span class="op">%&gt;%</span><span class="st"> </span></span>
@@ -375,11 +365,7 @@
 <span id="cb18-6"><a href="#cb18-6"></a>             <span class="dt">y =</span> ln_wages, </span>
 <span id="cb18-7"><a href="#cb18-7"></a>             <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb18-8"><a href="#cb18-8"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span></span>
-<span id="cb18-9"><a href="#cb18-9"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/gghighlight.html">gghighlight</a></span>(.slope_xp <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</span>
-<span id="cb18-10"><a href="#cb18-10"></a><span class="co">#&gt; Warning: Tried to calculate with group_by(), but the calculation failed.</span></span>
-<span id="cb18-11"><a href="#cb18-11"></a><span class="co">#&gt; Falling back to ungrouped filter operation...</span></span>
-<span id="cb18-12"><a href="#cb18-12"></a><span class="co">#&gt; label_key: id</span></span>
-<span id="cb18-13"><a href="#cb18-13"></a><span class="co">#&gt; Too many data series, skip labeling</span></span></code></pre></div>
+<span id="cb18-9"><a href="#cb18-9"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/gghighlight.html">gghighlight</a></span>(.slope_xp <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
 <p><img src="getting-started_files/figure-html/use-gg-highlight-1.png" width="700"></p>
 <div id="find-keys-near-other-summaries-with-keys_near" class="section level3">
 <h3 class="hasAnchor">
@@ -487,11 +473,7 @@
 <span id="cb24-5"><a href="#cb24-5"></a>             <span class="dt">y =</span> ln_wages,</span>
 <span id="cb24-6"><a href="#cb24-6"></a>             <span class="dt">group =</span> id)) <span class="op">+</span></span>
 <span id="cb24-7"><a href="#cb24-7"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb24-8"><a href="#cb24-8"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/gghighlight.html">gghighlight</a></span>(increase)</span>
-<span id="cb24-9"><a href="#cb24-9"></a><span class="co">#&gt; Warning: Tried to calculate with group_by(), but the calculation failed.</span></span>
-<span id="cb24-10"><a href="#cb24-10"></a><span class="co">#&gt; Falling back to ungrouped filter operation...</span></span>
-<span id="cb24-11"><a href="#cb24-11"></a><span class="co">#&gt; label_key: id</span></span>
-<span id="cb24-12"><a href="#cb24-12"></a><span class="co">#&gt; Too many data series, skip labeling</span></span></code></pre></div>
+<span id="cb24-8"><a href="#cb24-8"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/gghighlight.html">gghighlight</a></span>(increase)</span></code></pre></div>
 <p><img src="getting-started_files/figure-html/features-left-join-1.png" width="700"></p>
 </div>
 </div>

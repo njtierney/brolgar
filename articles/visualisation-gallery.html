@@ -79,7 +79,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/njtierney/brolgar">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -99,8 +99,7 @@
 
       
 
-      </header><script src="visualisation-gallery_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="visualisation-gallery_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="visualisation-gallery_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="visualisation-gallery_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Visualisation Gallery</h1>
@@ -128,21 +127,21 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2"></a>wages <span class="op">%&gt;%</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">20</span>)</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; # A tsibble: 151 x 9 [!]</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; # A tsibble: 145 x 9 [!]</span></span>
 <span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; # Key:       id [20]</span></span>
 <span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade</span></span>
 <span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt;    &lt;int&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt;  1  7434     1.59  0.2      0            0     1        0         10</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt;  2  7434     1.42  1.16     0            0     1        0         10</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt;  3  7434     1.48  1.31     0            0     1        0         10</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt;  4  7434     1.86  1.42     0            0     1        0         10</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt;  5  7434     1.91  2.24     0            0     1        0         10</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt;  6  7434     2.26  3.34     0            0     1        0         10</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt;  7  7434     1.46  3.42     0            0     1        0         10</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt;  8  7434     1.71  3.62     0            0     1        0         10</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt;  9  7434     1.88  4.64     0            0     1        0         10</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#&gt; 10  7434     1.83  5.12     1            0     1        0         10</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co">#&gt; # … with 141 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt;  1  8710     1.46 1.56      0            0     0        1          7</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt;  2  8710     1.79 1.79      0            0     0        1          7</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt;  3  8710     1.58 2.74      0            0     0        1          7</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt;  4  8710     1.82 3.85      0            0     0        1          7</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt;  5  8710     1.79 4.61      0            0     0        1          7</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt;  6  8710     1.80 6.11      0            0     0        1          7</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt;  7  8710     1.66 6.34      0            0     0        1          7</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt;  8  8710     1.70 6.50      0            0     0        1          7</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt;  9  8710     1.57 6.59      0            0     0        1          7</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#&gt; 10  3592     1.90 0.893     0            0     0        0         12</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co">#&gt; # … with 135 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span>
 <span id="cb2-19"><a href="#cb2-19"></a></span>
 <span id="cb2-20"><a href="#cb2-20"></a>wages <span class="op">%&gt;%</span></span>
 <span id="cb2-21"><a href="#cb2-21"></a><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">20</span>) <span class="op">%&gt;%</span></span>
@@ -175,22 +174,14 @@
 <span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; # … with 6,392 more rows, and 1 more variable: unemploy_rate &lt;dbl&gt;</span></span></code></pre></div>
 <p>We can then filter our data based on the number of observations, and combine this with the previous steps to sample the data using <code><a href="../reference/sample-n-frac-keys.html">sample_n_keys()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; </span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt; </span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt;     filter, lag</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; </span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>wages <span class="op">%&gt;%</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="st">  </span><span class="kw"><a href="../reference/add_n_obs.html">add_n_obs</a></span>() <span class="op">%&gt;%</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n_obs <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">20</span>) <span class="op">%&gt;%</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
-<span id="cb4-15"><a href="#cb4-15"></a>             <span class="dt">y =</span> ln_wages,</span>
-<span id="cb4-16"><a href="#cb4-16"></a>             <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</span></code></pre></div>
+<span id="cb4-2"><a href="#cb4-2"></a>wages <span class="op">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="st">  </span><span class="kw"><a href="../reference/add_n_obs.html">add_n_obs</a></span>() <span class="op">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n_obs <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="kw"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span>(<span class="dt">size =</span> <span class="dv">20</span>) <span class="op">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> xp,</span>
+<span id="cb4-7"><a href="#cb4-7"></a>             <span class="dt">y =</span> ln_wages,</span>
+<span id="cb4-8"><a href="#cb4-8"></a>             <span class="dt">group =</span> id)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</span></code></pre></div>
 <p><img src="visualisation-gallery_files/figure-html/filter-sample-1.png" width="700"></p>
 </div>
 <div id="clever-facets-facet_strata" class="section level2">
@@ -278,11 +269,7 @@
 <span id="cb10-6"><a href="#cb10-6"></a>             <span class="dt">y =</span> ln_wages,</span>
 <span id="cb10-7"><a href="#cb10-7"></a>             <span class="dt">group =</span> id)) <span class="op">+</span></span>
 <span id="cb10-8"><a href="#cb10-8"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/gghighlight.html">gghighlight</a></span>(increase)</span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="co">#&gt; Warning: Tried to calculate with group_by(), but the calculation failed.</span></span>
-<span id="cb10-11"><a href="#cb10-11"></a><span class="co">#&gt; Falling back to ungrouped filter operation...</span></span>
-<span id="cb10-12"><a href="#cb10-12"></a><span class="co">#&gt; label_key: id</span></span>
-<span id="cb10-13"><a href="#cb10-13"></a><span class="co">#&gt; Too many data series, skip labeling</span></span></code></pre></div>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/gghighlight.html">gghighlight</a></span>(increase)</span></code></pre></div>
 <p><img src="visualisation-gallery_files/figure-html/gg-high-mono-1.png" width="700"></p>
 <p>You can explore the available features, see the function <a href="https://brolgar.njtierney.com/reference/index.html">References</a></p>
 </div>
@@ -319,25 +306,15 @@
 <span id="cb12-10"><a href="#cb12-10"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() </span>
 <span id="cb12-11"><a href="#cb12-11"></a></span>
 <span id="cb12-12"><a href="#cb12-12"></a>gg_wages_slope <span class="op">+</span><span class="st"> </span></span>
-<span id="cb12-13"><a href="#cb12-13"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/gghighlight.html">gghighlight</a></span>(.slope_xp <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</span>
-<span id="cb12-14"><a href="#cb12-14"></a><span class="co">#&gt; Warning: Tried to calculate with group_by(), but the calculation failed.</span></span>
-<span id="cb12-15"><a href="#cb12-15"></a><span class="co">#&gt; Falling back to ungrouped filter operation...</span></span>
-<span id="cb12-16"><a href="#cb12-16"></a><span class="co">#&gt; label_key: id</span></span>
-<span id="cb12-17"><a href="#cb12-17"></a><span class="co">#&gt; Too many data series, skip labeling</span></span></code></pre></div>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/gghighlight.html">gghighlight</a></span>(.slope_xp <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
 <p><img src="visualisation-gallery_files/figure-html/wages-ts-slope-1.png" width="700"></p>
 <p>With a positive slope</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>gg_wages_slope <span class="op">+</span><span class="st"> </span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/gghighlight.html">gghighlight</a></span>(.slope_xp <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="co">#&gt; Warning: Tried to calculate with group_by(), but the calculation failed.</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="co">#&gt; Falling back to ungrouped filter operation...</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="co">#&gt; label_key: id</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="co">#&gt; Too many data series, skip labeling</span></span></code></pre></div>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/gghighlight/man/gghighlight.html">gghighlight</a></span>(.slope_xp <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
 <p><img src="visualisation-gallery_files/figure-html/wages-ts-slope-pos-1.png" width="700"></p>
 <p>We could even facet by slope:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>gg_wages_slope <span class="op">+</span><span class="st"> </span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>.slope_xp <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="co">#&gt; geom_path: Each group consists of only one observation. Do you need to adjust</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="co">#&gt; the group aesthetic?</span></span></code></pre></div>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>.slope_xp <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
 <p><img src="visualisation-gallery_files/figure-html/wags-ts-slope-facet-1.png" width="700"></p>
 </div>
 </div>

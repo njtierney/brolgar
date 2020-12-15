@@ -121,7 +121,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/njtierney/brolgar">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -181,99 +181,82 @@
 
 <span class='fu'><a href='near_middle.html'>near_middle</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>,
             <span class='kw'>middle</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-            <span class='kw'>within</span> <span class='kw'>=</span> <span class='fl'>0.2</span>)</div><div class='output co'>#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
-#&gt; [13] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE</div><div class='input'>
+            <span class='kw'>within</span> <span class='kw'>=</span> <span class='fl'>0.2</span>)</div><div class='output co'>#&gt;  [1] FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
+#&gt; [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='no'>wages</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>near_between</span>(<span class='no'>min</span>, <span class='fl'>0.1</span>, <span class='fl'>0.9</span>))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 710 x 2</span><span>
-#&gt;       id   min
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>    31  1.43
-#&gt; </span><span style='color: #555555;'> 2</span><span>    36  1.80
-#&gt; </span><span style='color: #555555;'> 3</span><span>    53  1.54
-#&gt; </span><span style='color: #555555;'> 4</span><span>   145  1.48
-#&gt; </span><span style='color: #555555;'> 5</span><span>   155  1.54
-#&gt; </span><span style='color: #555555;'> 6</span><span>   173  1.56
-#&gt; </span><span style='color: #555555;'> 7</span><span>   207  1.58
-#&gt; </span><span style='color: #555555;'> 8</span><span>   222  1.31
-#&gt; </span><span style='color: #555555;'> 9</span><span>   223  1.51
-#&gt; </span><span style='color: #555555;'>10</span><span>   234  1.54
-#&gt; </span><span style='color: #555555;'># … with 700 more rows</span><span></div><div class='input'>
+<span class='no'>heights</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>height_cm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>near_between</span>(<span class='no'>min</span>, <span class='fl'>0.1</span>, <span class='fl'>0.9</span>))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 114 x 2</span><span>
+#&gt;    country       min
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Afghanistan  161.
+#&gt; </span><span style='color: #555555;'> 2</span><span> Albania      168.
+#&gt; </span><span style='color: #555555;'> 3</span><span> Algeria      166.
+#&gt; </span><span style='color: #555555;'> 4</span><span> Argentina    167.
+#&gt; </span><span style='color: #555555;'> 5</span><span> Armenia      164.
+#&gt; </span><span style='color: #555555;'> 6</span><span> Austria      162.
+#&gt; </span><span style='color: #555555;'> 7</span><span> Bahrain      161.
+#&gt; </span><span style='color: #555555;'> 8</span><span> Bangladesh   160.
+#&gt; </span><span style='color: #555555;'> 9</span><span> Belarus      164.
+#&gt; </span><span style='color: #555555;'>10</span><span> Belgium      163.
+#&gt; </span><span style='color: #555555;'># … with 104 more rows</span><span></div><div class='input'>
 <span class='fu'><a href='near_quantile.html'>near_quantile</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>,
               <span class='kw'>probs</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
               <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>0.01</span>)</div><div class='output co'>#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 #&gt; [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</div><div class='input'>
-<span class='fu'><a href='near_quantile.html'>near_quantile</a></span>(<span class='no'>x</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.25</span>, <span class='fl'>0.5</span>, <span class='fl'>0.75</span>), <span class='fl'>0.05</span>)</div><div class='output co'>#&gt;  [1]  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE
-#&gt; [13]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</div><div class='input'>
-<span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='no'>l_five_num</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='near_quantile.html'>near_quantile</a></span>(<span class='no'>x</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.25</span>, <span class='fl'>0.5</span>, <span class='fl'>0.75</span>), <span class='fl'>0.05</span>)</div><div class='output co'>#&gt;  [1] FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+#&gt; [13] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE</div><div class='input'>
+<span class='no'>heights</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>height_cm</span>, <span class='no'>l_five_num</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate_all.html'>mutate_at</a></span>(<span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span>(<span class='no'>min</span>:<span class='no'>max</span>),
             <span class='kw'>.funs</span> <span class='kw'>=</span> <span class='no'>near_quantile</span>,
             <span class='fl'>0.5</span>,
             <span class='fl'>0.01</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>min</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 30 x 6</span><span>
-#&gt;       id min   q_25  med   q_75  max  
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>   145 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'> 2</span><span>  </span><span style='text-decoration: underline;'>1</span><span>417 TRUE  FALSE TRUE  TRUE  FALSE
-#&gt; </span><span style='color: #555555;'> 3</span><span>  </span><span style='text-decoration: underline;'>1</span><span>515 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'> 4</span><span>  </span><span style='text-decoration: underline;'>1</span><span>535 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'> 5</span><span>  </span><span style='text-decoration: underline;'>1</span><span>731 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'> 6</span><span>  </span><span style='text-decoration: underline;'>1</span><span>772 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>2</span><span>213 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>3</span><span>272 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>6</span><span>860 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>6</span><span>918 TRUE  FALSE FALSE FALSE FALSE
-#&gt; </span><span style='color: #555555;'># … with 20 more rows</span><span></div><div class='input'>
-<span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>min</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 0 x 6</span><span>
+#&gt; </span><span style='color: #555555;'># … with 6 variables: country </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, min </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, q_25 </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, med </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   q_75 </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, max </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
+<span class='no'>heights</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>height_cm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span>(<span class='kw'>min_near_q3</span> <span class='kw'>=</span> <span class='fu'><a href='near_quantile.html'>near_quantile</a></span>(<span class='no'>min</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.25</span>, <span class='fl'>0.5</span>, <span class='fl'>0.75</span>), <span class='fl'>0.01</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>min_near_q3</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 66 x 3</span><span>
-#&gt;       id   min min_near_q3
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>      
-#&gt; </span><span style='color: #555555;'> 1</span><span>   145  1.48 TRUE       
-#&gt; </span><span style='color: #555555;'> 2</span><span>  </span><span style='text-decoration: underline;'>1</span><span>417  1.48 TRUE       
-#&gt; </span><span style='color: #555555;'> 3</span><span>  </span><span style='text-decoration: underline;'>1</span><span>515  1.48 TRUE       
-#&gt; </span><span style='color: #555555;'> 4</span><span>  </span><span style='text-decoration: underline;'>1</span><span>535  1.48 TRUE       
-#&gt; </span><span style='color: #555555;'> 5</span><span>  </span><span style='text-decoration: underline;'>1</span><span>580  1.64 TRUE       
-#&gt; </span><span style='color: #555555;'> 6</span><span>  </span><span style='text-decoration: underline;'>1</span><span>595  1.63 TRUE       
-#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>1</span><span>672  1.63 TRUE       
-#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>1</span><span>731  1.48 TRUE       
-#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>1</span><span>772  1.48 TRUE       
-#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>1</span><span>811  1.64 TRUE       
-#&gt; </span><span style='color: #555555;'># … with 56 more rows</span><span></div><div class='input'>
-<span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>near_between</span>(<span class='no'>min</span>, <span class='fl'>0.1</span>, <span class='fl'>0.9</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 710 x 2</span><span>
-#&gt;       id   min
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>    31  1.43
-#&gt; </span><span style='color: #555555;'> 2</span><span>    36  1.80
-#&gt; </span><span style='color: #555555;'> 3</span><span>    53  1.54
-#&gt; </span><span style='color: #555555;'> 4</span><span>   145  1.48
-#&gt; </span><span style='color: #555555;'> 5</span><span>   155  1.54
-#&gt; </span><span style='color: #555555;'> 6</span><span>   173  1.56
-#&gt; </span><span style='color: #555555;'> 7</span><span>   207  1.58
-#&gt; </span><span style='color: #555555;'> 8</span><span>   222  1.31
-#&gt; </span><span style='color: #555555;'> 9</span><span>   223  1.51
-#&gt; </span><span style='color: #555555;'>10</span><span>   234  1.54
-#&gt; </span><span style='color: #555555;'># … with 700 more rows</span><span></div><div class='input'>
-<span class='no'>wages</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>ln_wages</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='near_middle.html'>near_middle</a></span>(<span class='no'>min</span>, <span class='fl'>0.5</span>, <span class='fl'>0.1</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 88 x 2</span><span>
-#&gt;       id   min
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>   145  1.48
-#&gt; </span><span style='color: #555555;'> 2</span><span>   316  1.46
-#&gt; </span><span style='color: #555555;'> 3</span><span>   324  1.49
-#&gt; </span><span style='color: #555555;'> 4</span><span>   356  1.49
-#&gt; </span><span style='color: #555555;'> 5</span><span>   517  1.49
-#&gt; </span><span style='color: #555555;'> 6</span><span>   735  1.46
-#&gt; </span><span style='color: #555555;'> 7</span><span>  </span><span style='text-decoration: underline;'>1</span><span>300  1.49
-#&gt; </span><span style='color: #555555;'> 8</span><span>  </span><span style='text-decoration: underline;'>1</span><span>417  1.48
-#&gt; </span><span style='color: #555555;'> 9</span><span>  </span><span style='text-decoration: underline;'>1</span><span>515  1.48
-#&gt; </span><span style='color: #555555;'>10</span><span>  </span><span style='text-decoration: underline;'>1</span><span>535  1.48
-#&gt; </span><span style='color: #555555;'># … with 78 more rows</span><span></div></span></pre>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>min_near_q3</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 3</span><span>
+#&gt;   country      min min_near_q3
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>      
+#&gt; </span><span style='color: #555555;'>1</span><span> Ethiopia    161. TRUE       
+#&gt; </span><span style='color: #555555;'>2</span><span> Madagascar  161. TRUE       </div><div class='input'>
+<span class='no'>heights</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>height_cm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'>near_between</span>(<span class='no'>min</span>, <span class='fl'>0.1</span>, <span class='fl'>0.9</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 114 x 2</span><span>
+#&gt;    country       min
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Afghanistan  161.
+#&gt; </span><span style='color: #555555;'> 2</span><span> Albania      168.
+#&gt; </span><span style='color: #555555;'> 3</span><span> Algeria      166.
+#&gt; </span><span style='color: #555555;'> 4</span><span> Argentina    167.
+#&gt; </span><span style='color: #555555;'> 5</span><span> Armenia      164.
+#&gt; </span><span style='color: #555555;'> 6</span><span> Austria      162.
+#&gt; </span><span style='color: #555555;'> 7</span><span> Bahrain      161.
+#&gt; </span><span style='color: #555555;'> 8</span><span> Bangladesh   160.
+#&gt; </span><span style='color: #555555;'> 9</span><span> Belarus      164.
+#&gt; </span><span style='color: #555555;'>10</span><span> Belgium      163.
+#&gt; </span><span style='color: #555555;'># … with 104 more rows</span><span></div><div class='input'>
+<span class='no'>heights</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>height_cm</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>min</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='near_middle.html'>near_middle</a></span>(<span class='no'>min</span>, <span class='fl'>0.5</span>, <span class='fl'>0.1</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 14 x 2</span><span>
+#&gt;    country       min
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> Brazil       164.
+#&gt; </span><span style='color: #555555;'> 2</span><span> Cameroon     164.
+#&gt; </span><span style='color: #555555;'> 3</span><span> Estonia      165.
+#&gt; </span><span style='color: #555555;'> 4</span><span> Gabon        164.
+#&gt; </span><span style='color: #555555;'> 5</span><span> Ghana        164.
+#&gt; </span><span style='color: #555555;'> 6</span><span> Guinea       164.
+#&gt; </span><span style='color: #555555;'> 7</span><span> Kenya        165.
+#&gt; </span><span style='color: #555555;'> 8</span><span> Kyrgyzstan   164.
+#&gt; </span><span style='color: #555555;'> 9</span><span> Latvia       165.
+#&gt; </span><span style='color: #555555;'>10</span><span> Lithuania    165.
+#&gt; </span><span style='color: #555555;'>11</span><span> Netherlands  164.
+#&gt; </span><span style='color: #555555;'>12</span><span> Switzerland  165.
+#&gt; </span><span style='color: #555555;'>13</span><span> Tajikistan   165.
+#&gt; </span><span style='color: #555555;'>14</span><span> Uganda       165.</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
