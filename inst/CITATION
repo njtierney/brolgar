@@ -6,9 +6,8 @@ citEntry(
   author   = "Nicholas J Tierney and Dianne Cook and Tania Prvan",
   journal  = "arXiv",
   year     = "2020",
-  eprint={2012.01619},
-      archivePrefix={arXiv},
-      primaryClass={stat.AP},
+  eprint   = "2012.01619",
+  primaryClass = "stat.AP",
   textVersion = paste(
     "Tierney, N. J., Cook, D., & Prvan, T. (2020). brolgar: An R package to BRowse Over Longitudinal Data Graphically and Analytically in R. In arXiv [stat.AP]. arXiv. http://arxiv.org/abs/2012.01619"
   )
