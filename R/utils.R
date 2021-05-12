@@ -57,8 +57,18 @@ test_if_formula <- function(x){
 classes <- function(x) purrr::map_chr(x, class)
 
 possible_strata <- function(.data, n_strata){
-  sample(rep(seq_len(n_strata),
-             length.out = tsibble::n_keys(.data)))
+  n_keys_data <- tsibble::n_keys(.data)
+  seq_len(n_strata) %>%
+    sample(size = n_keys_data, 
+           replace = TRUE)
+}
+
+full_strata_df <- function(.data, n_strata){
+  possible_strata <- possible_strata(.data, n_strata)
+  tsibble::key_data(.data) %>% 
+    dplyr::mutate(.strata = possible_strata) %>% 
+    tidyr::unnest_longer(col =  c(.rows)) %>% 
+    dplyr::select(-.rows)
 }
 
 full_strata <- function(.data, n_strata){

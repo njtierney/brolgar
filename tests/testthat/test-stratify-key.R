@@ -55,11 +55,18 @@ test_that("The strata are unique within each id", {
   expect_equal(n_strata_and_id, tsibble::n_keys(wages_test))
 })
 
+test_that("possible_strata returns the same length as the number of keys",{
+  how_many_possible_strata <- length(possible_strata(wages_test, 2))
+  expect_equal(how_many_possible_strata, n_keys(wages_test))
+})
+
+
 test_that("The number of groups in each strata equals the number of keys", {
   
   wages_groups <- wages_test %>%
     sample_n_keys(12) %>%
-    stratify_keys(n_strata = 4) %>%
+    select(id) %>% 
+    stratify_keys(n_strata = 4) %>% 
     as_tibble() %>%
     group_by(.strata) %>%
     summarise(n = n_distinct(id)) %>% 
