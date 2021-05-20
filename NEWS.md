@@ -1,3 +1,12 @@
+# brolgar 0.1.0.9000 
+
+## Bug fixes
+
+* Address bug with not creating equal strata
+* Address warnings when using b_diff_summary, which now returns NA if there is 
+only one observation, as we can't take the difference of one observation, and 
+a difference of 0 in these cases would be misleading.
+
 # brolgar 0.1.0 "Antigone rubicunda"
 
 * fix warning bug in `keys_near` related to factors

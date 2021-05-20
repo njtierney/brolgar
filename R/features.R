@@ -12,7 +12,11 @@
 #'   - [feat_spread()]  - variance, standard deviation, median absolute distance,
 #'    and interquartile range
 #'   - [feat_monotonic()] - is it always increasing, decreasing, or unvarying?
-#'   - [feat_diff_summary()] - the summary statistics of the differences amongst a value, including the five number summary, as well as the standard deviation and variance.
+#'   - [feat_diff_summary()] - the summary statistics of the differences 
+#'  amongst a value, including the five number summary, as well as the 
+#'  standard deviation and variance. Returns NA if there is only one 
+#'  observation, as we can't take the difference of one observation, and a 
+#'  difference of 0 in these cases would be misleading.
 #'   
 #'   - [feat_brolgar()]  all features in brolgar.
 #' 

@@ -131,6 +131,9 @@ b_iqr <- function(x, ... ){
 #' @export
 b_diff_var <- function(x, ...){
   x <- stats::na.omit(x)
+  if (length(x) == 1){
+    return(NA)
+  }
   stats::var(diff(x, na.rm = TRUE, ...))
 }
 
@@ -138,6 +141,9 @@ b_diff_var <- function(x, ...){
 #' @export
 b_diff_sd <- function(x, ...){
   x <- stats::na.omit(x)
+  if (length(x) == 1){
+    return(NA)
+  }
   b_sd(diff(x, ...))
 }
 
@@ -145,6 +151,9 @@ b_diff_sd <- function(x, ...){
 #' @export
 b_diff_mean <- function(x, ...){
   x <- stats::na.omit(x)
+  if (length(x) == 1){
+    return(NA)
+  }
   b_mean(diff(x, ...))
 }
 
@@ -152,6 +161,9 @@ b_diff_mean <- function(x, ...){
 #' @export
 b_diff_median <- function(x, ...){
   x <- stats::na.omit(x)
+  if (length(x) == 1){
+    return(NA)
+  }
   b_median(diff(x, ...))
 }
 
@@ -159,6 +171,9 @@ b_diff_median <- function(x, ...){
 #' @export
 b_diff_q25 <- function(x, ...){
   x <- stats::na.omit(x)
+  if (length(x) == 1){
+    return(NA)
+  }
   b_q25(diff(x, ...))
 }
 
@@ -166,6 +181,9 @@ b_diff_q25 <- function(x, ...){
 #' @export
 b_diff_q75 <- function(x, ...){
   x <- stats::na.omit(x)
+  if (length(x) == 1){
+    return(NA)
+  }
   b_q75(diff(x, ...))
 }
 
@@ -173,6 +191,9 @@ b_diff_q75 <- function(x, ...){
 #' @export
 b_diff_max <- function(x, ...){
   x <- stats::na.omit(x)
+  if (length(x) == 1){
+    return(NA)
+  }
   b_max(diff(x, ...))
 }
 
@@ -180,6 +201,11 @@ b_diff_max <- function(x, ...){
 #' @export
 b_diff_min <- function(x, ...){
   x <- stats::na.omit(x)
+  # return early if there is only one thing, as we can't take the difference
+  # of that. And a difference of 0 is misleading.
+  if (length(x) == 1){
+    return(NA)
+  }
   b_min(diff(x, ...))
 }
 
@@ -187,8 +213,12 @@ b_diff_min <- function(x, ...){
 #' @export
 b_diff_iqr <- function(x, ...){
   x <- stats::na.omit(x)
+  if (length(x) == 1){
+    return(NA)
+  }
   b_iqr(diff(x, ...))
 }
 
 #  * `l_n_obs()` Number of observations
 #  * `l_slope()` Slope and intercept (given some linear model formula)
+
