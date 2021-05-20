@@ -79,7 +79,7 @@ https://github.com/ropenscilabs/learningtower." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -194,21 +194,21 @@ done using the student weight variable <code>stu_wgt</code>, to get the survey w
 mean. The minimum and maximum are then calculated.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>pisa</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 433 x 11</span><span>
+    <pre class="examples"><div class='input'><span class='no'>pisa</span></div><div class='output co'>#&gt; # A tibble: 433 x 11
 #&gt;    country  year math_mean math_min math_max read_mean read_min read_max
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>000      395.     27.4     722.      354.  59.7        640.
-#&gt; </span><span style='color: #555555;'> 2</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>009      377.     79.6     706.      385.  17.0        662.
-#&gt; </span><span style='color: #555555;'> 3</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>012      395.     62.4     688.      394.   0.083</span><span style='text-decoration: underline;'>4</span><span>     742.
-#&gt; </span><span style='color: #555555;'> 4</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>015      412.    122.      711.      405.  93.6        825.
-#&gt; </span><span style='color: #555555;'> 5</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>018      437.     96.5     789.      405. 152.         693.
-#&gt; </span><span style='color: #555555;'> 6</span><span> ARE      </span><span style='text-decoration: underline;'>2</span><span>009      421.     57.8     768.      431.  48.1        772.
-#&gt; </span><span style='color: #555555;'> 7</span><span> ARE      </span><span style='text-decoration: underline;'>2</span><span>012      434.    138.      862.      442.  75.5        785.
-#&gt; </span><span style='color: #555555;'> 8</span><span> ARE      </span><span style='text-decoration: underline;'>2</span><span>015      427.     91.8     793.      432.  54.4        827.
-#&gt; </span><span style='color: #555555;'> 9</span><span> ARE      </span><span style='text-decoration: underline;'>2</span><span>018      437.     87.6     865.      431.  84.0        814.
-#&gt; </span><span style='color: #555555;'>10</span><span> ARG      </span><span style='text-decoration: underline;'>2</span><span>000      385.     16.0     675.      417.  84.2        761.
-#&gt; </span><span style='color: #555555;'># … with 423 more rows, and 3 more variables: science_mean </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   science_min </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, science_max </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+#&gt;    &lt;fct&gt;   &lt;int&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+#&gt;  1 ALB      2000      395.     27.4     722.      354.  59.7        640.
+#&gt;  2 ALB      2009      377.     79.6     706.      385.  17.0        662.
+#&gt;  3 ALB      2012      395.     62.4     688.      394.   0.0834     742.
+#&gt;  4 ALB      2015      412.    122.      711.      405.  93.6        825.
+#&gt;  5 ALB      2018      437.     96.5     789.      405. 152.         693.
+#&gt;  6 ARE      2009      421.     57.8     768.      431.  48.1        772.
+#&gt;  7 ARE      2012      434.    138.      862.      442.  75.5        785.
+#&gt;  8 ARE      2015      427.     91.8     793.      432.  54.4        827.
+#&gt;  9 ARE      2018      437.     87.6     865.      431.  84.0        814.
+#&gt; 10 ARG      2000      385.     16.0     675.      417.  84.2        761.
+#&gt; # … with 423 more rows, and 3 more variables: science_mean &lt;dbl&gt;,
+#&gt; #   science_min &lt;dbl&gt;, science_max &lt;dbl&gt;</div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='co'># Let's identify</span>
 
@@ -223,22 +223,22 @@ mean. The minimum and maximum are then calculated.</p>
 
 <span class='fu'><a href='https://tsibble.tidyverts.org/reference/as-tsibble.html'>as_tsibble</a></span>(<span class='no'>pisa</span>,
            <span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>country</span>,
-           <span class='kw'>index</span> <span class='kw'>=</span> <span class='no'>year</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tsibble: 433 x 11 [3Y]</span><span>
-#&gt; </span><span style='color: #555555;'># Key:       country [100]</span><span>
+           <span class='kw'>index</span> <span class='kw'>=</span> <span class='no'>year</span>)</div><div class='output co'>#&gt; # A tsibble: 433 x 11 [3Y]
+#&gt; # Key:       country [100]
 #&gt;    country  year math_mean math_min math_max read_mean read_min read_max
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>000      395.     27.4     722.      354.  59.7        640.
-#&gt; </span><span style='color: #555555;'> 2</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>009      377.     79.6     706.      385.  17.0        662.
-#&gt; </span><span style='color: #555555;'> 3</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>012      395.     62.4     688.      394.   0.083</span><span style='text-decoration: underline;'>4</span><span>     742.
-#&gt; </span><span style='color: #555555;'> 4</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>015      412.    122.      711.      405.  93.6        825.
-#&gt; </span><span style='color: #555555;'> 5</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>018      437.     96.5     789.      405. 152.         693.
-#&gt; </span><span style='color: #555555;'> 6</span><span> ARE      </span><span style='text-decoration: underline;'>2</span><span>009      421.     57.8     768.      431.  48.1        772.
-#&gt; </span><span style='color: #555555;'> 7</span><span> ARE      </span><span style='text-decoration: underline;'>2</span><span>012      434.    138.      862.      442.  75.5        785.
-#&gt; </span><span style='color: #555555;'> 8</span><span> ARE      </span><span style='text-decoration: underline;'>2</span><span>015      427.     91.8     793.      432.  54.4        827.
-#&gt; </span><span style='color: #555555;'> 9</span><span> ARE      </span><span style='text-decoration: underline;'>2</span><span>018      437.     87.6     865.      431.  84.0        814.
-#&gt; </span><span style='color: #555555;'>10</span><span> ARG      </span><span style='text-decoration: underline;'>2</span><span>000      385.     16.0     675.      417.  84.2        761.
-#&gt; </span><span style='color: #555555;'># … with 423 more rows, and 3 more variables: science_mean </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   science_min </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, science_max </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+#&gt;    &lt;fct&gt;   &lt;int&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+#&gt;  1 ALB      2000      395.     27.4     722.      354.  59.7        640.
+#&gt;  2 ALB      2009      377.     79.6     706.      385.  17.0        662.
+#&gt;  3 ALB      2012      395.     62.4     688.      394.   0.0834     742.
+#&gt;  4 ALB      2015      412.    122.      711.      405.  93.6        825.
+#&gt;  5 ALB      2018      437.     96.5     789.      405. 152.         693.
+#&gt;  6 ARE      2009      421.     57.8     768.      431.  48.1        772.
+#&gt;  7 ARE      2012      434.    138.      862.      442.  75.5        785.
+#&gt;  8 ARE      2015      427.     91.8     793.      432.  54.4        827.
+#&gt;  9 ARE      2018      437.     87.6     865.      431.  84.0        814.
+#&gt; 10 ARG      2000      385.     16.0     675.      417.  84.2        761.
+#&gt; # … with 423 more rows, and 3 more variables: science_mean &lt;dbl&gt;,
+#&gt; #   science_min &lt;dbl&gt;, science_max &lt;dbl&gt;</div><div class='input'>
 <span class='co'># We can assess the regularity of the year like so:</span>
 
 <span class='fu'><a href='index_summary.html'>index_regular</a></span>(<span class='no'>pisa</span>, <span class='no'>year</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='index_summary.html'>index_summary</a></span>(<span class='no'>pisa</span>, <span class='no'>year</span>)</div><div class='output co'>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -250,22 +250,22 @@ mean. The minimum and maximum are then calculated.</p>
            <span class='kw'>index</span> <span class='kw'>=</span> <span class='no'>year</span>,
            <span class='kw'>regular</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='no'>pisa_ts</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tsibble: 433 x 11 [3Y]</span><span>
-#&gt; </span><span style='color: #555555;'># Key:       country [100]</span><span>
+<span class='no'>pisa_ts</span></div><div class='output co'>#&gt; # A tsibble: 433 x 11 [3Y]
+#&gt; # Key:       country [100]
 #&gt;    country  year math_mean math_min math_max read_mean read_min read_max
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>000      395.     27.4     722.      354.  59.7        640.
-#&gt; </span><span style='color: #555555;'> 2</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>009      377.     79.6     706.      385.  17.0        662.
-#&gt; </span><span style='color: #555555;'> 3</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>012      395.     62.4     688.      394.   0.083</span><span style='text-decoration: underline;'>4</span><span>     742.
-#&gt; </span><span style='color: #555555;'> 4</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>015      412.    122.      711.      405.  93.6        825.
-#&gt; </span><span style='color: #555555;'> 5</span><span> ALB      </span><span style='text-decoration: underline;'>2</span><span>018      437.     96.5     789.      405. 152.         693.
-#&gt; </span><span style='color: #555555;'> 6</span><span> ARE      </span><span style='text-decoration: underline;'>2</span><span>009      421.     57.8     768.      431.  48.1        772.
-#&gt; </span><span style='color: #555555;'> 7</span><span> ARE      </span><span style='text-decoration: underline;'>2</span><span>012      434.    138.      862.      442.  75.5        785.
-#&gt; </span><span style='color: #555555;'> 8</span><span> ARE      </span><span style='text-decoration: underline;'>2</span><span>015      427.     91.8     793.      432.  54.4        827.
-#&gt; </span><span style='color: #555555;'> 9</span><span> ARE      </span><span style='text-decoration: underline;'>2</span><span>018      437.     87.6     865.      431.  84.0        814.
-#&gt; </span><span style='color: #555555;'>10</span><span> ARG      </span><span style='text-decoration: underline;'>2</span><span>000      385.     16.0     675.      417.  84.2        761.
-#&gt; </span><span style='color: #555555;'># … with 423 more rows, and 3 more variables: science_mean </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   science_min </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, science_max </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'><span class='no'>pisa_ts_au_nz</span> <span class='kw'>&lt;-</span> <span class='no'>pisa_ts</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>country</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AUS"</span>, <span class='st'>"NZL"</span>, <span class='st'>"QAT"</span>))
+#&gt;    &lt;fct&gt;   &lt;int&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+#&gt;  1 ALB      2000      395.     27.4     722.      354.  59.7        640.
+#&gt;  2 ALB      2009      377.     79.6     706.      385.  17.0        662.
+#&gt;  3 ALB      2012      395.     62.4     688.      394.   0.0834     742.
+#&gt;  4 ALB      2015      412.    122.      711.      405.  93.6        825.
+#&gt;  5 ALB      2018      437.     96.5     789.      405. 152.         693.
+#&gt;  6 ARE      2009      421.     57.8     768.      431.  48.1        772.
+#&gt;  7 ARE      2012      434.    138.      862.      442.  75.5        785.
+#&gt;  8 ARE      2015      427.     91.8     793.      432.  54.4        827.
+#&gt;  9 ARE      2018      437.     87.6     865.      431.  84.0        814.
+#&gt; 10 ARG      2000      385.     16.0     675.      417.  84.2        761.
+#&gt; # … with 423 more rows, and 3 more variables: science_mean &lt;dbl&gt;,
+#&gt; #   science_min &lt;dbl&gt;, science_max &lt;dbl&gt;</div><div class='input'><span class='no'>pisa_ts_au_nz</span> <span class='kw'>&lt;-</span> <span class='no'>pisa_ts</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>country</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AUS"</span>, <span class='st'>"NZL"</span>, <span class='st'>"QAT"</span>))
 
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>pisa_ts_au_nz</span>,
@@ -279,7 +279,7 @@ mean. The minimum and maximum are then calculated.</p>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1</span>) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/lims.html'>lims</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1000</span>)) +
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"math"</span>) +
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(~<span class='no'>country</span>)</div><div class='img'><img src='pisa-1.png' alt='' width='700' height='433' /></div></span></pre>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(~<span class='no'>country</span>)</div><div class='img'><img src='pisa-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

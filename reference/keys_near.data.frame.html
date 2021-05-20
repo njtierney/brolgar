@@ -75,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -192,15 +192,15 @@ as given by <code>funs</code>.</p></td>
     <pre class="examples"><div class='input'><span class='no'>heights</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='key_slope.html'>key_slope</a></span>(<span class='no'>height_cm</span> ~ <span class='no'>year</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='keys_near.html'>keys_near</a></span>(<span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>country</span>,
-            <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>.slope_year</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 5</span><span>
+            <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>.slope_year</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 5
 #&gt;   country    .slope_year stat  stat_value stat_diff
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Austria         0.069</span><span style='text-decoration: underline;'>5</span><span> q_75      0.069</span><span style='text-decoration: underline;'>0</span><span>  0.000</span><span style='text-decoration: underline;'>515</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span> Burundi         0.321  max       0.321   0       
-#&gt; </span><span style='color: #555555;'>3</span><span> Eritrea        -</span><span style='color: #BB0000;'>0.102</span><span>  min      -</span><span style='color: #BB0000;'>0.102</span><span>   0       
-#&gt; </span><span style='color: #555555;'>4</span><span> Mali            0.040</span><span style='text-decoration: underline;'>1</span><span> med       0.040</span><span style='text-decoration: underline;'>3</span><span>  0.000</span><span style='text-decoration: underline;'>120</span><span>
-#&gt; </span><span style='color: #555555;'>5</span><span> Spain           0.040</span><span style='text-decoration: underline;'>4</span><span> med       0.040</span><span style='text-decoration: underline;'>3</span><span>  0.000</span><span style='text-decoration: underline;'>120</span><span>
-#&gt; </span><span style='color: #555555;'>6</span><span> Tajikistan      0.019</span><span style='text-decoration: underline;'>9</span><span> q_25      0.020</span><span style='text-decoration: underline;'>5</span><span>  0.000</span><span style='text-decoration: underline;'>632</span><span></div><div class='input'><span class='co'># Specify your own list of summaries</span>
+#&gt;   &lt;chr&gt;            &lt;dbl&gt; &lt;fct&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+#&gt; 1 Austria         0.0695 q_75      0.0690  0.000515
+#&gt; 2 Burundi         0.321  max       0.321   0       
+#&gt; 3 Eritrea        -0.102  min      -0.102   0       
+#&gt; 4 Mali            0.0401 med       0.0403  0.000120
+#&gt; 5 Spain           0.0404 med       0.0403  0.000120
+#&gt; 6 Tajikistan      0.0199 q_25      0.0205  0.000632</div><div class='input'><span class='co'># Specify your own list of summaries</span>
 <span class='no'>l_ranges</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>min</span> <span class='kw'>=</span> <span class='no'>b_min</span>,
                  <span class='kw'>range_diff</span> <span class='kw'>=</span> <span class='no'>b_range_diff</span>,
                  <span class='kw'>max</span> <span class='kw'>=</span> <span class='no'>b_max</span>,
@@ -210,13 +210,13 @@ as given by <code>funs</code>.</p></td>
   <span class='fu'><a href='key_slope.html'>key_slope</a></span>(<span class='kw'>formula</span> <span class='kw'>=</span> <span class='no'>height_cm</span> ~ <span class='no'>year</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='keys_near.html'>keys_near</a></span>(<span class='kw'>key</span> <span class='kw'>=</span> <span class='no'>country</span>,
               <span class='kw'>var</span> <span class='kw'>=</span> <span class='no'>.slope_year</span>,
-              <span class='kw'>funs</span> <span class='kw'>=</span> <span class='no'>l_ranges</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 4 x 5</span><span>
+              <span class='kw'>funs</span> <span class='kw'>=</span> <span class='no'>l_ranges</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 5
 #&gt;   country     .slope_year stat       stat_value stat_diff
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Burundi          0.321  range_diff     0.424    0.102  
-#&gt; </span><span style='color: #555555;'>2</span><span> Burundi          0.321  max            0.321    0      
-#&gt; </span><span style='color: #555555;'>3</span><span> Eritrea         -</span><span style='color: #BB0000;'>0.102</span><span>  min           -</span><span style='color: #BB0000;'>0.102</span><span>    0      
-#&gt; </span><span style='color: #555555;'>4</span><span> Switzerland      0.049</span><span style='text-decoration: underline;'>6</span><span> iqr            0.048</span><span style='text-decoration: underline;'>5</span><span>   0.001</span><span style='text-decoration: underline;'>16</span><span></div></span></pre>
+#&gt;   &lt;chr&gt;             &lt;dbl&gt; &lt;fct&gt;           &lt;dbl&gt;     &lt;dbl&gt;
+#&gt; 1 Burundi          0.321  range_diff     0.424    0.102  
+#&gt; 2 Burundi          0.321  max            0.321    0      
+#&gt; 3 Eritrea         -0.102  min           -0.102    0      
+#&gt; 4 Switzerland      0.0496 iqr            0.0485   0.00116</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

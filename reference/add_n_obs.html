@@ -76,7 +76,7 @@ we are counting the number observations for each keys in the data." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -184,26 +184,26 @@ we are counting the number observations for each keys in the data.</p>
  <span class='co'># observations:</span>
 <span class='no'>heights</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>add_n_obs</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>n_obs</span> <span class='kw'>==</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tsibble: 16 x 5 [!]</span><span>
-#&gt; </span><span style='color: #555555;'># Key:       country [8]</span><span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>n_obs</span> <span class='kw'>==</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; # A tsibble: 16 x 5 [!]
+#&gt; # Key:       country [8]
 #&gt;    country              year n_obs continent height_cm
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Botswana             </span><span style='text-decoration: underline;'>1</span><span>910     2 Africa         165.
-#&gt; </span><span style='color: #555555;'> 2</span><span> Botswana             </span><span style='text-decoration: underline;'>1</span><span>980     2 Africa         167.
-#&gt; </span><span style='color: #555555;'> 3</span><span> Burundi              </span><span style='text-decoration: underline;'>1</span><span>920     2 Africa         166.
-#&gt; </span><span style='color: #555555;'> 4</span><span> Burundi              </span><span style='text-decoration: underline;'>1</span><span>930     2 Africa         169.
-#&gt; </span><span style='color: #555555;'> 5</span><span> Costa Rica           </span><span style='text-decoration: underline;'>1</span><span>940     2 Americas       166.
-#&gt; </span><span style='color: #555555;'> 6</span><span> Costa Rica           </span><span style='text-decoration: underline;'>1</span><span>980     2 Americas       174.
-#&gt; </span><span style='color: #555555;'> 7</span><span> El Salvador          </span><span style='text-decoration: underline;'>1</span><span>990     2 Americas       169.
-#&gt; </span><span style='color: #555555;'> 8</span><span> El Salvador          </span><span style='text-decoration: underline;'>2</span><span>000     2 Americas       171.
-#&gt; </span><span style='color: #555555;'> 9</span><span> Libya                </span><span style='text-decoration: underline;'>1</span><span>890     2 Africa         166.
-#&gt; </span><span style='color: #555555;'>10</span><span> Libya                </span><span style='text-decoration: underline;'>1</span><span>920     2 Africa         165.
-#&gt; </span><span style='color: #555555;'>11</span><span> Mongolia             </span><span style='text-decoration: underline;'>1</span><span>910     2 Asia           163.
-#&gt; </span><span style='color: #555555;'>12</span><span> Mongolia             </span><span style='text-decoration: underline;'>1</span><span>930     2 Asia           165.
-#&gt; </span><span style='color: #555555;'>13</span><span> Singapore            </span><span style='text-decoration: underline;'>1</span><span>970     2 Asia           172.
-#&gt; </span><span style='color: #555555;'>14</span><span> Singapore            </span><span style='text-decoration: underline;'>2</span><span>000     2 Asia           175.
-#&gt; </span><span style='color: #555555;'>15</span><span> Trinidad and Tobago  </span><span style='text-decoration: underline;'>1</span><span>980     2 Americas       174.
-#&gt; </span><span style='color: #555555;'>16</span><span> Trinidad and Tobago  </span><span style='text-decoration: underline;'>2</span><span>000     2 Americas       174.</div></span></pre>
+#&gt;    &lt;chr&gt;               &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;         &lt;dbl&gt;
+#&gt;  1 Botswana             1910     2 Africa         165.
+#&gt;  2 Botswana             1980     2 Africa         167.
+#&gt;  3 Burundi              1920     2 Africa         166.
+#&gt;  4 Burundi              1930     2 Africa         169.
+#&gt;  5 Costa Rica           1940     2 Americas       166.
+#&gt;  6 Costa Rica           1980     2 Americas       174.
+#&gt;  7 El Salvador          1990     2 Americas       169.
+#&gt;  8 El Salvador          2000     2 Americas       171.
+#&gt;  9 Libya                1890     2 Africa         166.
+#&gt; 10 Libya                1920     2 Africa         165.
+#&gt; 11 Mongolia             1910     2 Asia           163.
+#&gt; 12 Mongolia             1930     2 Asia           165.
+#&gt; 13 Singapore            1970     2 Asia           172.
+#&gt; 14 Singapore            2000     2 Asia           175.
+#&gt; 15 Trinidad and Tobago  1980     2 Americas       174.
+#&gt; 16 Trinidad and Tobago  2000     2 Americas       174.</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

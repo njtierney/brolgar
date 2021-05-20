@@ -53,7 +53,11 @@ feat_ranges() - min, max, range difference, interquartile range.
 feat_spread()  - variance, standard deviation, median absolute distance,
 and interquartile range
 feat_monotonic() - is it always increasing, decreasing, or unvarying?
-feat_diff_summary() - the summary statistics of the differences amongst a value, including the five number summary, as well as the standard deviation and variance.
+feat_diff_summary() - the summary statistics of the differences
+amongst a value, including the five number summary, as well as the
+standard deviation and variance. Returns NA if there is only one
+observation, as we can't take the difference of one observation, and a
+difference of 0 in these cases would be misleading.
 feat_brolgar()  all features in brolgar.
 
 " />
@@ -89,7 +93,7 @@ feat_brolgar()  all features in brolgar.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -175,7 +179,11 @@ Other available features in <code>brolgar</code> include:</p><ul>
 <li><p><code>feat_spread()</code>  - variance, standard deviation, median absolute distance,
 and interquartile range</p></li>
 <li><p><code>feat_monotonic()</code> - is it always increasing, decreasing, or unvarying?</p></li>
-<li><p><code>feat_diff_summary()</code> - the summary statistics of the differences amongst a value, including the five number summary, as well as the standard deviation and variance.</p></li>
+<li><p><code>feat_diff_summary()</code> - the summary statistics of the differences
+amongst a value, including the five number summary, as well as the
+standard deviation and variance. Returns NA if there is only one
+observation, as we can't take the difference of one observation, and a
+difference of 0 in these cases would be misleading.</p></li>
 <li><p><code>feat_brolgar()</code>  all features in brolgar.</p></li>
 </ul>
 
@@ -215,20 +223,20 @@ and interquartile range</p></li>
 <span class='co'># like so:</span>
 <span class='no'>heights</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>height_cm</span>, <span class='co'># variable you want to explore</span>
-           <span class='no'>feat_three_num</span>) <span class='co'># the feature summarisation you want to perform</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 144 x 4</span><span>
+           <span class='no'>feat_three_num</span>) <span class='co'># the feature summarisation you want to perform</span></div><div class='output co'>#&gt; # A tibble: 144 x 4
 #&gt;    country       min   med   max
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Afghanistan  161.  167.  168.
-#&gt; </span><span style='color: #555555;'> 2</span><span> Albania      168.  170.  170.
-#&gt; </span><span style='color: #555555;'> 3</span><span> Algeria      166.  169   171.
-#&gt; </span><span style='color: #555555;'> 4</span><span> Angola       159.  167.  169.
-#&gt; </span><span style='color: #555555;'> 5</span><span> Argentina    167.  168.  174.
-#&gt; </span><span style='color: #555555;'> 6</span><span> Armenia      164.  169.  172.
-#&gt; </span><span style='color: #555555;'> 7</span><span> Australia    170   172.  178.
-#&gt; </span><span style='color: #555555;'> 8</span><span> Austria      162.  167.  179.
-#&gt; </span><span style='color: #555555;'> 9</span><span> Azerbaijan   170.  172.  172.
-#&gt; </span><span style='color: #555555;'>10</span><span> Bahrain      161.  164.  164 
-#&gt; </span><span style='color: #555555;'># … with 134 more rows</span><span></div></span></pre>
+#&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1 Afghanistan  161.  167.  168.
+#&gt;  2 Albania      168.  170.  170.
+#&gt;  3 Algeria      166.  169   171.
+#&gt;  4 Angola       159.  167.  169.
+#&gt;  5 Argentina    167.  168.  174.
+#&gt;  6 Armenia      164.  169.  172.
+#&gt;  7 Australia    170   172.  178.
+#&gt;  8 Austria      162.  167.  179.
+#&gt;  9 Azerbaijan   170.  172.  172.
+#&gt; 10 Bahrain      161.  164.  164 
+#&gt; # … with 134 more rows</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

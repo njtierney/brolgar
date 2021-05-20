@@ -76,7 +76,7 @@ vctrs::vec_size() under the hood." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">brolgar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -182,35 +182,35 @@ so - <code><a href='https://fabletools.tidyverts.org/reference/features.html'>fe
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>n_obs</span>(<span class='no'>iris</span>)</div><div class='output co'>#&gt; n_obs 
 #&gt;   150 </div><div class='input'><span class='fu'>n_obs</span>(<span class='fl'>1</span>:<span class='fl'>10</span>)</div><div class='output co'>#&gt; n_obs 
-#&gt;    10 </div><div class='input'><span class='fu'><a href='add_n_obs.html'>add_n_obs</a></span>(<span class='no'>heights</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tsibble: 1,490 x 5 [!]</span><span>
-#&gt; </span><span style='color: #555555;'># Key:       country [144]</span><span>
+#&gt;    10 </div><div class='input'><span class='fu'><a href='add_n_obs.html'>add_n_obs</a></span>(<span class='no'>heights</span>)</div><div class='output co'>#&gt; # A tsibble: 1,490 x 5 [!]
+#&gt; # Key:       country [144]
 #&gt;    country      year n_obs continent height_cm
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>870     5 Asia           168.
-#&gt; </span><span style='color: #555555;'> 2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>880     5 Asia           166.
-#&gt; </span><span style='color: #555555;'> 3</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>930     5 Asia           167.
-#&gt; </span><span style='color: #555555;'> 4</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>990     5 Asia           167.
-#&gt; </span><span style='color: #555555;'> 5</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000     5 Asia           161.
-#&gt; </span><span style='color: #555555;'> 6</span><span> Albania      </span><span style='text-decoration: underline;'>1</span><span>880     4 Europe         170.
-#&gt; </span><span style='color: #555555;'> 7</span><span> Albania      </span><span style='text-decoration: underline;'>1</span><span>890     4 Europe         170.
-#&gt; </span><span style='color: #555555;'> 8</span><span> Albania      </span><span style='text-decoration: underline;'>1</span><span>900     4 Europe         169.
-#&gt; </span><span style='color: #555555;'> 9</span><span> Albania      </span><span style='text-decoration: underline;'>2</span><span>000     4 Europe         168.
-#&gt; </span><span style='color: #555555;'>10</span><span> Algeria      </span><span style='text-decoration: underline;'>1</span><span>910     5 Africa         169.
-#&gt; </span><span style='color: #555555;'># … with 1,480 more rows</span><span></div><div class='input'><span class='no'>heights</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>height_cm</span>, <span class='no'>n_obs</span>) <span class='co'># can be any variable except id, the key.</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 144 x 2</span><span>
+#&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;         &lt;dbl&gt;
+#&gt;  1 Afghanistan  1870     5 Asia           168.
+#&gt;  2 Afghanistan  1880     5 Asia           166.
+#&gt;  3 Afghanistan  1930     5 Asia           167.
+#&gt;  4 Afghanistan  1990     5 Asia           167.
+#&gt;  5 Afghanistan  2000     5 Asia           161.
+#&gt;  6 Albania      1880     4 Europe         170.
+#&gt;  7 Albania      1890     4 Europe         170.
+#&gt;  8 Albania      1900     4 Europe         169.
+#&gt;  9 Albania      2000     4 Europe         168.
+#&gt; 10 Algeria      1910     5 Africa         169.
+#&gt; # … with 1,480 more rows</div><div class='input'><span class='no'>heights</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://fabletools.tidyverts.org/reference/features.html'>features</a></span>(<span class='no'>height_cm</span>, <span class='no'>n_obs</span>) <span class='co'># can be any variable except id, the key.</span></div><div class='output co'>#&gt; # A tibble: 144 x 2
 #&gt;    country     n_obs
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Afghanistan     5
-#&gt; </span><span style='color: #555555;'> 2</span><span> Albania         4
-#&gt; </span><span style='color: #555555;'> 3</span><span> Algeria         5
-#&gt; </span><span style='color: #555555;'> 4</span><span> Angola          9
-#&gt; </span><span style='color: #555555;'> 5</span><span> Argentina      20
-#&gt; </span><span style='color: #555555;'> 6</span><span> Armenia        11
-#&gt; </span><span style='color: #555555;'> 7</span><span> Australia      10
-#&gt; </span><span style='color: #555555;'> 8</span><span> Austria        18
-#&gt; </span><span style='color: #555555;'> 9</span><span> Azerbaijan      7
-#&gt; </span><span style='color: #555555;'>10</span><span> Bahrain         3
-#&gt; </span><span style='color: #555555;'># … with 134 more rows</span><span></div></span></pre>
+#&gt;    &lt;chr&gt;       &lt;int&gt;
+#&gt;  1 Afghanistan     5
+#&gt;  2 Albania         4
+#&gt;  3 Algeria         5
+#&gt;  4 Angola          9
+#&gt;  5 Argentina      20
+#&gt;  6 Armenia        11
+#&gt;  7 Australia      10
+#&gt;  8 Austria        18
+#&gt;  9 Azerbaijan      7
+#&gt; 10 Bahrain         3
+#&gt; # … with 134 more rows</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
