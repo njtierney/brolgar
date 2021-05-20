@@ -58,9 +58,10 @@ classes <- function(x) purrr::map_chr(x, class)
 
 possible_strata <- function(.data, n_strata){
   n_keys_data <- tsibble::n_keys(.data)
+    # Ensures the strata are evenly distributed amongst keys 
   seq_len(n_strata) %>%
-    sample(size = n_keys_data, 
-           replace = TRUE)
+    rep(length.out = n_keys_data) %>% 
+    sample()
 }
 
 full_strata_df <- function(.data, n_strata){
