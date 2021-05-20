@@ -77,11 +77,13 @@ stratify_keys.tbl_ts <- function(.data,
   # perhaps that is the difference btn strata and stratify
   # strata returns a vector, stratify adds this to the data?
     
-    full_strata <- full_strata_df(.data, n_strata)
+    id_w_strata <- full_strata_df(.data, n_strata)
     
-    data_strata <- .data %>%
-      right_join(by = key_vars(.data))
-    # .strata = stratify(n_strata)
+    only_strata <- dplyr::distinct(id_w_strata)
+    
+    data_strata <- dplyr::left_join(.data,
+                                    only_strata,
+                                    by = keys_chr)
     
     return(data_strata)
   } 
