@@ -52,6 +52,7 @@ Imports:
     tsibble (>= 0.8.2),
     vctrs
 Suggests: 
+    markdown,
     covr,
     gapminder,
     gghighlight (>= 0.1.0),
