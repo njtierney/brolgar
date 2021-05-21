@@ -1,4 +1,4 @@
-# brolgar 0.1.1
+# brolgar 0.1.1 "Formerly known as the 'native companion'"
 
 ## Bug fixes
 
