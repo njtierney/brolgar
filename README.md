@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![R build
 status](https://github.com/njtierney/brolgar/workflows/R-CMD-check/badge.svg)](https://github.com/njtierney/brolgar)
 [![Codecov test
