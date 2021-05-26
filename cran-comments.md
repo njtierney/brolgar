@@ -1,6 +1,9 @@
 ## Test environments
 * local R installation, R 4.0.5 (MacOS)
-* GitHub Actions, R 4.1.0
+* GitHub Actions: Windows, R 4.1.0
+* GitHub Actions: MacOS, R 4.1.0
+* GitHub Actions: Ubuntu-20.04, R 4.1.0
+* GitHub Actions: Ubuntu-20.04, R (devel)
 * win-builder (devel)
 
 ## R CMD check results
@@ -19,7 +22,7 @@
     corrected in time.
   Problem first reported was with ATLAS, 2 FAIL in "test-keys-near.R".
 
-I was away on leave this year, and during this time my package was archived. I no longer have the errors failing on "test-keys-near.R", although I'm not sure if ATLAS is a special system or option/flag I need to trigger.
+I was away on leave this year, and during this time my package was archived. The issue with ATLAS was in tests on "test-keys-near.R". These functions were examined and a bug was sending off many many warnings due to taking min or max of `numeric(0)`. This has now been resolved/
 
 There were also some spelling mistakes flagged for the words, "Prvan", 
 "Tierney", and "brolgar". The first two words are the last names of co-authors
