@@ -11,7 +11,7 @@ test_that("longnostic returns the right names", {
 })
 
 test_that("longnostic returns a tbl_df", {
-  expect_is(df_n_obs, class = c("tbl"))
+  expect_s3_class(df_n_obs, class = c("tbl"))
 })
 
 test_that("longnostic returns correct classes", {

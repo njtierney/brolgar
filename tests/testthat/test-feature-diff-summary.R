@@ -1,5 +1,3 @@
-context("feature diff summary")
-
 heights_diff_summary <- heights %>%
   features(year, feat_diff_summary)
 

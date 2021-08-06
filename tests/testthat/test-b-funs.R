@@ -1,5 +1,3 @@
-context("b summaries")
-
 vec <- c(1:5, NA, 5:1)
 
 test_that("b functions return non NA value", {

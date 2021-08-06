@@ -1,10 +1,9 @@
-context("test-stratify-key")
-
 wages_test <- sample_frac_keys(wages, size = 0.10)
 
 wages_strat <- stratify_keys(wages_test, n_strata = 10)
 
 library(tsibble)
+library(dplyr)
 wages_strat_along <-  wages_test %>%
   stratify_keys(n_strata = 10,
                 along = unemploy_rate,
@@ -29,8 +28,8 @@ test_that(".strata is added to the dataframe",{
 })
 
 test_that("is a tsibble", {
-  expect_is(wages_strat, class = "tbl_ts")
-  expect_is(wages_strat_along, class = "tbl_ts")
+  expect_s3_class(wages_strat, class = "tbl_ts")
+  expect_s3_class(wages_strat_along, class = "tbl_ts")
 })
 
 wages_strat_along_sum <- wages_strat_along %>%

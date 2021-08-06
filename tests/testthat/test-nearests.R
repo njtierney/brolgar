@@ -19,7 +19,7 @@ wages_feat_near_btn <- wages_feat %>%
                       to = 0.6))
 
 test_that("`near_between()` works on a data.frame",{
-  expect_is(wages_feat_near_btn, "data.frame")
+  expect_s3_class(wages_feat_near_btn, "data.frame")
   expect_lte(nrow(wages_feat_near_btn), nrow(wages_feat))
   expect_equal(ncol(wages_feat_near_btn), ncol(wages_feat))
 })
@@ -37,7 +37,7 @@ wages_feat_near_middle <- wages_feat %>%
                      within = 0.2))
 
 test_that("`near_middle()` works on a data.frame", {
-  expect_is(wages_feat_near_middle, "data.frame")
+  expect_s3_class(wages_feat_near_middle, "data.frame")
   expect_lte(nrow(wages_feat_near_middle), nrow(wages_feat))
   expect_equal(ncol(wages_feat_near_middle), ncol(wages_feat))
 })
@@ -75,8 +75,8 @@ wages_q2 <- wages %>%
   )) 
 
 test_that("`near_quantile()` works on a data.frame", {
-  expect_is(wages_q1, "data.frame")
-  expect_is(wages_q2, "data.frame")
+  expect_s3_class(wages_q1, "data.frame")
+  expect_s3_class(wages_q2, "data.frame")
   expect_lte(nrow(wages_q1), nrow(wages_feat))
   expect_lte(nrow(wages_q2), nrow(wages_feat))
   expect_equal(ncol(wages_q1), ncol(wages_feat))
@@ -107,8 +107,8 @@ wages_near_fivenum <- wages %>%
   filter(nearest_lgl(fivenum(ln_wages), ln_wages))
 
 test_that("`nearest_lgl()` works for data.frames", {
-  expect_is(wages_near_min, "data.frame")
-  expect_is(wages_near_fivenum, "data.frame")
+  expect_s3_class(wages_near_min, "data.frame")
+  expect_s3_class(wages_near_fivenum, "data.frame")
   expect_lte(nrow(wages_near_min), nrow(wages))
   expect_lte(nrow(wages_near_fivenum), nrow(wages))
   expect_equal(ncol(wages_near_min), ncol(wages))
@@ -147,8 +147,8 @@ wages_near_qt_3 <- wages %>%
   filter(nearest_qt_lgl(ln_wages, c(0.1, 0.5, 0.9)))
 
 test_that("`nearest_qt_lgl()` works for data.frames", {
-  expect_is(wages_near_qt_1, "data.frame")
-  expect_is(wages_near_qt_3, "data.frame")
+  expect_s3_class(wages_near_qt_1, "data.frame")
+  expect_s3_class(wages_near_qt_3, "data.frame")
   expect_lte(nrow(wages_near_qt_1), nrow(wages))
   expect_lte(nrow(wages_near_qt_3), nrow(wages))
   expect_equal(ncol(wages_near_qt_1), ncol(wages))

@@ -1,4 +1,3 @@
-context("test-add-longnostic")
 library(dplyr)
 
 # function to use inside testthat
@@ -22,9 +21,9 @@ df_add_key_slope_multi <- add_key_slope(wages_test, ln_wages ~ xp + ged)
 updated_dim <- c(nrow(wages_test), ncol(wages_test) + 1)
 
 test_that("add_* funs return a tsibble", {
-  expect_is(df_add_n_obs, class = c("tbl_ts"))
-  expect_is(df_add_key_slope, class = c("tbl_ts"))
-  expect_is(df_add_key_slope_multi, class = c("tbl_ts"))
+  expect_s3_class(df_add_n_obs, class = c("tbl_ts"))
+  expect_s3_class(df_add_key_slope, class = c("tbl_ts"))
+  expect_s3_class(df_add_key_slope_multi, class = c("tbl_ts"))
 })
 
 
@@ -57,10 +56,10 @@ test_that("longnostic returns the right names", {
 })
 
 test_that("longnostic returns a tibble", {
-  expect_is(df_add_l_mean_1, class = c("tbl"))
-  expect_is(df_add_n_obs, class = c("tbl"))
-  expect_is(df_add_key_slope, class = c("tbl"))
-  expect_is(df_add_key_slope_multi, class = c("tbl"))
+  expect_s3_class(df_add_l_mean_1, class = c("tbl"))
+  expect_s3_class(df_add_n_obs, class = c("tbl"))
+  expect_s3_class(df_add_key_slope, class = c("tbl"))
+  expect_s3_class(df_add_key_slope_multi, class = c("tbl"))
 })
 
 classes <- function(x) purrr::map_chr(x, class)

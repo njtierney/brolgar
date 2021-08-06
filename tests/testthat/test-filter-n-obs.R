@@ -1,5 +1,3 @@
-context("test-filter-n-obs")
-
 # function to use inside testthat
 add_new_names <- function(data, x){
   c(tsibble::key_vars(data), 
@@ -45,8 +43,8 @@ test_that("n_obs is added to the dataframe",{
 })
 
 test_that("is a tibble", {
-  expect_is(wages_et_2, "tbl")
-  expect_is(wages_gt_10, "tbl")
-  expect_is(wages_gte_10, "tbl")
-  expect_is(wages_lte_2, "tbl")
+  expect_s3_class(wages_et_2, "tbl")
+  expect_s3_class(wages_gt_10, "tbl")
+  expect_s3_class(wages_gte_10, "tbl")
+  expect_s3_class(wages_lte_2, "tbl")
 })

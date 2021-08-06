@@ -1,5 +1,3 @@
-context("key_slope formula")
-
 test_that("key_slope does not handle character input", {
   expect_error(key_slope(heights, "height_cm ~ year"))
 })

@@ -1,4 +1,3 @@
-context("test-longnostic")
 wages_test <- sample_frac_keys(wages, 0.05)
 
 df_l_range_1 <- features(wages_test, ln_wages, 
@@ -47,16 +46,16 @@ test_that("longnostic returns the right names", {
 })
 
 test_that("longnostic returns a tbl_df", {
-  expect_is(df_l_range_1, class = c("tbl"))
-  expect_is(df_l_max, class = c("tbl"))
-  expect_is(df_l_mean, class = c("tbl"))
-  expect_is(df_l_median, class = c("tbl"))
-  expect_is(df_l_min, class = c("tbl"))
-  expect_is(df_l_q1, class = c("tbl"))
-  expect_is(df_l_q3, class = c("tbl"))
-  expect_is(df_l_sd, class = c("tbl"))
-  expect_is(df_l_slope, class = c("tbl"))
-  expect_is(df_l_slope_multi, class = c("tbl"))
+  expect_s3_class(df_l_range_1, class = c("tbl"))
+  expect_s3_class(df_l_max, class = c("tbl"))
+  expect_s3_class(df_l_mean, class = c("tbl"))
+  expect_s3_class(df_l_median, class = c("tbl"))
+  expect_s3_class(df_l_min, class = c("tbl"))
+  expect_s3_class(df_l_q1, class = c("tbl"))
+  expect_s3_class(df_l_q3, class = c("tbl"))
+  expect_s3_class(df_l_sd, class = c("tbl"))
+  expect_s3_class(df_l_slope, class = c("tbl"))
+  expect_s3_class(df_l_slope_multi, class = c("tbl"))
 })
 
 classes <- function(x) purrr::map_chr(x, class)

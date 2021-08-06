@@ -3,8 +3,6 @@ library(brolgar)
 library(dplyr)
 library(tsibbledata)
 
-context("multiple keys supported")
-
 data("aus_retail")
 
 # will fail
@@ -54,8 +52,8 @@ test_that("correct names returned", {
 })
 
 test_that("Returns a tibble", {
-  expect_is(sample_n_keys_retail_nkeys, "tbl")
-  expect_is(sample_frac_keys_retail_nkeys, "tbl")
+  expect_s3_class(sample_n_keys_retail_nkeys, "tbl")
+  expect_s3_class(sample_frac_keys_retail_nkeys, "tbl")
 })
 
 classes <- function(x) purrr::map(x, class)

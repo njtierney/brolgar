@@ -11,7 +11,7 @@ test_that("index regular fails when column doesn't exist", {
 })
 
 test_that("index summary returns summaryDefault", {
-  expect_is(index_summary(pisa, year), "summaryDefault")
+  expect_s3_class(index_summary(pisa, year), "summaryDefault")
   expect_type(index_summary(pisa, year), "double")
 })
 

@@ -1,5 +1,3 @@
-context("facet-strata")
-
 library(ggplot2)
 set.seed(2019-07-23-1835)
 gg_facet_strata <- ggplot(heights,
