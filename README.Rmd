@@ -62,9 +62,22 @@ p1 + p2
 
 Install from [GitHub](https://github.com/) with:
 
-``` {.r}
+```r
 # install.packages("remotes")
 remotes::install_github("njtierney/brolgar")
+```
+
+Or from the [R Universe](https://njtierney.r-universe.dev) with:
+
+```r
+# Enable this universe
+options(repos = c(
+    njtierney = 'https://njtierney.r-universe.dev',
+    CRAN = 'https://cloud.r-project.org')
+    )
+
+# Install some packages
+install.packages('brolgar')
 ```
 
 # Using `brolgar`: We need to talk about data

@@ -36,6 +36,19 @@ Install from [GitHub](https://github.com/) with:
 remotes::install_github("njtierney/brolgar")
 ```
 
+Or from the [R Universe](https://njtierney.r-universe.dev) with:
+
+``` r
+# Enable this universe
+options(repos = c(
+    njtierney = 'https://njtierney.r-universe.dev',
+    CRAN = 'https://cloud.r-project.org')
+    )
+
+# Install some packages
+install.packages('brolgar')
+```
+
 # Using `brolgar`: We need to talk about data
 
 There are many ways to describe longitudinal data - from panel data,
@@ -184,7 +197,7 @@ number summary (min, max, q1, q3, and median) of `ln_wages` with
 wages %>%
   features(ln_wages,
            feat_five_num)
-#> # A tibble: 888 x 6
+#> # A tibble: 888 × 6
 #>       id   min   q25   med   q75   max
 #>    <int> <dbl> <dbl> <dbl> <dbl> <dbl>
 #>  1    31 1.43   1.48  1.73  2.02  2.13
@@ -209,7 +222,7 @@ increase or decrease with `feat_monotonic`:
 ``` r
 wages %>%
   features(ln_wages, feat_monotonic)
-#> # A tibble: 888 x 5
+#> # A tibble: 888 × 5
 #>       id increase decrease unvary monotonic
 #>    <int> <lgl>    <lgl>    <lgl>  <lgl>    
 #>  1    31 FALSE    FALSE    FALSE  FALSE    
@@ -281,7 +294,7 @@ observations for each key:
 ``` r
 wages %>%
   features(ln_wages, n_obs)
-#> # A tibble: 888 x 2
+#> # A tibble: 888 × 2
 #>       id n_obs
 #>    <int> <int>
 #>  1    31     8
