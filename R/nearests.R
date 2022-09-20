@@ -107,13 +107,14 @@ near_between <- function(x,
 #' @export
 
 near_quantile <- function(x, probs, tol = 0.01){
+  x <- as.numeric(x)
   
   quant <- qtl(x, probs = probs)
   upper <- purrr::map_dbl(quant, sum, tol)
   lower <- purrr::map_dbl(quant, sum, -tol)
   
   part_btn <- purrr::partial(dplyr::between, x = x)
-  
+
   purrr::map2_dfr(.x = lower,
                   .y = upper,
                   .f = part_btn) %>%
