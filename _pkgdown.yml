@@ -19,6 +19,7 @@ reference:
     contents:
       - wages
       - heights
+      - pisa
       
   - title: "ggplot helpers"
     desc: >
@@ -46,7 +47,7 @@ reference:
     contents:
       - key_slope
       - add_key_slope
-      - keys_near
+      - starts_with("keys_near")
 
   - title: "Find observations near a value"
     desc: >
@@ -72,6 +73,7 @@ reference:
       - decreasing
       - unvarying
       - monotonic
+      - index_summary
 
 navbar:
   left:

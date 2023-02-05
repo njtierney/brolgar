@@ -19,9 +19,7 @@ facet_sample(
 
 \item{n_facets}{Number of facets to create. Default is 12}
 
-\item{nrow}{Number of rows and columns.}
-
-\item{ncol}{Number of rows and columns.}
+\item{nrow, ncol}{Number of rows and columns.}
 
 \item{scales}{Should scales be fixed (\code{"fixed"}, the default),
 free (\code{"free"}), or free in one dimension (\code{"free_x"},

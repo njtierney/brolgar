@@ -4,6 +4,7 @@
 #'   and **A**nalytically in **R**.
 #'
 #' @name brolgar
+#' @keywords internal
 #' @docType package
 NULL
 

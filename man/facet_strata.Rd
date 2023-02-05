@@ -24,9 +24,7 @@ mean value for each \code{key} and assigns the \code{n_strata} groups.}
 
 \item{fun}{summary function. Default is mean.}
 
-\item{nrow}{Number of rows and columns.}
-
-\item{ncol}{Number of rows and columns.}
+\item{nrow, ncol}{Number of rows and columns.}
 
 \item{scales}{Should scales be fixed (\code{"fixed"}, the default),
 free (\code{"free"}), or free in one dimension (\code{"free_x"},

@@ -8,3 +8,4 @@
 \code{brolgar} stands for: \strong{BR}owse over \strong{L}ongitudinal data \strong{G}raphically
 and \strong{A}nalytically in \strong{R}.
 }
+\keyword{internal}
