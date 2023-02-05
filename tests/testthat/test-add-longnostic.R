@@ -13,7 +13,9 @@ wages_test <- sample_frac_keys(wages, 0.05)
 df_add_l_mean_1 <- wages_test %>%
                     features(ln_wages, 
                              list(mean = mean)) %>% 
-                     left_join(wages_test, by = "id")
+                     left_join(wages_test, 
+                               by = "id",
+                               multiple = "all")
 df_add_n_obs <- add_n_obs(wages_test)
 df_add_key_slope <- add_key_slope(wages_test, ln_wages ~ xp)
 df_add_key_slope_multi <- add_key_slope(wages_test, ln_wages ~ xp + ged)

@@ -1,11 +1,11 @@
 url: https://brolgar.njtierney.com/
 
 template:
-  params:
-    bootswatch: flatly
-    docsearch:
-      api_key: 48bc42eefc5234a6463c3b99e53dfda1
-      index_name:  brolgar
+  bootstrap: 5
+  bootswatch: flatly
+
+search:
+  exclude: ['news/index.html']
 
 home:
   links:

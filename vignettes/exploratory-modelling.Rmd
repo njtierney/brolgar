@@ -2,7 +2,7 @@
 title: "Exploratory Modelling"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{exploratory-modelling}
+  %\VignetteIndexEntry{Exploratory Modelling}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
