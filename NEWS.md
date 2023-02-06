@@ -1,6 +1,8 @@
-# brolgar 0.1.3 "On the QLD coat of arms since 1977" (2023-02-06)
+# brolgar 1.0.0 "On the QLD coat of arms since 1977" (2023-02-06)
 
-This is a patch release, only minor changes.
+This is a major release to signify that this version is associated with a 
+publication (woo!) for this paper in the R Journal. However, this release only
+represents minor changes, summarised below:
 
 * small fix for dev dplyr [113](https://github.com/njtierney/brolgar/pull/113)
 * minor updates to GH actions and website.

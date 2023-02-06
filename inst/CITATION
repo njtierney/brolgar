@@ -1,14 +1,16 @@
-citHeader("To cite brolgar in publications use:")
-
-citEntry(
-  entry    = "Article",
-  title    = "brolgar: An R package to BRowse Over Longitudinal Data Graphically and Analytically in R",
-  author   = "Nicholas J Tierney and Dianne Cook and Tania Prvan",
-  journal  = "arXiv",
-  year     = "2020",
-  eprint   = "2012.01619",
-  primaryClass = "stat.AP",
-  textVersion = paste(
-    "Tierney, N. J., Cook, D., & Prvan, T. (2020). brolgar: An R package to BRowse Over Longitudinal Data Graphically and Analytically in R. In arXiv [stat.AP]. arXiv. http://arxiv.org/abs/2012.01619"
-  )
+bibentry(
+  bibtype = "Article",
+  title   = "The R Journal: brolgar: An R package to BRowse Over Longitudinal Data Graphically and Analytically in R",
+  author  = c(person(given = "Nicholas", family = "Tierney", email = "nicholas.tierney@gmail.com"), 
+              person(given = "Di", family = "Cook"), 
+              person(given = "Tania", family = "Prvan"))
+  journal = "The R Journal",
+  year    = "2022",
+  volume  = "14",
+  issue   = "2",
+  pages   = "6-25",
+  note    = "https://doi.org/10.32614/RJ-2022-023",
+  issn    = "2073-4859",
+  doi     = "10.32614/RJ-2022-023",
+  header  = "To cite brolgar in publications use:"
 )
