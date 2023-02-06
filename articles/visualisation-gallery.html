@@ -116,21 +116,21 @@ representative)</p>
 <code class="sourceCode R"><span></span>
 <span><span class="va">wages</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tsibble: 137 x 9 [!]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tsibble: 133 x 9 [!]</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Key:       id [20]</span></span></span>
 <span><span class="co">#&gt;       id ln_wages    xp   ged xp_since_ged black hispanic high_grade unemploy_…¹</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">1</span>569     1.83  1.98     1         1.98     0        0         10        5.8 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">1</span>569     2.32  4.51     1         4.51     0        0         10        4.99</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">1</span>569     2.01  5.28     1         5.28     0        0         10        6.39</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">1</span>569     1.97  6.39     1         6.39     0        0         10        8   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">1</span>569     1.98  7.72     1         7.72     0        0         10        6.7 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">8</span>585     2.02  2.20     0         0        0        0          9        6.2 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">8</span>585     1.96  3.16     0         0        0        0          9        9   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">8</span>585     2.11  4.10     0         0        0        0          9        9.3 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">8</span>585     2.19  5.12     0         0        0        0          9        7   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">8</span>585     1.93  7.14     1         0        0        0          9        7.5 </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 127 more rows, and abbreviated variable name ¹​unemploy_rate</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">1</span>329     1.79  1.66     0            0     0        0          9       15.2 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">1</span>329     1.75  2.08     0            0     0        0          9       11.1 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">1</span>329     1.66  2.21     0            0     0        0          9        7.8 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">1</span>329     2.82  3.48     0            0     0        0          9        7.9 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">1</span>329     2.44  4.84     0            0     0        0          9        7.4 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">1</span>329     2.76  5.46     0            0     0        0          9        5.7 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">1</span>329     1.37  5.96     0            0     0        0          9        5.8 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">1</span>329     2.30  6.96     0            0     0        0          9        5.49</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">1</span>329     1.66  8.05     0            0     0        0          9        5.8 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> <span style="text-decoration: underline;">12</span>324     1.89  1.17     0            0     0        0          8       15.7 </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 123 more rows, and abbreviated variable name ¹​unemploy_rate</span></span></span>
 <span></span>
 <span><span class="va">wages</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/sample-n-frac-keys.html">sample_n_keys</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
