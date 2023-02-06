@@ -1,102 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://brolgar.njtierney.com//index.html</loc>
+    <loc>https://brolgar.njtierney.com/404.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/add_n_obs.html</loc>
+    <loc>https://brolgar.njtierney.com/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/b_summaries.html</loc>
+    <loc>https://brolgar.njtierney.com/CONTRIBUTING.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/brolgar-features.html</loc>
+    <loc>https://brolgar.njtierney.com/ISSUE_TEMPLATE.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/brolgar.html</loc>
+    <loc>https://brolgar.njtierney.com/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/facet_sample.html</loc>
+    <loc>https://brolgar.njtierney.com/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/facet_strata.html</loc>
+    <loc>https://brolgar.njtierney.com/articles/exploratory-modelling.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/heights.html</loc>
+    <loc>https://brolgar.njtierney.com/articles/finding-features.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/index_summary.html</loc>
+    <loc>https://brolgar.njtierney.com/articles/getting-started.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/key_slope.html</loc>
+    <loc>https://brolgar.njtierney.com/articles/id-interesting-obs.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/keys_near.html</loc>
+    <loc>https://brolgar.njtierney.com/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/keys_near.data.frame.html</loc>
+    <loc>https://brolgar.njtierney.com/articles/longitudinal-data-structures.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/keys_near.tbl_ts.html</loc>
+    <loc>https://brolgar.njtierney.com/articles/mixed-effects-models.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/l_funs.html</loc>
+    <loc>https://brolgar.njtierney.com/articles/visualisation-gallery.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/monotonic.html</loc>
+    <loc>https://brolgar.njtierney.com/authors.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/n_obs.html</loc>
+    <loc>https://brolgar.njtierney.com/index.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/near_between.html</loc>
+    <loc>https://brolgar.njtierney.com/news/index.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/near_middle.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/add_n_obs.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/near_quantile.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/b_summaries.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/nearests.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/brolgar-features.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/pipe.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/brolgar.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/pisa.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/facet_sample.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/reexports.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/facet_strata.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/sample-n-frac-keys.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/heights.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/stratify_keys.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//reference/wages.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/index_summary.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//articles/exploratory-modelling.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/key_slope.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//articles/finding-features.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/keys_near.data.frame.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//articles/getting-started.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/keys_near.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//articles/id-interesting-obs.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/keys_near.tbl_ts.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//articles/longitudinal-data-structures.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/l_funs.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//articles/mixed-effects-models.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/monotonic.html</loc>
   </url>
   <url>
-    <loc>https://brolgar.njtierney.com//articles/visualisation-gallery.html</loc>
+    <loc>https://brolgar.njtierney.com/reference/n_obs.html</loc>
+  </url>
+  <url>
+    <loc>https://brolgar.njtierney.com/reference/near_between.html</loc>
+  </url>
+  <url>
+    <loc>https://brolgar.njtierney.com/reference/near_middle.html</loc>
+  </url>
+  <url>
+    <loc>https://brolgar.njtierney.com/reference/near_quantile.html</loc>
+  </url>
+  <url>
+    <loc>https://brolgar.njtierney.com/reference/nearests.html</loc>
+  </url>
+  <url>
+    <loc>https://brolgar.njtierney.com/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://brolgar.njtierney.com/reference/pisa.html</loc>
+  </url>
+  <url>
+    <loc>https://brolgar.njtierney.com/reference/reexports.html</loc>
+  </url>
+  <url>
+    <loc>https://brolgar.njtierney.com/reference/sample-n-frac-keys.html</loc>
+  </url>
+  <url>
+    <loc>https://brolgar.njtierney.com/reference/stratify_keys.html</loc>
+  </url>
+  <url>
+    <loc>https://brolgar.njtierney.com/reference/wages.html</loc>
   </url>
 </urlset>
