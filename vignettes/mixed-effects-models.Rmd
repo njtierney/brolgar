@@ -2,7 +2,7 @@
 title: "Using brolgar to understand Mixed Effects Models"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{mixed-effects-models}
+  %\VignetteIndexEntry{Using brolgar to understand Mixed Effects Models}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

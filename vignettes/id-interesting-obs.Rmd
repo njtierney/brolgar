@@ -2,7 +2,7 @@
 title: "Identify Interesting Observations"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{id-interesting-obs}
+  %\VignetteIndexEntry{Identify Interesting Observations}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

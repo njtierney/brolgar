@@ -2,7 +2,7 @@
 title: "Visualisation Gallery"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{visualisation-gallery}
+  %\VignetteIndexEntry{Visualisation Gallery}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
