@@ -372,7 +372,7 @@ vignettes. As a taster, here are some of the figures you can produce:
 
 One of the sources of inspiration for this work was the [`lasangar` R
 package by Bryan Swihart](https://github.com/swihart/lasagnar) (and
-[paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2937254/)).
+[paper](https://doi.org/10.1097%2FEDE.0b013e3181e5b06a)).
 
 For even more expansive time series summarisation, make sure you check
 out the [`feasts` package](https://github.com/tidyverts/feasts) (and
