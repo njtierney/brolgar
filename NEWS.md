@@ -1,3 +1,10 @@
+# brolgar 0.1.3 "On the QLD coat of arms since 1977" (2023-02-06)
+
+This is a patch release, only minor changes.
+
+* small fix for dev dplyr [113](https://github.com/njtierney/brolgar/pull/113)
+* minor updates to GH actions and website.
+
 # brolgar 0.1.2 "Also known as the 'Australian Crane'" (2021-08-06)
 
 ## Minor Improvements
