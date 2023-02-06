@@ -3,7 +3,7 @@ bibentry(
   title   = "The R Journal: brolgar: An R package to BRowse Over Longitudinal Data Graphically and Analytically in R",
   author  = c(person(given = "Nicholas", family = "Tierney", email = "nicholas.tierney@gmail.com"), 
               person(given = "Di", family = "Cook"), 
-              person(given = "Tania", family = "Prvan"))
+              person(given = "Tania", family = "Prvan")),
   journal = "The R Journal",
   year    = "2022",
   volume  = "14",
