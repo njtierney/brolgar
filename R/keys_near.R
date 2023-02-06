@@ -110,7 +110,7 @@ keys_near.data.frame <- function(.data,
       ...) %>%
     dplyr::select( {{ key }},
                    {{ var }},
-                  dplyr::one_of(names(funs))) %>%
+                  dplyr::all_of(names(funs))) %>%
     tidyr::pivot_longer(cols = -c( {{ key }}, {{ var }}),
                         names_to = "stat",
                         values_to = "stat_value") %>% 
