@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">brolgar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -213,7 +213,7 @@ worst residuals? Those who are closest to these values:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">wages_aug</span><span class="op">$</span><span class="va">res_int</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. </span></span>
-<span><span class="co">#&gt; -1.305693 -0.159727 -0.009446  0.000000  0.136412  2.148940</span></span></code></pre></div>
+<span><span class="co">#&gt; -1.305694 -0.159730 -0.009444  0.000000  0.136409  2.148938</span></span></code></pre></div>
 <p>We can use <code><a href="../reference/keys_near.html">keys_near()</a></code> to return those specified keys
 that are close to these values. Because this is a <code>tsibble</code>
 object, we don’t need to specify the <code>key</code> variable here.</p>
@@ -227,10 +227,10 @@ object, we don’t need to specify the <code>key</code> variable here.</p>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>   122 -<span style="color: #BB0000;">1.31</span>    min     -<span style="color: #BB0000;">1.31</span>    0         </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>   735  2.15    max      2.15    0         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">2</span>026 -<span style="color: #BB0000;">0.009</span><span style="color: #BB0000; text-decoration: underline;">56</span> med     -<span style="color: #BB0000;">0.009</span><span style="color: #BB0000; text-decoration: underline;">45</span> 0.000<span style="text-decoration: underline;">117</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">3</span>961 -<span style="color: #BB0000;">0.009</span><span style="color: #BB0000; text-decoration: underline;">33</span> med     -<span style="color: #BB0000;">0.009</span><span style="color: #BB0000; text-decoration: underline;">45</span> 0.000<span style="text-decoration: underline;">117</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">5</span>778 -<span style="color: #BB0000;">0.160</span>   q_25    -<span style="color: #BB0000;">0.160</span>   0.000<span style="text-decoration: underline;">011</span>2 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">8</span>246  0.136   q_75     0.136   0.000<span style="text-decoration: underline;">003</span>64</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">2</span>026 -<span style="color: #BB0000;">0.009</span><span style="color: #BB0000; text-decoration: underline;">56</span> med     -<span style="color: #BB0000;">0.009</span><span style="color: #BB0000; text-decoration: underline;">44</span> 0.000<span style="text-decoration: underline;">112</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">3</span>961 -<span style="color: #BB0000;">0.009</span><span style="color: #BB0000; text-decoration: underline;">33</span> med     -<span style="color: #BB0000;">0.009</span><span style="color: #BB0000; text-decoration: underline;">44</span> 0.000<span style="text-decoration: underline;">112</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">5</span>778 -<span style="color: #BB0000;">0.160</span>   q_25    -<span style="color: #BB0000;">0.160</span>   0.000<span style="text-decoration: underline;">011</span>7 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">8</span>246  0.136   q_75     0.136   0.000<span style="text-decoration: underline;">003</span>53</span></span></code></pre></div>
 <p>This shows us the keys where we the residuals match closest to the
 five number summary.</p>
 <p>We can plot this data by joining it back to the wages data with

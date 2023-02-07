@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">brolgar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,14 +106,15 @@ as given by <code>funs</code>.</p></dd>
 <span class="r-in"><span>  <span class="fu"><a href="key_slope.html">key_slope</a></span><span class="op">(</span><span class="va">height_cm</span> <span class="op">~</span> <span class="va">year</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="keys_near.html">keys_near</a></span><span class="op">(</span>key <span class="op">=</span> <span class="va">country</span>,</span></span>
 <span class="r-in"><span>            var <span class="op">=</span> <span class="va">.slope_year</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   country    .slope_year stat  stat_value stat_diff</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Austria         0.069<span style="text-decoration: underline;">5</span> q_75      0.069<span style="text-decoration: underline;">0</span>  0.000<span style="text-decoration: underline;">515</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Burundi         0.321  max       0.321   0       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Eritrea        -<span style="color: #BB0000;">0.102</span>  min      -<span style="color: #BB0000;">0.102</span>   0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Spain           0.040<span style="text-decoration: underline;">4</span> med       0.040<span style="text-decoration: underline;">3</span>  0.000<span style="text-decoration: underline;">120</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Tajikistan      0.019<span style="text-decoration: underline;">9</span> q_25      0.020<span style="text-decoration: underline;">5</span>  0.000<span style="text-decoration: underline;">632</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Mali            0.040<span style="text-decoration: underline;">1</span> med       0.040<span style="text-decoration: underline;">3</span>  0.000<span style="text-decoration: underline;">120</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Spain           0.040<span style="text-decoration: underline;">4</span> med       0.040<span style="text-decoration: underline;">3</span>  0.000<span style="text-decoration: underline;">120</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Tajikistan      0.019<span style="text-decoration: underline;">9</span> q_25      0.020<span style="text-decoration: underline;">5</span>  0.000<span style="text-decoration: underline;">632</span></span>
 <span class="r-in"><span><span class="co"># Specify your own list of summaries</span></span></span>
 <span class="r-in"><span><span class="va">l_ranges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>min <span class="op">=</span> <span class="va">b_min</span>,</span></span>
 <span class="r-in"><span>                 range_diff <span class="op">=</span> <span class="va">b_range_diff</span>,</span></span>
