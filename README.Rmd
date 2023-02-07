@@ -17,9 +17,8 @@ knitr::opts_chunk$set(
 # brolgar
 
 <!-- badges: start -->
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![R-CMD-check](https://github.com/njtierney/brolgar/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/njtierney/brolgar/actions/workflows/R-CMD-check.yaml) [![CRAN status](https://www.r-pkg.org/badges/version/brolgar)](https://CRAN.R-project.org/package=brolgar) [![Codecov test coverage](https://codecov.io/gh/njtierney/brolgar/branch/main/graph/badge.svg)](https://app.codecov.io/gh/njtierney/brolgar?branch=main)
 
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html) [![Codecov test coverage](https://codecov.io/gh/njtierney/brolgar/branch/main/graph/badge.svg)](https://app.codecov.io/gh/njtierney/brolgar?branch=main) [![R-CMD-check](https://github.com/njtierney/brolgar/workflows/R-CMD-check/badge.svg)](https://github.com/njtierney/brolgar/actions) [![CRAN status](https://www.r-pkg.org/badges/version/brolgar)](https://CRAN.R-project.org/package=brolgar)
-[![R-CMD-check](https://github.com/njtierney/brolgar/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/njtierney/brolgar/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 `brolgar` helps you **br**owse **o**ver **l**ongitudinal **d**ata **g**raphically and **a**nalytically in **R**, by providing tools to:

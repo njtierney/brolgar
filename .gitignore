@@ -6,3 +6,6 @@ wages.R
 inst/doc
 .DS_Store
 docs/
+revdep/checks.noindex/
+revdep/data.sqlite
+revdep/library.noindex/
