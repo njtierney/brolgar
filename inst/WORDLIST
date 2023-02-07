@@ -2,14 +2,18 @@ Acknowledgements
 BRowse
 Baten
 Blum
+CMD
 Codecov
 Customised
+GH
 Joerg
 Laa
 Lifecycle
 Modelling
 NLSY
+QLD
 Swihart
+Testthat
 Visualisation
 Visualise
 Willett
@@ -21,6 +25,8 @@ ata
 autocomplete
 br
 centimetres
+dev
+dplyr
 edu
 eries
 facetted
@@ -41,7 +47,6 @@ learningtower
 longnostic
 longnostics
 modelling
-monotonicity
 nalytically
 olds
 ongitudinal
