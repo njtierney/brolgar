@@ -55,7 +55,7 @@ Suggests:
     gapminder,
     gghighlight (>= 0.1.0),
     knitr (>= 1.23),
-    lme4,
+    lme4 (>= 1.1-35.1),
     modelr,
     rmarkdown (>= 1.14),
     spelling (>= 2.1),
