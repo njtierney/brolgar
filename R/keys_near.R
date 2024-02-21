@@ -46,7 +46,7 @@ keys_near.tbl_ts <- function(.data,
       .vars = dplyr::vars( {{ var }} ),
       .funs = funs,
       ...) %>%
-    dplyr::select(key,
+    dplyr::select(dplyr::all_of(key),
                   {{ var }},
                   dplyr::any_of(names(funs))) %>%
     tidyr::pivot_longer(cols = -c(key, {{ var }}),
