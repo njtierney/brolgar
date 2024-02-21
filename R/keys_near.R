@@ -49,7 +49,7 @@ keys_near.tbl_ts <- function(.data,
     dplyr::select(dplyr::all_of(key),
                   {{ var }},
                   dplyr::any_of(names(funs))) %>%
-    tidyr::pivot_longer(cols = -c(key, {{ var }}),
+    tidyr::pivot_longer(cols = -c(dplyr::all_of(key), {{ var }}),
                         names_to = "stat",
                         values_to = "stat_value") %>% 
     dplyr::mutate(stat_diff = abs({{ var }} - stat_value)) %>%
