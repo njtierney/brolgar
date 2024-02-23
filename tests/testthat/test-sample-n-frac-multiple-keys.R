@@ -1,6 +1,7 @@
 library(tsibble)
 library(brolgar)
 library(dplyr)
+skip_if_not_installed("tsibbledata")
 library(tsibbledata)
 
 data("aus_retail")

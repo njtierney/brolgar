@@ -1,12 +1,9 @@
-#' brolgar
-#'
+#' @details
 #' `brolgar` stands for: **BR**owse over **L**ongitudinal data **G**raphically
-#'   and **A**nalytically in **R**.
+#' and **A**nalytically in **R**.
 #'
-#' @name brolgar
 #' @keywords internal
-#' @docType package
-NULL
+"_PACKAGE"
 
 #' @importFrom rlang .data quo quos enquo enquos quo_name sym ensym syms :=
 
