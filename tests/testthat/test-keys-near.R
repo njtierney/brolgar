@@ -19,3 +19,32 @@ test_that("keys_near returns the same dimension and names etc", {
   expect_snapshot(summarise_ln_wages)
   expect_snapshot(summarise_slope)
 })
+
+summarised_slop_add_data <- dplyr::left_join(
+  summarise_slope,
+  wages,
+  by = "id"
+) 
+  
+plot_stat <- ggplot(summarised_slop_add_data,
+    aes(
+      x = xp,
+      y = ln_wages,
+      group = id
+    )
+  ) + 
+  geom_line(
+    data = wages,
+    colour = "grey50",
+    alpha = 0.5
+  ) +
+  geom_line(
+    aes(colour = stat)
+  )
+
+test_that("keys_near returns a similar plot", {
+  vdiffr::expect_doppelganger(
+    "stat_plot",
+    plot_stat
+    )
+})
