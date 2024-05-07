@@ -1,4 +1,5 @@
 library(ggplot2)
+library(dplyr)
 set.seed(2019-07-23-1835)
 gg_facet_strata <- ggplot(heights,
                           aes(x = year,
