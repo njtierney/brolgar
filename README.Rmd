@@ -17,7 +17,10 @@ knitr::opts_chunk$set(
 # brolgar
 
 <!-- badges: start -->
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable) [![R-CMD-check](https://github.com/njtierney/brolgar/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/njtierney/brolgar/actions/workflows/R-CMD-check.yaml) [![CRAN status](https://www.r-pkg.org/badges/version/brolgar)](https://CRAN.R-project.org/package=brolgar) [![Codecov test coverage](https://codecov.io/gh/njtierney/brolgar/branch/main/graph/badge.svg)](https://app.codecov.io/gh/njtierney/brolgar?branch=main)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![R-CMD-check](https://github.com/njtierney/brolgar/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/njtierney/brolgar/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/brolgar)](https://CRAN.R-project.org/package=brolgar)
+[![Codecov test coverage](https://codecov.io/gh/njtierney/brolgar/branch/main/graph/badge.svg)](https://app.codecov.io/gh/njtierney/brolgar?branch=main)
 
 <!-- badges: end -->
 

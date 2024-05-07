@@ -98,9 +98,9 @@ b_range <- function(x, ... ){
 #' @name b_summaries
 #' @export
 b_range_diff <- function(x, ... ) {
-  diff(b_range(x, 
-               na.rm = TRUE,
-               ...))
+  the_range <- b_range(x, 
+                       ...)
+  diff(the_range)
 }
 
 #' @name b_summaries

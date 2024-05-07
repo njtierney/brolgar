@@ -89,19 +89,20 @@ like this:
 wages
 #> # A tsibble: 6,402 x 9 [!]
 #> # Key:       id [888]
-#>       id ln_wages    xp   ged xp_since_ged black hispanic high_grade unemploy_…¹
-#>    <int>    <dbl> <dbl> <int>        <dbl> <int>    <int>      <int>       <dbl>
-#>  1    31     1.49 0.015     1        0.015     0        1          8        3.21
-#>  2    31     1.43 0.715     1        0.715     0        1          8        3.21
-#>  3    31     1.47 1.73      1        1.73      0        1          8        3.21
-#>  4    31     1.75 2.77      1        2.77      0        1          8        3.3 
-#>  5    31     1.93 3.93      1        3.93      0        1          8        2.89
-#>  6    31     1.71 4.95      1        4.95      0        1          8        2.49
-#>  7    31     2.09 5.96      1        5.96      0        1          8        2.6 
-#>  8    31     2.13 6.98      1        6.98      0        1          8        4.8 
-#>  9    36     1.98 0.315     1        0.315     0        0          9        4.89
-#> 10    36     1.80 0.983     1        0.983     0        0          9        7.4 
-#> # … with 6,392 more rows, and abbreviated variable name ¹​unemploy_rate
+#>       id ln_wages    xp   ged xp_since_ged black hispanic high_grade
+#>    <int>    <dbl> <dbl> <int>        <dbl> <int>    <int>      <int>
+#>  1    31     1.49 0.015     1        0.015     0        1          8
+#>  2    31     1.43 0.715     1        0.715     0        1          8
+#>  3    31     1.47 1.73      1        1.73      0        1          8
+#>  4    31     1.75 2.77      1        2.77      0        1          8
+#>  5    31     1.93 3.93      1        3.93      0        1          8
+#>  6    31     1.71 4.95      1        4.95      0        1          8
+#>  7    31     2.09 5.96      1        5.96      0        1          8
+#>  8    31     2.13 6.98      1        6.98      0        1          8
+#>  9    36     1.98 0.315     1        0.315     0        0          9
+#> 10    36     1.80 0.983     1        0.983     0        0          9
+#> # ℹ 6,392 more rows
+#> # ℹ 1 more variable: unemploy_rate <dbl>
 ```
 
 And under the hood, it was created with the following setup:
@@ -210,7 +211,7 @@ wages %>%
 #>  8   173 1.56   1.68  2.00  2.05  2.34
 #>  9   206 2.03   2.07  2.30  2.45  2.48
 #> 10   207 1.58   1.87  2.15  2.26  2.66
-#> # … with 878 more rows
+#> # ℹ 878 more rows
 ```
 
 This returns the id, and then the features.
@@ -235,7 +236,7 @@ wages %>%
 #>  8   173 FALSE    FALSE    FALSE  FALSE    
 #>  9   206 TRUE     FALSE    FALSE  TRUE     
 #> 10   207 FALSE    FALSE    FALSE  FALSE    
-#> # … with 878 more rows
+#> # ℹ 878 more rows
 ```
 
 You can read more about creating and using features in the [Finding
@@ -257,10 +258,6 @@ wages %>%
              group = id)) +
   geom_line() + 
   gghighlight(increase)
-#> Warning in left_join(., wages, by = "id"): Each row in `x` is expected to match at most 1 row in `y`.
-#> ℹ Row 1 of `x` matches multiple rows.
-#> ℹ If multiple matches are expected, set `multiple = "all"` to silence this
-#>   warning.
 #> Warning: Tried to calculate with group_by(), but the calculation failed.
 #> Falling back to ungrouped filter operation...
 #> label_key: id
@@ -311,7 +308,7 @@ wages %>%
 #>  8   173     6
 #>  9   206     3
 #> 10   207    11
-#> # … with 878 more rows
+#> # ℹ 878 more rows
 ```
 
 This returns a dataframe, with one row per key, and the number of
@@ -353,18 +350,15 @@ and [Identify Interesting
 Observations](https://brolgar.njtierney.com/articles/id-interesting-obs.html)
 vignettes. As a taster, here are some of the figures you can produce:
 
-    #> Warning in left_join(., wages, by = "id"): Each row in `x` is expected to match at most 1 row in `y`.
-    #> ℹ Row 1 of `x` matches multiple rows.
-    #> ℹ If multiple matches are expected, set `multiple = "all"` to silence this
-    #>   warning.
     #> Warning: Tried to calculate with group_by(), but the calculation failed.
     #> Falling back to ungrouped filter operation...
     #> label_key: id
     #> Too many data series, skip labeling
-    #> Warning in left_join(., wages, by = "id"): Each row in `x` is expected to match at most 1 row in `y`.
-    #> ℹ Row 1 of `x` matches multiple rows.
-    #> ℹ If multiple matches are expected, set `multiple = "all"` to silence this
-    #>   warning.
+    #> Warning in left_join(., wages, by = "id"): Detected an unexpected many-to-many relationship between `x` and `y`.
+    #> ℹ Row 1 of `x` matches multiple rows in `y`.
+    #> ℹ Row 1077 of `y` matches multiple rows in `x`.
+    #> ℹ If a many-to-many relationship is expected, set `relationship =
+    #>   "many-to-many"` to silence this warning.
 
 <img src="man/figures/README-show-wages-lg-1.png" width="75%" style="display: block; margin: auto;" />
 
