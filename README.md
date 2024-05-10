@@ -387,8 +387,9 @@ breaking changes to the API.
 
 # Acknowledgements
 
-Thank you to [Mitchell O’Hara-Wild](https://blog.mitchelloharawild.com/)
-and [Earo Wang](https://earo.me/) for many useful discussions on the
+Thank you to [Mitchell
+O’Hara-Wild](https://mitchelloharawild.com/blog.html) and [Earo
+Wang](https://earo.me/) for many useful discussions on the
 implementation of brolgar, as it was heavily inspired by the
 [`feasts`](https://github.com/tidyverts/feasts) package from the
 [`tidyverts`](https://tidyverts.org/). I would also like to thank [Tania
