@@ -14,7 +14,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-# brolgar
+
+# brolgar <a href="https://brolgar.njtierney.com/"><img src="man/figures/brolgar-logo.png" align="right" height="138" /></a>
 
 <!-- badges: start -->
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
@@ -295,7 +296,7 @@ This version of brolgar was been forked from [tprvan/brolgar](https://github.com
 
 # Acknowledgements
 
-Thank you to [Mitchell O'Hara-Wild](https://mitchelloharawild.com/blog.html) and [Earo Wang](https://earo.me/) for many useful discussions on the implementation of brolgar, as it was heavily inspired by the [`feasts`](https://github.com/tidyverts/feasts) package from the [`tidyverts`](https://tidyverts.org/). I would also like to thank [Tania Prvan](https://researchers.mq.edu.au/en/persons/tania-prvan) for her valuable early contributions to the project, as well as [Stuart Lee](https://stuartlee.org/) for helpful discussions. Thanks also to [Ursula Laa](https://uschilaa.github.io/) for her feedback on the package structure and documentation.
+Thank you to [Mitchell O'Hara-Wild](https://mitchelloharawild.com/blog.html) and [Earo Wang](https://earo.me/) for many useful discussions on the implementation of brolgar, as it was heavily inspired by the [`feasts`](https://github.com/tidyverts/feasts) package from the [`tidyverts`](https://tidyverts.org/). I would also like to thank [Tania Prvan](https://researchers.mq.edu.au/en/persons/tania-prvan) for her valuable early contributions to the project, as well as [Stuart Lee](https://stuartlee.org/) for helpful discussions. Thanks also to [Ursula Laa](https://uschilaa.github.io/) for her feedback on the package structure and documentation. Thank you to [Di Cook](https://www.dicook.org/) for making the hex sticker - which is taken from an illustration by [John Gould](https://en.wikipedia.org/wiki/John_Gould), drawn in 1865, and is in the public domain as the drawing is over 100 years old.
 
 <!-- These are referred to as a **longnostics**, a portmanteau of **long**itudinal and **cognostic**. These **longnostics** make it straightforward to extract subjects with certain properties to gain some insight into the data.  -->
 
