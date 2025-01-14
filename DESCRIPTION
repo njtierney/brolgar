@@ -1,6 +1,6 @@
 Package: brolgar
 Title: Browse Over Longitudinal Data Graphically and Analytically in R
-Version: 1.0.1
+Version: 1.0.1.9000
 Authors@R: 
     c(person(given = "Nicholas",
              family = "Tierney",
