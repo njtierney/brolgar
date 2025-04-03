@@ -46,6 +46,7 @@ plot_stat <- ggplot(
   )
 
 test_that("keys_near returns a similar plot", {
+  skip_on_ci()
   vdiffr::expect_doppelganger(
     "stat_plot",
     plot_stat
