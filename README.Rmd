@@ -23,6 +23,7 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/brolgar)](https://CRAN.R-project.org/package=brolgar)
 [![Codecov test coverage](https://codecov.io/gh/njtierney/brolgar/branch/main/graph/badge.svg)](https://app.codecov.io/gh/njtierney/brolgar?branch=main)
 
+[![Codecov test coverage](https://codecov.io/gh/njtierney/brolgar/graph/badge.svg)](https://app.codecov.io/gh/njtierney/brolgar)
 <!-- badges: end -->
 
 `brolgar` helps you **br**owse **o**ver **l**ongitudinal **d**ata **g**raphically and **a**nalytically in **R**, by providing tools to:

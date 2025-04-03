@@ -13,6 +13,8 @@ status](https://www.r-pkg.org/badges/version/brolgar)](https://CRAN.R-project.or
 [![Codecov test
 coverage](https://codecov.io/gh/njtierney/brolgar/branch/main/graph/badge.svg)](https://app.codecov.io/gh/njtierney/brolgar?branch=main)
 
+[![Codecov test
+coverage](https://codecov.io/gh/njtierney/brolgar/graph/badge.svg)](https://app.codecov.io/gh/njtierney/brolgar)
 <!-- badges: end -->
 
 `brolgar` helps you **br**owse **o**ver **l**ongitudinal **d**ata
