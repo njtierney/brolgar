@@ -102,7 +102,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 104 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="near_quantile.html">near_quantile</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>,</span></span>
-<span class="r-in"><span>              probs <span class="op">=</span> <span class="fl">0.5</span>, </span></span>
+<span class="r-in"><span>              probs <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
 <span class="r-in"><span>              tol <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE</span>
@@ -115,7 +115,7 @@
 <span class="r-in"><span>  <span class="fu"><a href="https://fabletools.tidyverts.org/reference/features.html" class="external-link">features</a></span><span class="op">(</span><span class="va">height_cm</span>, <span class="va">l_five_num</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html" class="external-link">mutate_at</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">min</span><span class="op">:</span><span class="va">max</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>            .funs <span class="op">=</span> <span class="va">near_quantile</span>,</span></span>
-<span class="r-in"><span>            <span class="fl">0.5</span>, </span></span>
+<span class="r-in"><span>            <span class="fl">0.5</span>,</span></span>
 <span class="r-in"><span>            <span class="fl">0.01</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">min</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 0 × 6</span></span>

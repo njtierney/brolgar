@@ -83,10 +83,10 @@ we are counting the number observations for each keys in the data.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:base’:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     intersect, setdiff, setequal, union</span>
-<span class="r-in"><span><span class="co"># you can explore the data to see those cases that have exactly two </span></span></span>
+<span class="r-in"><span><span class="co"># you can explore the data to see those cases that have exactly two</span></span></span>
 <span class="r-in"><span> <span class="co"># observations:</span></span></span>
-<span class="r-in"><span><span class="va">heights</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span></span>
-<span class="r-in"><span>  <span class="fu">add_n_obs</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span></span>
+<span class="r-in"><span><span class="va">heights</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">add_n_obs</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">n_obs</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tsibble: 16 x 5 [!]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Key:       country [8]</span></span>

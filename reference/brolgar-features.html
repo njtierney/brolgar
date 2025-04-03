@@ -3,39 +3,11 @@
 variable for a dataset. For example, a three number summary, the minimum,
 median, and maximum, can be calculated for a given variable. This is
 designed to work with the features() function shown in the examples.
-Other available features in brolgar include:
-feat_three_num() - minimum, median, maximum
-feat_five_num() - minimum, q25, median, q75, maximum.
-feat_ranges() - min, max, range difference, interquartile range.
-feat_spread()  - variance, standard deviation, median absolute distance,
-and interquartile range
-feat_monotonic() - is it always increasing, decreasing, or unvarying?
-feat_diff_summary() - the summary statistics of the differences
-amongst a value, including the five number summary, as well as the
-standard deviation and variance. Returns NA if there is only one
-observation, as we can't take the difference of one observation, and a
-difference of 0 in these cases would be misleading.
-feat_brolgar()  all features in brolgar.
-
-"><meta property="og:description" content="You can calculate a series of summary statistics (features) of a given
+Other available features in brolgar include:"><meta property="og:description" content="You can calculate a series of summary statistics (features) of a given
 variable for a dataset. For example, a three number summary, the minimum,
 median, and maximum, can be calculated for a given variable. This is
 designed to work with the features() function shown in the examples.
-Other available features in brolgar include:
-feat_three_num() - minimum, median, maximum
-feat_five_num() - minimum, q25, median, q75, maximum.
-feat_ranges() - min, max, range difference, interquartile range.
-feat_spread()  - variance, standard deviation, median absolute distance,
-and interquartile range
-feat_monotonic() - is it always increasing, decreasing, or unvarying?
-feat_diff_summary() - the summary statistics of the differences
-amongst a value, including the five number summary, as well as the
-standard deviation and variance. Returns NA if there is only one
-observation, as we can't take the difference of one observation, and a
-difference of 0 in these cases would be misleading.
-feat_brolgar()  all features in brolgar.
-
-"></head><body>
+Other available features in brolgar include:"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -84,19 +56,8 @@ feat_brolgar()  all features in brolgar.
 variable for a dataset. For example, a three number summary, the minimum,
 median, and maximum, can be calculated for a given variable. This is
 designed to work with the <code><a href="https://fabletools.tidyverts.org/reference/features.html" class="external-link">features()</a></code> function shown in the examples.
-Other available features in <code>brolgar</code> include:</p><ul><li><p><code>feat_three_num()</code> - minimum, median, maximum</p></li>
-<li><p><code>feat_five_num()</code> - minimum, q25, median, q75, maximum.</p></li>
-<li><p><code>feat_ranges()</code> - min, max, range difference, interquartile range.</p></li>
-<li><p><code>feat_spread()</code>  - variance, standard deviation, median absolute distance,
-and interquartile range</p></li>
-<li><p><code>feat_monotonic()</code> - is it always increasing, decreasing, or unvarying?</p></li>
-<li><p><code>feat_diff_summary()</code> - the summary statistics of the differences
-amongst a value, including the five number summary, as well as the
-standard deviation and variance. Returns NA if there is only one
-observation, as we can't take the difference of one observation, and a
-difference of 0 in these cases would be misleading.</p></li>
-<li><p><code>feat_brolgar()</code>  all features in brolgar.</p></li>
-</ul></div>
+Other available features in <code>brolgar</code> include:</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
@@ -127,11 +88,27 @@ difference of 0 in these cases would be misleading.</p></li>
 <dd><p>Further arguments passed to other functions.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+
+<ul><li><p><code>feat_three_num()</code> - minimum, median, maximum</p></li>
+<li><p><code>feat_five_num()</code> - minimum, q25, median, q75, maximum.</p></li>
+<li><p><code>feat_ranges()</code> - min, max, range difference, interquartile range.</p></li>
+<li><p><code>feat_spread()</code>  - variance, standard deviation, median absolute distance,
+and interquartile range</p></li>
+<li><p><code>feat_monotonic()</code> - is it always increasing, decreasing, or unvarying?</p></li>
+<li><p><code>feat_diff_summary()</code> - the summary statistics of the differences
+amongst a value, including the five number summary, as well as the
+standard deviation and variance. Returns NA if there is only one
+observation, as we can't take the difference of one observation, and a
+difference of 0 in these cases would be misleading.</p></li>
+<li><p><code>feat_brolgar()</code>  all features in brolgar.</p></li>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># You can use any of the features `feat_*` in conjunction with `features` </span></span></span>
+<span class="r-in"><span><span class="co"># You can use any of the features `feat_*` in conjunction with `features`</span></span></span>
 <span class="r-in"><span><span class="co"># like so:</span></span></span>
 <span class="r-in"><span><span class="va">heights</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://fabletools.tidyverts.org/reference/features.html" class="external-link">features</a></span><span class="op">(</span><span class="va">height_cm</span>, <span class="co"># variable you want to explore</span></span></span>

@@ -99,13 +99,13 @@ History 18 (2014), 144–165. Data available from
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># show the spaghetti plot (ugh!)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">heights</span>, </span></span>
-<span class="r-in"><span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, </span></span>
-<span class="r-in"><span>           y <span class="op">=</span> <span class="va">height_cm</span>, </span></span>
-<span class="r-in"><span>           group <span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">heights</span>,</span></span>
+<span class="r-in"><span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>,</span></span>
+<span class="r-in"><span>           y <span class="op">=</span> <span class="va">height_cm</span>,</span></span>
+<span class="r-in"><span>           group <span class="op">=</span> <span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="heights-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span>    </span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Explore all samples with `facet_strata()`</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">heights</span>,</span></span>
 <span class="r-in"><span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>,</span></span>
@@ -123,9 +123,9 @@ History 18 (2014), 144–165. Data available from
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">continent</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="heights-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span>  </span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># explore the five number summary of height_cm with `features`</span></span></span>
-<span class="r-in"><span><span class="va">heights</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> </span></span>
+<span class="r-in"><span><span class="va">heights</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://fabletools.tidyverts.org/reference/features.html" class="external-link">features</a></span><span class="op">(</span><span class="va">height_cm</span>, <span class="va">feat_five_num</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 144 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    country       min   q25   med   q75   max</span>
