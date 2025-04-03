@@ -1,101 +1,87 @@
-url: https://brolgar.njtierney.com/
-
+url: http://brolgar.njtierney.com/
 template:
   bootstrap: 5
   bootswatch: flatly
-
 search:
-  exclude: ['news/index.html']
-
+  exclude: news/index.html
 home:
   links:
   - text: Learn more
     href: https://github.com/njtierney/brolgar
-
 reference:
-  - title: "Data"
-    desc: >
-      Datasets that come with `brolgar`
-    contents:
-      - wages
-      - heights
-      - pisa
-      
-  - title: "ggplot helpers"
-    desc: >
-      ggplot2 functions to help explore your data
-    contents:
-      - facet_sample
-      - facet_strata
-      
-  - title: "Sampling helpers"
-    desc: >
-      Functions to help sampling series from the data
-    contents:
-      - starts_with("sample_")
-      - stratify_keys
-      
-  - title: "Features"
-    desc: >
-      Identify features in your data:
-    contents:
-      - starts_with("feat_")
-      
-  - title: "Exploratory tools (Experimental)"
-    desc: >
-      Tools to help with exploratory modelling of your data
-    contents:
-      - key_slope
-      - add_key_slope
-      - starts_with("keys_near")
-
-  - title: "Find observations near a value"
-    desc: >
-      Identify observations near some summary value
-    contents:
-      - starts_with("near")
-
-  - title: "Summaries"
-    desc: >
-      Functions that are used to power the summary functions in `brolgar`
-    contents:
-      - starts_with("b_")
-      - starts_with("l_")
-
-  - title: "Helpers"
-    desc: >
-      Helper functions to assist summarising data
-    contents:
-      - n_obs
-      - add_n_obs
-      - n_keys
-      - increasing
-      - decreasing
-      - unvarying
-      - monotonic
-      - index_summary
-
+- title: Data
+  desc: |
+    Datasets that come with `brolgar`
+  contents:
+  - wages
+  - heights
+  - pisa
+- title: ggplot helpers
+  desc: |
+    ggplot2 functions to help explore your data
+  contents:
+  - facet_sample
+  - facet_strata
+- title: Sampling helpers
+  desc: |
+    Functions to help sampling series from the data
+  contents:
+  - starts_with("sample_")
+  - stratify_keys
+- title: Features
+  desc: |
+    Identify features in your data:
+  contents: starts_with("feat_")
+- title: Exploratory tools (Experimental)
+  desc: |
+    Tools to help with exploratory modelling of your data
+  contents:
+  - key_slope
+  - add_key_slope
+  - starts_with("keys_near")
+- title: Find observations near a value
+  desc: |
+    Identify observations near some summary value
+  contents: starts_with("near")
+- title: Summaries
+  desc: |
+    Functions that are used to power the summary functions in `brolgar`
+  contents:
+  - starts_with("b_")
+  - starts_with("l_")
+- title: Helpers
+  desc: |
+    Helper functions to assist summarising data
+  contents:
+  - n_obs
+  - add_n_obs
+  - n_keys
+  - increasing
+  - decreasing
+  - unvarying
+  - monotonic
+  - index_summary
 navbar:
   left:
   - text: Getting Started
     href: articles/getting-started.html
   - text: Gallery
     href: articles/visualisation-gallery.html
-  - text: "Articles"
+  - text: Articles
     menu:
-      - text: Data Structures
-        href: articles/longitudinal-data-structures.html
-      - text: Exploratory Modelling
-        href: articles/exploratory-modelling.html
-      - text: Finding Features
-        href: articles/finding-features.html
-      - text: Identify Interesting Observations
-        href: articles/id-interesting-obs.html
-      - text: Exploring Mixed Effects Models
-        href: articles/mixed-effects-models.html
+    - text: Data Structures
+      href: articles/longitudinal-data-structures.html
+    - text: Exploratory Modelling
+      href: articles/exploratory-modelling.html
+    - text: Finding Features
+      href: articles/finding-features.html
+    - text: Identify Interesting Observations
+      href: articles/id-interesting-obs.html
+    - text: Exploring Mixed Effects Models
+      href: articles/mixed-effects-models.html
   - text: Reference
     href: reference/index.html
   - text: News
     href: news/index.html
-
 destination: docs
+

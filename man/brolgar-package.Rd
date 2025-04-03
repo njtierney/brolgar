@@ -6,7 +6,7 @@
 \alias{brolgar-package}
 \title{brolgar: Browse Over Longitudinal Data Graphically and Analytically in R}
 \description{
-Provides a framework of tools to summarise, visualise, and explore longitudinal data. It builds upon the tidy time series data frames used in the 'tsibble' package, and is designed to integrate within the 'tidyverse', and 'tidyverts' (for time series) ecosystems. The methods implemented include calculating features for understanding longitudinal data, including calculating summary statistics such as quantiles, medians, and numeric ranges, sampling individual series, identifying individual series representative of a group, and extending the facet system in 'ggplot2' to facilitate exploration of samples of data. These methods are fully described in the paper "brolgar: An R package to Browse Over Longitudinal Data Graphically and Analytically in R", Nicholas Tierney, Dianne Cook, Tania Prvan (2020) \href{https://arxiv.org/abs/2012.01619}{arXiv:2012.01619}.
+Provides a framework of tools to summarise, visualise, and explore longitudinal data. It builds upon the tidy time series data frames used in the 'tsibble' package, and is designed to integrate within the 'tidyverse', and 'tidyverts' (for time series) ecosystems. The methods implemented include calculating features for understanding longitudinal data, including calculating summary statistics such as quantiles, medians, and numeric ranges, sampling individual series, identifying individual series representative of a group, and extending the facet system in 'ggplot2' to facilitate exploration of samples of data. These methods are fully described in the paper "brolgar: An R package to Browse Over Longitudinal Data Graphically and Analytically in R", Nicholas Tierney, Dianne Cook, Tania Prvan (2020) \doi{10.32614/RJ-2022-023}.
 }
 \details{
 \code{brolgar} stands for: \strong{BR}owse over \strong{L}ongitudinal data \strong{G}raphically
@@ -17,6 +17,7 @@ Useful links:
 \itemize{
   \item \url{https://github.com/njtierney/brolgar}
   \item \url{https://brolgar.njtierney.com/}
+  \item \url{http://brolgar.njtierney.com/}
   \item Report bugs at \url{https://github.com/njtierney/brolgar/issues}
 }
 
