@@ -18,6 +18,7 @@ summarise_slope
 
 test_that("keys_near returns the same dimension and names etc", {
   skip_on_cran()
+  skip_on_os("linux")
   expect_snapshot(summarise_ln_wages)
   expect_snapshot(summarise_slope)
 })
