@@ -1,7 +1,10 @@
 wages_test <- sample_frac_keys(wages, 0.05)
 
-df_l_range_1 <- features(wages_test, ln_wages, 
-                         list(range = ~ setNames(b_range(.), c("min", "max"))))
+df_l_range_1 <- features(
+  wages_test,
+  ln_wages,
+  list(range = ~ setNames(b_range(.), c("min", "max")))
+)
 df_l_max <- features(wages_test, ln_wages, c(max = b_max))
 df_l_mean <- features(wages_test, ln_wages, c(mean = b_mean))
 df_l_median <- features(wages_test, ln_wages, c(median = b_median))
@@ -36,13 +39,11 @@ test_that("longnostic returns the right names", {
   expect_equal(names(df_l_q1), c("id", "q25"))
   expect_equal(names(df_l_q3), c("id", "q75"))
   expect_equal(names(df_l_sd), c("id", "sd"))
-  expect_equal(names(df_l_slope), c("id", 
-                                    ".intercept", 
-                                    ".slope_xp"))
-  expect_equal(names(df_l_slope_multi), c("id", 
-                                          ".intercept", 
-                                          ".slope_xp", 
-                                          ".slope_ged"))
+  expect_equal(names(df_l_slope), c("id", ".intercept", ".slope_xp"))
+  expect_equal(
+    names(df_l_slope_multi),
+    c("id", ".intercept", ".slope_xp", ".slope_ged")
+  )
 })
 
 test_that("longnostic returns a tbl_df", {
@@ -61,34 +62,33 @@ test_that("longnostic returns a tbl_df", {
 classes <- function(x) purrr::map_chr(x, class)
 
 test_that("longnostic returns correct classes", {
-  expect_equal(classes(df_l_range_1), 
-               c(id = "integer", 
-                 range_min = "numeric",
-                 range_max = "numeric"))
-  expect_equal(classes(df_l_max),
-               c(id = "integer", max = "numeric"))
-  expect_equal(classes(df_l_mean),
-               c(id = "integer", mean = "numeric"))
-  expect_equal(classes(df_l_median),
-               c(id = "integer", median = "numeric"))
-  expect_equal(classes(df_l_min),
-               c(id = "integer", min = "numeric"))
-  expect_equal(classes(df_l_q1),
-               c(id = "integer", q25 = "numeric"))
-  expect_equal(classes(df_l_q3),
-               c(id = "integer", q75 = "numeric"))
-  expect_equal(classes(df_l_sd),
-               c(id = "integer", sd = "numeric"))
-  expect_equal(classes(df_l_slope),
-               c(id = "integer", 
-                 .intercept = "numeric", 
-                 .slope_xp = "numeric"))
-  expect_equal(classes(df_l_slope_multi),
-               c(id = "integer", .intercept = "numeric", 
-                 .slope_xp = "numeric", .slope_ged = "numeric"))
+  expect_equal(
+    classes(df_l_range_1),
+    c(id = "integer", range_min = "numeric", range_max = "numeric")
+  )
+  expect_equal(classes(df_l_max), c(id = "integer", max = "numeric"))
+  expect_equal(classes(df_l_mean), c(id = "integer", mean = "numeric"))
+  expect_equal(classes(df_l_median), c(id = "integer", median = "numeric"))
+  expect_equal(classes(df_l_min), c(id = "integer", min = "numeric"))
+  expect_equal(classes(df_l_q1), c(id = "integer", q25 = "numeric"))
+  expect_equal(classes(df_l_q3), c(id = "integer", q75 = "numeric"))
+  expect_equal(classes(df_l_sd), c(id = "integer", sd = "numeric"))
+  expect_equal(
+    classes(df_l_slope),
+    c(id = "integer", .intercept = "numeric", .slope_xp = "numeric")
+  )
+  expect_equal(
+    classes(df_l_slope_multi),
+    c(
+      id = "integer",
+      .intercept = "numeric",
+      .slope_xp = "numeric",
+      .slope_ged = "numeric"
+    )
+  )
 })
 
-test_that("add-key-slope returns different slopes and intercepts",{
+test_that("add-key-slope returns different slopes and intercepts", {
   expect_gte(n_distinct(df_l_slope$.intercept), 2)
   expect_gte(n_distinct(df_l_slope$.slope_xp), 2)
 })

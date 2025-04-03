@@ -47,20 +47,20 @@ wages \%>\%
   sample_n_keys(size = 5) \%>\%
   ggplot(aes(x = xp,
              y = ln_wages,
-             group = id)) + 
+             group = id)) +
   geom_line()
 
 # Explore many samples with `facet_sample()`
-  ggplot(wages, 
+  ggplot(wages,
          aes(x = xp,
              y = ln_wages,
-             group = id)) + 
-  geom_line() + 
+             group = id)) +
+  geom_line() +
   facet_sample()
 
 # explore the five number summary of ln_wages with `features`
-wages \%>\% 
+wages \%>\%
   features(ln_wages, feat_five_num)
-  
+
 }
 \keyword{datasets}

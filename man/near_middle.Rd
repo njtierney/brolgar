@@ -24,9 +24,9 @@ x <- runif(20)
 near_middle(x = x,
             middle = 0.5,
             within = 0.2)
-            
+
 library(dplyr)
 heights \%>\% features(height_cm, list(min = min)) \%>\%
   filter(near_middle(min, 0.5, 0.1))
-            
+
 }

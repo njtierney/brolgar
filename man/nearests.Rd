@@ -52,13 +52,13 @@ nearest_lgl(b, x)
 library(dplyr)
 heights_near_min <- heights \%>\%
   filter(nearest_lgl(min(height_cm), height_cm))
-  
+
 heights_near_fivenum <- heights \%>\%
   filter(nearest_lgl(fivenum(height_cm), height_cm))
-  
+
 heights_near_qt_1 <- heights \%>\%
   filter(nearest_qt_lgl(height_cm, c(0.5)))
-  
+
 heights_near_qt_3 <- heights \%>\%
   filter(nearest_qt_lgl(height_cm, c(0.1, 0.5, 0.9)))
 

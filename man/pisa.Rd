@@ -51,16 +51,16 @@ pisa
 library(dplyr)
 # Let's identify
 
-#1.  The **key**, the individual, who would have repeated measurements. 
+#1.  The **key**, the individual, who would have repeated measurements.
 #2.  The **index**, the time component.
-#3.  The **regularity** of the time interval (index). 
+#3.  The **regularity** of the time interval (index).
 
 # Here it looks like the key is the student_id, which is nested within
 # school_id #' and country,
 
 # And the index is year, so we would write the following
 
-as_tsibble(pisa, 
+as_tsibble(pisa,
            key = country,
            index = year)
 
@@ -80,13 +80,13 @@ pisa_ts
 pisa_ts_au_nz <- pisa_ts \%>\% filter(country \%in\% c("AUS", "NZL", "QAT"))
 
 library(ggplot2)
-ggplot(pisa_ts_au_nz, 
-       aes(x = year, 
+ggplot(pisa_ts_au_nz,
+       aes(x = year,
            y = math_mean,
            group = country,
            colour = country)) +
-  geom_ribbon(aes(ymin = math_min, 
-                  ymax = math_max), 
+  geom_ribbon(aes(ymin = math_min,
+                  ymax = math_max),
               fill = "grey70") +
   geom_line(size = 1) +
   lims(y = c(0, 1000)) +

@@ -55,7 +55,7 @@ ggplot(heights,
            group = country)) +
   geom_line() +
   facet_strata()
-  
+
 
 ggplot(heights,
        aes(x = year,
@@ -79,7 +79,7 @@ heights \%>\%
   ggplot(aes(x = year,
              y = height_cm)) +
   geom_line(aes(group = country)) +
-  geom_smooth(method = "lm") + 
+  geom_smooth(method = "lm") +
   facet_strata(along = .slope_year)
 }
 }

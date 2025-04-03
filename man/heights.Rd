@@ -38,12 +38,12 @@ heights
 
 # show the spaghetti plot (ugh!)
 library(ggplot2)
-ggplot(heights, 
-       aes(x = year, 
-           y = height_cm, 
-           group = country)) + 
+ggplot(heights,
+       aes(x = year,
+           y = height_cm,
+           group = country)) +
     geom_line()
-    
+
 # Explore all samples with `facet_strata()`
 ggplot(heights,
        aes(x = year,
@@ -59,9 +59,9 @@ ggplot(heights,
            group = country)) +
   geom_line() +
   facet_wrap(~continent)
-  
+
 # explore the five number summary of height_cm with `features`
-heights \%>\% 
+heights \%>\%
   features(height_cm, feat_five_num)
 }
 \keyword{datasets}

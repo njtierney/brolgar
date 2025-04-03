@@ -1,7 +1,7 @@
 vec_inc <- c(1:10)
-vec_dec<- c(10:1)
+vec_dec <- c(10:1)
 vec_ran <- c(sample(1:10))
-vec_flat <- rep.int(1,10)
+vec_flat <- rep.int(1, 10)
 
 test_that("increasing correctly guesses", {
   expect_true(increasing(vec_inc))
@@ -37,8 +37,7 @@ test_that("monotonic correctly guesses", {
 
 wages_monotonic <- wages %>% features(ln_wages, feat_monotonic)
 
-test_that("wages_monotonic produces output 0 or 1",{
-  expect_equal(max(rowSums(wages_monotonic[ , 2:4])), 1)
-  expect_false(any(rowSums(wages_monotonic[ , 2:4]) > 1))
+test_that("wages_monotonic produces output 0 or 1", {
+  expect_equal(max(rowSums(wages_monotonic[, 2:4])), 1)
+  expect_false(any(rowSums(wages_monotonic[, 2:4]) > 1))
 })
-

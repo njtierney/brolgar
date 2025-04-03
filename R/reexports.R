@@ -30,4 +30,3 @@ tsibble::as_tsibble
 
 #' @export
 tsibble::n_keys
-

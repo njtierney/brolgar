@@ -1,9 +1,11 @@
 # function to use inside testthat
-add_new_names <- function(data, x){
-  c(tsibble::key_vars(data), 
+add_new_names <- function(data, x) {
+  c(
+    tsibble::key_vars(data),
     tsibble::index_var(data),
     x,
-    tsibble::measured_vars(data))
+    tsibble::measured_vars(data)
+  )
 }
 
 wages_test <- wages %>% add_n_obs()
@@ -36,10 +38,8 @@ test_that("correct number of columns are returned", {
   expect_equal(ncol(wages_lte_2), ncol(wages) + 1)
 })
 
-test_that("n_obs is added to the dataframe",{
-  expect_equal(names(wages_gt_10),
-               add_new_names(wages, "n_obs")
-  )
+test_that("n_obs is added to the dataframe", {
+  expect_equal(names(wages_gt_10), add_new_names(wages, "n_obs"))
 })
 
 test_that("is a tibble", {

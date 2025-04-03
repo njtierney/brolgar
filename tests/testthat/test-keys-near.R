@@ -2,15 +2,16 @@
 summarise_ln_wages <- keys_near(.data = wages, var = ln_wages)
 
 # Specify your own list of summaries
-l_ranges <- list(min = b_min,
-                 range_diff = b_range_diff,
-                 max = b_max,
-                 iqr = b_iqr)
+l_ranges <- list(
+  min = b_min,
+  range_diff = b_range_diff,
+  max = b_max,
+  iqr = b_iqr
+)
 
 summarise_slope <- wages %>%
   key_slope(formula = ln_wages ~ xp) %>%
-  keys_near(key = id,
-            var = .slope_xp)
+  keys_near(key = id, var = .slope_xp)
 
 summarise_ln_wages
 summarise_slope
@@ -25,15 +26,16 @@ summarised_slop_add_data <- dplyr::left_join(
   summarise_slope,
   wages,
   by = "id"
-) 
-  
-plot_stat <- ggplot(summarised_slop_add_data,
-    aes(
-      x = xp,
-      y = ln_wages,
-      group = id
-    )
-  ) + 
+)
+
+plot_stat <- ggplot(
+  summarised_slop_add_data,
+  aes(
+    x = xp,
+    y = ln_wages,
+    group = id
+  )
+) +
   geom_line(
     data = wages,
     colour = "grey50",
@@ -47,5 +49,5 @@ test_that("keys_near returns a similar plot", {
   vdiffr::expect_doppelganger(
     "stat_plot",
     plot_stat
-    )
+  )
 })

@@ -38,10 +38,10 @@ heights \%>\%
   stratify_keys(10) \%>\%
  ggplot(aes(x = height_cm,
             y = year,
-            group = country)) + 
- geom_line() + 
+            group = country)) +
+ geom_line() +
  facet_wrap(~.strata)
- 
+
  # now facet along some feature
 library(dplyr)
  heights \%>\%
@@ -52,8 +52,8 @@ key_slope(height_cm ~ year) \%>\%
                 fun = median) \%>\%
   ggplot(aes(x = year,
              y = height_cm,
-             group = country)) + 
-  geom_line() + 
+             group = country)) +
+  geom_line() +
   facet_wrap(~.strata)
 
 
@@ -62,7 +62,7 @@ heights \%>\%
                 along = height_cm) \%>\%
   ggplot(aes(x = year,
              y = height_cm,
-             group = country)) + 
-  geom_line() + 
+             group = country)) +
+  geom_line() +
   facet_wrap(~.strata)
 }

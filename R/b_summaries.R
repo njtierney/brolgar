@@ -1,8 +1,8 @@
 #' Brolgar summaries (b_summaries)
-#' 
+#'
 #' Customised summaries of vectors with appropriate defaults for longitudinal
 #'   data. The functions are prefixed with `b_` to assist with autocomplete.
-#'   It uses `na.rm = TRUE` for all, and for calculations 
+#'   It uses `na.rm = TRUE` for all, and for calculations
 #'   involving quantiles, `type = 8` and `names = FALSE`. Summaries include:
 #'     * b_min: The minimum
 #'     * b_max: The maximum
@@ -22,12 +22,12 @@
 #'     * b_diff_median: The median of diff()
 #'     * b_diff_q25: The q25 of diff()
 #'     * b_diff_q75: The q75 of diff()
-#' 
+#'
 #' @param x a vector
 #' @param ... other arguments to pass
 #' @rdname b_summaries
-#' @examples 
-#' 
+#' @examples
+#'
 #' x <- c(1:5, NA, 5:1)
 #' min(x)
 #' b_min(x)
@@ -43,95 +43,84 @@
 #' b_var(x)
 #' sd(x)
 #' b_sd(x)
-#' 
+#'
 #' @export
-b_min <- function(x, ... ){
+b_min <- function(x, ...) {
   min(x, na.rm = TRUE, ...)
 }
 
 #' @name b_summaries
 #' @export
-b_max <- function(x, ... ){
+b_max <- function(x, ...) {
   max(x, na.rm = TRUE, ...)
 }
 
 #' @name b_summaries
 #' @export
-b_median <- function(x, ... ){
+b_median <- function(x, ...) {
   stats::median(x, na.rm = TRUE, ...)
 }
 
 #' @name b_summaries
 #' @export
-b_mean <- function(x, ... ){
+b_mean <- function(x, ...) {
   mean(x, na.rm = TRUE, ...)
 }
 
 #' @name b_summaries
 #' @export
-b_q25 <- function(x, ... ){
-  stats::quantile(x,
-                  type = 8,
-                  probs = 0.25,
-                  na.rm = TRUE,
-                  names = FALSE,
-                  ...)
+b_q25 <- function(x, ...) {
+  stats::quantile(x, type = 8, probs = 0.25, na.rm = TRUE, names = FALSE, ...)
 }
 
 #' @name b_summaries
 #' @export
-b_q75 <- function(x, ... ){
-  stats::quantile(x,
-                  type = 8,
-                  probs = 0.75,
-                  na.rm = TRUE,
-                  names = FALSE,
-                  ...)
+b_q75 <- function(x, ...) {
+  stats::quantile(x, type = 8, probs = 0.75, na.rm = TRUE, names = FALSE, ...)
 }
 
 #' @name b_summaries
 #' @export
-b_range <- function(x, ... ){
+b_range <- function(x, ...) {
   range(x, na.rm = TRUE, ...)
 }
 
 #' @name b_summaries
 #' @export
-b_range_diff <- function(x, ... ) {
-  the_range <- b_range(x, 
-                       ...)
+b_range_diff <- function(x, ...) {
+  the_range <- b_range(x, ...)
   diff(the_range)
 }
 
 #' @name b_summaries
 #' @export
-b_sd <- function(x, ... ){
+b_sd <- function(x, ...) {
   stats::sd(x, na.rm = TRUE, ...)
 }
 
 #' @name b_summaries
 #' @export
-b_var <- function(x, ... ){
+b_var <- function(x, ...) {
   stats::var(x, na.rm = TRUE, ...)
 }
 
 #' @name b_summaries
 #' @export
-b_mad <- function(x, ... ){
+b_mad <- function(x, ...) {
   stats::mad(x, na.rm = TRUE, ...)
 }
 
 #' @name b_summaries
 #' @export
-b_iqr <- function(x, ... ){
+b_iqr <- function(x, ...) {
   stats::IQR(x, na.rm = TRUE, type = 8, ...)
 }
 
 #' @name b_summaries
 #' @export
-b_diff_var <- function(x, ...){
+b_diff_var <- function(x, ...) {
   x <- stats::na.omit(x)
-  if (length(x) == 1){
+  if (length(x) == 1) {
     return(NA)
   }
   stats::var(diff(x, na.rm = TRUE, ...))
@@ -139,9 +128,9 @@ b_diff_var <- function(x, ...){
 
 #' @name b_summaries
 #' @export
-b_diff_sd <- function(x, ...){
+b_diff_sd <- function(x, ...) {
   x <- stats::na.omit(x)
-  if (length(x) == 1){
+  if (length(x) == 1) {
     return(NA)
   }
   b_sd(diff(x, ...))
@@ -149,9 +138,9 @@ b_diff_sd <- function(x, ...){
 
 #' @name b_summaries
 #' @export
-b_diff_mean <- function(x, ...){
+b_diff_mean <- function(x, ...) {
   x <- stats::na.omit(x)
-  if (length(x) == 1){
+  if (length(x) == 1) {
     return(NA)
   }
   b_mean(diff(x, ...))
@@ -159,9 +148,9 @@ b_diff_mean <- function(x, ...){
 
 #' @name b_summaries
 #' @export
-b_diff_median <- function(x, ...){
+b_diff_median <- function(x, ...) {
   x <- stats::na.omit(x)
-  if (length(x) == 1){
+  if (length(x) == 1) {
     return(NA)
   }
   b_median(diff(x, ...))
@@ -169,9 +158,9 @@ b_diff_median <- function(x, ...){
 
 #' @name b_summaries
 #' @export
-b_diff_q25 <- function(x, ...){
+b_diff_q25 <- function(x, ...) {
   x <- stats::na.omit(x)
-  if (length(x) == 1){
+  if (length(x) == 1) {
     return(NA)
   }
   b_q25(diff(x, ...))
@@ -179,9 +168,9 @@ b_diff_q25 <- function(x, ...){
 
 #' @name b_summaries
 #' @export
-b_diff_q75 <- function(x, ...){
+b_diff_q75 <- function(x, ...) {
   x <- stats::na.omit(x)
-  if (length(x) == 1){
+  if (length(x) == 1) {
     return(NA)
   }
   b_q75(diff(x, ...))
@@ -189,9 +178,9 @@ b_diff_q75 <- function(x, ...){
 
 #' @name b_summaries
 #' @export
-b_diff_max <- function(x, ...){
+b_diff_max <- function(x, ...) {
   x <- stats::na.omit(x)
-  if (length(x) == 1){
+  if (length(x) == 1) {
     return(NA)
   }
   b_max(diff(x, ...))
@@ -199,11 +188,11 @@ b_diff_max <- function(x, ...){
 
 #' @name b_summaries
 #' @export
-b_diff_min <- function(x, ...){
+b_diff_min <- function(x, ...) {
   x <- stats::na.omit(x)
   # return early if there is only one thing, as we can't take the difference
   # of that. And a difference of 0 is misleading.
-  if (length(x) == 1){
+  if (length(x) == 1) {
     return(NA)
   }
   b_min(diff(x, ...))
@@ -211,9 +200,9 @@ b_diff_min <- function(x, ...){
 
 #' @name b_summaries
 #' @export
-b_diff_iqr <- function(x, ...){
+b_diff_iqr <- function(x, ...) {
   x <- stats::na.omit(x)
-  if (length(x) == 1){
+  if (length(x) == 1) {
     return(NA)
   }
   b_iqr(diff(x, ...))
@@ -221,4 +210,3 @@ b_diff_iqr <- function(x, ...){
 
 #  * `l_n_obs()` Number of observations
 #  * `l_slope()` Slope and intercept (given some linear model formula)
-

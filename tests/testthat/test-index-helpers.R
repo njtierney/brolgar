@@ -22,4 +22,3 @@ test_that("index summary fails when non data.frame provided", {
 test_that("index summary fails when column doesn't exist", {
   expect_error(index_summary(pisa, wat))
 })
-

@@ -15,6 +15,5 @@ test_that("longnostic returns a tbl_df", {
 })
 
 test_that("longnostic returns correct classes", {
-  expect_equal(classes(df_n_obs),
-               c(id = "integer", n_obs = "integer"))
+  expect_equal(classes(df_n_obs), c(id = "integer", n_obs = "integer"))
 })

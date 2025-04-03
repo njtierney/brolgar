@@ -31,7 +31,7 @@ heights \%>\% features(height_cm, list(min = min)) \%>\%
   filter(near_between(min, 0.1, 0.9))
 
 near_quantile(x = x,
-              probs = 0.5, 
+              probs = 0.5,
               tol = 0.01)
 
 near_quantile(x, c(0.25, 0.5, 0.75), 0.05)
@@ -40,7 +40,7 @@ heights \%>\%
   features(height_cm, l_five_num) \%>\%
   mutate_at(vars(min:max),
             .funs = near_quantile,
-            0.5, 
+            0.5,
             0.01) \%>\%
   filter(min)
 

@@ -57,33 +57,33 @@ library(dplyr)
 heights_mono <- heights \%>\%
   features(height_cm, feat_monotonic) \%>\%
   left_join(heights, by = "country")
-  
+
   ggplot(heights_mono,
          aes(x = year,
              y = height_cm,
              group = country)) +
-  geom_line() + 
+  geom_line() +
   gghighlight(increase)
 
  ggplot(heights_mono,
         aes(x = year,
             y = height_cm,
              group = country)) +
-  geom_line() + 
+  geom_line() +
   gghighlight(decrease)
 
 heights_mono \%>\%
 filter(monotonic) \%>\%
   ggplot(aes(x = year,
              y = height_cm,
-             group = country)) + 
+             group = country)) +
   geom_line()
-  
+
 heights_mono \%>\%
   filter(increase) \%>\%
   ggplot(aes(x = year,
              y = height_cm,
-             group = country)) + 
+             group = country)) +
   geom_line()
-  
+
 }

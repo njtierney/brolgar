@@ -36,6 +36,8 @@ variable for a dataset. For example, a three number summary, the minimum,
 median, and maximum, can be calculated for a given variable. This is
 designed to work with the \code{\link[=features]{features()}} function shown in the examples.
 Other available features in \code{brolgar} include:
+}
+\details{
 \itemize{
 \item \code{\link[=feat_three_num]{feat_three_num()}} - minimum, median, maximum
 \item \code{\link[=feat_five_num]{feat_five_num()}} - minimum, q25, median, q75, maximum.
@@ -53,7 +55,7 @@ difference of 0 in these cases would be misleading.
 }
 \examples{
 
-# You can use any of the features `feat_*` in conjunction with `features` 
+# You can use any of the features `feat_*` in conjunction with `features`
 # like so:
 heights \%>\%
   features(height_cm, # variable you want to explore

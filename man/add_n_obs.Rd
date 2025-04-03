@@ -20,9 +20,9 @@ we are counting the number observations for each keys in the data.
 }
 \examples{
 library(dplyr)
-# you can explore the data to see those cases that have exactly two 
+# you can explore the data to see those cases that have exactly two
  # observations:
-heights \%>\% 
-  add_n_obs() \%>\% 
+heights \%>\%
+  add_n_obs() \%>\%
   filter(n_obs == 2)
 }

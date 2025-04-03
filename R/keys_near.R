@@ -1,22 +1,20 @@
-#' Return keys nearest to a given statistics or summary. 
+#' Return keys nearest to a given statistics or summary.
 #'
 #' @param .data tsibble
 #' @param ... extra arguments to pass to `mutate_at` when performing the summary
 #'   as given by `funs`.
 #'
 #' @return data.frame containing keys closest to a given statistic.
-#' 
-#' @examples 
+#'
+#' @examples
 #' keys_near(heights, height_cm)
-#' 
+#'
 #' @export
- keys_near <- function(.data, ...){
-  
+keys_near <- function(.data, ...) {
   UseMethod("keys_near")
-  
 }
 
-#' @title Return keys nearest to a given statistics or summary. 
+#' @title Return keys nearest to a given statistics or summary.
 #' @inheritParams keys_near
 #' @param var variable to summarise
 #' @param top_n top number of closest observations to return - default is 1, which will also return ties.
@@ -25,51 +23,50 @@
 #' @param stat_as_factor coerce `stat` variable into a factor? Default is TRUE.
 #' @export
 #' @examples
-#'                
+#'
 #' # Return observations closest to the five number summary of height_cm
 #' heights %>%
 #'   keys_near(var = height_cm)
-#'                
+#'
 
-keys_near.tbl_ts <- function(.data,
-                      var,
-                      top_n = 1,
-                      funs = l_five_num,
-                      stat_as_factor = TRUE,
-                      ...){
-
+keys_near.tbl_ts <- function(
+  .data,
+  var,
+  top_n = 1,
+  funs = l_five_num,
+  stat_as_factor = TRUE,
+  ...
+) {
   key <- tsibble::key_vars(.data)
-  
+
   data_keys_near <- .data %>%
     tibble::as_tibble() %>%
     dplyr::mutate_at(
-      .vars = dplyr::vars( {{ var }} ),
+      .vars = dplyr::vars({{ var }}),
       .funs = funs,
-      ...) %>%
-    dplyr::select(dplyr::all_of(key),
-                  {{ var }},
-                  dplyr::any_of(names(funs))) %>%
-    tidyr::pivot_longer(cols = -c(dplyr::all_of(key), {{ var }}),
-                        names_to = "stat",
-                        values_to = "stat_value") %>% 
+      ...
+    ) %>%
+    dplyr::select(dplyr::all_of(key), {{ var }}, dplyr::any_of(names(funs))) %>%
+    tidyr::pivot_longer(
+      cols = -c(dplyr::all_of(key), {{ var }}),
+      names_to = "stat",
+      values_to = "stat_value"
+    ) %>%
     dplyr::mutate(stat_diff = abs({{ var }} - stat_value)) %>%
     dplyr::group_by(stat) %>%
-    dplyr::top_n(-top_n,
-                 wt = stat_diff) %>% 
+    dplyr::top_n(-top_n, wt = stat_diff) %>%
     dplyr::ungroup()
 
-    # set factors
-    if (isTRUE(stat_as_factor)) {
-      data_keys_near %>%
-        dplyr::mutate(stat = factor(x = stat,
-                                    levels = names(funs)))
-    } else if (! stat_as_factor) {
-      return(data_keys_near)
-    }
-  
+  # set factors
+  if (isTRUE(stat_as_factor)) {
+    data_keys_near %>%
+      dplyr::mutate(stat = factor(x = stat, levels = names(funs)))
+  } else if (!stat_as_factor) {
+    return(data_keys_near)
+  }
 }
 
-#' @title Return keys nearest to a given statistics or summary. 
+#' @title Return keys nearest to a given statistics or summary.
 #' @param .data data.frame
 #' @param key key, which identifies unique observations.
 #' @param var variable to summarise
@@ -95,49 +92,47 @@ keys_near.tbl_ts <- function(.data,
 #'               var = .slope_year,
 #'               funs = l_ranges)
 #' @export
-keys_near.data.frame <- function(.data,
-                      key,
-                      var,
-                      top_n = 1,
-                      funs = l_five_num,
-                      ...){
-  
+keys_near.data.frame <- function(
+  .data,
+  key,
+  var,
+  top_n = 1,
+  funs = l_five_num,
+  ...
+) {
   .data %>%
     tibble::as_tibble() %>%
     dplyr::mutate_at(
-      .vars = dplyr::vars( {{ var }} ),
+      .vars = dplyr::vars({{ var }}),
       .funs = funs,
-      ...) %>%
-    dplyr::select( {{ key }},
-                   {{ var }},
-                  dplyr::all_of(names(funs))) %>%
-    tidyr::pivot_longer(cols = -c( {{ key }}, {{ var }}),
-                        names_to = "stat",
-                        values_to = "stat_value") %>% 
-    dplyr::mutate(stat_diff = abs( {{ var }} - stat_value)) %>%
+      ...
+    ) %>%
+    dplyr::select({{ key }}, {{ var }}, dplyr::all_of(names(funs))) %>%
+    tidyr::pivot_longer(
+      cols = -c({{ key }}, {{ var }}),
+      names_to = "stat",
+      values_to = "stat_value"
+    ) %>%
+    dplyr::mutate(stat_diff = abs({{ var }} - stat_value)) %>%
     dplyr::group_by(stat) %>%
-    dplyr::top_n(-top_n,
-                 wt = stat_diff) %>%
+    dplyr::top_n(-top_n, wt = stat_diff) %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(stat = factor(x = stat,
-                                 levels = names(funs)))
+    dplyr::mutate(stat = factor(x = stat, levels = names(funs)))
 }
 
-#' @rdname keys_near 
+#' @rdname keys_near
 #' @param ... extra arguments to pass to `mutate_at` when performing the summary
 #'   as given by `funs`.
-#' @export 
-keys_near.default <- function(.data, ...){
-  
+#' @export
+keys_near.default <- function(.data, ...) {
   stop(.data, "must be a data.frame or tsibble, class is ", class(.data))
-  
 }
 
 #' A named list of the five number summary
-#' 
+#'
 #' Designed for use with the [keys_near()] function.
 #' @name l_funs
-#' @examples 
+#' @examples
 #' # Specify your own list of summaries
 #' l_ranges <- list(min = b_min,
 #'                  range_diff = b_range_diff,
