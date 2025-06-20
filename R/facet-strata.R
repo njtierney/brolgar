@@ -82,12 +82,7 @@ FacetStrata <- ggproto(
 
     layout <- data.frame(PANEL = factor(id))
 
-    if (params$as.table) {
-      layout$ROW <- as.integer((id - 1L) %/% dims[2] + 1L)
-    } else {
-      layout$ROW <- as.integer(dims[1] - (id - 1L) %/% dims[2])
-    }
-
+    layout$ROW <- as.integer((id - 1L) %/% dims[2] + 1L)
     layout$COL <- as.integer((id - 1L) %% dims[2] + 1L)
 
     layout <- layout[order(layout$PANEL), , drop = FALSE]
