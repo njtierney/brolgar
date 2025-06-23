@@ -1,4 +1,7 @@
-# brolgar (development version)
+
+# brolgar 1.0.2 "Featured on the Queensland coat of arms since 1977" (2025-06-25)
+
+* Patch release to fix upcoming feature with new ggplot2 release (#120) - thank you to Teun van den Brand (https://github.com/teunbrand) for making the pull request for this.
 
 # brolgar 1.0.1 "Conservation status: Least Concern" (2024-05-07)
 

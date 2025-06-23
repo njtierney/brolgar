@@ -1,6 +1,6 @@
 Package: brolgar
 Title: Browse Over Longitudinal Data Graphically and Analytically in R
-Version: 1.0.1.9000
+Version: 1.0.2
 Authors@R: 
     c(person(given = "Nicholas",
              family = "Tierney",
@@ -59,7 +59,7 @@ Suggests:
     lme4,
     modelr,
     rmarkdown (>= 1.14),
-    spelling (>= 2.1),
+    spelling,
     testthat (>= 3.0.0),
     tsibbledata,
     vdiffr (>= 0.3.1)
