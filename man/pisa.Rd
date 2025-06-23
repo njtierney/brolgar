@@ -42,7 +42,7 @@ pisa
 A subset of PISA data, containing scores and other information
 from the triennial testing of 15 year olds around
 the globe. Original data available from
-\url{https://www.oecd.org/pisa/data/}. Data derived from
+\url{https://www.oecd.org/en/about/programmes/pisa/pisa-data.html}. Data derived from
 \url{https://github.com/kevinwang09/learningtower}.
 }
 \examples{
