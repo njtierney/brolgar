@@ -1,6 +1,6 @@
 ## Test environments
 
-* local OS X install, R 4.4.0
+* local OS X install, R 4.5.1
 * github actions testing for devel, release, and ubuntu, windows, and macOSX
 * win-builder (devel and release)
 
@@ -8,32 +8,9 @@
 
 0 errors | 0 warnings | 1 notes
 
-```
-* New submission
-* Package was archived on CRAN
-```
+* unable to verify current time
 
-We have addressed the problems resulting in archival in this release
-
-```
-Possibly misspelled words in DESCRIPTION:
-  Prvan (35:22)
-  Tierney (34:66)
-  brolgar (33:33)
-  quantiles (30:42)
-```
-
-These spellings are all correct
-
-```
-Found the following (possibly) invalid URLs:
-  URL: https://www.oecd.org/pisa/data/
-    From: man/pisa.Rd
-    Status: 403
-    Message: Forbidden
-```
-
-I'm really not sure how to check this one - I've used {urlchecker} and the website opens for me, should I just remove this?
+This seems to be an issue with website that R CMD Check uses to check current time and is not something I can control.
 
 ## revdepcheck results
 
